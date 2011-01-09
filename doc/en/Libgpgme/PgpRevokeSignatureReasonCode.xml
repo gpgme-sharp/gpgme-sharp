@@ -8,8 +8,8 @@
     <BaseTypeName>System.Enum</BaseTypeName>
   </Base>
   <Docs>
-    <summary>To be added.</summary>
-    <remarks>To be added.</remarks>
+    <summary>The reason code for a (key-) signature revocation.</summary>
+    <remarks />
   </Docs>
   <Members>
     <Member MemberName="NoReason">
@@ -22,7 +22,7 @@
         <ReturnType>Libgpgme.PgpRevokeSignatureReasonCode</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>No reason specified.</summary>
       </Docs>
     </Member>
     <Member MemberName="UidNoLongerValid">
@@ -35,7 +35,7 @@
         <ReturnType>Libgpgme.PgpRevokeSignatureReasonCode</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>The user ID is not longer valid.</summary>
       </Docs>
     </Member>
   </Members>

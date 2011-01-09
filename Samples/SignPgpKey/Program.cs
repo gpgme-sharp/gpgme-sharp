@@ -99,7 +99,7 @@ namespace SignPgpKey
 
             PgpSignatureOptions signopts = new PgpSignatureOptions();
 
-            signopts.SelectedUids = new int[] { 1 }; // sign the primary Uid only!
+            signopts.SelectedUids = new int[] { 1 }; // sign the latest Uid only!
             signopts.TrustLevel = PgpSignatureTrustLevel.Full;
             signopts.Type = PgpSignatureType.Trust | PgpSignatureType.NonExportable;
 
@@ -138,7 +138,7 @@ namespace SignPgpKey
             }
             
             PgpRevokeSignatureOptions revopts = new PgpRevokeSignatureOptions();
-            revopts.SelectedUid = 1; // primary uid
+            revopts.SelectedUid = 1; // latest uid
             revopts.SelectedSignatures = new int[] { nsignature };
             revopts.ReasonText = "Test revocation";
 

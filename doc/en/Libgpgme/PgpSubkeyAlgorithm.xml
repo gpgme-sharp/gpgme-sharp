@@ -30,7 +30,7 @@
         <ReturnType>Libgpgme.PgpSubkeyAlgorithm</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>This value indicates DSA, the Digital Signature Algorithm (signature only).</summary>
       </Docs>
     </Member>
     <Member MemberName="DSAUseCapabilities">
@@ -51,7 +51,11 @@
         <ReturnType>Libgpgme.PgpSubkeyAlgorithm</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>This value indicates DSA, the Digital Signature Algorithm. 
+
+<block subset="none" type="note"><para>
+This value is only available if GPG is configured to use the Expert-mode ("expert" in gpg.conf).
+  </para></block></summary>
       </Docs>
     </Member>
     <Member MemberName="ELGEncryptOnly">
@@ -72,7 +76,7 @@
         <ReturnType>Libgpgme.PgpSubkeyAlgorithm</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>This value indicates ElGamal (encryption only). </summary>
       </Docs>
     </Member>
     <Member MemberName="RSAEncryptOnly">
@@ -93,7 +97,7 @@
         <ReturnType>Libgpgme.PgpSubkeyAlgorithm</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>This value indicates the RSA (Rivest, Shamir, Adleman) algorithm for encryption and decryption only.</summary>
       </Docs>
     </Member>
     <Member MemberName="RSASignOnly">
@@ -114,7 +118,7 @@
         <ReturnType>Libgpgme.PgpSubkeyAlgorithm</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>This value indicates the RSA (Rivest, Shamir, Adleman) algorithm for signing and verification only.</summary>
       </Docs>
     </Member>
     <Member MemberName="RSAUseCapabilities">
@@ -135,7 +139,10 @@
         <ReturnType>Libgpgme.PgpSubkeyAlgorithm</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>This value indicates the RSA (Rivest, Shamir, Adleman) algorithm.
+<block subset="none" type="note"><para>
+This value is only available if GPG is configured to use the Expert-mode ("expert" in gpg.conf).
+  </para></block></summary>
       </Docs>
     </Member>
   </Members>

@@ -41,7 +41,7 @@
 			:
 			<a href="index.html">Libgpgme Namespace</a></div>
     <h1 class="PageTitle">PgpRevokeSignatureOptions  Class</h1>
-    <p class="Summary">To be added.</p>
+    <p class="Summary">A class that contains information for the (key-) signature revocation operation.</p>
     <div class="Signature">
       <table class="SignatureTable" cellspacing="0" width="100%">
         <tr>
@@ -59,7 +59,8 @@
     </div>
     <div class="Remarks">
       <h4 class="Subsection">Remarks</h4>
-      <div class="SubsectionBox">To be added.</div>
+      <div class="SubsectionBox">
+      </div>
       <h2 class="Section">Members</h2>
       <div class="SectionBox">
         <p>
@@ -74,7 +75,7 @@
                 <div>
                   <b>
                     <a href="#C:Libgpgme.PgpRevokeSignatureOptions">PgpRevokeSignatureOptions</a>
-                  </b>()</div>To be added.</td>
+                  </b>()</div>Creates a new instance.</td>
             </tr>
           </table>
         </div>
@@ -92,7 +93,7 @@
               <td>
                 <i>
                   <a href="../Libgpgme/PgpRevokeSignatureReasonCode.html">PgpRevokeSignatureReasonCode</a>
-                </i>. To be added.</td>
+                </i>. The reason for the (key-) signature revocation.</td>
             </tr>
             <tr valign="top">
               <td>
@@ -104,7 +105,7 @@
               </td>
               <td>
                 <i>
-                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>[]</i>. To be added.</td>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>[]</i>. The (key-) signatures that shall be revoked.</td>
             </tr>
             <tr valign="top">
               <td>
@@ -117,7 +118,7 @@
               <td>
                 <i>
                   <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
-                </i>. To be added.</td>
+                </i>. The user ID from which (key-) signatures shall be revoked.</td>
             </tr>
           </table>
         </div>
@@ -135,7 +136,7 @@
               <td>
                 <i>
                   <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
-                </i>. To be added.</td>
+                </i>. A reason text for the (key-) signature revocation.</td>
             </tr>
           </table>
         </div>
@@ -147,9 +148,10 @@
         <h3 id="C:Libgpgme.PgpRevokeSignatureOptions" class="MemberName">PgpRevokeSignatureOptions Constructor</h3>
         <div class="MemberSignature">public  <b>PgpRevokeSignatureOptions</b> ()</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>Creates a new instance.</p>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">
+          </div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>
@@ -160,9 +162,10 @@
         <h3 id="F:Libgpgme.PgpRevokeSignatureOptions.ReasonCode" class="MemberName">ReasonCode Field</h3>
         <div class="MemberSignature">public <a href="../Libgpgme/PgpRevokeSignatureReasonCode.html">PgpRevokeSignatureReasonCode</a> <b>ReasonCode</b> </div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>The reason for the (key-) signature revocation.</p>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">
+          </div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>
@@ -173,11 +176,12 @@
         <h3 id="P:Libgpgme.PgpRevokeSignatureOptions.ReasonText" class="MemberName">ReasonText Property</h3>
         <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>ReasonText</b>  { set; get; }</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>A reason text for the (key-) signature revocation.</p>
           <h4 class="Subsection">Value</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>.</div>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">
+          </div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>
@@ -188,9 +192,31 @@
         <h3 id="F:Libgpgme.PgpRevokeSignatureOptions.SelectedSignatures" class="MemberName">SelectedSignatures Field</h3>
         <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>[] <b>SelectedSignatures</b> </div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>The (key-) signatures that shall be revoked.</p>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">
+            <p>
+              <i>Note: </i>
+              <p>
+You need to specify an (<tt>int</tt>) array containing the numbers of all (key-) signatures that shall be revoked. If you enumerate the list of (key-) signatures (<a href="../Libgpgme/UserId.html#P:Libgpgme.UserId.Signatures">UserId.Signatures</a> property) to count and identify the correct numbers - make sure that you DON'T count "revocation" signatures/certificates. You can check this with the <a href="../Libgpgme/KeySignature.html#P:Libgpgme.KeySignature.Revoked">KeySignature.Revoked</a> property for each (key-) signature in the list. 
+</p>
+              <p>
+Example:
+
+
+<table class="CodeExampleTable"><tr><td><b><font size="-1"> Example</font></b></td></tr><tr><td><pre>
+# gpg --edit-key 321FEDCBA
+Command &gt; check
+uid  Mallory &lt;mallory@home.internal&gt;
+rev!        ABCDEF123 2009-08-01  Alice &lt;alice@home.internal&gt;
+rev!        ABCDEF123 2009-08-02  Alice &lt;alice@home.internal&gt;
+sig!3        321FEDCBA 2009-08-01  [self-signature]
+sig!        ABCDEF123 2009-08-01  Alice &lt;alice@home.internal&gt;
+  </pre></td></tr></table>
+There are four entries in this example list of (key-) signatures. The first two are "revocation signatures". That means the self-signature starts with number "1" and Alice's (key-)signature follows with number "2". (In this example, Alice created two revocation signatures/certificates. She created the first one on August 1st and the second one on August 2nd.)
+</p>
+            </p>
+          </div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>
@@ -201,9 +227,9 @@
         <h3 id="F:Libgpgme.PgpRevokeSignatureOptions.SelectedUid" class="MemberName">SelectedUid Field</h3>
         <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>SelectedUid</b> </div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>The user ID from which (key-) signatures shall be revoked.</p>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">A PGP key can contain several identities (user IDs). The first Uid (=1) is the primary user ID.</div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>

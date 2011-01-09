@@ -212,7 +212,7 @@ You can use the following constant values:
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>Set the key to never expire.</summary>
+        <summary>Sets the key to never expire.</summary>
         <remarks />
       </Docs>
     </Member>

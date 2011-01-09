@@ -17,7 +17,13 @@
 # MA  02110-1301  US
 #
 
+# development tools
 GMCS		= gmcs
+MONODOCER	= monodocer
+MONODOC		= monodoc
+MONODOCS2HTML	= monodocs2html
+MDASSEMBLER	= mdassembler
+
 
 DEFINES		= -define:TRACE -define:DEBUG
 FLAGS		= -noconfig -codepage:utf8 -warn:4 -optimize+ -debug
@@ -25,8 +31,11 @@ TARGET		= -target:library
 NAMESPACES	= -r:System -r:System.Data -r:System.Xml
 GMCSOPTS	= $(FLAGS) $(DEFINES) $(TARGET) $(NAMESPACES)
 CONFTARGET	= Release
+DOCLANG		= en
+DOCNAME		= GPGME
 
 LIBNAME		= gpgme-sharp
+LIBNAMESPACE	= Libgpgme
 ASSEMBLYVERSION	= 1.0.0.0
 
 LIBFILE		= $(LIBNAME).dll
@@ -35,6 +44,8 @@ LIBMDB		= $(LIBFILE).mdb
 PKGCONFIGFILE	= $(LIBNAME).pc
 
 SOURCEDIR	= gpgme-sharp
+DOCDIR		= doc
+HTMLDOCDIR	= $(DOCDIR)/htmldocs
 BUILDDIR	= $(SOURCEDIR)/bin/$(CONFTARGET)
 PKGCONFIG	= pkgconfig
 
@@ -69,6 +80,32 @@ $(LIBCONFIGNAME):	$(BUILDDIR)/$(LIBCONFIGNAME)
 $(BUILDDIR)/$(LIBCONFIGNAME):	$(SOURCEDIR)/$(LIBCONFIGNAME)
 	cp $(SOURCEDIR)/$(LIBCONFIGNAME) \
 		$(BUILDDIR)/$(LIBCONFIGNAME)
+
+# documentation XML files
+xmldoc:	$(DOCDIR)/$(DOCLANG)/index.xml
+
+$(DOCDIR)/$(DOCLANG)/index.xml:	$(BUILDDIR)/$(LIBFILE)	
+	mkdir -p $(DOCDIR)/$(DOCLANG)
+	$(MONODOCER) -assembly:$(BUILDDIR)/$(LIBFILE) \
+		-path:$(DOCDIR)/$(DOCLANG) \
+		-pretty \
+		-name:$(DOCNAME)
+
+# edit documentation
+editdoc:	xmldoc	
+	# DEBIAN BUG
+	mv $(DOCDIR)/$(DOCLANG)/ns-$(LIBNAMESPACE).xml \
+		$(DOCDIR)/$(DOCLANG)/$(LIBNAMESPACE).xml
+	$(MONODOC) --edit $(DOCDIR)/$(DOCLANG)
+	# DEBIAN BUG
+	mv $(DOCDIR)/$(DOCLANG)/$(LIBNAMESPACE).xml \
+		$(DOCDIR)/$(DOCLANG)/ns-$(LIBNAMESPACE).xml
+
+# HTML docs
+htmldoc:	$(DOCDIR)/$(HTMLDOCDIR)/index.html
+$(DOCDIR)/$(HTMLDOCDIR)/index.html:	xmldoc
+	$(MONODOCS2HTML) --source $(DOCDIR)/$(DOCLANG) \
+		--dest $(HTMLDOCDIR)
 
 clean:
 	rm -f $(BUILDDIR)/*

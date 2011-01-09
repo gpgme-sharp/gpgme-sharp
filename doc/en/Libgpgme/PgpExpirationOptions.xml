@@ -9,8 +9,8 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
-    <remarks>To be added.</remarks>
+    <summary>A class that contains information for the key expiration operation on PGP keys.</summary>
+    <remarks />
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -21,8 +21,8 @@
       </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>Creates a new instance.</summary>
+        <remarks />
       </Docs>
     </Member>
     <Member MemberName="ExpirationDate">
@@ -35,9 +35,16 @@
         <ReturnType>System.DateTime</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>The new expiration date for the selected subkey(s).</summary>
+        <value>A <see cref="T:System.DateTime" />.</value>
+        <remarks>
+          <block subset="none" type="note">
+            <para>
+Depending on your timezone you might see the date 1970-01-01 UTC. This special date is used to mark a key to never expire.
+You can unset the expiration date with the <see cref="M:Libgpgme.PgpExpirationOptions.MakeInfinitely()" /> method. 
+</para>
+          </block>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="IsInfinitely">
@@ -50,9 +57,15 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>Indicates that the selected subkeys do not expire.</summary>
+        <value>A <see cref="T:System.Boolean" />.</value>
+        <remarks>
+          <block subset="none" type="note">
+            <para>
+You can unset the expiration date with the <see cref="M:Libgpgme.PgpExpirationOptions.MakeInfinitely()" /> method.
+  </para>
+          </block>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="MakeInfinitely">
@@ -66,8 +79,8 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>Sets the selected subkey(s) to never expire.</summary>
+        <remarks />
       </Docs>
     </Member>
     <Member MemberName="SelectedSubkeys">
@@ -80,8 +93,8 @@
         <ReturnType>System.Int32[]</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>The subkey(s) to which the new expiration date shall be applied.</summary>
+        <remarks>The correct numbers can be determinated by enumerate the list of subkeys (<see cref="P:Libgpgme.Key.Subkeys" />) and counting the desired subkey(s).</remarks>
       </Docs>
     </Member>
   </Members>

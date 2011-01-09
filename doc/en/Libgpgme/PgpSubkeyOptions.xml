@@ -9,8 +9,8 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
-    <remarks>To be added.</remarks>
+    <summary>A class that contains information about a new subkey.</summary>
+    <remarks />
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -21,8 +21,8 @@
       </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>Creates a new instance.</summary>
+        <remarks />
       </Docs>
     </Member>
     <Member MemberName="Algorithm">
@@ -35,8 +35,14 @@
         <ReturnType>Libgpgme.PgpSubkeyAlgorithm</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>The public key algorithm to be used for the new subkey.</summary>
+        <remarks>
+          <block subset="none" type="note">
+            <para>
+You can use the <see cref="M:Libgpgme.PgpSubkeyOptions.SetAlgorithm(Libgpgme.KeyAlgorithm)" /> method as well. Make sure to set proper key capabilities by using the <see cref="P:Libgpgme.PgpSubkeyOptions.Capability" /> property.
+  </para>
+          </block>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Capability">
@@ -49,8 +55,8 @@
         <ReturnType>Libgpgme.AlgorithmCapability</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>The key capabilities of the new subkey.</summary>
+        <remarks />
       </Docs>
     </Member>
     <Member MemberName="ExpirationDate">
@@ -63,9 +69,16 @@
         <ReturnType>System.DateTime</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>The expiration date of the new subkey.</summary>
+        <value>A <see cref="T:System.DateTime" />.</value>
+        <remarks>
+          <block subset="none" type="note">
+            <para>
+Depending on your timezone you might see the date 1970-01-01 UTC. This special date is used to mark a key to never expire.
+You can unset the expiration date with the <see cref="M:Libgpgme.PgpSubkeyOptions.MakeInfinitely()" /> method. 
+</para>
+          </block>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="IsInfinitely">
@@ -78,9 +91,15 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>Indicates that the new subkey does not expire.</summary>
+        <value>A <see cref="T:System.Boolean" />.</value>
+        <remarks>
+          <block subset="none" type="note">
+            <para>
+You can unset the expiration date with the <see cref="M:Libgpgme.PgpSubkeyOptions.MakeInfinitely()" /> method.
+  </para>
+          </block>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="KEY_LENGTH_1024">
@@ -94,8 +113,8 @@
       </ReturnValue>
       <MemberValue>1024</MemberValue>
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>1024 bits key size.</summary>
+        <remarks />
       </Docs>
     </Member>
     <Member MemberName="KEY_LENGTH_2048">
@@ -109,8 +128,8 @@
       </ReturnValue>
       <MemberValue>2048</MemberValue>
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>2048 bits key size.</summary>
+        <remarks />
       </Docs>
     </Member>
     <Member MemberName="KEY_LENGTH_4096">
@@ -124,8 +143,8 @@
       </ReturnValue>
       <MemberValue>4096</MemberValue>
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>4096 bits key size.</summary>
+        <remarks />
       </Docs>
     </Member>
     <Member MemberName="KeyLength">
@@ -138,9 +157,37 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>The new subkey's length in bits.</summary>
+        <value>A <see cref="T:System.Int32" />.</value>
+        <remarks>
+          <para>
+You can use the following constant values:
+</para>
+          <list type="table">
+            <listheader>
+              <term>Constant</term>
+              <description>Description</description>
+            </listheader>
+            <item>
+              <term>
+                <see cref="F:Libgpgme.PgpSubkeyOptions.KEY_LENGTH_1024" />
+              </term>
+              <description>for 1024 bits key length</description>
+            </item>
+            <item>
+              <term>
+                <see cref="F:Libgpgme.PgpSubkeyOptions.KEY_LENGTH_2048" />
+              </term>
+              <description>for 2048 bits key length</description>
+            </item>
+            <item>
+              <term>
+                <see cref="F:Libgpgme.PgpSubkeyOptions.KEY_LENGTH_4096" />
+              </term>
+              <description>for 4096 bits key length</description>
+            </item>
+          </list>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="MakeInfinitely">
@@ -154,8 +201,8 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>Sets the new subkey to never expire.</summary>
+        <remarks />
       </Docs>
     </Member>
     <Member MemberName="SetAlgorithm">
@@ -171,9 +218,15 @@
         <Parameter Name="algo" Type="Libgpgme.KeyAlgorithm" />
       </Parameters>
       <Docs>
-        <param name="algo">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="algo">A <see cref="T:Libgpgme.KeyAlgorithm" />.</param>
+        <summary>Sets the public key algorithm to be used for the new subkey.</summary>
+        <remarks>
+          <block subset="none" type="note">
+            <para>
+You can use the <see cref="P:Libgpgme.PgpSubkeyOptions.Algorithm" /> property as well. Make sure to set proper key capabilities by using the <see cref="P:Libgpgme.PgpSubkeyOptions.Capability" /> property.
+  </para>
+          </block>
+        </remarks>
       </Docs>
     </Member>
   </Members>

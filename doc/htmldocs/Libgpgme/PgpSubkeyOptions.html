@@ -41,7 +41,7 @@
 			:
 			<a href="index.html">Libgpgme Namespace</a></div>
     <h1 class="PageTitle">PgpSubkeyOptions  Class</h1>
-    <p class="Summary">To be added.</p>
+    <p class="Summary">A class that contains information about a new subkey.</p>
     <div class="Signature">
       <table class="SignatureTable" cellspacing="0" width="100%">
         <tr>
@@ -59,7 +59,8 @@
     </div>
     <div class="Remarks">
       <h4 class="Subsection">Remarks</h4>
-      <div class="SubsectionBox">To be added.</div>
+      <div class="SubsectionBox">
+      </div>
       <h2 class="Section">Members</h2>
       <div class="SectionBox">
         <p>
@@ -74,7 +75,7 @@
                 <div>
                   <b>
                     <a href="#C:Libgpgme.PgpSubkeyOptions">PgpSubkeyOptions</a>
-                  </b>()</div>To be added.</td>
+                  </b>()</div>Creates a new instance.</td>
             </tr>
           </table>
         </div>
@@ -92,7 +93,7 @@
               <td>
                 <i>
                   <a href="../Libgpgme/PgpSubkeyAlgorithm.html">PgpSubkeyAlgorithm</a>
-                </i>. To be added.</td>
+                </i>. The public key algorithm to be used for the new subkey.</td>
             </tr>
             <tr valign="top">
               <td>
@@ -105,7 +106,7 @@
               <td>
                 <i>
                   <a href="../Libgpgme/AlgorithmCapability.html">AlgorithmCapability</a>
-                </i>. To be added.</td>
+                </i>. The key capabilities of the new subkey.</td>
             </tr>
             <tr valign="top">
               <td>
@@ -117,7 +118,7 @@
               <td>
                 <i>
                   <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
-                </i> (1024). To be added.</td>
+                </i> (1024). 1024 bits key size.</td>
             </tr>
             <tr valign="top">
               <td>
@@ -129,7 +130,7 @@
               <td>
                 <i>
                   <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
-                </i> (2048). To be added.</td>
+                </i> (2048). 2048 bits key size.</td>
             </tr>
             <tr valign="top">
               <td>
@@ -141,7 +142,7 @@
               <td>
                 <i>
                   <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
-                </i> (4096). To be added.</td>
+                </i> (4096). 4096 bits key size.</td>
             </tr>
           </table>
         </div>
@@ -159,7 +160,7 @@
               <td>
                 <i>
                   <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.DateTime">DateTime</a>
-                </i>. To be added.</td>
+                </i>. The expiration date of the new subkey.</td>
             </tr>
             <tr valign="top">
               <td>
@@ -171,7 +172,7 @@
               <td>
                 <i>
                   <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
-                </i>. To be added.</td>
+                </i>. Indicates that the new subkey does not expire.</td>
             </tr>
             <tr valign="top">
               <td>
@@ -184,7 +185,7 @@
               <td>
                 <i>
                   <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
-                </i>. To be added.</td>
+                </i>. The new subkey's length in bits.</td>
             </tr>
           </table>
         </div>
@@ -197,7 +198,7 @@
               <td>
                 <b>
                   <a href="#M:Libgpgme.PgpSubkeyOptions.MakeInfinitely">MakeInfinitely</a>
-                </b>()<div>To be added.</div></td>
+                </b>()<div>Sets the new subkey to never expire.</div></td>
             </tr>
             <tr valign="top">
               <td>
@@ -205,7 +206,7 @@
               <td>
                 <b>
                   <a href="#M:Libgpgme.PgpSubkeyOptions.SetAlgorithm(Libgpgme.KeyAlgorithm)">SetAlgorithm</a>
-                </b>(<a href="../Libgpgme/KeyAlgorithm.html">KeyAlgorithm</a>)<div>To be added.</div></td>
+                </b>(<a href="../Libgpgme/KeyAlgorithm.html">KeyAlgorithm</a>)<div>Sets the public key algorithm to be used for the new subkey.</div></td>
             </tr>
           </table>
         </div>
@@ -217,9 +218,10 @@
         <h3 id="C:Libgpgme.PgpSubkeyOptions" class="MemberName">PgpSubkeyOptions Constructor</h3>
         <div class="MemberSignature">public  <b>PgpSubkeyOptions</b> ()</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>Creates a new instance.</p>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">
+          </div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>
@@ -230,9 +232,16 @@
         <h3 id="F:Libgpgme.PgpSubkeyOptions.Algorithm" class="MemberName">Algorithm Field</h3>
         <div class="MemberSignature">public <a href="../Libgpgme/PgpSubkeyAlgorithm.html">PgpSubkeyAlgorithm</a> <b>Algorithm</b> </div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>The public key algorithm to be used for the new subkey.</p>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">
+            <p>
+              <i>Note: </i>
+              <p>
+You can use the <a href="../Libgpgme/PgpSubkeyOptions.html#M:Libgpgme.PgpSubkeyOptions.SetAlgorithm(Libgpgme.KeyAlgorithm)">PgpSubkeyOptions.SetAlgorithm(KeyAlgorithm)</a> method as well. Make sure to set proper key capabilities by using the <a href="../Libgpgme/PgpSubkeyOptions.html#P:Libgpgme.PgpSubkeyOptions.Capability">PgpSubkeyOptions.Capability</a> property.
+  </p>
+            </p>
+          </div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>
@@ -243,9 +252,10 @@
         <h3 id="F:Libgpgme.PgpSubkeyOptions.Capability" class="MemberName">Capability Field</h3>
         <div class="MemberSignature">public <a href="../Libgpgme/AlgorithmCapability.html">AlgorithmCapability</a> <b>Capability</b> </div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>The key capabilities of the new subkey.</p>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">
+          </div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>
@@ -256,11 +266,19 @@
         <h3 id="P:Libgpgme.PgpSubkeyOptions.ExpirationDate" class="MemberName">ExpirationDate Property</h3>
         <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.DateTime">DateTime</a> <b>ExpirationDate</b>  { set; get; }</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>The expiration date of the new subkey.</p>
           <h4 class="Subsection">Value</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.DateTime">DateTime</a>.</div>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">
+            <p>
+              <i>Note: </i>
+              <p>
+Depending on your timezone you might see the date 1970-01-01 UTC. This special date is used to mark a key to never expire.
+You can unset the expiration date with the <a href="../Libgpgme/PgpSubkeyOptions.html#M:Libgpgme.PgpSubkeyOptions.MakeInfinitely()">PgpSubkeyOptions.MakeInfinitely()</a> method. 
+</p>
+            </p>
+          </div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>
@@ -271,11 +289,18 @@
         <h3 id="P:Libgpgme.PgpSubkeyOptions.IsInfinitely" class="MemberName">IsInfinitely Property</h3>
         <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>IsInfinitely</b>  { get; }</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>Indicates that the new subkey does not expire.</p>
           <h4 class="Subsection">Value</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>.</div>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">
+            <p>
+              <i>Note: </i>
+              <p>
+You can unset the expiration date with the <a href="../Libgpgme/PgpSubkeyOptions.html#M:Libgpgme.PgpSubkeyOptions.MakeInfinitely()">PgpSubkeyOptions.MakeInfinitely()</a> method.
+  </p>
+            </p>
+          </div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>
@@ -288,9 +313,10 @@
         <div class="MemberBox">
           <p>
             <b>Value: </b>1024</p>
-          <p>To be added.</p>
+          <p>1024 bits key size.</p>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">
+          </div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>
@@ -303,9 +329,10 @@
         <div class="MemberBox">
           <p>
             <b>Value: </b>2048</p>
-          <p>To be added.</p>
+          <p>2048 bits key size.</p>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">
+          </div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>
@@ -318,9 +345,10 @@
         <div class="MemberBox">
           <p>
             <b>Value: </b>4096</p>
-          <p>To be added.</p>
+          <p>4096 bits key size.</p>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">
+          </div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>
@@ -331,11 +359,39 @@
         <h3 id="P:Libgpgme.PgpSubkeyOptions.KeyLength" class="MemberName">KeyLength Property</h3>
         <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>KeyLength</b>  { set; get; }</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>The new subkey's length in bits.</p>
           <h4 class="Subsection">Value</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>.</div>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">
+            <p>
+You can use the following constant values:
+</p>
+            <table border="1" cellpadding="3">
+              <tr valign="top">
+                <th>Constant</th>
+                <th>Description</th>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <a href="../Libgpgme/PgpSubkeyOptions.html#F:Libgpgme.PgpSubkeyOptions.KEY_LENGTH_1024">PgpSubkeyOptions.KEY_LENGTH_1024</a>
+                </td>
+                <td>for 1024 bits key length</td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <a href="../Libgpgme/PgpSubkeyOptions.html#F:Libgpgme.PgpSubkeyOptions.KEY_LENGTH_2048">PgpSubkeyOptions.KEY_LENGTH_2048</a>
+                </td>
+                <td>for 2048 bits key length</td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <a href="../Libgpgme/PgpSubkeyOptions.html#F:Libgpgme.PgpSubkeyOptions.KEY_LENGTH_4096">PgpSubkeyOptions.KEY_LENGTH_4096</a>
+                </td>
+                <td>for 4096 bits key length</td>
+              </tr>
+            </table>
+          </div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>
@@ -346,9 +402,10 @@
         <h3 id="M:Libgpgme.PgpSubkeyOptions.MakeInfinitely" class="MemberName">MakeInfinitely Method</h3>
         <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>MakeInfinitely</b> ()</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>Sets the new subkey to never expire.</p>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">
+          </div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>
@@ -359,18 +416,25 @@
         <h3 id="M:Libgpgme.PgpSubkeyOptions.SetAlgorithm(Libgpgme.KeyAlgorithm)" class="MemberName">SetAlgorithm Method</h3>
         <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>SetAlgorithm</b> (<a href="../Libgpgme/KeyAlgorithm.html">KeyAlgorithm</a> algo)</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>Sets the public key algorithm to be used for the new subkey.</p>
           <h4 class="Subsection">Parameters</h4>
           <div class="SubsectionBox">
             <dl>
               <dt>
                 <i>algo</i>
               </dt>
-              <dd>To be added.</dd>
+              <dd>A <a href="../Libgpgme/KeyAlgorithm.html">Libgpgme.KeyAlgorithm</a>.</dd>
             </dl>
           </div>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">
+            <p>
+              <i>Note: </i>
+              <p>
+You can use the <a href="../Libgpgme/PgpSubkeyOptions.html#P:Libgpgme.PgpSubkeyOptions.Algorithm">PgpSubkeyOptions.Algorithm</a> property as well. Make sure to set proper key capabilities by using the <a href="../Libgpgme/PgpSubkeyOptions.html#P:Libgpgme.PgpSubkeyOptions.Capability">PgpSubkeyOptions.Capability</a> property.
+  </p>
+            </p>
+          </div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>

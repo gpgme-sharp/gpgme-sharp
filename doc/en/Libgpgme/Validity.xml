@@ -8,7 +8,7 @@
     <BaseTypeName>System.Enum</BaseTypeName>
   </Base>
   <Docs>
-    <summary>A type is used to specify the validity of a user ID in a key.</summary>
+    <summary>A type that is used to specify the validity of a user ID in a key.</summary>
     <remarks />
   </Docs>
   <Members>

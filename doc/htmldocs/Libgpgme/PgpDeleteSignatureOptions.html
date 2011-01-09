@@ -41,7 +41,7 @@
 			:
 			<a href="index.html">Libgpgme Namespace</a></div>
     <h1 class="PageTitle">PgpDeleteSignatureOptions  Class</h1>
-    <p class="Summary">To be added.</p>
+    <p class="Summary">A class that contains information for the (key-) signature deletion operation.</p>
     <div class="Signature">
       <table class="SignatureTable" cellspacing="0" width="100%">
         <tr>
@@ -59,7 +59,8 @@
     </div>
     <div class="Remarks">
       <h4 class="Subsection">Remarks</h4>
-      <div class="SubsectionBox">To be added.</div>
+      <div class="SubsectionBox">
+      </div>
       <h2 class="Section">Members</h2>
       <div class="SectionBox">
         <p>
@@ -74,7 +75,7 @@
                 <div>
                   <b>
                     <a href="#C:Libgpgme.PgpDeleteSignatureOptions">PgpDeleteSignatureOptions</a>
-                  </b>()</div>To be added.</td>
+                  </b>()</div>Creates a new instance.</td>
             </tr>
           </table>
         </div>
@@ -92,7 +93,7 @@
               <td>
                 <i>
                   <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
-                </i>. To be added.</td>
+                </i>. Indicates that GPG is allowed to delete a Self-Signature.</td>
             </tr>
             <tr valign="top">
               <td>
@@ -104,7 +105,7 @@
               </td>
               <td>
                 <i>
-                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>[]</i>. To be added.</td>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>[]</i>. The (key-) signature(s) that shall be deleted.</td>
             </tr>
             <tr valign="top">
               <td>
@@ -117,7 +118,7 @@
               <td>
                 <i>
                   <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
-                </i>. To be added.</td>
+                </i>. The user id from which the (key-) signature(s) shall be deleted.</td>
             </tr>
           </table>
         </div>
@@ -129,9 +130,10 @@
         <h3 id="C:Libgpgme.PgpDeleteSignatureOptions" class="MemberName">PgpDeleteSignatureOptions Constructor</h3>
         <div class="MemberSignature">public  <b>PgpDeleteSignatureOptions</b> ()</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>Creates a new instance.</p>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">
+          </div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>
@@ -142,9 +144,9 @@
         <h3 id="F:Libgpgme.PgpDeleteSignatureOptions.DeleteSelfSignature" class="MemberName">DeleteSelfSignature Field</h3>
         <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>DeleteSelfSignature</b> </div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>Indicates that GPG is allowed to delete a Self-Signature.</p>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">This is not OpenPGP compliant. It is always a good idea to disallow the deletion of Self-Signatures.</div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>
@@ -155,9 +157,9 @@
         <h3 id="F:Libgpgme.PgpDeleteSignatureOptions.SelectedSignatures" class="MemberName">SelectedSignatures Field</h3>
         <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>[] <b>SelectedSignatures</b> </div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>The (key-) signature(s) that shall be deleted.</p>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">The array should contain the numbers of all (key-) signatures and/or revocation certificates that shall be deleted.</div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>
@@ -168,9 +170,9 @@
         <h3 id="F:Libgpgme.PgpDeleteSignatureOptions.SelectedUid" class="MemberName">SelectedUid Field</h3>
         <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>SelectedUid</b> </div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>The user id from which the (key-) signature(s) shall be deleted.</p>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">A PGP key can contain several identities (user IDs). The first Uid (=1) is the primary user ID.</div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>

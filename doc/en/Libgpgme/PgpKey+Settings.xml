@@ -9,8 +9,11 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
-    <remarks>To be added.</remarks>
+    <summary>A class that contains general settings used during key edit operations.</summary>
+    <remarks>At the moment the user can specify a passphrase or passphrase callback method that is used by various key edit operations.
+<block subset="none" type="note"><para>
+This DOES NOT work if GPG is configured to use an agent (or pin-entry software) to acquire the user's passphrase. It is highly recommended to use GPG with a passphrase agent.
+  </para></block></remarks>
   </Docs>
   <Members>
     <Member MemberName="Passphrase">
@@ -23,9 +26,15 @@
         <ReturnType>System.Char[]</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>A passphrase provided by the user.</summary>
+        <value>An array of <see cref="T:System.Char" />s.</value>
+        <remarks>
+          <block subset="none" type="note">
+            <para>
+Make sure that you overwrite (wipe) the user's passphrase in memory. You should not use the <see cref="M:System.String.ToArray()" /> method to convert a user supplied string if you do not hold any further reference to it.
+  </para>
+          </block>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="PassphraseFunction">
@@ -38,9 +47,9 @@
         <ReturnType>Libgpgme.PassphraseDelegate</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>A callback method that is called if the GPGME backend would need a passphrase.</summary>
+        <value>A <see cref="T:Libgpgme.PassphraseDelegate" />.</value>
+        <remarks />
       </Docs>
     </Member>
   </Members>

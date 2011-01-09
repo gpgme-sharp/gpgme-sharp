@@ -7,7 +7,10 @@
   <Interfaces />
   <Docs>
     <summary>An interface that contains the basic methods needed to create new keys.</summary>
-    <remarks>A KeyStore that implements <see cref="T:Libgpgme.IKeyGenerator" /> can be used to generate new keys (key pairs). </remarks>
+    <remarks>A KeyStore that implements <see cref="T:Libgpgme.IKeyGenerator" /> can be used to generate new keys (key pairs). 
+<block subset="none" type="note"><para>
+For documentation of GPGME's engine specific keystore(s) see <see cref="P:Libgpgme.Context.KeyStore" /> and <see cref="C:Libgpgme.KeyStore" />.
+  </para></block></remarks>
   </Docs>
   <Members>
     <Member MemberName="GenerateKey">

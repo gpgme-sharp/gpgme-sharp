@@ -9,8 +9,8 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
-    <remarks>To be added.</remarks>
+    <summary>A class that contains information for the passphrase change operation.</summary>
+    <remarks />
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -21,8 +21,8 @@
       </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>Creates a new instance.</summary>
+        <remarks />
       </Docs>
     </Member>
     <Member MemberName="EmptyOkay">
@@ -35,8 +35,8 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>Indicates that empty passphrases are allowed.</summary>
+        <remarks>Is <see langword="false" /> by default.</remarks>
       </Docs>
     </Member>
     <Member MemberName="NewPassphrase">
@@ -49,8 +49,11 @@
         <ReturnType>System.Char[]</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>The key's new passphrase.</summary>
+        <remarks>Will be ignored if GPG is configured to use gpg-agent (or any other GPG compatible pin-entry software).
+<block subset="none" type="note"><para>
+Make sure that you overwrite (wipe) the user's passphrase in memory. The callback will NOT wipe the char array after usage.
+  </para></block></remarks>
       </Docs>
     </Member>
     <Member MemberName="NewPassphraseCallback">
@@ -63,8 +66,8 @@
         <ReturnType>Libgpgme.PassphraseDelegate</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>A callback method that is called when the GPGME backend requires the key's new passphrase.</summary>
+        <remarks>Will be ignored if GPG is configured to use gpg-agent (or any other GPG compatible pin-entry software).</remarks>
       </Docs>
     </Member>
     <Member MemberName="OldPassphrase">
@@ -77,8 +80,11 @@
         <ReturnType>System.Char[]</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>The key's old passphrase.</summary>
+        <remarks>Will be ignored if GPG is configured to use gpg-agent (or any other GPG compatible pin-entry software).
+<block subset="none" type="note"><para>
+Make sure that you overwrite (wipe) the user's passphrase in memory. The callback will NOT wipe the char array after usage.
+  </para></block></remarks>
       </Docs>
     </Member>
     <Member MemberName="OldPassphraseCallback">
@@ -91,8 +97,8 @@
         <ReturnType>Libgpgme.PassphraseDelegate</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>A callback method that is called when the GPGME backend requires the key's old passphrase.</summary>
+        <remarks>Will be ignored if GPG is configured to use gpg-agent (or any other GPG compatible pin-entry software).</remarks>
       </Docs>
     </Member>
   </Members>

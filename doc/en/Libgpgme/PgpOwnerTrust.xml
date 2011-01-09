@@ -8,8 +8,9 @@
     <BaseTypeName>System.Enum</BaseTypeName>
   </Base>
   <Docs>
-    <summary>To be added.</summary>
-    <remarks>To be added.</remarks>
+    <summary>A type that is used to specify the PGP owner trust level.</summary>
+    <remarks>Decide how far we trust this user to correctly verify other users' keys (by looking at passports, checking fingerprints from different sources, etc.).
+</remarks>
   </Docs>
   <Members>
     <Member MemberName="Full">
@@ -22,7 +23,7 @@
         <ReturnType>Libgpgme.PgpOwnerTrust</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Fully trust this key.</summary>
       </Docs>
     </Member>
     <Member MemberName="Marginal">
@@ -35,7 +36,7 @@
         <ReturnType>Libgpgme.PgpOwnerTrust</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Trust this key marginally.</summary>
       </Docs>
     </Member>
     <Member MemberName="Never">
@@ -48,7 +49,7 @@
         <ReturnType>Libgpgme.PgpOwnerTrust</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Do NOT trust this key.</summary>
       </Docs>
     </Member>
     <Member MemberName="Ultimate">
@@ -61,7 +62,7 @@
         <ReturnType>Libgpgme.PgpOwnerTrust</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Ultimately trust this key.</summary>
       </Docs>
     </Member>
     <Member MemberName="Undefined">
@@ -74,7 +75,7 @@
         <ReturnType>Libgpgme.PgpOwnerTrust</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>Undefined.</summary>
       </Docs>
     </Member>
   </Members>

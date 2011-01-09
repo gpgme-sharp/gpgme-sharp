@@ -13,8 +13,8 @@
     </Interface>
   </Interfaces>
   <Docs>
-    <summary>A class that contains information about a key.</summary>
-    <remarks>Currently <see cref="C:Libgpgme.Key" /> can represent either an S/Mime (X.509) or an OpenPGP key.</remarks>
+    <summary>An instance of this class represents a key.</summary>
+    <remarks>Currently, <see cref="C:Libgpgme.Key" /> can represent either an S/Mime (X.509) or an OpenPGP key.</remarks>
   </Docs>
   <Members>
     <Member MemberName="CanAuthenticate">
@@ -444,7 +444,8 @@ You can enumerate the linked list with the subkey's <see cref="P:Libgpgme.Subkey
       <Docs>
         <summary>The primary user ID of a key.</summary>
         <value>The first <see cref="C:Libgpgme.UserId" /> in the list. <see langword="null" /> if no user ID information available.</value>
-        <remarks>This property is a reference to <see cref="P:Libgpgme.Key.Uids" />.</remarks>
+        <remarks>This property is a reference to <see cref="P:Libgpgme.Key.Uids" />.
+</remarks>
       </Docs>
     </Member>
     <Member MemberName="Uids">

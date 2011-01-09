@@ -9,8 +9,8 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
-    <remarks>To be added.</remarks>
+    <summary>A class that contains information for the (key-) signature deletion operation.</summary>
+    <remarks />
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -21,8 +21,8 @@
       </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>Creates a new instance.</summary>
+        <remarks />
       </Docs>
     </Member>
     <Member MemberName="DeleteSelfSignature">
@@ -35,8 +35,8 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>Indicates that GPG is allowed to delete a Self-Signature.</summary>
+        <remarks>This is not OpenPGP compliant. It is always a good idea to disallow the deletion of Self-Signatures.</remarks>
       </Docs>
     </Member>
     <Member MemberName="SelectedSignatures">
@@ -49,8 +49,8 @@
         <ReturnType>System.Int32[]</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>The (key-) signature(s) that shall be deleted.</summary>
+        <remarks>The array should contain the numbers of all (key-) signatures and/or revocation certificates that shall be deleted.</remarks>
       </Docs>
     </Member>
     <Member MemberName="SelectedUid">
@@ -63,8 +63,8 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>The user id from which the (key-) signature(s) shall be deleted.</summary>
+        <remarks>A PGP key can contain several identities (user IDs). The first Uid (=1) is the primary user ID.</remarks>
       </Docs>
     </Member>
   </Members>

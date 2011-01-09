@@ -41,7 +41,7 @@
 			:
 			<a href="index.html">Libgpgme Namespace</a></div>
     <h1 class="PageTitle">PgpKey.Settings  Class</h1>
-    <p class="Summary">To be added.</p>
+    <p class="Summary">A class that contains general settings used during key edit operations.</p>
     <div class="Signature">
       <table class="SignatureTable" cellspacing="0" width="100%">
         <tr>
@@ -59,7 +59,10 @@
     </div>
     <div class="Remarks">
       <h4 class="Subsection">Remarks</h4>
-      <div class="SubsectionBox">To be added.</div>
+      <div class="SubsectionBox">At the moment the user can specify a passphrase or passphrase callback method that is used by various key edit operations.
+<p><i>Note: </i><p>
+This DOES NOT work if GPG is configured to use an agent (or pin-entry software) to acquire the user's passphrase. It is highly recommended to use GPG with a passphrase agent.
+  </p></p></div>
       <h2 class="Section">Members</h2>
       <div class="SectionBox">
         <p>
@@ -79,7 +82,7 @@
               </td>
               <td>
                 <i>
-                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Char">char</a>[]</i>. To be added.</td>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Char">char</a>[]</i>. A passphrase provided by the user.</td>
             </tr>
             <tr valign="top">
               <td>
@@ -92,7 +95,7 @@
               <td>
                 <i>
                   <a href="../Libgpgme/PassphraseDelegate.html">PassphraseDelegate</a>
-                </i>. To be added.</td>
+                </i>. A callback method that is called if the GPGME backend would need a passphrase.</td>
             </tr>
           </table>
         </div>
@@ -104,11 +107,18 @@
         <h3 id="P:Libgpgme.PgpKey.Settings.Passphrase" class="MemberName">Passphrase Property</h3>
         <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Char">char</a>[] <b>Passphrase</b>  { set; get; }</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>A passphrase provided by the user.</p>
           <h4 class="Subsection">Value</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">An array of <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Char">char</a>s.</div>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">
+            <p>
+              <i>Note: </i>
+              <p>
+Make sure that you overwrite (wipe) the user's passphrase in memory. You should not use the <a href="http://www.go-mono.com/docs/monodoc.ashx?link=M:System.String.ToArray()">string.ToArray()</a> method to convert a user supplied string if you do not hold any further reference to it.
+  </p>
+            </p>
+          </div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>
@@ -119,11 +129,12 @@
         <h3 id="P:Libgpgme.PgpKey.Settings.PassphraseFunction" class="MemberName">PassphraseFunction Property</h3>
         <div class="MemberSignature">public <a href="../Libgpgme/PassphraseDelegate.html">PassphraseDelegate</a> <b>PassphraseFunction</b>  { set; get; }</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>A callback method that is called if the GPGME backend would need a passphrase.</p>
           <h4 class="Subsection">Value</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">A <a href="../Libgpgme/PassphraseDelegate.html">Libgpgme.PassphraseDelegate</a>.</div>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">
+          </div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>

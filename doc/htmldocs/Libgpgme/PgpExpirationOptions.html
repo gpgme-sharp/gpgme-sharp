@@ -41,7 +41,7 @@
 			:
 			<a href="index.html">Libgpgme Namespace</a></div>
     <h1 class="PageTitle">PgpExpirationOptions  Class</h1>
-    <p class="Summary">To be added.</p>
+    <p class="Summary">A class that contains information for the key expiration operation on PGP keys.</p>
     <div class="Signature">
       <table class="SignatureTable" cellspacing="0" width="100%">
         <tr>
@@ -59,7 +59,8 @@
     </div>
     <div class="Remarks">
       <h4 class="Subsection">Remarks</h4>
-      <div class="SubsectionBox">To be added.</div>
+      <div class="SubsectionBox">
+      </div>
       <h2 class="Section">Members</h2>
       <div class="SectionBox">
         <p>
@@ -74,7 +75,7 @@
                 <div>
                   <b>
                     <a href="#C:Libgpgme.PgpExpirationOptions">PgpExpirationOptions</a>
-                  </b>()</div>To be added.</td>
+                  </b>()</div>Creates a new instance.</td>
             </tr>
           </table>
         </div>
@@ -91,7 +92,7 @@
               </td>
               <td>
                 <i>
-                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>[]</i>. To be added.</td>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>[]</i>. The subkey(s) to which the new expiration date shall be applied.</td>
             </tr>
           </table>
         </div>
@@ -109,7 +110,7 @@
               <td>
                 <i>
                   <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.DateTime">DateTime</a>
-                </i>. To be added.</td>
+                </i>. The new expiration date for the selected subkey(s).</td>
             </tr>
             <tr valign="top">
               <td>
@@ -121,7 +122,7 @@
               <td>
                 <i>
                   <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
-                </i>. To be added.</td>
+                </i>. Indicates that the selected subkeys do not expire.</td>
             </tr>
           </table>
         </div>
@@ -134,7 +135,7 @@
               <td>
                 <b>
                   <a href="#M:Libgpgme.PgpExpirationOptions.MakeInfinitely">MakeInfinitely</a>
-                </b>()<div>To be added.</div></td>
+                </b>()<div>Sets the selected subkey(s) to never expire.</div></td>
             </tr>
           </table>
         </div>
@@ -146,9 +147,10 @@
         <h3 id="C:Libgpgme.PgpExpirationOptions" class="MemberName">PgpExpirationOptions Constructor</h3>
         <div class="MemberSignature">public  <b>PgpExpirationOptions</b> ()</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>Creates a new instance.</p>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">
+          </div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>
@@ -159,11 +161,19 @@
         <h3 id="P:Libgpgme.PgpExpirationOptions.ExpirationDate" class="MemberName">ExpirationDate Property</h3>
         <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.DateTime">DateTime</a> <b>ExpirationDate</b>  { set; get; }</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>The new expiration date for the selected subkey(s).</p>
           <h4 class="Subsection">Value</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.DateTime">DateTime</a>.</div>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">
+            <p>
+              <i>Note: </i>
+              <p>
+Depending on your timezone you might see the date 1970-01-01 UTC. This special date is used to mark a key to never expire.
+You can unset the expiration date with the <a href="../Libgpgme/PgpExpirationOptions.html#M:Libgpgme.PgpExpirationOptions.MakeInfinitely()">PgpExpirationOptions.MakeInfinitely()</a> method. 
+</p>
+            </p>
+          </div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>
@@ -174,11 +184,18 @@
         <h3 id="P:Libgpgme.PgpExpirationOptions.IsInfinitely" class="MemberName">IsInfinitely Property</h3>
         <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>IsInfinitely</b>  { get; }</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>Indicates that the selected subkeys do not expire.</p>
           <h4 class="Subsection">Value</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>.</div>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">
+            <p>
+              <i>Note: </i>
+              <p>
+You can unset the expiration date with the <a href="../Libgpgme/PgpExpirationOptions.html#M:Libgpgme.PgpExpirationOptions.MakeInfinitely()">PgpExpirationOptions.MakeInfinitely()</a> method.
+  </p>
+            </p>
+          </div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>
@@ -189,9 +206,10 @@
         <h3 id="M:Libgpgme.PgpExpirationOptions.MakeInfinitely" class="MemberName">MakeInfinitely Method</h3>
         <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>MakeInfinitely</b> ()</div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>Sets the selected subkey(s) to never expire.</p>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">
+          </div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>
@@ -202,9 +220,9 @@
         <h3 id="F:Libgpgme.PgpExpirationOptions.SelectedSubkeys" class="MemberName">SelectedSubkeys Field</h3>
         <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>[] <b>SelectedSubkeys</b> </div>
         <div class="MemberBox">
-          <p>To be added.</p>
+          <p>The subkey(s) to which the new expiration date shall be applied.</p>
           <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">To be added.</div>
+          <div class="SubsectionBox">The correct numbers can be determinated by enumerate the list of subkeys (<a href="../Libgpgme/Key.html#P:Libgpgme.Key.Subkeys">Key.Subkeys</a>) and counting the desired subkey(s).</div>
           <h4 class="Subsection">Required Assembly Versions:</h4>
           <ul>
             <li>gpgme-sharp 1.0.0.0</li>

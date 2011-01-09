@@ -1,3 +1,8 @@
+2009-08-03	Daniel Mueller <daniel@danm.de>
+
+	* Makefile: Added xml/html doc targets.
+	* Added more documentation.
+
 2009-07-23	Daniel Mueller <daniel@danm.de>
 
 	* KeyStore.cs: Added a new property to retrieve the currently used
