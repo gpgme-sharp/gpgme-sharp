@@ -1,4 +1,13 @@
-* CRITICAL: Windows - Key signatures
+* CRITICAL: Linux x86 (32bit)
+  File: GpgmeMemoryData.cs
+
+  On 32bit Linux the Gpgme memory based data buffer does not work. Still
+  investigating the issue. 
+  Example: Examples/DataBufferSamples/DataBufferTest/Program.cs
+
+  Thanks to Juan Castro for reporting!
+
+* MAJOR: Windows - Key signatures
   File: Lib/_gpgme_signature.cs
   Line 71
 

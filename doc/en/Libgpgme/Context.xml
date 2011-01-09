@@ -295,6 +295,21 @@ The combined encrypt and sign operation is currently only available for the Open
           <see cref="T:Libgpgme.EngineInfo" /> objects are linked together through the <see cref="P:Libgpgme.EngineInfo.Next" /> property. You actually receive a linked list, that can be enumerated through the <see cref="M:Libgpgme.EngineInfo.GetEnumerator()" /> method.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="Finalize">
+      <MemberSignature Language="C#" Value="~Context ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="HasPassphraseFunction">
       <MemberSignature Language="C#" Value="public bool HasPassphraseFunction { get; }" />
       <MemberType>Property</MemberType>
@@ -443,6 +458,24 @@ Setting the protocol does not check if the crypto engine for that protocol is av
         <param name="mode">A <see cref="T:Libgpgme.KeylistMode" /> that shall be removed.</param>
         <summary>Can be used to remove a single <see cref="T:Libgpgme.KeylistMode" /> from the context.</summary>
         <remarks>If you remove the Signatures mode, the SignatureNotations mode will be removed as well.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SetDllDirectory">
+      <MemberSignature Language="C#" Value="public void SetDllDirectory (string path);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="path" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="path">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="SetEngineInfo">

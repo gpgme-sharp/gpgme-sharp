@@ -34,76 +34,20 @@ namespace Libgpgme
 {
     public sealed class Gpgme
     {
-        internal static string REQUIRE_GPGME = "1.1.6";
-        internal static string gpgme_version_str = null;
-        internal static GpgmeVersion gpgme_version = null;
-
-        internal static bool IsWindows;
-
-        static Gpgme()
-        {
-            if (Environment.OSVersion.Platform.ToString().Contains("Win32") ||
-                Environment.OSVersion.Platform.ToString().Contains("Win64"))
-            {
-                IsWindows = true;
-            }
-            else
-                IsWindows = false;
-
-#if REQUIRE_GPGME_VERSION
-            gpgme_version = new GpgmeVersion(CheckVersion(REQUIRE_GPGME));
-#else
-            gpgme_version = new GpgmeVersion(CheckVersion(null));
-#endif
-        }
-
+        
         public static GpgmeVersion Version
         {
-            get { return gpgme_version; }
+            get 
+			{ 
+				return libgpgme.gpgme_version; 
+			}
         }
 
         public static string CheckVersion()
         {
-            return gpgme_version_str;
+            return libgpgme.gpgme_version_str;
         }
 
-        internal static string CheckVersion(string ReqVersion)
-        {
-            // we are doing this check only once
-
-            if (gpgme_version_str == null) {
-                IntPtr verPtr = IntPtr.Zero;
-                IntPtr reqverPtr = IntPtr.Zero;
-
-                if (ReqVersion != null && ReqVersion.Length != 0)
-                {
-                    // minimun required version
-                    reqverPtr = StringToCoTaskMemUTF8(ReqVersion);
-                }
-                
-                // retrieve GPGME's version
-                verPtr = libgpgme.gpgme_check_version(reqverPtr);
-
-                if (!reqverPtr.Equals(IntPtr.Zero))
-                {
-                    Marshal.FreeCoTaskMem(reqverPtr);
-                    reqverPtr = IntPtr.Zero;
-                }
-
-                if (!verPtr.Equals(IntPtr.Zero))
-                {
-                    gpgme_version_str = PtrToStringUTF8(verPtr);
-                }
-                else
-                {
-                    throw new GeneralErrorException("Could not retrieve a valid GPGME version.\nGot: "
-                        + gpgme_version_str
-                        + " Minimum required: " + ReqVersion
-                    );
-                }
-            }
-            return gpgme_version_str;
-        }
 
         public static string GetProtocolName(Protocol proto)
         {
@@ -202,34 +146,40 @@ namespace Libgpgme
         }
         internal static IntPtr StringToCoTaskMemUTF8(string str)
         {
-            if (str == null) return (IntPtr)0;
+            if (str == null) 
+				return (IntPtr)0;
             UTF8Encoding utf8 = new UTF8Encoding();
             char[] carray = str.ToCharArray();
-            int size = utf8.GetByteCount(carray);
+            
+			int	size = utf8.GetByteCount(carray);
             
             // Encode unicode string to UTF8 byte array
             byte[] barray = new byte[size + 1]; // + Null char
             Encoder encoder = utf8.GetEncoder();
             int charsUsed, bytesUsed;
             bool completed;
-            encoder.Convert(
-                carray, 0, carray.Length,   // source (UTF8 encoded string)
-                barray, 0, size,            // destination (bytes)
-                true, 
-                out charsUsed, 
-                out bytesUsed, 
-                out completed);
+			
+			if (size > 0) {
+            	encoder.Convert(
+                	carray, 0, carray.Length,   // source (UTF8 encoded string)
+                	barray, 0, size,            // destination (bytes)
+                	true, 
+                	out charsUsed, 
+                	out bytesUsed, 
+                	out completed);
+			}
 
             IntPtr ptr = Marshal.AllocCoTaskMem(size + 1);
             if (ptr == (IntPtr)0)
                 throw new OutOfMemoryException("Could not allocate " + size + " bytes of memory.");
-            Marshal.Copy(barray, 0, ptr, size + 1);
+            
+			Marshal.Copy(barray, 0, ptr, size + 1);
             
             return ptr;
         }
         internal static byte[] ConvertCharArrayAnsi(char[] carray)
         {
-            if (carray == null)
+            if (carray == null || carray.Length == 0)
                 return null;
 
             byte[] b = new byte[carray.Length];
@@ -240,7 +190,7 @@ namespace Libgpgme
         }
         internal static byte[] ConvertCharArrayToUTF8(char[] carray, int additionalsize)
         {
-            if (carray == null)
+            if (carray == null || carray.Length == 0)
                 return null;
 
             UTF8Encoding utf8 = new UTF8Encoding();
@@ -277,7 +227,7 @@ namespace Libgpgme
         }
         internal static IntPtr[] StringToCoTaskMemUTF8(string[] strarray)
         {
-            if (strarray == null)
+            if (strarray == null || strarray.Length == 0)
                 return null;
             IntPtr[] parray = new IntPtr[strarray.Length + 1];
             for (int i = 0; i < strarray.Length; i++)
@@ -288,7 +238,7 @@ namespace Libgpgme
         }
         internal static void FreeStringArray(IntPtr[] parray)
         {
-            if (parray == null)
+            if (parray == null || parray.Length == 0)
                 return;
             for (int i=0; i < parray.Length; i++)
                 if (!(parray[i].Equals(IntPtr.Zero)))
@@ -420,7 +370,7 @@ namespace Libgpgme
         }
         internal static Stream ConvertToStream(int fd, FileAccess access)
         {
-			if (!IsWindows)
+			if (!libgpgme.IsWindows)
             {
 				// Mono has no SafeFileHandle classes yet
 				return new Unix.UnixFDStream(fd);

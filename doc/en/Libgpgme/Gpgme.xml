@@ -25,6 +25,22 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="CheckVersion">
+      <MemberSignature Language="C#" Value="public static string CheckVersion ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="CreateContext">
       <MemberSignature Language="C#" Value="public static Libgpgme.Context CreateContext ();" />
       <MemberType>Method</MemberType>
@@ -102,6 +118,9 @@ GPGME.  Where an exchange of information between the application and the backend
         <returns>Returns a <see cref="T:Libgpgme.AlgorithmCapability" />.</returns>
         <remarks />
       </Docs>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
     </Member>
     <Member MemberName="GetAttrDesc&lt;T&gt;">
       <MemberSignature Language="C#" Value="public static string GetAttrDesc&lt;T&gt; (T attr);" />
@@ -122,6 +141,9 @@ GPGME.  Where an exchange of information between the application and the backend
         <returns>Returns the description <see cref="C:System.String" /> from the <see cref="C:System.ComponentModel.DescriptionAttribute" /> of a field typeof(T).</returns>
         <remarks />
       </Docs>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
     </Member>
     <Member MemberName="GetEngineInfo">
       <MemberSignature Language="C#" Value="public static Libgpgme.EngineInfo GetEngineInfo ();" />
@@ -271,6 +293,21 @@ This function is not thread safe.  Use <see cref="M:Libgpgme.Gpgme.GetStrError(S
         <summary>The function returns a string containing a description of an error source. </summary>
         <returns>A string containing a description of the error source contained in the error value <paramref name="err" />. </returns>
         <remarks>This string can be used to output a diagnostic message to the user.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Version">
+      <MemberSignature Language="C#" Value="public static Libgpgme.GpgmeVersion Version { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Libgpgme.GpgmeVersion</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
   </Members>

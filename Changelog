@@ -1,3 +1,14 @@
+2010-11-22	Daniel Mueller <daniel@danm.de>
+
+	* Gpgme.cs: Bugfix: Check array length to avoid Exception when using
+	  Mono. ( The UTF8 converter does not accept arrays with zero length).
+	  Thanks to Juan Castro for reporting!
+	* Interop/libgpgme.cs: corrected DLL pre-loading on Windows.
+
+2010-09-13	Daniel Mueller <daniel@danm.de>
+
+	* Updated HTML docs
+
 2009-08-13	Daniel Mueller <daniel@danm.de>
 
 	* Context.cs: 

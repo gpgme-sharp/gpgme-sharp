@@ -27,7 +27,13 @@ namespace Libgpgme.Interop
 {
     internal partial class libgpgme
     {
+		internal static string REQUIRE_GPGME = "1.1.6";
+        internal static string GNUPG_DIRECTORY = @"C:\Program Files\GNU\GnuPG";
+        internal static string GNUPG_LIBNAME = @"libgpgme-11.dll";
+
         internal static bool IsWindows = false;
+		internal static string gpgme_version_str = null;
+        internal static GpgmeVersion gpgme_version = null;
 
         internal const int GPGME_ERR_SOURCE_DEFAULT = (int)gpg_err_source_t.GPG_ERR_SOURCE_USER_1;
 
@@ -767,11 +773,12 @@ namespace Libgpgme.Interop
         static libgpgme()
         {
             // On Windows systems we have to add the GnuPG directory to DLL search path
-            if (!Win32SetLibdir())
-                throw new GpgmeException("Could not set the GnuPG DLL path." +
-                    " Make sure that \"HKEY_LOCAL_MACHINE\\SOFTWARE\\GNU\\GnuPG\\Install Directory\"" +
-                    " points to the correct GnuPG directory.");
-        
+            Win32SetLibdir();
+			
+			// Version check required (could fail on Windows systems)
+			try {
+				InitLibgpgme();
+			} catch {};
         }
 
         internal static bool Win32SetLibdir()
@@ -794,10 +801,68 @@ namespace Libgpgme.Interop
                 {
                     return libgpgme.SetDllDirectory(gnupgpath);
                 }
-                return false;
+                else
+                {
+                    return libgpgme.SetDllDirectory(GNUPG_DIRECTORY);
+                }
             }
 
             return true; // always "true" for UNIX
+        }
+		
+		internal static void InitLibgpgme()
+        {
+            if (Environment.OSVersion.Platform.ToString().Contains("Win32") ||
+                Environment.OSVersion.Platform.ToString().Contains("Win64"))
+            {
+                IsWindows = true;
+            }
+            else
+                IsWindows = false;
+
+#if REQUIRE_GPGME_VERSION
+            gpgme_version = new GpgmeVersion(CheckVersion(REQUIRE_GPGME));
+#else
+            gpgme_version = new GpgmeVersion(CheckVersion(null));
+#endif
+        }
+		
+		internal static string CheckVersion(string ReqVersion)
+        {
+            // we are doing this check only once
+
+            if (gpgme_version_str == null) {
+                IntPtr verPtr = IntPtr.Zero;
+                IntPtr reqverPtr = IntPtr.Zero;
+
+                if (ReqVersion != null && ReqVersion.Length != 0)
+                {
+                    // minimun required version
+                    reqverPtr = Gpgme.StringToCoTaskMemUTF8(ReqVersion);
+                }
+                
+                // retrieve GPGME's version
+                verPtr = libgpgme.gpgme_check_version(reqverPtr);
+
+                if (!reqverPtr.Equals(IntPtr.Zero))
+                {
+                    Marshal.FreeCoTaskMem(reqverPtr);
+                    reqverPtr = IntPtr.Zero;
+                }
+
+                if (!verPtr.Equals(IntPtr.Zero))
+                {
+                    gpgme_version_str = Gpgme.PtrToStringUTF8(verPtr);
+                }
+                else
+                {
+                    throw new GeneralErrorException("Could not retrieve a valid GPGME version.\nGot: "
+                        + gpgme_version_str
+                        + " Minimum required: " + ReqVersion
+                    );
+                }
+            }
+            return gpgme_version_str;
         }
     }
 }

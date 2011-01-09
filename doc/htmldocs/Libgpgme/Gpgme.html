@@ -258,12 +258,43 @@
           </div>
         </blockquote>
         <h3>
+          <a href="javascript:toggle_display('Public Properties')">
+            <span id="Public Properties:toggle">⊟</span> Public Properties</a>
+        </h3>
+        <blockquote id="Public Properties">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>[read-only]<div>static </div></td>
+                <td>
+                  <b>
+                    <a href="#P:Libgpgme.Gpgme.Version">Version</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="../Libgpgme/GpgmeVersion.html">GpgmeVersion</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+            </table>
+          </div>
+        </blockquote>
+        <h3>
           <a href="javascript:toggle_display('Public Methods')">
             <span id="Public Methods:toggle">⊟</span> Public Methods</a>
         </h3>
         <blockquote id="Public Methods">
           <div class="SubsectionBox">
             <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>static </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:Libgpgme.Gpgme.CheckVersion">CheckVersion</a>
+                  </b>()<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a></nobr><blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
               <tr valign="top">
                 <td>
                   <div>static </div>
@@ -403,6 +434,37 @@
             <b>Namespace: </b>Libgpgme<br /><b>Assembly: </b>gpgme-sharp (in gpgme-sharp.dll)<br /><b>Assembly Versions: </b>1.0.0.0</blockquote>
           <hr size="1" />
         </blockquote>
+        <h3 id="M:Libgpgme.Gpgme.CheckVersion">
+          <a href="javascript:toggle_display('M:Libgpgme.Gpgme.CheckVersion:member')">
+            <span id="M:Libgpgme.Gpgme.CheckVersion:member:toggle">⊟</span> CheckVersion Method</a>
+        </h3>
+        <blockquote id="M:Libgpgme.Gpgme.CheckVersion:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public static <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>CheckVersion</b> ()</div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:Libgpgme.Gpgme.CheckVersion:Returns')">
+              <span id="M:Libgpgme.Gpgme.CheckVersion:Returns:toggle">⊟</span> Returns</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:Libgpgme.Gpgme.CheckVersion:Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:Libgpgme.Gpgme.CheckVersion:Remarks')">
+              <span id="M:Libgpgme.Gpgme.CheckVersion:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:Libgpgme.Gpgme.CheckVersion:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('M:Libgpgme.Gpgme.CheckVersion:Version Information')">
+              <span id="M:Libgpgme.Gpgme.CheckVersion:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="M:Libgpgme.Gpgme.CheckVersion:Version Information">
+            <b>Namespace: </b>Libgpgme<br /><b>Assembly: </b>gpgme-sharp (in gpgme-sharp.dll)<br /><b>Assembly Versions: </b>1.0.0.0</blockquote>
+          <hr size="1" />
+        </blockquote>
         <h3 id="M:Libgpgme.Gpgme.CreateContext">
           <a href="javascript:toggle_display('M:Libgpgme.Gpgme.CreateContext:member')">
             <span id="M:Libgpgme.Gpgme.CreateContext:member:toggle">⊟</span> CreateContext Method</a>
@@ -495,7 +557,7 @@ GPGME.  Where an exchange of information between the application and the backend
         </h3>
         <blockquote id="M:Libgpgme.Gpgme.GetAlgorithmCapability``1(``0):member">
           <p class="Summary">Returns the algorithm capabilities.</p>
-          <div class="Signature">public static <a href="../Libgpgme/AlgorithmCapability.html">AlgorithmCapability</a> <b>GetAlgorithmCapability&lt;&gt;</b> (<i title="To be added.">T</i> attr)</div>
+          <div class="Signature">public static <a href="../Libgpgme/AlgorithmCapability.html">AlgorithmCapability</a> <b>GetAlgorithmCapability&lt;T&gt;</b> (<i title="To be added.">T</i> attr)</div>
           <h4 class="Subsection">
             <a href="javascript:toggle_display('M:Libgpgme.Gpgme.GetAlgorithmCapability``1(``0):Type Parameters')">
               <span id="M:Libgpgme.Gpgme.GetAlgorithmCapability``1(``0):Type Parameters:toggle">⊟</span> Type Parameters</a>
@@ -549,7 +611,7 @@ GPGME.  Where an exchange of information between the application and the backend
         </h3>
         <blockquote id="M:Libgpgme.Gpgme.GetAttrDesc``1(``0):member">
           <p class="Summary">Returns the description of an element.</p>
-          <div class="Signature">public static <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>GetAttrDesc&lt;&gt;</b> (<i title="To be added.">T</i> attr)</div>
+          <div class="Signature">public static <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>GetAttrDesc&lt;T&gt;</b> (<i title="To be added.">T</i> attr)</div>
           <h4 class="Subsection">
             <a href="javascript:toggle_display('M:Libgpgme.Gpgme.GetAttrDesc``1(``0):Type Parameters')">
               <span id="M:Libgpgme.Gpgme.GetAttrDesc``1(``0):Type Parameters:toggle">⊟</span> Type Parameters</a>
@@ -861,6 +923,37 @@ This function is not thread safe.  Use <a href="../Libgpgme/Gpgme.html#M:Libgpgm
               <span id="M:Libgpgme.Gpgme.GetStrSource(System.Int32):Version Information:toggle">⊟</span> Requirements</a>
           </h4>
           <blockquote class="SubsectionBox" id="M:Libgpgme.Gpgme.GetStrSource(System.Int32):Version Information">
+            <b>Namespace: </b>Libgpgme<br /><b>Assembly: </b>gpgme-sharp (in gpgme-sharp.dll)<br /><b>Assembly Versions: </b>1.0.0.0</blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="P:Libgpgme.Gpgme.Version">
+          <a href="javascript:toggle_display('P:Libgpgme.Gpgme.Version:member')">
+            <span id="P:Libgpgme.Gpgme.Version:member:toggle">⊟</span> Version Property</a>
+        </h3>
+        <blockquote id="P:Libgpgme.Gpgme.Version:member">
+          <p class="Summary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </p>
+          <div class="Signature">public static <a href="../Libgpgme/GpgmeVersion.html">GpgmeVersion</a> <b>Version</b>  { get; }</div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('P:Libgpgme.Gpgme.Version:Value')">
+              <span id="P:Libgpgme.Gpgme.Version:Value:toggle">⊟</span> Value</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="P:Libgpgme.Gpgme.Version:Value">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('P:Libgpgme.Gpgme.Version:Remarks')">
+              <span id="P:Libgpgme.Gpgme.Version:Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="P:Libgpgme.Gpgme.Version:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('P:Libgpgme.Gpgme.Version:Version Information')">
+              <span id="P:Libgpgme.Gpgme.Version:Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="P:Libgpgme.Gpgme.Version:Version Information">
             <b>Namespace: </b>Libgpgme<br /><b>Assembly: </b>gpgme-sharp (in gpgme-sharp.dll)<br /><b>Assembly Versions: </b>1.0.0.0</blockquote>
           <hr size="1" />
         </blockquote>

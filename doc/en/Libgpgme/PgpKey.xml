@@ -128,6 +128,31 @@ The context <paramref name="ctx" /> MUST NOT have a passphrase callback set. You
         <remarks>The supplied context <paramref name="ctx" /> is locked during the editing operation.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="KeyEditCallback">
+      <MemberSignature Language="C#" Value="protected override int KeyEditCallback (IntPtr handle, Libgpgme.KeyEditStatusCode status, string args, System.IO.Stream fd);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="handle" Type="System.IntPtr" />
+        <Parameter Name="status" Type="Libgpgme.KeyEditStatusCode" />
+        <Parameter Name="args" Type="System.String" />
+        <Parameter Name="fd" Type="System.IO.Stream" />
+      </Parameters>
+      <Docs>
+        <param name="handle">To be added.</param>
+        <param name="status">To be added.</param>
+        <param name="args">To be added.</param>
+        <param name="fd">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="RevokeSignature">
       <MemberSignature Language="C#" Value="public void RevokeSignature (Libgpgme.Context ctx, Libgpgme.PgpRevokeSignatureOptions options);" />
       <MemberType>Method</MemberType>
