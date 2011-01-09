@@ -135,7 +135,7 @@ namespace Libgpgme
                //_gpgme_signature sig = new _gpgme_signature();
              * 
              */
-            if (!Gpgme.IsWindows ||
+            if (!libgpgme.IsWindows ||
                 (Gpgme.Version.Major >= 1 && 
                  Gpgme.Version.Minor >= 2)
                 )

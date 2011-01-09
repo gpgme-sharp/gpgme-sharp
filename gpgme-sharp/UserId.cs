@@ -92,6 +92,26 @@ namespace Libgpgme
 		public UserId Next {
 			get { return next; }
 		}
+		
+		public override string ToString ()
+		{
+			StringBuilder sb = new StringBuilder();
+			if (name != null)
+				sb.Append(name);
+			if (comment != null)
+			{
+				sb.Append(" (");
+				sb.Append(comment);
+				sb.Append(")");
+			}
+			if (email != null)
+			{
+				sb.Append(" <");
+				sb.Append(email);
+				sb.Append(">");
+			}
+			return sb.ToString();
+		}
 
         IEnumerator IEnumerable.GetEnumerator()
         {

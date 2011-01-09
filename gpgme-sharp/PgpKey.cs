@@ -426,7 +426,7 @@ namespace Libgpgme
                     {
                         if (revsigOptions.nreasonTxt >= revsigOptions.reasonTxt.Length)
 						{
-							if (Gpgme.IsWindows)
+							if (libgpgme.IsWindows)
 								output = "";
 							else
 								output = " ";
