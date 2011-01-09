@@ -75,7 +75,7 @@ Global
 		{F593613E-08BF-4B4C-A863-4FFD631E369B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = KeyOperations\ListKeys\ListKeys.csproj
+		StartupItem = CreatePgpKey\CreatePgpKey.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

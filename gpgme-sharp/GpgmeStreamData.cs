@@ -80,14 +80,14 @@ namespace Libgpgme
             else
                 return (IntPtr)ERROR;
         }
-        protected override IntPtr SeekCB(IntPtr offset, SeekOrigin whence)
+        protected override long SeekCB(long offset, SeekOrigin whence)
         {
             if (iostream != null && iostream.CanSeek)
             {
-                return (IntPtr)iostream.Seek(offset.ToInt64(), whence);
+                return iostream.Seek(offset, whence);
             }
             else
-                return (IntPtr)ERROR;
+                return ERROR;
         }
 		protected override void ReleaseCB ()
 		{

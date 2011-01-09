@@ -113,9 +113,10 @@ namespace Libgpgme
         }
 
         public GpgmeMemoryData(string filename)
-            :this(filename, 0, -1) { }
-
-        public GpgmeMemoryData(string filename, int offset, int length)
+            :this(filename, (long)0, (long)-1) { }
+		public GpgmeMemoryData(string filename, int offset, int length)
+			:this(filename, (long)offset, (long)length)	{}
+        public GpgmeMemoryData(string filename, long offset, long length)
         {
             FileInfo finfo = new FileInfo(filename);
             if (!finfo.Exists)
@@ -135,15 +136,27 @@ namespace Libgpgme
 
             IntPtr pfilepath = Marshal.StringToCoTaskMemAnsi(filename);
             IntPtr handle = IntPtr.Zero;
-            IntPtr poffset = (IntPtr)offset;
             UIntPtr plen = (UIntPtr)length;
             
-            int err = libgpgme.gpgme_data_new_from_filepart(
-                out dataPtr,
-                pfilepath,
-                handle,
-                poffset,
-                plen);
+			int err = 0;
+			if (libgpgme.use_lfs) 
+			{
+            	err = libgpgme.gpgme_data_new_from_filepart(
+                	out dataPtr,
+                	pfilepath,
+                	handle,
+                	offset,
+                	plen);
+			} else {
+
+				IntPtr poffset = (IntPtr)offset;
+            	err = libgpgme.gpgme_data_new_from_filepart(
+                	out dataPtr,
+                	pfilepath,
+                	handle,
+                	poffset,
+                	plen);
+			}
 
             gpg_err_code_t errcode = libgpgme.gpgme_err_code(err);
 

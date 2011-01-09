@@ -1,4 +1,4 @@
-* CRITICAL: Linux x86 (32bit)
+* CRITICAL: Linux x86 (32bit) - solved with 2010-11-23(?)
   File: GpgmeMemoryData.cs
 
   On 32bit Linux the Gpgme memory based data buffer does not work. Still

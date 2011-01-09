@@ -214,10 +214,34 @@ The <see cref="M:System.Runtime.InteropServices.Marshal.Copy" /> method is recom
       </Docs>
     </Member>
     <Member MemberName="SeekCB">
-      <MemberSignature Language="C#" Value="protected virtual IntPtr SeekCB (IntPtr offset, System.IO.SeekOrigin whence);" />
+      <MemberSignature Language="C#" Value="protected virtual long SeekCB (long offset, System.IO.SeekOrigin whence);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int64</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="offset" Type="System.Int64" />
+        <Parameter Name="whence" Type="System.IO.SeekOrigin" />
+      </Parameters>
+      <Docs>
+        <param name="offset">Specifies the byte offset relative to origin.</param>
+        <param name="whence">A <see cref="T:System.IO.SeekOrigin" /> value indicating the reference point used to obtain the new position.</param>
+        <summary>This is the function which GPGME calls if it wants to change the current read/write position in a user-implemented data object (stream).</summary>
+        <returns>
+          <para>
+Returns the new position within the current stream OR <see cref="P:Libgpgme.GpgmeData.ERROR" /> on any error..</para>
+        </returns>
+        <remarks>It is only required if <see cref="P:System.IO.Stream.CanSeek" /> is <see langword="true" />.
+</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SeekCB">
+      <MemberSignature Language="C#" Value="protected virtual IntPtr SeekCB (IntPtr offset, System.IO.SeekOrigin whence);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.IntPtr</ReturnType>

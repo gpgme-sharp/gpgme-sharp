@@ -179,7 +179,7 @@ namespace Libgpgme
         }
         internal static byte[] ConvertCharArrayAnsi(char[] carray)
         {
-            if (carray == null || carray.Length == 0)
+            if (carray == null)
                 return null;
 
             byte[] b = new byte[carray.Length];
@@ -190,7 +190,7 @@ namespace Libgpgme
         }
         internal static byte[] ConvertCharArrayToUTF8(char[] carray, int additionalsize)
         {
-            if (carray == null || carray.Length == 0)
+            if (carray == null)
                 return null;
 
             UTF8Encoding utf8 = new UTF8Encoding();
@@ -238,7 +238,7 @@ namespace Libgpgme
         }
         internal static void FreeStringArray(IntPtr[] parray)
         {
-            if (parray == null || parray.Length == 0)
+            if (parray == null)
                 return;
             for (int i=0; i < parray.Length; i++)
                 if (!(parray[i].Equals(IntPtr.Zero)))

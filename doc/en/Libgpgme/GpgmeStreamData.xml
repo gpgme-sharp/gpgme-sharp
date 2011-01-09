@@ -308,16 +308,16 @@ Your inherited class must override the following properies:
       </Docs>
     </Member>
     <Member MemberName="SeekCB">
-      <MemberSignature Language="C#" Value="protected override IntPtr SeekCB (IntPtr offset, System.IO.SeekOrigin whence);" />
+      <MemberSignature Language="C#" Value="protected override long SeekCB (long offset, System.IO.SeekOrigin whence);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>System.IntPtr</ReturnType>
+        <ReturnType>System.Int64</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="offset" Type="System.IntPtr" />
+        <Parameter Name="offset" Type="System.Int64" />
         <Parameter Name="whence" Type="System.IO.SeekOrigin" />
       </Parameters>
       <Docs>

@@ -1,3 +1,14 @@
+2010-11-23	Daniel Mueller <daniel@danm.de>
+
+	* libgpgme.cs:
+	* _gpgme_data_cbs.cs:
+	* libgpgme_Delegates.cs:
+	* GpgmeData.cs:
+	* GpgmeCbsData.cs:
+	* GpgmeMemoryData.cs: corrected LFS (Large File Support) problem
+	  with off_t data types (8 bytes on 32bit systems with LFS enabled).
+	  Thanks to Juan Castro for reporting!
+
 2010-11-22	Daniel Mueller <daniel@danm.de>
 
 	* Gpgme.cs: Bugfix: Check array length to avoid Exception when using

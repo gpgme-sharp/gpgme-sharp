@@ -62,7 +62,14 @@ namespace Libgpgme.Interop
         IntPtr handle,
         IntPtr offset,
         int whence);
-
+    /* Set the current position from where the next read or write starts
+       in the data object with the handle HANDLE to OFFSET, relativ to
+       WHENCE.  */
+    internal delegate long gpgme_data_seek_cb_t_lfs(
+        IntPtr handle,
+        long offset,
+        int whence);
+	
     /* Close the data object with the handle DL.  */
     internal delegate void gpgme_data_release_cb_t(
         IntPtr handle);

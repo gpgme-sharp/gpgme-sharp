@@ -23,7 +23,7 @@ MONODOCER	= monodocer
 MONODOC		= monodoc
 MONODOCS2HTML	= monodocs2html
 MDASSEMBLER	= mdassembler
-
+MDOC		= mdoc
 
 DEFINES		= -define:TRACE -define:DEBUG
 FLAGS		= -noconfig -codepage:utf8 -warn:4 -optimize+ -debug
@@ -106,6 +106,12 @@ htmldoc:	$(DOCDIR)/$(HTMLDOCDIR)/index.html
 $(DOCDIR)/$(HTMLDOCDIR)/index.html:	xmldoc
 	$(MONODOCS2HTML) $(DOCDIR)/$(DOCLANG) \
 		-o $(HTMLDOCDIR)
+
+# Visual Studio documentation XML file(s)
+msxdoc:		$(LIBNAME).xml
+
+$(LIBNAME).xml:	$(DOCDIR)/$(DOCLANG)/index.xml
+	$(MDOC) export-msxdoc $(DOCDIR)/$(DOCLANG)
 
 clean:
 	rm -f $(BUILDDIR)/*

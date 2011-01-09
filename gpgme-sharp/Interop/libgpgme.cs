@@ -30,7 +30,9 @@ namespace Libgpgme.Interop
 		internal static string REQUIRE_GPGME = "1.1.6";
         internal static string GNUPG_DIRECTORY = @"C:\Program Files\GNU\GnuPG";
         internal static string GNUPG_LIBNAME = @"libgpgme-11.dll";
-
+		internal static bool USE_LFS_ON_UNIX = true;
+		
+		internal static bool use_lfs = false;
         internal static bool IsWindows = false;
 		internal static string gpgme_version_str = null;
         internal static GpgmeVersion gpgme_version = null;
@@ -405,7 +407,17 @@ namespace Libgpgme.Interop
             [Out] out IntPtr r_dh,
             [In] IntPtr fname,  // const char*
             [In] IntPtr fp,     //FILE *
-		    [In] IntPtr offset,
+		    [In] IntPtr offset,	// off_t
+            [In] UIntPtr length);//size_t
+		/* Create a new data buffer filled with LENGTH bytes starting from
+           OFFSET within the file FNAME or stream FP (exactly one must be
+           non-zero).  */
+        [DllImport("libgpgme-11.dll", CharSet = CharSet.Ansi)]
+        internal extern static int gpgme_data_new_from_filepart(
+            [Out] out IntPtr r_dh,
+            [In] IntPtr fname,  // const char*
+            [In] IntPtr fp,     //FILE *
+		    [In] long offset,	// off_t
             [In] UIntPtr length);//size_t
 
         [DllImport("libgpgme-11.dll", CharSet = CharSet.Ansi)]
@@ -425,6 +437,11 @@ namespace Libgpgme.Interop
         internal extern static int gpgme_data_new_from_cbs(
             [Out] out IntPtr dh,
             [In][MarshalAs(UnmanagedType.FunctionPtr)] _gpgme_data_cbs cbs, //gpgme_data_cbs_t 
+            [In] IntPtr handle);
+        [DllImport("libgpgme-11.dll", CharSet = CharSet.Ansi)]
+		internal extern static int gpgme_data_new_from_cbs(
+            [Out] out IntPtr dh,
+            [In][MarshalAs(UnmanagedType.FunctionPtr)] _gpgme_data_cbs_lfs cbs, //gpgme_data_cbs_t_lfs
             [In] IntPtr handle);
 		
 		[DllImport("libgpgme-11.dll", CharSet = CharSet.Ansi)]
@@ -458,9 +475,17 @@ namespace Libgpgme.Interop
         [DllImport("libgpgme-11.dll", CharSet = CharSet.Ansi)]
         internal extern static IntPtr gpgme_data_seek(
             [In] IntPtr dh, 
-            [In] IntPtr offset, 
+            [In] IntPtr offset, // off_t
             [In] int whence);
-
+	    /* Set the current position from where the next read or write starts
+           in the data object with the handle DH to OFFSET, relativ to
+           WHENCE.  */
+        [DllImport("libgpgme-11.dll", CharSet = CharSet.Ansi)]
+        internal extern static long gpgme_data_seek(
+            [In] IntPtr dh, 
+            [In] long offset, // off_t
+            [In] int whence);
+	
         /* Write up to SIZE bytes from buffer BUFFER to the data object with
            the handle DH.  Return the number of characters written, or -1 on
            error.  If an error occurs, errno is set.  */
@@ -818,7 +843,12 @@ namespace Libgpgme.Interop
                 IsWindows = true;
             }
             else
+			{
                 IsWindows = false;
+				if (USE_LFS_ON_UNIX)
+					// See GPGME manual: 2.3 Largefile Support (LFS)
+					use_lfs = true;
+			}
 
 #if REQUIRE_GPGME_VERSION
             gpgme_version = new GpgmeVersion(CheckVersion(REQUIRE_GPGME));

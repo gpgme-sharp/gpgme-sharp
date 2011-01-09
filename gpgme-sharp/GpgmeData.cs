@@ -110,13 +110,24 @@ namespace Libgpgme
                     break;
             }
             
-            IntPtr poffset = (IntPtr)offset;
-            IntPtr offs = libgpgme.gpgme_data_seek(
-                dataPtr,
-                poffset,
-                iwhence);
+			if (libgpgme.use_lfs) 
+			{
+				return libgpgme.gpgme_data_seek(
+					dataPtr,
+				    offset,
+				    iwhence);
+				
+			} 
+			else 
+			{
+            	IntPtr poffset = (IntPtr)offset;
+            	IntPtr offs = libgpgme.gpgme_data_seek(
+                	dataPtr,
+                	poffset,
+                	iwhence);
             
-            return offs.ToInt64();
+            	return offs.ToInt64();
+			}
         }
 
         public override void Write(byte[] buffer, int offset, int count)
