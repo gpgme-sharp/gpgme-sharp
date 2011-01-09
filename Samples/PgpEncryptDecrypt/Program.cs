@@ -98,6 +98,7 @@ namespace PgpEncryptDecrypt
 
             // create another (dynamic) memory based data buffer as destination
             GpgmeData cipher = new GpgmeMemoryData();
+            cipher.FileName = "my_document.txt";
 
             Console.Write("Encrypt data for {0} ({1}).. ", 
                 bob.Uid.Name, bob.KeyId);

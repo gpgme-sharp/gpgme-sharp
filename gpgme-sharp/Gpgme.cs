@@ -16,6 +16,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
+#define REQUIRE_GPGME_VERSION
 
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,12 @@ namespace Libgpgme
 {
     public sealed class Gpgme
     {
+        internal static string REQUIRE_GPGME = "1.1.6";
+        internal static string gpgme_version_str = null;
+        internal static GpgmeVersion gpgme_version = null;
+
         internal static bool IsWindows;
+
         static Gpgme()
         {
             if (Environment.OSVersion.Platform.ToString().Contains("Win32") ||
@@ -43,6 +49,60 @@ namespace Libgpgme
             }
             else
                 IsWindows = false;
+
+#if REQUIRE_GPGME_VERSION
+            gpgme_version = new GpgmeVersion(CheckVersion(REQUIRE_GPGME));
+#else
+            gpgme_version = new GpgmeVersion(CheckVersion(null));
+#endif
+        }
+
+        public static GpgmeVersion Version
+        {
+            get { return gpgme_version; }
+        }
+
+        public static string CheckVersion()
+        {
+            return gpgme_version_str;
+        }
+
+        internal static string CheckVersion(string ReqVersion)
+        {
+            // we are doing this check only once
+
+            if (gpgme_version_str == null) {
+                IntPtr verPtr = IntPtr.Zero;
+                IntPtr reqverPtr = IntPtr.Zero;
+
+                if (ReqVersion != null && ReqVersion.Length != 0)
+                {
+                    // minimun required version
+                    reqverPtr = StringToCoTaskMemUTF8(ReqVersion);
+                }
+                
+                // retrieve GPGME's version
+                verPtr = libgpgme.gpgme_check_version(reqverPtr);
+
+                if (!reqverPtr.Equals(IntPtr.Zero))
+                {
+                    Marshal.FreeCoTaskMem(reqverPtr);
+                    reqverPtr = IntPtr.Zero;
+                }
+
+                if (!verPtr.Equals(IntPtr.Zero))
+                {
+                    gpgme_version_str = PtrToStringUTF8(verPtr);
+                }
+                else
+                {
+                    throw new GeneralErrorException("Could not retrieve a valid GPGME version.\nGot: "
+                        + gpgme_version_str
+                        + " Minimum required: " + ReqVersion
+                    );
+                }
+            }
+            return gpgme_version_str;
         }
 
         public static string GetProtocolName(Protocol proto)

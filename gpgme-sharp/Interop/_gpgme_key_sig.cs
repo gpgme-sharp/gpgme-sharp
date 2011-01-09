@@ -94,7 +94,10 @@ namespace Libgpgme.Interop
 
         public _gpgme_key_sig()
         {
-            _keyid = new byte[17];
+			// create buffer!
+            _keyid 	= new byte[17];
+			
+			next 	= IntPtr.Zero;
         }
 
         public bool revoked

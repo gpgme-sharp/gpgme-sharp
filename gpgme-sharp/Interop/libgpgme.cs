@@ -55,6 +55,22 @@ namespace Libgpgme.Interop
         [DllImport("kernel32.dll", SetLastError = true)]
         internal static extern bool SetDllDirectory(string lpPathName);
 
+
+        /* Check that the library fulfills the version requirement.  Note:
+           This is here only for the case where a user takes a pointer from
+           the old version of this function.  The new version and macro for
+           run-time checks are below.  */
+        [DllImport("libgpgme-11.dll", CharSet = CharSet.Ansi)]
+        internal extern static IntPtr gpgme_check_version(
+            [In] IntPtr req_version); // const char*
+
+        /* Check that the library fulfills the version requirement and check
+           for struct layout mismatch involving bitfields.  */
+        [DllImport("libgpgme-11.dll", CharSet = CharSet.Ansi)]
+        internal extern static IntPtr gpgme_check_version_internal(
+            [In] IntPtr req_version, // const char *
+            [In] IntPtr offset_sig_validity); // size_t
+
         /* Return a pointer to a string containing a description of the error
            code in the error value ERR.  This function is not thread safe.  
            
@@ -755,7 +771,9 @@ namespace Libgpgme.Interop
                 throw new GpgmeException("Could not set the GnuPG DLL path." +
                     " Make sure that \"HKEY_LOCAL_MACHINE\\SOFTWARE\\GNU\\GnuPG\\Install Directory\"" +
                     " points to the correct GnuPG directory.");
+        
         }
+
         internal static bool Win32SetLibdir()
         {
 

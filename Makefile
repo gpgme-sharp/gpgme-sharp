@@ -94,18 +94,18 @@ $(DOCDIR)/$(DOCLANG)/index.xml:	$(BUILDDIR)/$(LIBFILE)
 # edit documentation
 editdoc:	xmldoc	
 	# DEBIAN BUG
-	mv $(DOCDIR)/$(DOCLANG)/ns-$(LIBNAMESPACE).xml \
-		$(DOCDIR)/$(DOCLANG)/$(LIBNAMESPACE).xml
+	#mv $(DOCDIR)/$(DOCLANG)/ns-$(LIBNAMESPACE).xml \
+	#	$(DOCDIR)/$(DOCLANG)/$(LIBNAMESPACE).xml
 	$(MONODOC) --edit $(DOCDIR)/$(DOCLANG)
 	# DEBIAN BUG
-	mv $(DOCDIR)/$(DOCLANG)/$(LIBNAMESPACE).xml \
-		$(DOCDIR)/$(DOCLANG)/ns-$(LIBNAMESPACE).xml
+	#mv $(DOCDIR)/$(DOCLANG)/$(LIBNAMESPACE).xml \
+	#	$(DOCDIR)/$(DOCLANG)/ns-$(LIBNAMESPACE).xml
 
 # HTML docs
 htmldoc:	$(DOCDIR)/$(HTMLDOCDIR)/index.html
 $(DOCDIR)/$(HTMLDOCDIR)/index.html:	xmldoc
-	$(MONODOCS2HTML) --source $(DOCDIR)/$(DOCLANG) \
-		--dest $(HTMLDOCDIR)
+	$(MONODOCS2HTML) $(DOCDIR)/$(DOCLANG) \
+		-o $(HTMLDOCDIR)
 
 clean:
 	rm -f $(BUILDDIR)/*

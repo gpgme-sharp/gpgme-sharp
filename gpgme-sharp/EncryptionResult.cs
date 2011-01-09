@@ -30,6 +30,7 @@ namespace Libgpgme
     {
 
         private InvalidKey invalid_recipients;
+		
         public InvalidKey InvalidRecipients
         {
             get { return invalid_recipients; }
@@ -37,6 +38,8 @@ namespace Libgpgme
 
         internal EncryptionResult(IntPtr rPtr)
         {
+			invalid_recipients = null;
+			
             if (rPtr == IntPtr.Zero)
                 throw new InvalidPtrException("An invalid pointer for the encrypt_result structure has been supplied.");
             UpdateFromMem(rPtr);

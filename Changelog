@@ -1,3 +1,13 @@
+2009-08-13	Daniel Mueller <daniel@danm.de>
+
+	* Context.cs: 
+	* Gpgme.cs:
+	* Interop/libgpgme.cs: Added CheckVersion().
+	* GpgmeVersion.cs: Added new class.
+	* Gpgme.cs: Added Version property.
+	* Signature.cs: Corrected memory layout (BUG does not apply to libgpgme
+	  version 1.2.0)
+
 2009-08-03	Daniel Mueller <daniel@danm.de>
 
 	* Makefile: Added xml/html doc targets.

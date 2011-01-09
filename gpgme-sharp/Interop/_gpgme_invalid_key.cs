@@ -31,5 +31,12 @@ namespace Libgpgme.Interop
         public IntPtr next; //_gpgme_invalid_key 
         public IntPtr fpr;  //char *
         public int reason;         // gpgme_error_t
+		
+		internal _gpgme_invalid_key() 
+		{
+			next 	= IntPtr.Zero;
+			fpr 	= IntPtr.Zero;
+			reason 	= 0;
+		}
     }
 }

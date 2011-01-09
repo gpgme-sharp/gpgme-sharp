@@ -47,6 +47,12 @@ namespace Libgpgme
         private KeyStore keystore = null;
         public Exception LastCallbackException;
 
+        static Context()
+        {
+            // We need to call gpgme_check_version at least once!
+            Gpgme.CheckVersion();
+        }
+
         public Context()
         {
             IntPtr ptr;
@@ -210,9 +216,6 @@ namespace Libgpgme
                 throw new InvalidContextException();
         }
 
-        /// <summary>
-        /// Specifies if the output should be ASCII armored.
-        /// </summary>
         public bool Armor
         {
             get
@@ -248,9 +251,6 @@ namespace Libgpgme
             }
         }
 
-        /// <summary>
-        /// Specifies if canonical text mode should be used. This option is only relevant to the OpenPGP crypto engine and ignored by all other engines.
-        /// </summary>
         public bool TextMode
         {
             get

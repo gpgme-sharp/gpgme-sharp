@@ -91,6 +91,22 @@ namespace Libgpgme.Interop
         /* The keylist mode that was active when listing the key.  */
         public gpgme_keylist_mode_t keylist_mode;
 
+		internal _gpgme_key() 
+		{
+			_refs 			= 0;
+			flags 			= 0;
+			protocol 		= gpgme_protocol_t.GPGME_PROTOCOL_UNKNOWN;
+			issuer_serial 	= IntPtr.Zero;
+			issuer_name 	= IntPtr.Zero;
+			chain_id 		= IntPtr.Zero;
+			owner_trust		= gpgme_validity_t.GPGME_VALIDITY_UNKNOWN;
+			subkeys 		= IntPtr.Zero;
+			uids 			= IntPtr.Zero;
+			_last_subkey	= IntPtr.Zero;
+			_last_uid 		= IntPtr.Zero;
+			keylist_mode 	= gpgme_keylist_mode_t.GPGME_KEYLIST_MODE_LOCAL;
+		}
+		
         public bool revoked
         {
             get { return ((flags & 1) > 0); }

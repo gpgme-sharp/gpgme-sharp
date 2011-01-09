@@ -131,10 +131,14 @@ namespace Libgpgme
         private void UpdateFromMem(IntPtr sigPtr)
         {
             /* Work around memory layout problem (bug?) on Windows systems
+             * with libgpgme <= 1.1.8
                //_gpgme_signature sig = new _gpgme_signature();
              * 
              */
-            if (!Gpgme.IsWindows)
+            if (!Gpgme.IsWindows ||
+                (Gpgme.Version.Major >= 1 && 
+                 Gpgme.Version.Minor >= 2)
+                )
             {
                 _gpgme_signature unixsig = new _gpgme_signature();
                 Marshal.PtrToStructure(sigPtr, unixsig);

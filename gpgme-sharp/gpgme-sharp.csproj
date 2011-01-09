@@ -58,6 +58,7 @@
     <Compile Include="EncryptionResult.cs" />
     <Compile Include="EngineInfo.cs" />
     <Compile Include="GenkeyResult.cs" />
+    <Compile Include="GpgmeVersion.cs" />
     <Compile Include="IKeyGenerator.cs" />
     <Compile Include="IKeyStore.cs" />
     <Compile Include="KeyParameters.cs" />

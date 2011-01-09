@@ -45,6 +45,16 @@ namespace Libgpgme.Interop
 
         /* The home directory used, or NULL if default.  */
         public IntPtr home_dir;
+		
+		internal _gpgme_engine_info()
+		{
+			next 		= IntPtr.Zero;
+			protocol 	= gpgme_protocol_t.GPGME_PROTOCOL_UNKNOWN;
+			file_name 	= IntPtr.Zero;
+			version 	= IntPtr.Zero;
+			req_version = IntPtr.Zero;
+			home_dir 	= IntPtr.Zero;
+		}
     }
 }
 

@@ -23,16 +23,28 @@ using System.Text;
 
 namespace Libgpgme
 {
-    public interface IKeyStore
+    public class GpgmeVersion
     {
-        ImportResult Import(GpgmeData keydata);
-        
-        void Export(string pattern, GpgmeData keydata);
-        void Export(string[] pattern, GpgmeData keydata);
+        string version;
+        int major, minor, update;
+        public GpgmeVersion(string version)
+        {
+            this.version = version;
+            string[] tup = version.Split('.');
+            if (tup != null)
+            {
+                if (tup.Length >= 3)
+                {
+                    int.TryParse(tup[0], out major);
+                    int.TryParse(tup[1], out minor);
+                    int.TryParse(tup[2], out update);
+                }
+            }
+        }
 
-        Key GetKey(string fpr, bool secretOnly);
-        Key[] GetKeyList(string pattern, bool secretOnly);
-        Key[] GetKeyList(string[] pattern, bool secretOnly);
-        void DeleteKey(Key key, bool deleteSecret);
+        public int Major { get { return major; } }
+        public int Minor { get { return minor; } }
+        public int Update { get { return update; } }
+        public string Version { get { return version; } }
     }
 }
