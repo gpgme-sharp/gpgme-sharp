@@ -1,381 +1,354 @@
 <html>
   <head>
     <title>Libgpgme.GpgmeFileData</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <style>
-					a { text-decoration: none }
-				
-					.CollectionTitle { font-weight: bold }
-					.PageTitle { font-size: 150%; font-weight: bold }
+      a { text-decoration: none }
 
-					.Summary { }
-					.Signature { }					
-					.Remarks { }
-					.Members { }
-					.Copyright { }
-					
-					.Section { font-size: 125%; font-weight: bold }
-					.SectionBox { margin-left: 2em }
-					.NamespaceName { font-size: 105%; font-weight: bold }
-					.NamespaceSumary { }
-					.MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
-					.MemberSignature { font-family: monospace; margin-top: 1em; }
-					.MemberBox { }
-					.Subsection { font-size: 105%; font-weight: bold }
-					.SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+      div.SideBar {
+        padding-left: 1em;
+        padding-right: 1em;
+        right: 0;
+        float: right;
+        border: thin solid black;
+        background-color: #f2f2f2;
+      }
+    
+      .CollectionTitle { font-weight: bold }
+      .PageTitle { font-size: 150%; font-weight: bold }
 
-					.SignatureTable { background-color: #c0c0c0; }
-					.EnumerationsTable th { background-color: #f2f2f2; }
-					.CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
-					
-					.MembersListing td { margin: 0px; border: 1px solid black; padding: .25em }
-					
-					.TypesListing td { margin: 0px;  padding: .25em }
-					.InnerSignatureTable tr { background-color: #f2f2f2; }
-					.TypePermissionsTable tr { background-color: #f2f2f2; }
-					
-				</style>
+      .Summary { }
+      .Signature { }          
+      .Remarks { }
+      .Members { }
+      .Copyright { }
+      
+      .Section { font-size: 125%; font-weight: bold }
+      p.Summary {
+        margin-left: 1em;
+      }
+      .SectionBox { margin-left: 2em }
+      .NamespaceName { font-size: 105%; font-weight: bold }
+      .NamespaceSumary { }
+      .MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+      .Subsection { font-size: 105%; font-weight: bold }
+      .SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+      .CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+      
+      .TypesListing {
+        border-collapse: collapse;
+      }
+
+      td {
+        vertical-align: top;
+      }
+      th {
+        text-align: left;
+      }
+
+      .TypesListing td { 
+        margin: 0px;  
+        padding: .25em;
+        border: solid gray 1px;
+      }
+
+      .TypesListing th { 
+        margin: 0px;  
+        padding: .25em;
+        background-color: #f2f2f2;
+        border: solid gray 1px;
+      }
+
+      div.Footer {
+        border-top: 1px solid gray;
+        margin-top: 1.5em;
+        padding-top: 0.6em;
+        text-align: center;
+        color: gray;
+      }
+
+      span.NotEntered /* Documentation for this section has not yet been entered */ {
+        font-style: italic;
+        color: red;	
+      }
+
+      div.Header {
+        background: #B0C4DE;
+        border: double;
+        border-color: white;
+        border-width: 7px;
+        padding: 0.5em;
+      }
+
+      div.Header * {
+        font-size: smaller;
+      }
+
+      div.Note {
+      }
+
+      i.ParamRef {
+      }
+
+      i.subtitle {
+      }
+
+      ul.TypeMembersIndex {
+        text-align: left;
+        background: #F8F8F8;
+      }
+
+      ul.TypeMembersIndex li {
+        display: inline;
+        margin:  0.5em;
+      }
+
+      table.HeaderTable {
+      }
+
+      table.SignatureTable {
+      }
+
+      table.Documentation, table.Enumeration, table.TypeDocumentation {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      table.Documentation tr th, table.TypeMembers tr th, table.Enumeration tr th, table.TypeDocumentation tr th {
+        background: whitesmoke;
+        padding: 0.8em;
+        border: 1px solid gray;
+        text-align: left;
+        vertical-align: bottom;
+      }
+
+      table.Documentation tr td, table.TypeMembers tr td, table.Enumeration tr td, table.TypeDocumentation tr td {
+        padding: 0.5em;
+        border: 1px solid gray;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      table.TypeMembers {
+        border: 1px solid #C0C0C0;
+        width: 100%;
+      }
+
+      table.TypeMembers tr td {
+        background: #F8F8F8;
+        border: white;
+      }
+
+      table.Documentation {
+      }
+
+      table.TypeMembers {
+      }
+
+      div.CodeExample {
+        width: 100%;
+        border: 1px solid #DDDDDD;
+        background-color: #F8F8F8;
+      }
+
+      div.CodeExample p {
+        margin: 0.5em;
+        border-bottom: 1px solid #DDDDDD;
+      }
+
+      div.CodeExample div {
+        margin: 0.5em;
+      }
+
+      h4 {
+        margin-bottom: 0;
+      }
+
+      div.Signature {
+        border: 1px solid #C0C0C0;
+        background: #F2F2F2;
+        padding: 1em;
+      }
+    </style>
+    <script type="text/JavaScript">
+      function toggle_display (block) {
+        var w = document.getElementById (block);
+        var t = document.getElementById (block + ":toggle");
+        if (w.style.display == "none") {
+          w.style.display = "block";
+          t.innerHTML = "⊟";
+        } else {
+          w.style.display = "none";
+          t.innerHTML = "⊞";
+        }
+      }
+    </script>
   </head>
   <body>
     <div class="CollectionTitle">
-      <a href="../index.html">gpgme-sharp</a>
-			:
-			<a href="index.html">Libgpgme Namespace</a></div>
-    <h1 class="PageTitle">GpgmeFileData  Class</h1>
-    <p class="Summary">File based data buffer.</p>
-    <div class="Signature">
-      <table class="SignatureTable" cellspacing="0" width="100%">
-        <tr>
-          <td>
-            <table class="InnerSignatureTable" cellpadding="10" cellspacing="0" width="100%">
-              <tr>
-                <td>public class  <b>GpgmeFileData</b> :
-		
-								<a href="../Libgpgme/GpgmeStreamData.html">GpgmeStreamData</a></td>
+      <a href="../index.html">gpgme-sharp</a> : <a href="index.html">Libgpgme Namespace</a></div>
+    <div class="SideBar">
+      <p>
+        <a href="#T:Libgpgme.GpgmeFileData">Overview</a>
+      </p>
+      <p>
+        <a href="#T:Libgpgme.GpgmeFileData:Signature">Signature</a>
+      </p>
+      <p>
+        <a href="#T:Libgpgme.GpgmeFileData:Docs">Remarks</a>
+      </p>
+      <p>
+        <a href="#Members">Members</a>
+      </p>
+      <p>
+        <a href="#T:Libgpgme.GpgmeFileData:Members">Member Details</a>
+      </p>
+    </div>
+    <h1 class="PageTitle" id="T:Libgpgme.GpgmeFileData">GpgmeFileData  Class</h1>
+    <p class="Summary" id="T:Libgpgme.GpgmeFileData:Summary">File based data buffer.</p>
+    <div id="T:Libgpgme.GpgmeFileData:Signature">
+      <div class="Signature">public class  <b>GpgmeFileData</b> : <a href="../Libgpgme/GpgmeStreamData.html">GpgmeStreamData</a></div>
+    </div>
+    <div class="Remarks" id="T:Libgpgme.GpgmeFileData:Docs">
+      <h4 class="Subsection">
+        <a href="javascript:toggle_display('T:Libgpgme.GpgmeFileData:Docs:Remarks')">
+          <span id="T:Libgpgme.GpgmeFileData:Docs:Remarks:toggle">⊟</span> Remarks</a>
+      </h4>
+      <blockquote class="SubsectionBox" id="T:Libgpgme.GpgmeFileData:Docs:Remarks">File based data objects operate on streams. Only a small amount of data is stored in core at any time, so the size of the data objects is not limited by GPGME.
+
+<div><i>Note: </i><p>
+The current .NET implementation of the GpgmeFileData class is inherited from the <a href="../Libgpgme/GpgmeStreamData.html#C:Libgpgme.GpgmeStreamData">GpgmeStreamData</a> class. All data that will be read from - or written to the file stream needs to be passed from managed to unmanaged memory and vice versa. A more efficient implementation that directly passes a C file descriptor or stream to GPGME is planned for future releases.
+  </p></div></blockquote>
+      <h4 class="Subsection">
+        <a href="javascript:toggle_display('T:Libgpgme.GpgmeFileData:Docs:Version Information')">
+          <span id="T:Libgpgme.GpgmeFileData:Docs:Version Information:toggle">⊟</span> Requirements</a>
+      </h4>
+      <blockquote class="SubsectionBox" id="T:Libgpgme.GpgmeFileData:Docs:Version Information">
+        <b>Namespace: </b>Libgpgme<br /><b>Assembly: </b>gpgme-sharp (in gpgme-sharp.dll)<br /><b>Assembly Versions: </b>1.0.0.0</blockquote>
+      <h2 class="Section" id="Members">
+        <a href="javascript:toggle_display('_Members')">
+          <span id="_Members:toggle">⊟</span> Members</a>
+      </h2>
+      <blockquote class="SectionBox" id="_Members">
+        <p>
+								See Also: Inherited members from
+								<a href="../Libgpgme/GpgmeStreamData.html">GpgmeStreamData</a>.
+							</p>
+        <h3>
+          <a href="javascript:toggle_display('Public Constructors')">
+            <span id="Public Constructors:toggle">⊟</span> Public Constructors</a>
+        </h3>
+        <blockquote id="Public Constructors">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <b>
+                      <a href="#C:Libgpgme.GpgmeFileData(System.String)">GpgmeFileData</a>
+                    </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>)</div>
+                </td>
+                <td>Creates a new file based data buffer.</td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <b>
+                      <a href="#C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode)">GpgmeFileData</a>
+                    </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileMode">System.IO.FileMode</a>)</div>
+                </td>
+                <td>Creates a new file based data buffer.</td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <b>
+                      <a href="#C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess)">GpgmeFileData</a>
+                    </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileMode">System.IO.FileMode</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileAccess">System.IO.FileAccess</a>)</div>
+                </td>
+                <td>Creates a new file based data buffer.</td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <b>
+                      <a href="#C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)">GpgmeFileData</a>
+                    </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileMode">System.IO.FileMode</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileAccess">System.IO.FileAccess</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileShare">System.IO.FileShare</a>)</div>
+                </td>
+                <td>Creates a new file based data buffer.</td>
               </tr>
             </table>
-          </td>
-        </tr>
-      </table>
-      <br>
-      </br>
+          </div>
+        </blockquote>
+      </blockquote>
     </div>
-    <div class="Remarks">
-      <h4 class="Subsection">Remarks</h4>
-      <div class="SubsectionBox">File based data objects operate on streams. Only a small amount of data is stored in core at any time, so the size of the data objects is not limited by GPGME.
-
-<p><i>Note: </i><p>
-The current .NET implementation of the GpgmeFileData class is inherited from the <a href="../Libgpgme/GpgmeStreamData.html#C:Libgpgme.GpgmeStreamData">GpgmeStreamData</a> class. All data that will be read from - or written to the file stream needs to be passed from managed to unmanaged memory and vice versa. A more efficient implementation that directly passes a C file descriptor or stream to GPGME is planned for future releases.
-  </p></p></div>
-      <h2 class="Section">Members</h2>
-      <div class="SectionBox">
-        <p>
-						See Also: Inherited members from
-						<a href="../Libgpgme/GpgmeStreamData.html">GpgmeStreamData</a>.
-					</p>
-        <h3>Constructors</h3>
-        <div class="SubsectionBox">
-          <table class="MembersListing">
-            <tr valign="top">
-              <td>
-                <div>
-                  <b>
-                    <a href="#C:Libgpgme.GpgmeFileData(System.String)">GpgmeFileData</a>
-                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>)</div>Creates a new file based data buffer.</td>
-            </tr>
-            <tr valign="top">
-              <td>
-                <div>
-                  <b>
-                    <a href="#C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode)">GpgmeFileData</a>
-                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileMode">System.IO.FileMode</a>)</div>Creates a new file based data buffer.</td>
-            </tr>
-            <tr valign="top">
-              <td>
-                <div>
-                  <b>
-                    <a href="#C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess)">GpgmeFileData</a>
-                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileMode">System.IO.FileMode</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileAccess">System.IO.FileAccess</a>)</div>Creates a new file based data buffer.</td>
-            </tr>
-            <tr valign="top">
-              <td>
-                <div>
-                  <b>
-                    <a href="#C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)">GpgmeFileData</a>
-                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileMode">System.IO.FileMode</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileAccess">System.IO.FileAccess</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileShare">System.IO.FileShare</a>)</div>Creates a new file based data buffer.</td>
-            </tr>
-          </table>
-        </div>
-        <h3>Fields</h3>
-        <div class="SubsectionBox">
-          <table class="MembersListing">
-            <tr valign="top">
-              <td>
-                <b>
-                  <a href="../Libgpgme/GpgmeData.html#F:Libgpgme.GpgmeData.EOF">EOF</a>
-                </b>
-                <div>const </div>
-              </td>
-              <td>
-                <i>
-                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int64">long</a>
-                </i> (0). End of file value. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
-            </tr>
-            <tr valign="top">
-              <td>
-                <b>
-                  <a href="../Libgpgme/GpgmeData.html#F:Libgpgme.GpgmeData.ERROR">ERROR</a>
-                </b>
-                <div>const </div>
-              </td>
-              <td>
-                <i>
-                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int64">long</a>
-                </i> (-1). Error value. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
-            </tr>
-            <tr valign="top">
-              <td>
-                <b>
-                  <a href="../Libgpgme/GpgmeCbsData.html#F:Libgpgme.GpgmeCbsData.LastCallbackException">LastCallbackException</a>
-                </b>
-                <div>
-                </div>
-              </td>
-              <td>
-                <i>
-                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Exception">Exception</a>
-                </i>. The last exception that occurred during a callback from the GPGME backend operation. (<i>Inherited from <a href="../Libgpgme/GpgmeCbsData.html">GpgmeCbsData</a>.</i>)</td>
-            </tr>
-          </table>
-        </div>
-        <h3>Protected Fields</h3>
-        <div class="SubsectionBox">
-          <table class="MembersListing">
-            <tr valign="top">
-              <td>
-                <b>
-                  <a href="../Libgpgme/GpgmeStreamData.html#F:Libgpgme.GpgmeStreamData.iostream">iostream</a>
-                </b>
-                <div>
-                </div>
-              </td>
-              <td>
-                <i>
-                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.Stream">System.IO.Stream</a>
-                </i>. The origin stream object. (<i>Inherited from <a href="../Libgpgme/GpgmeStreamData.html">GpgmeStreamData</a>.</i>)</td>
-            </tr>
-            <tr valign="top">
-              <td>
-                <b>
-                  <a href="../Libgpgme/GpgmeData.html#F:Libgpgme.GpgmeData.SEEK_CUR">SEEK_CUR</a>
-                </b>
-                <div>const </div>
-              </td>
-              <td>
-                <i>
-                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
-                </i> (1). Indicates that the seek reference point is the current position within a stream. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
-            </tr>
-            <tr valign="top">
-              <td>
-                <b>
-                  <a href="../Libgpgme/GpgmeData.html#F:Libgpgme.GpgmeData.SEEK_END">SEEK_END</a>
-                </b>
-                <div>const </div>
-              </td>
-              <td>
-                <i>
-                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
-                </i> (2). Indicates that the seek reference point is the first byte beyond the end of a stream.  (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
-            </tr>
-            <tr valign="top">
-              <td>
-                <b>
-                  <a href="../Libgpgme/GpgmeData.html#F:Libgpgme.GpgmeData.SEEK_SET">SEEK_SET</a>
-                </b>
-                <div>const </div>
-              </td>
-              <td>
-                <i>
-                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
-                </i> (0). Indicates that the seek reference point is the beginning of a stream. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
-            </tr>
-          </table>
-        </div>
-        <h3>Properties</h3>
-        <div class="SubsectionBox">
-          <table class="MembersListing">
-            <tr valign="top">
-              <td>
-                <b>
-                  <a href="../Libgpgme/GpgmeCbsData.html#P:Libgpgme.GpgmeCbsData.CanRelease">CanRelease</a>
-                </b>
-					[read-only]
-					<div>abstract </div></td>
-              <td>
-                <i>
-                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
-                </i>. Indicates if GPGME will callback if a user-implemented data object should be destroyed. (<i>Inherited from <a href="../Libgpgme/GpgmeCbsData.html">GpgmeCbsData</a>.</i>)</td>
-            </tr>
-            <tr valign="top">
-              <td>
-                <b>
-                  <a href="../Libgpgme/GpgmeData.html#P:Libgpgme.GpgmeData.Encoding">Encoding</a>
-                </b>
-                <div>
-                </div>
-              </td>
-              <td>
-                <i>
-                  <a href="../Libgpgme/DataEncoding.html">DataEncoding</a>
-                </i>. Specifies the encoding of this object. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
-            </tr>
-            <tr valign="top">
-              <td>
-                <b>
-                  <a href="../Libgpgme/GpgmeData.html#P:Libgpgme.GpgmeData.FileName">FileName</a>
-                </b>
-                <div>
-                </div>
-              </td>
-              <td>
-                <i>
-                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
-                </i>. The file name associated with the data object. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
-            </tr>
-            <tr valign="top">
-              <td>
-                <b>
-                  <a href="../Libgpgme/GpgmeData.html#P:Libgpgme.GpgmeData.IsValid">IsValid</a>
-                </b>
-					[read-only]
-					<div>abstract </div></td>
-              <td>
-                <i>
-                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
-                </i>. Indicates if the data buffer is still valid. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
-            </tr>
-            <tr valign="top">
-              <td>
-                <b>
-                  <a href="../Libgpgme/GpgmeStreamData.html#P:Libgpgme.GpgmeStreamData.OriginStream">OriginStream</a>
-                </b>
-                <div>
-                </div>
-              </td>
-              <td>
-                <i>
-                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.Stream">System.IO.Stream</a>
-                </i>. The origin stream object. (<i>Inherited from <a href="../Libgpgme/GpgmeStreamData.html">GpgmeStreamData</a>.</i>)</td>
-            </tr>
-          </table>
-        </div>
-        <h3>Methods</h3>
-        <div class="SubsectionBox">
-          <table class="MembersListing">
-            <tr valign="top">
-              <td>
-              </td>
-              <td>
-                <b>
-                  <a href="../Libgpgme/GpgmeData.html#M:Libgpgme.GpgmeData.Read(System.Byte[])">Read</a>
-                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[])<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><div>Reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</div></td>
-            </tr>
-            <tr valign="top">
-              <td>
-              </td>
-              <td>
-                <b>
-                  <a href="../Libgpgme/GpgmeData.html#M:Libgpgme.GpgmeData.Read(System.Byte[],System.Int32)">Read</a>
-                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[], <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><div>Reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</div></td>
-            </tr>
-            <tr valign="top">
-              <td>
-              </td>
-              <td>
-                <b>
-                  <a href="../Libgpgme/GpgmeData.html#M:Libgpgme.GpgmeData.Rewind">Rewind</a>
-                </b>()<div>Sets the position in the stream to the beginning. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</div></td>
-            </tr>
-            <tr valign="top">
-              <td>
-              </td>
-              <td>
-                <b>
-                  <a href="../Libgpgme/GpgmeData.html#M:Libgpgme.GpgmeData.Write(System.Byte[],System.Int32)">Write</a>
-                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[], <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><div>Writes a sequence of bytes to the current stream and advances the current position within the current stream by the number of bytes written. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</div></td>
-            </tr>
-          </table>
-        </div>
-        <h3>Protected Methods</h3>
-        <div class="SubsectionBox">
-          <table class="MembersListing">
-            <tr valign="top">
-              <td>
-              </td>
-              <td>
-                <b>
-                  <a href="../Libgpgme/GpgmeCbsData.html#M:Libgpgme.GpgmeCbsData.ReadCB(System.IntPtr,System.Int64)">ReadCB</a>
-                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int64">long</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a></nobr><div>This is the function which GPGME calls if it wants to read data from a user-implemented data object. (<i>Inherited from <a href="../Libgpgme/GpgmeCbsData.html">GpgmeCbsData</a>.</i>)</div></td>
-            </tr>
-            <tr valign="top">
-              <td>
-              </td>
-              <td>
-                <b>
-                  <a href="../Libgpgme/GpgmeCbsData.html#M:Libgpgme.GpgmeCbsData.ReleaseCB">ReleaseCB</a>
-                </b>()<div>This is the function which GPGME calls if it wants to destroy a user-implemented data object. (<i>Inherited from <a href="../Libgpgme/GpgmeCbsData.html">GpgmeCbsData</a>.</i>)</div></td>
-            </tr>
-            <tr valign="top">
-              <td>
-              </td>
-              <td>
-                <b>
-                  <a href="../Libgpgme/GpgmeCbsData.html#M:Libgpgme.GpgmeCbsData.SeekCB(System.IntPtr,System.IO.SeekOrigin)">SeekCB</a>
-                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.SeekOrigin">System.IO.SeekOrigin</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a></nobr><div>This is the function which GPGME calls if it wants to change the current read/write position in a user-implemented data object (stream). (<i>Inherited from <a href="../Libgpgme/GpgmeCbsData.html">GpgmeCbsData</a>.</i>)</div></td>
-            </tr>
-            <tr valign="top">
-              <td>
-              </td>
-              <td>
-                <b>
-                  <a href="../Libgpgme/GpgmeCbsData.html#M:Libgpgme.GpgmeCbsData.WriteCB(System.IntPtr,System.Int64)">WriteCB</a>
-                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int64">long</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a></nobr><div>This is the function which GPGME calls if it wants to write data to a user-implemented data object. (<i>Inherited from <a href="../Libgpgme/GpgmeCbsData.html">GpgmeCbsData</a>.</i>)</div></td>
-            </tr>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="Members">
-      <h2 class="Section">Member Details</h2>
-      <div class="SectionBox">
-        <h3 id="C:Libgpgme.GpgmeFileData(System.String)" class="MemberName">GpgmeFileData Constructor</h3>
-        <div class="MemberSignature">public  <b>GpgmeFileData</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> filename)</div>
-        <div class="MemberBox">
-          <p>Creates a new file based data buffer.</p>
-          <h4 class="Subsection">Parameters</h4>
-          <div class="SubsectionBox">
+    <div class="Members" id="T:Libgpgme.GpgmeFileData:Members">
+      <h2 class="Section" id="MemberDetails">
+        <a href="javascript:toggle_display('_MemberDetails')">
+          <span id="_MemberDetails:toggle">⊟</span> Member Details</a>
+      </h2>
+      <blockquote class="SectionBox" id="_MemberDetails">
+        <h3 id="C:Libgpgme.GpgmeFileData(System.String)">
+          <a href="javascript:toggle_display('C:Libgpgme.GpgmeFileData(System.String):member')">
+            <span id="C:Libgpgme.GpgmeFileData(System.String):member:toggle">⊟</span> GpgmeFileData Constructor</a>
+        </h3>
+        <blockquote id="C:Libgpgme.GpgmeFileData(System.String):member">
+          <p class="Summary">Creates a new file based data buffer.</p>
+          <div class="Signature">public  <b>GpgmeFileData</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> filename)</div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('C:Libgpgme.GpgmeFileData(System.String):Parameters')">
+              <span id="C:Libgpgme.GpgmeFileData(System.String):Parameters:toggle">⊟</span> Parameters</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="C:Libgpgme.GpgmeFileData(System.String):Parameters">
             <dl>
               <dt>
                 <i>filename</i>
               </dt>
               <dd>A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> containing the requested filename.</dd>
             </dl>
-          </div>
-          <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">The file will be opened with <a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.FileMode.OpenOrCreate">System.IO.FileMode.OpenOrCreate</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.FileAccess.ReadWrite">System.IO.FileAccess.ReadWrite</a> and <a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.FileShare.None">System.IO.FileShare.None</a>.</div>
-          <h4 class="Subsection">Required Assembly Versions:</h4>
-          <ul>
-            <li>gpgme-sharp 1.0.0.0</li>
-          </ul>
-          <hr size="1">
-          </hr>
-        </div>
-        <h3 id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode)" class="MemberName">GpgmeFileData Constructor</h3>
-        <div class="MemberSignature">public  <b>GpgmeFileData</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> filename, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileMode">System.IO.FileMode</a> mode)</div>
-        <div class="MemberBox">
-          <p>Creates a new file based data buffer.</p>
-          <h4 class="Subsection">Parameters</h4>
-          <div class="SubsectionBox">
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('C:Libgpgme.GpgmeFileData(System.String):Remarks')">
+              <span id="C:Libgpgme.GpgmeFileData(System.String):Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="C:Libgpgme.GpgmeFileData(System.String):Remarks">The file will be opened with <a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.FileMode.OpenOrCreate">System.IO.FileMode.OpenOrCreate</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.FileAccess.ReadWrite">System.IO.FileAccess.ReadWrite</a> and <a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.FileShare.None">System.IO.FileShare.None</a>.</blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('C:Libgpgme.GpgmeFileData(System.String):Version Information')">
+              <span id="C:Libgpgme.GpgmeFileData(System.String):Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="C:Libgpgme.GpgmeFileData(System.String):Version Information">
+            <b>Namespace: </b>Libgpgme<br /><b>Assembly: </b>gpgme-sharp (in gpgme-sharp.dll)<br /><b>Assembly Versions: </b>1.0.0.0</blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode)">
+          <a href="javascript:toggle_display('C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode):member')">
+            <span id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode):member:toggle">⊟</span> GpgmeFileData Constructor</a>
+        </h3>
+        <blockquote id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode):member">
+          <p class="Summary">Creates a new file based data buffer.</p>
+          <div class="Signature">public  <b>GpgmeFileData</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> filename, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileMode">System.IO.FileMode</a> mode)</div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode):Parameters')">
+              <span id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode):Parameters:toggle">⊟</span> Parameters</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode):Parameters">
             <dl>
               <dt>
                 <i>filename</i>
@@ -386,22 +359,32 @@ The current .NET implementation of the GpgmeFileData class is inherited from the
               </dt>
               <dd>The desired <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileMode">System.IO.FileMode</a>.</dd>
             </dl>
-          </div>
-          <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">The file will be opened with <a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.FileAccess.ReadWrite">System.IO.FileAccess.ReadWrite</a> and <a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.FileShare.None">System.IO.FileShare.None</a>.</div>
-          <h4 class="Subsection">Required Assembly Versions:</h4>
-          <ul>
-            <li>gpgme-sharp 1.0.0.0</li>
-          </ul>
-          <hr size="1">
-          </hr>
-        </div>
-        <h3 id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess)" class="MemberName">GpgmeFileData Constructor</h3>
-        <div class="MemberSignature">public  <b>GpgmeFileData</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> filename, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileMode">System.IO.FileMode</a> mode, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileAccess">System.IO.FileAccess</a> access)</div>
-        <div class="MemberBox">
-          <p>Creates a new file based data buffer.</p>
-          <h4 class="Subsection">Parameters</h4>
-          <div class="SubsectionBox">
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode):Remarks')">
+              <span id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode):Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode):Remarks">The file will be opened with <a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.FileAccess.ReadWrite">System.IO.FileAccess.ReadWrite</a> and <a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.FileShare.None">System.IO.FileShare.None</a>.</blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode):Version Information')">
+              <span id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode):Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode):Version Information">
+            <b>Namespace: </b>Libgpgme<br /><b>Assembly: </b>gpgme-sharp (in gpgme-sharp.dll)<br /><b>Assembly Versions: </b>1.0.0.0</blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess)">
+          <a href="javascript:toggle_display('C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess):member')">
+            <span id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess):member:toggle">⊟</span> GpgmeFileData Constructor</a>
+        </h3>
+        <blockquote id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess):member">
+          <p class="Summary">Creates a new file based data buffer.</p>
+          <div class="Signature">public  <b>GpgmeFileData</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> filename, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileMode">System.IO.FileMode</a> mode, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileAccess">System.IO.FileAccess</a> access)</div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess):Parameters')">
+              <span id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess):Parameters:toggle">⊟</span> Parameters</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess):Parameters">
             <dl>
               <dt>
                 <i>filename</i>
@@ -416,22 +399,32 @@ The current .NET implementation of the GpgmeFileData class is inherited from the
               </dt>
               <dd>The desired <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileAccess">System.IO.FileAccess</a>.</dd>
             </dl>
-          </div>
-          <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">The file will be opened with <a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.FileShare.None">System.IO.FileShare.None</a>.</div>
-          <h4 class="Subsection">Required Assembly Versions:</h4>
-          <ul>
-            <li>gpgme-sharp 1.0.0.0</li>
-          </ul>
-          <hr size="1">
-          </hr>
-        </div>
-        <h3 id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)" class="MemberName">GpgmeFileData Constructor</h3>
-        <div class="MemberSignature">public  <b>GpgmeFileData</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> filename, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileMode">System.IO.FileMode</a> mode, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileAccess">System.IO.FileAccess</a> access, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileShare">System.IO.FileShare</a> share)</div>
-        <div class="MemberBox">
-          <p>Creates a new file based data buffer.</p>
-          <h4 class="Subsection">Parameters</h4>
-          <div class="SubsectionBox">
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess):Remarks')">
+              <span id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess):Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess):Remarks">The file will be opened with <a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.FileShare.None">System.IO.FileShare.None</a>.</blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess):Version Information')">
+              <span id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess):Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess):Version Information">
+            <b>Namespace: </b>Libgpgme<br /><b>Assembly: </b>gpgme-sharp (in gpgme-sharp.dll)<br /><b>Assembly Versions: </b>1.0.0.0</blockquote>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)">
+          <a href="javascript:toggle_display('C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare):member')">
+            <span id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare):member:toggle">⊟</span> GpgmeFileData Constructor</a>
+        </h3>
+        <blockquote id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare):member">
+          <p class="Summary">Creates a new file based data buffer.</p>
+          <div class="Signature">public  <b>GpgmeFileData</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> filename, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileMode">System.IO.FileMode</a> mode, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileAccess">System.IO.FileAccess</a> access, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileShare">System.IO.FileShare</a> share)</div>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare):Parameters')">
+              <span id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare):Parameters:toggle">⊟</span> Parameters</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare):Parameters">
             <dl>
               <dt>
                 <i>filename</i>
@@ -450,18 +443,22 @@ The current .NET implementation of the GpgmeFileData class is inherited from the
               </dt>
               <dd>The desired <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.FileShare">System.IO.FileShare</a>.</dd>
             </dl>
-          </div>
-          <h4 class="Subsection">Remarks</h4>
-          <div class="SubsectionBox">
-          </div>
-          <h4 class="Subsection">Required Assembly Versions:</h4>
-          <ul>
-            <li>gpgme-sharp 1.0.0.0</li>
-          </ul>
-          <hr size="1">
-          </hr>
-        </div>
-      </div>
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare):Remarks')">
+              <span id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare):Remarks:toggle">⊟</span> Remarks</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare):Remarks">
+          </blockquote>
+          <h4 class="Subsection">
+            <a href="javascript:toggle_display('C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare):Version Information')">
+              <span id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare):Version Information:toggle">⊟</span> Requirements</a>
+          </h4>
+          <blockquote class="SubsectionBox" id="C:Libgpgme.GpgmeFileData(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare):Version Information">
+            <b>Namespace: </b>Libgpgme<br /><b>Assembly: </b>gpgme-sharp (in gpgme-sharp.dll)<br /><b>Assembly Versions: </b>1.0.0.0</blockquote>
+          <hr size="1" />
+        </blockquote>
+      </blockquote>
     </div>
     <hr size="1" />
     <div class="Copyright">

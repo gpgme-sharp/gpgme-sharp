@@ -30,7 +30,7 @@
           <AttributeName>System.Reflection.AssemblyConfiguration("")</AttributeName>
         </Attribute>
         <Attribute>
-          <AttributeName>System.Reflection.AssemblyDescription("")</AttributeName>
+          <AttributeName>System.Reflection.AssemblyDescription("GPGME wrapper classes for .NET")</AttributeName>
         </Attribute>
         <Attribute>
           <AttributeName>System.Reflection.AssemblyTitle("gpgme-sharp")</AttributeName>
@@ -38,7 +38,7 @@
       </Attributes>
     </Assembly>
   </Assemblies>
-  <Remarks>GnuPG Made Easy</Remarks>
+  <Remarks>Wrapper classes for GpgME (Gnupg Made Easy) written in C#</Remarks>
   <Copyright>
   Copyright (C) 2002, 2003, 2004, 2005, 2006, 2007, 2008 g10 Code GmbH<br />
   Copyright (C) 2009 Daniel Mueller
@@ -141,5 +141,5 @@
       <Type Name="X509Key" />
     </Namespace>
   </Types>
-  <Title>GPGME</Title>
+  <Title>GpgME Class Library</Title>
 </Overview>
