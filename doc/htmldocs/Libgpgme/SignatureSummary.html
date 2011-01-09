@@ -1,0 +1,153 @@
+<html>
+  <head>
+    <title>Libgpgme.SignatureSummary</title>
+    <style>
+					a { text-decoration: none }
+				
+					.CollectionTitle { font-weight: bold }
+					.PageTitle { font-size: 150%; font-weight: bold }
+
+					.Summary { }
+					.Signature { }					
+					.Remarks { }
+					.Members { }
+					.Copyright { }
+					
+					.Section { font-size: 125%; font-weight: bold }
+					.SectionBox { margin-left: 2em }
+					.NamespaceName { font-size: 105%; font-weight: bold }
+					.NamespaceSumary { }
+					.MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+					.MemberSignature { font-family: monospace; margin-top: 1em; }
+					.MemberBox { }
+					.Subsection { font-size: 105%; font-weight: bold }
+					.SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+					.SignatureTable { background-color: #c0c0c0; }
+					.EnumerationsTable th { background-color: #f2f2f2; }
+					.CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+					
+					.MembersListing td { margin: 0px; border: 1px solid black; padding: .25em }
+					
+					.TypesListing td { margin: 0px;  padding: .25em }
+					.InnerSignatureTable tr { background-color: #f2f2f2; }
+					.TypePermissionsTable tr { background-color: #f2f2f2; }
+					
+				</style>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="../index.html">gpgme-sharp</a>
+			:
+			<a href="index.html">Libgpgme Namespace</a></div>
+    <h1 class="PageTitle">SignatureSummary  Enum</h1>
+    <p class="Summary">A type that is giving information about the signature status.</p>
+    <div class="Signature">
+      <table class="SignatureTable" cellspacing="0" width="100%">
+        <tr>
+          <td>
+            <table class="InnerSignatureTable" cellpadding="10" cellspacing="0" width="100%">
+              <tr>
+                <td>
+                  <div>[System.Flags]</div>public 
+
+							enum
+	
+							<b>SignatureSummary</b></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      </br>
+    </div>
+    <div class="Remarks">
+      <h4 class="Subsection">Remarks</h4>
+      <div class="SubsectionBox">This type is used as a bit vector giving a summary of the signature status.  It provides an easy interface to a defined semantic of the signature status. Checking just one bit is sufficient to see whether a signature is valid without any restrictions.
+</div>
+      <div class="Subsection">Members</div>
+      <div class="SubsectionBox">
+        <table class="EnumerationsTable">
+          <tr>
+            <th>Member name</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td>
+              <b>BadPolicy</b>
+            </td>
+            <td>A policy requirement was not met.</td>
+          </tr>
+          <tr>
+            <td>
+              <b>CRLMissing</b>
+            </td>
+            <td>The CRL (or an equivalent mechanism) is not available.</td>
+          </tr>
+          <tr>
+            <td>
+              <b>CRLTooOld</b>
+            </td>
+            <td>Available CRL is too old.</td>
+          </tr>
+          <tr>
+            <td>
+              <b>Green</b>
+            </td>
+            <td>The signature is good but one might want to display some extra information.  Check the other bits.
+</td>
+          </tr>
+          <tr>
+            <td>
+              <b>KeyExpired</b>
+            </td>
+            <td>The key or one of the certificates has expired. It is probably a good idea to display the date of the expiration.</td>
+          </tr>
+          <tr>
+            <td>
+              <b>KeyMissing</b>
+            </td>
+            <td>Can't verify due to a missing key or certificate.</td>
+          </tr>
+          <tr>
+            <td>
+              <b>KeyRevoked</b>
+            </td>
+            <td>The key or at least one certificate has been revoked.</td>
+          </tr>
+          <tr>
+            <td>
+              <b>Red</b>
+            </td>
+            <td>The signature is bad. It might be useful to check other bits and display more information, i.e. a revoked certificate might not render a signature invalid when the message was received prior to the cause for the revocation.
+</td>
+          </tr>
+          <tr>
+            <td>
+              <b>SignatureExpired</b>
+            </td>
+            <td>The signature has expired.</td>
+          </tr>
+          <tr>
+            <td>
+              <b>SysError</b>
+            </td>
+            <td>A system error occured.</td>
+          </tr>
+          <tr>
+            <td>
+              <b>Valid</b>
+            </td>
+            <td>The signature is fully valid.</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="Members">
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

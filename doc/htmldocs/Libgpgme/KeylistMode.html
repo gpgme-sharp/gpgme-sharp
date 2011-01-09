@@ -1,0 +1,121 @@
+<html>
+  <head>
+    <title>Libgpgme.KeylistMode</title>
+    <style>
+					a { text-decoration: none }
+				
+					.CollectionTitle { font-weight: bold }
+					.PageTitle { font-size: 150%; font-weight: bold }
+
+					.Summary { }
+					.Signature { }					
+					.Remarks { }
+					.Members { }
+					.Copyright { }
+					
+					.Section { font-size: 125%; font-weight: bold }
+					.SectionBox { margin-left: 2em }
+					.NamespaceName { font-size: 105%; font-weight: bold }
+					.NamespaceSumary { }
+					.MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+					.MemberSignature { font-family: monospace; margin-top: 1em; }
+					.MemberBox { }
+					.Subsection { font-size: 105%; font-weight: bold }
+					.SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+					.SignatureTable { background-color: #c0c0c0; }
+					.EnumerationsTable th { background-color: #f2f2f2; }
+					.CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+					
+					.MembersListing td { margin: 0px; border: 1px solid black; padding: .25em }
+					
+					.TypesListing td { margin: 0px;  padding: .25em }
+					.InnerSignatureTable tr { background-color: #f2f2f2; }
+					.TypePermissionsTable tr { background-color: #f2f2f2; }
+					
+				</style>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="../index.html">gpgme-sharp</a>
+			:
+			<a href="index.html">Libgpgme Namespace</a></div>
+    <h1 class="PageTitle">KeylistMode  Enum</h1>
+    <p class="Summary">This type's values change the behaviour of the key listing methods.</p>
+    <div class="Signature">
+      <table class="SignatureTable" cellspacing="0" width="100%">
+        <tr>
+          <td>
+            <table class="InnerSignatureTable" cellpadding="10" cellspacing="0" width="100%">
+              <tr>
+                <td>
+                  <div>[System.Flags]</div>public 
+
+							enum
+	
+							<b>KeylistMode</b></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      </br>
+    </div>
+    <div class="Remarks">
+      <h4 class="Subsection">Remarks</h4>
+      <div class="SubsectionBox">At least one of <a href="../Libgpgme/KeylistMode.html#P:Libgpgme.KeylistMode.Local">KeylistMode.Local</a> and <a href="../Libgpgme/KeylistMode.html#P:Libgpgme.KeylistMode.Extern">KeylistMode.Extern</a> must be specified.</div>
+      <div class="Subsection">Members</div>
+      <div class="SubsectionBox">
+        <table class="EnumerationsTable">
+          <tr>
+            <th>Member name</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td>
+              <b>Extern</b>
+            </td>
+            <td>This symbol specifies that an external source should be searched for keys in the keylisting operation.  The type of external source is dependant on the crypto engine used.  For example, it can be a remote keyserver or LDAP certificate server.
+</td>
+          </tr>
+          <tr>
+            <td>
+              <b>Local</b>
+            </td>
+            <td> This symbol specifies that the local keyring should be searched for keys in the keylisting operation.  
+<p><i>Note: </i><p>
+This is the default.
+  </p></p></td>
+          </tr>
+          <tr>
+            <td>
+              <b>SignatureNotations</b>
+            </td>
+            <td>This symbol specifies that the signature notations on key signatures should be included in the listed keys.  This only works if <a href="../Libgpgme/KeylistMode.html#P:Libgpgme.KeylistMode.Signatures">KeylistMode.Signatures</a> is also enabled.
+</td>
+          </tr>
+          <tr>
+            <td>
+              <b>Signatures</b>
+            </td>
+            <td>This symbol specifies that the key signatures should be included in the listed keys.
+</td>
+          </tr>
+          <tr>
+            <td>
+              <b>Validate</b>
+            </td>
+            <td>This symbol specifies that the  backend should do key or certificate validation and not just get the validity information from an internal cache.  This might be an expensive operation and is in general not useful. Currently only implemented for the S/MIME backend and ignored for other backends.
+</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="Members">
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

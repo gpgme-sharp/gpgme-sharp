@@ -1,0 +1,6 @@
+<Namespace Name="Libgpgme">
+  <Docs>
+    <summary>A .NET binding to the GnuPG Made Easy (GPGME) API.</summary>
+    <remarks />
+  </Docs>
+</Namespace>

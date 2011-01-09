@@ -1,0 +1,479 @@
+<html>
+  <head>
+    <title>Libgpgme.GpgmeData</title>
+    <style>
+					a { text-decoration: none }
+				
+					.CollectionTitle { font-weight: bold }
+					.PageTitle { font-size: 150%; font-weight: bold }
+
+					.Summary { }
+					.Signature { }					
+					.Remarks { }
+					.Members { }
+					.Copyright { }
+					
+					.Section { font-size: 125%; font-weight: bold }
+					.SectionBox { margin-left: 2em }
+					.NamespaceName { font-size: 105%; font-weight: bold }
+					.NamespaceSumary { }
+					.MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+					.MemberSignature { font-family: monospace; margin-top: 1em; }
+					.MemberBox { }
+					.Subsection { font-size: 105%; font-weight: bold }
+					.SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+					.SignatureTable { background-color: #c0c0c0; }
+					.EnumerationsTable th { background-color: #f2f2f2; }
+					.CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+					
+					.MembersListing td { margin: 0px; border: 1px solid black; padding: .25em }
+					
+					.TypesListing td { margin: 0px;  padding: .25em }
+					.InnerSignatureTable tr { background-color: #f2f2f2; }
+					.TypePermissionsTable tr { background-color: #f2f2f2; }
+					
+				</style>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="../index.html">gpgme-sharp</a>
+			:
+			<a href="index.html">Libgpgme Namespace</a></div>
+    <h1 class="PageTitle">GpgmeData  Class</h1>
+    <p class="Summary">A class which is used by GPGME to exchange data with the user.</p>
+    <div class="Signature">
+      <table class="SignatureTable" cellspacing="0" width="100%">
+        <tr>
+          <td>
+            <table class="InnerSignatureTable" cellpadding="10" cellspacing="0" width="100%">
+              <tr>
+                <td>public abstract class  <b>GpgmeData</b> :
+		
+								<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.Stream">System.IO.Stream</a></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      </br>
+    </div>
+    <div class="Remarks">
+      <h4 class="Subsection">Remarks</h4>
+      <div class="SubsectionBox">A lot of data has to be exchanged between the user and the crypto engine, like plaintext messages, ciphertext, signatures and information about the keys. The technical details about exchanging the data information are completely abstracted by GPGME.  The user provides and receives the data via <a href="../Libgpgme/GpgmeData.html">Libgpgme.GpgmeData</a> objects, regardless of the communication protocol between GPGME and the crypto engine in use.
+</div>
+      <h2 class="Section">Members</h2>
+      <div class="SectionBox">
+        <p>
+						See Also: Inherited members from
+						<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.Stream">System.IO.Stream</a>.
+					</p>
+        <h3>Fields</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#F:Libgpgme.GpgmeData.EOF">EOF</a>
+                </b>
+                <div>const </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int64">long</a>
+                </i> (0). End of file value.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#F:Libgpgme.GpgmeData.ERROR">ERROR</a>
+                </b>
+                <div>const </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int64">long</a>
+                </i> (-1). Error value.</td>
+            </tr>
+          </table>
+        </div>
+        <h3>Protected Fields</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#F:Libgpgme.GpgmeData.SEEK_CUR">SEEK_CUR</a>
+                </b>
+                <div>const </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
+                </i> (1). Indicates that the seek reference point is the current position within a stream.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#F:Libgpgme.GpgmeData.SEEK_END">SEEK_END</a>
+                </b>
+                <div>const </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
+                </i> (2). Indicates that the seek reference point is the first byte beyond the end of a stream. </td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#F:Libgpgme.GpgmeData.SEEK_SET">SEEK_SET</a>
+                </b>
+                <div>const </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
+                </i> (0). Indicates that the seek reference point is the beginning of a stream.</td>
+            </tr>
+          </table>
+        </div>
+        <h3>Properties</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.GpgmeData.Encoding">Encoding</a>
+                </b>
+                <div>
+                </div>
+              </td>
+              <td>
+                <i>
+                  <a href="../Libgpgme/DataEncoding.html">DataEncoding</a>
+                </i>. Specifies the encoding of this object.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.GpgmeData.FileName">FileName</a>
+                </b>
+                <div>
+                </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                </i>. The file name associated with the data object.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.GpgmeData.IsValid">IsValid</a>
+                </b>
+					[read-only]
+					<div>abstract </div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                </i>. Indicates if the data buffer is still valid.</td>
+            </tr>
+          </table>
+        </div>
+        <h3>Methods</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:Libgpgme.GpgmeData.Read(System.Byte[])">Read</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[])<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><div>Reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read.</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:Libgpgme.GpgmeData.Read(System.Byte[],System.Int32)">Read</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[], <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><div>Reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read.</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:Libgpgme.GpgmeData.Rewind">Rewind</a>
+                </b>()<div>Sets the position in the stream to the beginning.</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:Libgpgme.GpgmeData.Write(System.Byte[],System.Int32)">Write</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[], <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><div>Writes a sequence of bytes to the current stream and advances the current position within the current stream by the number of bytes written.</div></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="Members">
+      <h2 class="Section">Member Details</h2>
+      <div class="SectionBox">
+        <h3 id="P:Libgpgme.GpgmeData.Encoding" class="MemberName">Encoding Property</h3>
+        <div class="MemberSignature">public <a href="../Libgpgme/DataEncoding.html">DataEncoding</a> <b>Encoding</b>  { set; get; }</div>
+        <div class="MemberBox">
+          <p>Specifies the encoding of this object.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="../Libgpgme/DataEncoding.html">Libgpgme.DataEncoding</a>.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="F:Libgpgme.GpgmeData.EOF" class="MemberName">EOF Field</h3>
+        <div class="MemberSignature">public const <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int64">long</a> <b>EOF</b> </div>
+        <div class="MemberBox">
+          <p>
+            <b>Value: </b>0</p>
+          <p>End of file value.</p>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="F:Libgpgme.GpgmeData.ERROR" class="MemberName">ERROR Field</h3>
+        <div class="MemberSignature">public const <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int64">long</a> <b>ERROR</b> </div>
+        <div class="MemberBox">
+          <p>
+            <b>Value: </b>-1</p>
+          <p>Error value.</p>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.GpgmeData.FileName" class="MemberName">FileName Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>FileName</b>  { set; get; }</div>
+        <div class="MemberBox">
+          <p>The file name associated with the data object.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> containing the file name associated with the data object. <tt>null</tt> if no file name has been specified.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">The file name will be stored in the output when encrypting or signing the data and will be returned to the user when decrypting or verifying the output data.
+</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.GpgmeData.IsValid" class="MemberName">IsValid Property</h3>
+        <div class="MemberSignature">public abstract <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>IsValid</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>Indicates if the data buffer is still valid.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">A data buffer will become invalid when calling the <a href="../Libgpgme/GpgmeData.html#M:Libgpgme.GpgmeData.Close()">GpgmeData.Close()</a> method.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:Libgpgme.GpgmeData.Read(System.Byte[])" class="MemberName">Read Method</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>Read</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[] buffer)</div>
+        <div class="MemberBox">
+          <p>Reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read.</p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>buffer</i>
+              </dt>
+              <dd>A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a> array as destination buffer. </dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox"> A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Integer">Integer</a> that specifies the total number of bytes read into the buffer, or zero if the end of the stream has been reached before any data can be read.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+            <p>
+              <i>Note: </i>
+Use the <a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.Stream.CanRead">System.IO.Stream.CanRead</a> property to determine whether the current instance supports reading.
+</p>
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:Libgpgme.GpgmeData.Read(System.Byte[],System.Int32)" class="MemberName">Read Method</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>Read</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[] buffer, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> count)</div>
+        <div class="MemberBox">
+          <p>Reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read.</p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>buffer</i>
+              </dt>
+              <dd>A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a> array as destination buffer.  </dd>
+              <dt>
+                <i>count</i>
+              </dt>
+              <dd>The number of bytes to read.</dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox"> A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Integer">Integer</a> that specifies the total number of bytes read into the buffer, or zero if the end of the stream has been reached before any data can be read.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+            <p>
+              <i>Note: </i>
+Use the <a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.Stream.CanRead">System.IO.Stream.CanRead</a> property to determine whether the current instance supports reading.
+</p>
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:Libgpgme.GpgmeData.Rewind" class="MemberName">Rewind Method</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>Rewind</b> ()</div>
+        <div class="MemberBox">
+          <p>Sets the position in the stream to the beginning.</p>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+            <p>
+              <i>Note: </i>Use the <a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.Stream.CanSeek">System.IO.Stream.CanSeek</a> property to determine whether
+   the current instance supports seeking.</p>
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="F:Libgpgme.GpgmeData.SEEK_CUR" class="MemberName">SEEK_CUR Field</h3>
+        <div class="MemberSignature">protected const <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>SEEK_CUR</b> </div>
+        <div class="MemberBox">
+          <p>
+            <b>Value: </b>1</p>
+          <p>Indicates that the seek reference point is the current position within a stream.</p>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="F:Libgpgme.GpgmeData.SEEK_END" class="MemberName">SEEK_END Field</h3>
+        <div class="MemberSignature">protected const <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>SEEK_END</b> </div>
+        <div class="MemberBox">
+          <p>
+            <b>Value: </b>2</p>
+          <p>Indicates that the seek reference point is the first byte beyond the end of a stream. </p>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="F:Libgpgme.GpgmeData.SEEK_SET" class="MemberName">SEEK_SET Field</h3>
+        <div class="MemberSignature">protected const <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>SEEK_SET</b> </div>
+        <div class="MemberBox">
+          <p>
+            <b>Value: </b>0</p>
+          <p>Indicates that the seek reference point is the beginning of a stream.</p>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:Libgpgme.GpgmeData.Write(System.Byte[],System.Int32)" class="MemberName">Write Method</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>Write</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[] buffer, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> count)</div>
+        <div class="MemberBox">
+          <p>Writes a sequence of bytes to the current stream and advances the current position within the current stream by the number of bytes written.</p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>buffer</i>
+              </dt>
+              <dd>A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a> array containing the data to write.</dd>
+              <dt>
+                <i>count</i>
+              </dt>
+              <dd>A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Integer">Integer</a> that specifies the number of bytes to be written to the current stream.</dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Integer">Integer</a> with the number of bytes written.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+            <p>
+              <p>
+                <i>Note: </i>Use the <a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.Stream.CanWrite">System.IO.Stream.CanWrite</a> property to determine whether
+   the current instance supports writing.</p>
+            </p>
+            <p>
+              <div class="Subsection">Operation</div>
+              <p>If the write operation is
+   successful, the position within the stream advances by the number of bytes
+   written. If an exception occurs, the position within the stream remains
+   unchanged.</p>
+            </p>
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+      </div>
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

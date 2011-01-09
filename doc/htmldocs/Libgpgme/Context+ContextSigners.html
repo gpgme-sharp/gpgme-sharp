@@ -1,0 +1,245 @@
+<html>
+  <head>
+    <title>Libgpgme.Context.ContextSigners</title>
+    <style>
+					a { text-decoration: none }
+				
+					.CollectionTitle { font-weight: bold }
+					.PageTitle { font-size: 150%; font-weight: bold }
+
+					.Summary { }
+					.Signature { }					
+					.Remarks { }
+					.Members { }
+					.Copyright { }
+					
+					.Section { font-size: 125%; font-weight: bold }
+					.SectionBox { margin-left: 2em }
+					.NamespaceName { font-size: 105%; font-weight: bold }
+					.NamespaceSumary { }
+					.MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+					.MemberSignature { font-family: monospace; margin-top: 1em; }
+					.MemberBox { }
+					.Subsection { font-size: 105%; font-weight: bold }
+					.SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+					.SignatureTable { background-color: #c0c0c0; }
+					.EnumerationsTable th { background-color: #f2f2f2; }
+					.CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+					
+					.MembersListing td { margin: 0px; border: 1px solid black; padding: .25em }
+					
+					.TypesListing td { margin: 0px;  padding: .25em }
+					.InnerSignatureTable tr { background-color: #f2f2f2; }
+					.TypePermissionsTable tr { background-color: #f2f2f2; }
+					
+				</style>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="../index.html">gpgme-sharp</a>
+			:
+			<a href="index.html">Libgpgme Namespace</a></div>
+    <h1 class="PageTitle">Context.ContextSigners  Class</h1>
+    <p class="Summary">A class used to list and modify the signers of a context.</p>
+    <div class="Signature">
+      <table class="SignatureTable" cellspacing="0" width="100%">
+        <tr>
+          <td>
+            <table class="InnerSignatureTable" cellpadding="10" cellspacing="0" width="100%">
+              <tr>
+                <td>public class  <b>Context.ContextSigners</b> :
+		
+								<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.IEnumerable`1">System.Collections.Generic.IEnumerable&lt;Libgpgme.Key&gt;</a></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      </br>
+    </div>
+    <div class="Remarks">
+      <h4 class="Subsection">Remarks</h4>
+      <div class="SubsectionBox">
+The <a href="../Libgpgme/Context+ContextSigners.html#C:Libgpgme.Context+ContextSigners">Context.ContextSigners</a> class allows you to list (enumerate), add and remove (clear) all signers.
+</div>
+      <h2 class="Section">Members</h2>
+      <div class="SectionBox">
+        <p>
+						See Also: Inherited members from
+						<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a>.
+					</p>
+        <h3>Methods</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:Libgpgme.Context.ContextSigners.Add(Libgpgme.Key)">Add</a>
+                </b>(<a href="../Libgpgme/Key.html">Key</a>)<div>Add a key to the list of signers.</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:Libgpgme.Context.ContextSigners.Clear">Clear</a>
+                </b>()<div>Remove all keys from the list of signers.</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:Libgpgme.Context.ContextSigners.Enum(System.Int32)">Enum</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<nobr> : <a href="../Libgpgme/Key.html">Key</a></nobr><div>Retrieve a reference to specified signer key.</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:Libgpgme.Context.ContextSigners.Get">Get</a>
+                </b>()<nobr> : <a href="../Libgpgme/Key.html">Key</a>[]</nobr><div>Retrieve an array of all signer keys.</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:Libgpgme.Context.ContextSigners.GetEnumerator">GetEnumerator</a>
+                </b>()<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.IEnumerator`1">System.Collections.Generic.IEnumerator&lt;Libgpgme.Key&gt;</a></nobr><div>To be added.</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:Libgpgme.Context.ContextSigners.System.Collections.IEnumerable.GetEnumerator">System.Collections.IEnumerable.GetEnumerator</a>
+                </b>()<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.IEnumerator">IEnumerator</a></nobr><div>To be added.</div></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="Members">
+      <h2 class="Section">Member Details</h2>
+      <div class="SectionBox">
+        <h3 id="M:Libgpgme.Context.ContextSigners.Add(Libgpgme.Key)" class="MemberName">Add Method</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>Add</b> (<a href="../Libgpgme/Key.html">Key</a> signer)</div>
+        <div class="MemberBox">
+          <p>Add a key to the list of signers.</p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>signer</i>
+              </dt>
+              <dd>The key that shall be used for cryptographic signing operations.</dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">After adding the key <i>signer</i> to the list of signers it will be used within the <a href="../Libgpgme/Context.html#M:Libgpgme.Context.Sign(Libgpgme.GpgmeData,Libgpgme.GpgmeData,Libgpgme.SignatureMode)">Context.Sign(GpgmeData, GpgmeData, SignatureMode)</a> and the <a href="../Libgpgme/Context.html#M:Libgpgme.Context.EncryptAndSign(Libgpgme.Key[],Libgpgme.EncryptFlags,Libgpgme.GpgmeData,Libgpgme.GpgmeData)">Context.EncryptAndSign(Key[], EncryptFlags, GpgmeData, GpgmeData)</a> method.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:Libgpgme.Context.ContextSigners.Clear" class="MemberName">Clear Method</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>Clear</b> ()</div>
+        <div class="MemberBox">
+          <p>Remove all keys from the list of signers.</p>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:Libgpgme.Context.ContextSigners.Enum(System.Int32)" class="MemberName">Enum Method</h3>
+        <div class="MemberSignature">public <a href="../Libgpgme/Key.html">Key</a> <b>Enum</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> seq)</div>
+        <div class="MemberBox">
+          <p>Retrieve a reference to specified signer key.</p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>seq</i>
+              </dt>
+              <dd>The number of the key that shall be retrieved.</dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">The <i>seq</i><a href="../Libgpgme/Key.html#C:Libgpgme.Key">Key</a> in the list of signers. <tt>null</tt>, if <i>seq</i> is out of range.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:Libgpgme.Context.ContextSigners.Get" class="MemberName">Get Method</h3>
+        <div class="MemberSignature">public <a href="../Libgpgme/Key.html">Key</a>[] <b>Get</b> ()</div>
+        <div class="MemberBox">
+          <p>Retrieve an array of all signer keys.</p>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">An array of all signer <a href="../Libgpgme/Key.html#C:Libgpgme.Key">Key</a>s.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:Libgpgme.Context.ContextSigners.GetEnumerator" class="MemberName">GetEnumerator Method</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.IEnumerator`1">System.Collections.Generic.IEnumerator&lt;Libgpgme.Key&gt;</a> <b>GetEnumerator</b> ()</div>
+        <div class="MemberBox">
+          <p>To be added.</p>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:Libgpgme.Context.ContextSigners.System.Collections.IEnumerable.GetEnumerator" class="MemberName">System.Collections.IEnumerable.GetEnumerator Method</h3>
+        <div class="MemberSignature">
+          <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.IEnumerator">IEnumerator</a> <b>System.Collections.IEnumerable.GetEnumerator</b> ()</div>
+        <div class="MemberBox">
+          <p>To be added.</p>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+      </div>
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

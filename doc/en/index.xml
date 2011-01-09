@@ -1,0 +1,145 @@
+<Overview>
+  <Assemblies>
+    <Assembly Name="gpgme-sharp" Version="1.0.0.0">
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.RuntimeCompatibility(WrapNonExceptionThrows=true)</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyFileVersion("1.0.0.0")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Runtime.InteropServices.Guid("2110b514-e57b-4f97-9d0f-80307774165b")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Runtime.InteropServices.ComVisible(false)</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyTrademark("")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyCopyright("Copyright © 2009 Daniel Mueller")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyProduct("gpgme-sharp")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyCompany("")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyConfiguration("")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyDescription("")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyTitle("gpgme-sharp")</AttributeName>
+        </Attribute>
+      </Attributes>
+    </Assembly>
+  </Assemblies>
+  <Remarks>GnuPG Made Easy</Remarks>
+  <Copyright>
+  Copyright (C) 2002, 2003, 2004, 2005, 2006, 2007, 2008 g10 Code GmbH<br />
+  Copyright (C) 2009 Daniel Mueller
+  </Copyright>
+  <Types>
+    <Namespace Name="Libgpgme">
+      <Type Name="AlgorithmCapability" />
+      <Type Name="AlgorithmCapabilityAttribute" />
+      <Type Name="AlreadySignedException" />
+      <Type Name="AmbiguousKeyException" />
+      <Type Name="BadPassphraseException" />
+      <Type Name="CipherAlgorithm" />
+      <Type Name="CombinedResult" />
+      <Type Name="CompressAlgorithm" />
+      <Type Name="Context" />
+      <Type Name="Context+ContextSignatureNotations" />
+      <Type Name="Context+ContextSigners" />
+      <Type Name="DataEncoding" />
+      <Type Name="DecryptionFailedException" />
+      <Type Name="DecryptionResult" />
+      <Type Name="EmptyPassphraseException" />
+      <Type Name="EncryptFlags" />
+      <Type Name="EncryptionResult" />
+      <Type Name="EngineInfo" />
+      <Type Name="GeneralErrorException" />
+      <Type Name="GenkeyResult" />
+      <Type Name="Gpgme" />
+      <Type Name="GpgmeCbsData" />
+      <Type Name="GpgmeData" />
+      <Type Name="GpgmeException" />
+      <Type Name="GpgmeFileData" />
+      <Type Name="GpgmeMemoryData" />
+      <Type Name="GpgmeStreamData" />
+      <Type Name="HashAlgorithm" />
+      <Type Name="IKeyGenerator" />
+      <Type Name="IKeyStore" />
+      <Type Name="ImportResult" />
+      <Type Name="ImportStatus" />
+      <Type Name="ImportStatusFlags" />
+      <Type Name="InvalidContextException" />
+      <Type Name="InvalidDataBufferException" />
+      <Type Name="InvalidHashAlgoException" />
+      <Type Name="InvalidKey" />
+      <Type Name="InvalidKeyException" />
+      <Type Name="InvalidKeyFprException" />
+      <Type Name="InvalidPassphraseException" />
+      <Type Name="InvalidProtocolException" />
+      <Type Name="InvalidPtrException" />
+      <Type Name="InvalidPubkeyAlgoException" />
+      <Type Name="InvalidTimestampException" />
+      <Type Name="Key" />
+      <Type Name="KeyAlgorithm" />
+      <Type Name="KeyConflictException" />
+      <Type Name="KeyEditStatusCode" />
+      <Type Name="KeyExportException" />
+      <Type Name="KeyImportException" />
+      <Type Name="KeylistMode" />
+      <Type Name="KeyNotFoundException" />
+      <Type Name="KeyParameters" />
+      <Type Name="KeyPreferences" />
+      <Type Name="KeySignature" />
+      <Type Name="KeyStore" />
+      <Type Name="NewSignature" />
+      <Type Name="NoDataException" />
+      <Type Name="PassphraseDelegate" />
+      <Type Name="PassphraseInfo" />
+      <Type Name="PassphraseResult" />
+      <Type Name="PgpDeleteSignatureOptions" />
+      <Type Name="PgpExpirationOptions" />
+      <Type Name="PgpFeatureFlags" />
+      <Type Name="PgpKey" />
+      <Type Name="PgpKey+PassphraseSettings" />
+      <Type Name="PgpKey+Settings" />
+      <Type Name="PgpOwnerTrust" />
+      <Type Name="PgpPassphraseOptions" />
+      <Type Name="PgpRevokeSignatureOptions" />
+      <Type Name="PgpRevokeSignatureReasonCode" />
+      <Type Name="PgpSignatureClass" />
+      <Type Name="PgpSignatureOptions" />
+      <Type Name="PgpSignatureTrustLevel" />
+      <Type Name="PgpSignatureType" />
+      <Type Name="PgpSubkeyAlgorithm" />
+      <Type Name="PgpSubkeyOptions" />
+      <Type Name="PkaStatus" />
+      <Type Name="Protocol" />
+      <Type Name="Recipient" />
+      <Type Name="Signature" />
+      <Type Name="SignatureMode" />
+      <Type Name="SignatureNotation" />
+      <Type Name="SignatureNotationFlags" />
+      <Type Name="SignatureResult" />
+      <Type Name="SignatureSummary" />
+      <Type Name="Subkey" />
+      <Type Name="TimestampNotAvailableException" />
+      <Type Name="TrustItem" />
+      <Type Name="TrustItemType" />
+      <Type Name="UserId" />
+      <Type Name="Validity" />
+      <Type Name="VerificationResult" />
+      <Type Name="X509Key" />
+    </Namespace>
+  </Types>
+  <Title>GPGME</Title>
+</Overview>

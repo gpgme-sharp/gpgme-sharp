@@ -1,0 +1,702 @@
+<html>
+  <head>
+    <title>Libgpgme.KeySignature</title>
+    <style>
+					a { text-decoration: none }
+				
+					.CollectionTitle { font-weight: bold }
+					.PageTitle { font-size: 150%; font-weight: bold }
+
+					.Summary { }
+					.Signature { }					
+					.Remarks { }
+					.Members { }
+					.Copyright { }
+					
+					.Section { font-size: 125%; font-weight: bold }
+					.SectionBox { margin-left: 2em }
+					.NamespaceName { font-size: 105%; font-weight: bold }
+					.NamespaceSumary { }
+					.MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+					.MemberSignature { font-family: monospace; margin-top: 1em; }
+					.MemberBox { }
+					.Subsection { font-size: 105%; font-weight: bold }
+					.SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+					.SignatureTable { background-color: #c0c0c0; }
+					.EnumerationsTable th { background-color: #f2f2f2; }
+					.CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+					
+					.MembersListing td { margin: 0px; border: 1px solid black; padding: .25em }
+					
+					.TypesListing td { margin: 0px;  padding: .25em }
+					.InnerSignatureTable tr { background-color: #f2f2f2; }
+					.TypePermissionsTable tr { background-color: #f2f2f2; }
+					
+				</style>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="../index.html">gpgme-sharp</a>
+			:
+			<a href="index.html">Libgpgme Namespace</a></div>
+    <h1 class="PageTitle">KeySignature  Class</h1>
+    <p class="Summary">A class that contains information about a key signature.</p>
+    <div class="Signature">
+      <table class="SignatureTable" cellspacing="0" width="100%">
+        <tr>
+          <td>
+            <table class="InnerSignatureTable" cellpadding="10" cellspacing="0" width="100%">
+              <tr>
+                <td>public class  <b>KeySignature</b> :
+		
+								<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.IEnumerable`1">System.Collections.Generic.IEnumerable&lt;Libgpgme.KeySignature&gt;</a></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      </br>
+    </div>
+    <div class="Remarks">
+      <h4 class="Subsection">Remarks</h4>
+      <div class="SubsectionBox">
+        <p>
+Key signatures are one component of a <a href="../Libgpgme/Key.html#C:Libgpgme.Key">Key</a> object, and validate user IDs (<a href="../Libgpgme/UserId.html#C:Libgpgme.UserId">UserId</a>) on the key. You can enumerate all key signatures by using the <a href="../Libgpgme/KeySignature.html#P:Libgpgme.KeySignature.Next">KeySignature.Next</a> property or the <a href="../Libgpgme/KeySignature.html#M:Libgpgme.KeySignature.GetEnumerator()">KeySignature.GetEnumerator()</a> method.
+</p>
+        <p>
+          <i>Note: </i>
+          <p>
+The signatures on a key are only available if the key was retrieved via a listing operation with the <a href="../Libgpgme/KeylistMode.html#F:Libgpgme.KeylistMode.Signatures">KeylistMode.Signatures</a> flag enabled (see <a href="../Libgpgme/Context.html#P:Libgpgme.Context.KeylistMode">Context.KeylistMode</a>), because it can be expensive to retrieve all signatures of a key.
+</p>
+          <p>
+The signature notations on a key signature are only available if the key was retrieved via a listing operation with the <a href="../Libgpgme/KeylistMode.html#F:Libgpgme.KeylistMode.SignatureNotations">KeylistMode.SignatureNotations</a> flag enabled (see <a href="../Libgpgme/Context.html#P:Libgpgme.Context.KeylistMode">Context.KeylistMode</a>), because it can be expensive to retrieve all signature notations.
+  </p>
+        </p>
+      </div>
+      <h2 class="Section">Members</h2>
+      <div class="SectionBox">
+        <p>
+						See Also: Inherited members from
+						<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a>.
+					</p>
+        <h3>Properties</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.KeySignature.Comment">Comment</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                </i>. The comment component of Uid, if available.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.KeySignature.Email">Email</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                </i>. The email component of Uid, if available.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.KeySignature.Expired">Expired</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                </i>. Indicates that the key signature is expired.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.KeySignature.Expires">Expires</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.DateTime">DateTime</a>
+                </i>. The expiration timestamp of the key signature.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.KeySignature.ExpiresUTC">ExpiresUTC</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.DateTime">DateTime</a>
+                </i>. The expiration timestamp of the key signature in UTC.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.KeySignature.Exportable">Exportable</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                </i>. Indicates that the key signature is exportable.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.KeySignature.Invalid">Invalid</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                </i>. Indicates that the key signature is invalid.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.KeySignature.IsInfinitely">IsInfinitely</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                </i>. Indicates that the key signature does not expire.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.KeySignature.KeyId">KeyId</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                </i>. The key ID of the key used to create the signature.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.KeySignature.Name">Name</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                </i>. The name component of Uid, if available.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.KeySignature.Next">Next</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="../Libgpgme/KeySignature.html">KeySignature</a>
+                </i>. The next key signature object.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.KeySignature.Notations">Notations</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="../Libgpgme/SignatureNotation.html">SignatureNotation</a>
+                </i>. A linked list with the notation data and policy URLs.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.KeySignature.PubkeyAlgorithm">PubkeyAlgorithm</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="../Libgpgme/KeyAlgorithm.html">KeyAlgorithm</a>
+                </i>. The public key algorithm used to create the signature.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.KeySignature.Revoked">Revoked</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                </i>. Indicates that this key signature is a revocation signature.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.KeySignature.SigClass">SigClass</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int64">long</a>
+                </i>. The signature class of the key signature</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.KeySignature.Status">Status</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
+                </i>. The status of the key signature.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.KeySignature.Timestamp">Timestamp</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.DateTime">DateTime</a>
+                </i>. The creation timestamp of the key signature.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.KeySignature.TimestampUTC">TimestampUTC</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.DateTime">DateTime</a>
+                </i>. The creation timestamp of the key signature in UTC.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.KeySignature.Uid">Uid</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                </i>. The main user ID of the key used to create the signature.</td>
+            </tr>
+          </table>
+        </div>
+        <h3>Methods</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:Libgpgme.KeySignature.GetEnumerator">GetEnumerator</a>
+                </b>()<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.IEnumerator`1">System.Collections.Generic.IEnumerator&lt;Libgpgme.KeySignature&gt;</a></nobr><div>To be added.</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:Libgpgme.KeySignature.System.Collections.IEnumerable.GetEnumerator">System.Collections.IEnumerable.GetEnumerator</a>
+                </b>()<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.IEnumerator">IEnumerator</a></nobr><div>To be added.</div></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="Members">
+      <h2 class="Section">Member Details</h2>
+      <div class="SectionBox">
+        <h3 id="P:Libgpgme.KeySignature.Comment" class="MemberName">Comment Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>Comment</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The comment component of Uid, if available.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> containing the comment component of <a href="../Libgpgme/KeySignature.html#P:Libgpgme.KeySignature.Uid">KeySignature.Uid</a>, if available.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.KeySignature.Email" class="MemberName">Email Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>Email</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The email component of Uid, if available.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> containing the email component of <a href="../Libgpgme/KeySignature.html#P:Libgpgme.KeySignature.Uid">KeySignature.Uid</a>, if available.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.KeySignature.Expired" class="MemberName">Expired Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>Expired</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>Indicates that the key signature is expired.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> that is <tt>true</tt> if the key signature is expired.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.KeySignature.Expires" class="MemberName">Expires Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.DateTime">DateTime</a> <b>Expires</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The expiration timestamp of the key signature.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.DateTime">DateTime</a> containing the expiration timestamp of the key signature.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">Always check the <a href="../Libgpgme/KeySignature.html#P:Libgpgme.KeySignature.IsInfinitely">KeySignature.IsInfinitely</a> property in order to find out whether the key signature can expire. If the signature cannot expire, <a href="../Libgpgme/KeySignature.html#P:Libgpgme.KeySignature.Expires">KeySignature.Expires</a> contains an invalid value (Depending on your timezone you might see the date 1970-01-01 UTC).</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.KeySignature.ExpiresUTC" class="MemberName">ExpiresUTC Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.DateTime">DateTime</a> <b>ExpiresUTC</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The expiration timestamp of the key signature in UTC.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.DateTime">DateTime</a> containing the expiration timestamp of the key signature in UTC.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">Always check the <a href="../Libgpgme/KeySignature.html#P:Libgpgme.KeySignature.IsInfinitely">KeySignature.IsInfinitely</a> property in order to find out whether the key signature can expire. If the signature cannot expire, <a href="../Libgpgme/KeySignature.html#P:Libgpgme.KeySignature.Expires">KeySignature.Expires</a> contains an invalid value (Depending on your timezone you might see the date 1970-01-01 UTC).</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.KeySignature.Exportable" class="MemberName">Exportable Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>Exportable</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>Indicates that the key signature is exportable.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> that is <tt>true</tt> if the key signature is exportable.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:Libgpgme.KeySignature.GetEnumerator" class="MemberName">GetEnumerator Method</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.IEnumerator`1">System.Collections.Generic.IEnumerator&lt;Libgpgme.KeySignature&gt;</a> <b>GetEnumerator</b> ()</div>
+        <div class="MemberBox">
+          <p>To be added.</p>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.KeySignature.Invalid" class="MemberName">Invalid Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>Invalid</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>Indicates that the key signature is invalid.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> that is <tt>true</tt> if the key signature is invalid.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.KeySignature.IsInfinitely" class="MemberName">IsInfinitely Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>IsInfinitely</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>Indicates that the key signature does not expire.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> that is <tt>true</tt> if the key signature does not expire.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.KeySignature.KeyId" class="MemberName">KeyId Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>KeyId</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The key ID of the key used to create the signature.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> containing the key ID of the key used to create the signature in hexadecimal digits.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.KeySignature.Name" class="MemberName">Name Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>Name</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The name component of Uid, if available.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> containing the name component of <a href="../Libgpgme/KeySignature.html#P:Libgpgme.KeySignature.Uid">KeySignature.Uid</a>, if available.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.KeySignature.Next" class="MemberName">Next Property</h3>
+        <div class="MemberSignature">public <a href="../Libgpgme/KeySignature.html">KeySignature</a> <b>Next</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The next key signature object.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">The next <a href="../Libgpgme/KeySignature.html#C:Libgpgme.KeySignature">KeySignature</a> object in the linked list, or <tt>null</tt> if this is the last element.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.KeySignature.Notations" class="MemberName">Notations Property</h3>
+        <div class="MemberSignature">public <a href="../Libgpgme/SignatureNotation.html">SignatureNotation</a> <b>Notations</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>A linked list with the notation data and policy URLs.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="../Libgpgme/SignatureNotation.html#C:Libgpgme.SignatureNotation">SignatureNotation</a> object.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+            <p>
+              <i>Note: </i>
+              <p>
+The signature notations on a key signature are only available if the key was retrieved via a listing operation with the <a href="../Libgpgme/KeylistMode.html#F:Libgpgme.KeylistMode.SignatureNotations">KeylistMode.SignatureNotations</a> flag enabled (see <a href="../Libgpgme/Context.html#P:Libgpgme.Context.KeylistMode">Context.KeylistMode</a>), because it can be expensive to retrieve all signature notations.
+  </p>
+            </p>
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.KeySignature.PubkeyAlgorithm" class="MemberName">PubkeyAlgorithm Property</h3>
+        <div class="MemberSignature">public <a href="../Libgpgme/KeyAlgorithm.html">KeyAlgorithm</a> <b>PubkeyAlgorithm</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The public key algorithm used to create the signature.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="../Libgpgme/KeyAlgorithm.html">Libgpgme.KeyAlgorithm</a>.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.KeySignature.Revoked" class="MemberName">Revoked Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>Revoked</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>Indicates that this key signature is a revocation signature.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> that is <tt>true</tt> if the key signature is a revocation signature.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.KeySignature.SigClass" class="MemberName">SigClass Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int64">long</a> <b>SigClass</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The signature class of the key signature</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int64">long</a>.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">This specifies the signature class of the key signature. The meaning is specific to the crypto engine.
+</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.KeySignature.Status" class="MemberName">Status Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>Status</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The status of the key signature.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">This is the status of the signature and has the same meaning as the member of the same name in a <a href="../Libgpgme/Signature.html#C:Libgpgme.Signature">Signature</a> object.
+</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:Libgpgme.KeySignature.System.Collections.IEnumerable.GetEnumerator" class="MemberName">System.Collections.IEnumerable.GetEnumerator Method</h3>
+        <div class="MemberSignature">
+          <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.IEnumerator">IEnumerator</a> <b>System.Collections.IEnumerable.GetEnumerator</b> ()</div>
+        <div class="MemberBox">
+          <p>To be added.</p>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.KeySignature.Timestamp" class="MemberName">Timestamp Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.DateTime">DateTime</a> <b>Timestamp</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The creation timestamp of the key signature.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.DateTime">DateTime</a> containing the creation timestamp of the key signature.
+</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+            <p>
+              <i>Note: </i>
+              <p>
+A <a href="../Libgpgme/InvalidTimestampException.html#C:Libgpgme.InvalidTimestampException">InvalidTimestampException</a> will be raised if the timestamp is invalid. A <a href="../Libgpgme/TimestampNotAvailableException.html#C:Libgpgme.TimestampNotAvailableException">TimestampNotAvailableException</a> will be raised if the timestamp is not available.
+</p>
+            </p>
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.KeySignature.TimestampUTC" class="MemberName">TimestampUTC Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.DateTime">DateTime</a> <b>TimestampUTC</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The creation timestamp of the key signature in UTC.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.DateTime">DateTime</a> containing the creation timestamp of the key signature in UTC.
+</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+            <p>
+              <i>Note: </i>
+              <p>
+A <a href="../Libgpgme/InvalidTimestampException.html#C:Libgpgme.InvalidTimestampException">InvalidTimestampException</a> will be raised if the timestamp is invalid. A <a href="../Libgpgme/TimestampNotAvailableException.html#C:Libgpgme.TimestampNotAvailableException">TimestampNotAvailableException</a> will be raised if the timestamp is not available.
+</p>
+            </p>
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.KeySignature.Uid" class="MemberName">Uid Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>Uid</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The main user ID of the key used to create the signature.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> containing the main user ID of the key used to create this signature.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+      </div>
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

@@ -1,0 +1,469 @@
+<html>
+  <head>
+    <title>Libgpgme.GpgmeMemoryData</title>
+    <style>
+					a { text-decoration: none }
+				
+					.CollectionTitle { font-weight: bold }
+					.PageTitle { font-size: 150%; font-weight: bold }
+
+					.Summary { }
+					.Signature { }					
+					.Remarks { }
+					.Members { }
+					.Copyright { }
+					
+					.Section { font-size: 125%; font-weight: bold }
+					.SectionBox { margin-left: 2em }
+					.NamespaceName { font-size: 105%; font-weight: bold }
+					.NamespaceSumary { }
+					.MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+					.MemberSignature { font-family: monospace; margin-top: 1em; }
+					.MemberBox { }
+					.Subsection { font-size: 105%; font-weight: bold }
+					.SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+					.SignatureTable { background-color: #c0c0c0; }
+					.EnumerationsTable th { background-color: #f2f2f2; }
+					.CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+					
+					.MembersListing td { margin: 0px; border: 1px solid black; padding: .25em }
+					
+					.TypesListing td { margin: 0px;  padding: .25em }
+					.InnerSignatureTable tr { background-color: #f2f2f2; }
+					.TypePermissionsTable tr { background-color: #f2f2f2; }
+					
+				</style>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="../index.html">gpgme-sharp</a>
+			:
+			<a href="index.html">Libgpgme Namespace</a></div>
+    <h1 class="PageTitle">GpgmeMemoryData  Class</h1>
+    <p class="Summary">Memory based data buffer.</p>
+    <div class="Signature">
+      <table class="SignatureTable" cellspacing="0" width="100%">
+        <tr>
+          <td>
+            <table class="InnerSignatureTable" cellpadding="10" cellspacing="0" width="100%">
+              <tr>
+                <td>public sealed class  <b>GpgmeMemoryData</b> :
+		
+								<a href="../Libgpgme/GpgmeData.html">GpgmeData</a></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      </br>
+    </div>
+    <div class="Remarks">
+      <h4 class="Subsection">Remarks</h4>
+      <div class="SubsectionBox">Memory based data objects store all data in allocated memory.  This is convenient, but only practical for an amount of data that is a fraction of the available physical memory.  The data has to be copied from its source and to its destination, which can often be avoided by using one of the other data objects.
+</div>
+      <h2 class="Section">Members</h2>
+      <div class="SectionBox">
+        <p>
+						See Also: Inherited members from
+						<a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.
+					</p>
+        <h3>Constructors</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+                <div>
+                  <b>
+                    <a href="#C:Libgpgme.GpgmeMemoryData">GpgmeMemoryData</a>
+                  </b>()</div>Creates a new memory based data buffer.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <div>
+                  <b>
+                    <a href="#C:Libgpgme.GpgmeMemoryData(System.Int32)">GpgmeMemoryData</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)</div>Creates a new memory based data buffer with the specified size.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <div>
+                  <b>
+                    <a href="#C:Libgpgme.GpgmeMemoryData(System.String)">GpgmeMemoryData</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>)</div>Creates a new memory based data buffer and fills it with the content of a file.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <div>
+                  <b>
+                    <a href="#C:Libgpgme.GpgmeMemoryData(System.IntPtr,System.Int32)">GpgmeMemoryData</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)</div>Creates a new memory based data buffer using the specified address. </td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <div>
+                  <b>
+                    <a href="#C:Libgpgme.GpgmeMemoryData(System.String,System.Int32,System.Int32)">GpgmeMemoryData</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)</div>Creates a new memory based data buffer and fills it with the content of file parts.</td>
+            </tr>
+          </table>
+        </div>
+        <h3>Fields</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#F:Libgpgme.GpgmeData.EOF">EOF</a>
+                </b>
+                <div>const </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int64">long</a>
+                </i> (0). End of file value. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#F:Libgpgme.GpgmeData.ERROR">ERROR</a>
+                </b>
+                <div>const </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int64">long</a>
+                </i> (-1). Error value. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
+            </tr>
+          </table>
+        </div>
+        <h3>Protected Fields</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#F:Libgpgme.GpgmeData.SEEK_CUR">SEEK_CUR</a>
+                </b>
+                <div>const </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
+                </i> (1). Indicates that the seek reference point is the current position within a stream. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#F:Libgpgme.GpgmeData.SEEK_END">SEEK_END</a>
+                </b>
+                <div>const </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
+                </i> (2). Indicates that the seek reference point is the first byte beyond the end of a stream.  (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#F:Libgpgme.GpgmeData.SEEK_SET">SEEK_SET</a>
+                </b>
+                <div>const </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
+                </i> (0). Indicates that the seek reference point is the beginning of a stream. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
+            </tr>
+          </table>
+        </div>
+        <h3>Properties</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#P:Libgpgme.GpgmeData.Encoding">Encoding</a>
+                </b>
+                <div>
+                </div>
+              </td>
+              <td>
+                <i>
+                  <a href="../Libgpgme/DataEncoding.html">DataEncoding</a>
+                </i>. Specifies the encoding of this object. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#P:Libgpgme.GpgmeData.FileName">FileName</a>
+                </b>
+                <div>
+                </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                </i>. The file name associated with the data object. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#P:Libgpgme.GpgmeData.IsValid">IsValid</a>
+                </b>
+					[read-only]
+					<div>abstract </div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                </i>. Indicates if the data buffer is still valid. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.GpgmeMemoryData.MemoryAddress">MemoryAddress</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a>
+                </i>. Address of the allocated memory.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.GpgmeMemoryData.MemorySize">MemorySize</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int64">long</a>
+                </i>. Size of the allocated memory.</td>
+            </tr>
+          </table>
+        </div>
+        <h3>Methods</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#M:Libgpgme.GpgmeData.Read(System.Byte[])">Read</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[])<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><div>Reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#M:Libgpgme.GpgmeData.Read(System.Byte[],System.Int32)">Read</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[], <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><div>Reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#M:Libgpgme.GpgmeData.Rewind">Rewind</a>
+                </b>()<div>Sets the position in the stream to the beginning. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#M:Libgpgme.GpgmeData.Write(System.Byte[],System.Int32)">Write</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[], <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><div>Writes a sequence of bytes to the current stream and advances the current position within the current stream by the number of bytes written. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</div></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="Members">
+      <h2 class="Section">Member Details</h2>
+      <div class="SectionBox">
+        <h3 id="C:Libgpgme.GpgmeMemoryData" class="MemberName">GpgmeMemoryData Constructor</h3>
+        <div class="MemberSignature">public  <b>GpgmeMemoryData</b> ()</div>
+        <div class="MemberBox">
+          <p>Creates a new memory based data buffer.</p>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">The new memory buffer is empty. The size will grow automatically.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="C:Libgpgme.GpgmeMemoryData(System.Int32)" class="MemberName">GpgmeMemoryData Constructor</h3>
+        <div class="MemberSignature">public  <b>GpgmeMemoryData</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> size)</div>
+        <div class="MemberBox">
+          <p>Creates a new memory based data buffer with the specified size.</p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>size</i>
+              </dt>
+              <dd>A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Integer">Integer</a> with the requested data buffer size.</dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">The memory will be allocated by the .NET runtime environment and a pointer is passed to GPGME.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="C:Libgpgme.GpgmeMemoryData(System.String)" class="MemberName">GpgmeMemoryData Constructor</h3>
+        <div class="MemberSignature">public  <b>GpgmeMemoryData</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> filename)</div>
+        <div class="MemberBox">
+          <p>Creates a new memory based data buffer and fills it with the content of a file.</p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>filename</i>
+              </dt>
+              <dd>A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> containing the requested filename.</dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+            <p>
+Creates a new <a href="../Libgpgme/GpgmeData.html#C:Libgpgme.GpgmeData">GpgmeData</a> object and fills it with the content of the file <i>filename</i>.
+</p>
+            <p>
+The whole file is read in at initialization time and the file is not used anymore after that. This is the only mode supported currently.  Later, there might an option causing all reads to be delayed until the data is needed, but this is not yet implemented.
+</p>
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="C:Libgpgme.GpgmeMemoryData(System.IntPtr,System.Int32)" class="MemberName">GpgmeMemoryData Constructor</h3>
+        <div class="MemberSignature">public  <b>GpgmeMemoryData</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a> memAddr, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> size)</div>
+        <div class="MemberBox">
+          <p>Creates a new memory based data buffer using the specified address. </p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>memAddr</i>
+              </dt>
+              <dd>A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a> containing the address of the allocated memory.</dd>
+              <dt>
+                <i>size</i>
+              </dt>
+              <dd>An <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Integer">Integer</a> that specifies the memory size.</dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+            <p>
+              <i>Note: </i>
+              <p>
+The data is taken from the specified buffer as needed, and the user has to ensure that the buffer remains valid for the whole life span of the data object.
+  </p>
+            </p>
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="C:Libgpgme.GpgmeMemoryData(System.String,System.Int32,System.Int32)" class="MemberName">GpgmeMemoryData Constructor</h3>
+        <div class="MemberSignature">public  <b>GpgmeMemoryData</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> filename, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> offset, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> length)</div>
+        <div class="MemberBox">
+          <p>Creates a new memory based data buffer and fills it with the content of file parts.</p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>filename</i>
+              </dt>
+              <dd>A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> containing the requested filename.</dd>
+              <dt>
+                <i>offset</i>
+              </dt>
+              <dd>A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Integer">Integer</a> with the start offset to read from.</dd>
+              <dt>
+                <i>length</i>
+              </dt>
+              <dd>A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Integer">Integer</a> with the requested length.</dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.GpgmeMemoryData.MemoryAddress" class="MemberName">MemoryAddress Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a> <b>MemoryAddress</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>Address of the allocated memory.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a> containing a memory address.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+            <p>
+              <i>Note: </i>
+              <p>
+It contains only valid data if either the <a href="javascript:alert(&quot;Documentation not found.&quot;)">Libgpgme.GpgmeMemoryData(System.Int32)</a> or <a href="javascript:alert(&quot;Documentation not found.&quot;)">Libgpgme.GpgmeMemoryData(System.IntPtr,System.Int32)</a> contructor has been used.
+  </p>
+            </p>
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.GpgmeMemoryData.MemorySize" class="MemberName">MemorySize Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int64">long</a> <b>MemorySize</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>Size of the allocated memory.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int64">long</a> with the number of allocated bytes.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+            <p>
+              <i>Note: </i>
+              <p>
+It contains only valid data if either the <a href="javascript:alert(&quot;Documentation not found.&quot;)">Libgpgme.GpgmeMemoryData(System.Int32)</a> or <a href="javascript:alert(&quot;Documentation not found.&quot;)">Libgpgme.GpgmeMemoryData(System.IntPtr,System.Int32)</a> contructor has been used.
+  </p>
+            </p>
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+      </div>
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

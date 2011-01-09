@@ -1,0 +1,141 @@
+<html>
+  <head>
+    <title>Libgpgme.SignatureResult</title>
+    <style>
+					a { text-decoration: none }
+				
+					.CollectionTitle { font-weight: bold }
+					.PageTitle { font-size: 150%; font-weight: bold }
+
+					.Summary { }
+					.Signature { }					
+					.Remarks { }
+					.Members { }
+					.Copyright { }
+					
+					.Section { font-size: 125%; font-weight: bold }
+					.SectionBox { margin-left: 2em }
+					.NamespaceName { font-size: 105%; font-weight: bold }
+					.NamespaceSumary { }
+					.MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+					.MemberSignature { font-family: monospace; margin-top: 1em; }
+					.MemberBox { }
+					.Subsection { font-size: 105%; font-weight: bold }
+					.SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+					.SignatureTable { background-color: #c0c0c0; }
+					.EnumerationsTable th { background-color: #f2f2f2; }
+					.CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+					
+					.MembersListing td { margin: 0px; border: 1px solid black; padding: .25em }
+					
+					.TypesListing td { margin: 0px;  padding: .25em }
+					.InnerSignatureTable tr { background-color: #f2f2f2; }
+					.TypePermissionsTable tr { background-color: #f2f2f2; }
+					
+				</style>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="../index.html">gpgme-sharp</a>
+			:
+			<a href="index.html">Libgpgme Namespace</a></div>
+    <h1 class="PageTitle">SignatureResult  Class</h1>
+    <p class="Summary">Contains information about the signature process.</p>
+    <div class="Signature">
+      <table class="SignatureTable" cellspacing="0" width="100%">
+        <tr>
+          <td>
+            <table class="InnerSignatureTable" cellpadding="10" cellspacing="0" width="100%">
+              <tr>
+                <td>public class  <b>SignatureResult</b></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      </br>
+    </div>
+    <div class="Remarks">
+      <h4 class="Subsection">Remarks</h4>
+      <div class="SubsectionBox">
+      </div>
+      <h2 class="Section">Members</h2>
+      <div class="SectionBox">
+        <p>
+						See Also: Inherited members from
+						<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a>.
+					</p>
+        <h3>Properties</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.SignatureResult.InvalidSigners">InvalidSigners</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="../Libgpgme/InvalidKey.html">InvalidKey</a>
+                </i>. Signer keys that require unsupported algorithms or an invalid passphrase has been supplied.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.SignatureResult.Signatures">Signatures</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="../Libgpgme/NewSignature.html">NewSignature</a>
+                </i>. Contains information about all signatures created.</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="Members">
+      <h2 class="Section">Member Details</h2>
+      <div class="SectionBox">
+        <h3 id="P:Libgpgme.SignatureResult.InvalidSigners" class="MemberName">InvalidSigners Property</h3>
+        <div class="MemberSignature">public <a href="../Libgpgme/InvalidKey.html">InvalidKey</a> <b>InvalidSigners</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>Signer keys that require unsupported algorithms or an invalid passphrase has been supplied.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">Invalid signer keys. Is <tt>null</tt> if there were no invalid signers.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">Contains a linked list with information about all invalid keys for which a signature could not be created.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.SignatureResult.Signatures" class="MemberName">Signatures Property</h3>
+        <div class="MemberSignature">public <a href="../Libgpgme/NewSignature.html">NewSignature</a> <b>Signatures</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>Contains information about all signatures created.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">Contains a linked list with information about all signatures created. Is <tt>null</tt> if no signature has been created.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+      </div>
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

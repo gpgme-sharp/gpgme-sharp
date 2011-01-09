@@ -1,0 +1,111 @@
+<html>
+  <head>
+    <title>Libgpgme.Protocol</title>
+    <style>
+					a { text-decoration: none }
+				
+					.CollectionTitle { font-weight: bold }
+					.PageTitle { font-size: 150%; font-weight: bold }
+
+					.Summary { }
+					.Signature { }					
+					.Remarks { }
+					.Members { }
+					.Copyright { }
+					
+					.Section { font-size: 125%; font-weight: bold }
+					.SectionBox { margin-left: 2em }
+					.NamespaceName { font-size: 105%; font-weight: bold }
+					.NamespaceSumary { }
+					.MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+					.MemberSignature { font-family: monospace; margin-top: 1em; }
+					.MemberBox { }
+					.Subsection { font-size: 105%; font-weight: bold }
+					.SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+					.SignatureTable { background-color: #c0c0c0; }
+					.EnumerationsTable th { background-color: #f2f2f2; }
+					.CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+					
+					.MembersListing td { margin: 0px; border: 1px solid black; padding: .25em }
+					
+					.TypesListing td { margin: 0px;  padding: .25em }
+					.InnerSignatureTable tr { background-color: #f2f2f2; }
+					.TypePermissionsTable tr { background-color: #f2f2f2; }
+					
+				</style>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="../index.html">gpgme-sharp</a>
+			:
+			<a href="index.html">Libgpgme Namespace</a></div>
+    <h1 class="PageTitle">Protocol  Enum</h1>
+    <p class="Summary">Specifies the set of possible protocol values that are supported by GPGME.</p>
+    <div class="Signature">
+      <table class="SignatureTable" cellspacing="0" width="100%">
+        <tr>
+          <td>
+            <table class="InnerSignatureTable" cellpadding="10" cellspacing="0" width="100%">
+              <tr>
+                <td>public 
+
+							enum
+	
+							<b>Protocol</b></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      </br>
+    </div>
+    <div class="Remarks">
+      <h4 class="Subsection">Remarks</h4>
+      <div class="SubsectionBox">GPGME supports several cryptographic protocols, however, it does not implement them.  Rather it uses backends (also called engines) which
+implement the protocol.  GPGME uses inter-process communication to pass data back and forth between the application and the backend, but the details of the communication protocol and invocation of the backend is completely hidden by the interface.  All complexity is handled by
+GPGME.  Where an exchange of information between the application and the backend is necessary, GPGME provides the necessary callback function hooks and further interfaces.
+</div>
+      <div class="Subsection">Members</div>
+      <div class="SubsectionBox">
+        <table class="EnumerationsTable">
+          <tr>
+            <th>Member name</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td>
+              <b>CMS</b>
+            </td>
+            <td>The Cryptographic Message Syntax.</td>
+          </tr>
+          <tr>
+            <td>
+              <b>GPGConf</b>
+            </td>
+            <td>To be added.</td>
+          </tr>
+          <tr>
+            <td>
+              <b>OpenPGP</b>
+            </td>
+            <td>The OpenPGP protocol.</td>
+          </tr>
+          <tr>
+            <td>
+              <b>Unknown</b>
+            </td>
+            <td>Reserved for future extension.  You may use this to indicate that the used protocol is not known to the application. Currently, GPGME does not accept this value in any operation, though, except for <a href="../Libgpgme/Gpgme.html#M:Libgpgme.Gpgme.GetProtocolName(Libgpgme.Protocol)">Gpgme.GetProtocolName(Protocol)</a>.
+</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="Members">
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

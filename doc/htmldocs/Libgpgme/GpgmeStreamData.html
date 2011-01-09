@@ -1,0 +1,481 @@
+<html>
+  <head>
+    <title>Libgpgme.GpgmeStreamData</title>
+    <style>
+					a { text-decoration: none }
+				
+					.CollectionTitle { font-weight: bold }
+					.PageTitle { font-size: 150%; font-weight: bold }
+
+					.Summary { }
+					.Signature { }					
+					.Remarks { }
+					.Members { }
+					.Copyright { }
+					
+					.Section { font-size: 125%; font-weight: bold }
+					.SectionBox { margin-left: 2em }
+					.NamespaceName { font-size: 105%; font-weight: bold }
+					.NamespaceSumary { }
+					.MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+					.MemberSignature { font-family: monospace; margin-top: 1em; }
+					.MemberBox { }
+					.Subsection { font-size: 105%; font-weight: bold }
+					.SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+					.SignatureTable { background-color: #c0c0c0; }
+					.EnumerationsTable th { background-color: #f2f2f2; }
+					.CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+					
+					.MembersListing td { margin: 0px; border: 1px solid black; padding: .25em }
+					
+					.TypesListing td { margin: 0px;  padding: .25em }
+					.InnerSignatureTable tr { background-color: #f2f2f2; }
+					.TypePermissionsTable tr { background-color: #f2f2f2; }
+					
+				</style>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="../index.html">gpgme-sharp</a>
+			:
+			<a href="index.html">Libgpgme Namespace</a></div>
+    <h1 class="PageTitle">GpgmeStreamData  Class</h1>
+    <p class="Summary">Stream based data buffer.</p>
+    <div class="Signature">
+      <table class="SignatureTable" cellspacing="0" width="100%">
+        <tr>
+          <td>
+            <table class="InnerSignatureTable" cellpadding="10" cellspacing="0" width="100%">
+              <tr>
+                <td>public class  <b>GpgmeStreamData</b> :
+		
+								<a href="../Libgpgme/GpgmeCbsData.html">GpgmeCbsData</a></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      </br>
+    </div>
+    <div class="Remarks">
+      <h4 class="Subsection">Remarks</h4>
+      <div class="SubsectionBox">The GpgmeStreamData class is inherited from the <a href="../Libgpgme/GpgmeCbsData.html#C:Libgpgme.GpgmeCbsData">GpgmeCbsData</a> class.
+<p><i>Note: </i><p>
+Make sure that your supplied <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.Stream">System.IO.Stream</a> object has a working implementation of the <a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.Stream.Position">System.IO.Stream.Position</a> property, otherwise GPGME's write() callback will not work.
+  </p></p></div>
+      <h2 class="Section">Members</h2>
+      <div class="SectionBox">
+        <p>
+						See Also: Inherited members from
+						<a href="../Libgpgme/GpgmeCbsData.html">GpgmeCbsData</a>.
+					</p>
+        <h3>Constructors</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+                <div>
+                  <b>
+                    <a href="#C:Libgpgme.GpgmeStreamData(System.IO.Stream)">GpgmeStreamData</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.Stream">System.IO.Stream</a>)</div>Creates a new GpgmeStreamData instance based on a user-supplied <a href="http://www.go-mono.com/docs/monodoc.ashx?link=C:System.IO.Stream">System.IO.Stream</a>.</td>
+            </tr>
+          </table>
+        </div>
+        <h3>Protected Constructors</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+                <div>
+                  <b>
+                    <a href="#C:Libgpgme.GpgmeStreamData">GpgmeStreamData</a>
+                  </b>()</div>Creates a new GpgmeStreamData instance.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <div>
+                  <b>
+                    <a href="#C:Libgpgme.GpgmeStreamData(System.Boolean,System.Boolean,System.Boolean,System.Boolean)">GpgmeStreamData</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>)</div>Creates a new GpgmeStreamData instance.</td>
+            </tr>
+          </table>
+        </div>
+        <h3>Fields</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#F:Libgpgme.GpgmeData.EOF">EOF</a>
+                </b>
+                <div>const </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int64">long</a>
+                </i> (0). End of file value. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#F:Libgpgme.GpgmeData.ERROR">ERROR</a>
+                </b>
+                <div>const </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int64">long</a>
+                </i> (-1). Error value. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeCbsData.html#F:Libgpgme.GpgmeCbsData.LastCallbackException">LastCallbackException</a>
+                </b>
+                <div>
+                </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Exception">Exception</a>
+                </i>. The last exception that occurred during a callback from the GPGME backend operation. (<i>Inherited from <a href="../Libgpgme/GpgmeCbsData.html">GpgmeCbsData</a>.</i>)</td>
+            </tr>
+          </table>
+        </div>
+        <h3>Protected Fields</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#F:Libgpgme.GpgmeStreamData.iostream">iostream</a>
+                </b>
+                <div>
+                </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.Stream">System.IO.Stream</a>
+                </i>. The origin stream object.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#F:Libgpgme.GpgmeData.SEEK_CUR">SEEK_CUR</a>
+                </b>
+                <div>const </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
+                </i> (1). Indicates that the seek reference point is the current position within a stream. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#F:Libgpgme.GpgmeData.SEEK_END">SEEK_END</a>
+                </b>
+                <div>const </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
+                </i> (2). Indicates that the seek reference point is the first byte beyond the end of a stream.  (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#F:Libgpgme.GpgmeData.SEEK_SET">SEEK_SET</a>
+                </b>
+                <div>const </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
+                </i> (0). Indicates that the seek reference point is the beginning of a stream. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
+            </tr>
+          </table>
+        </div>
+        <h3>Properties</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeCbsData.html#P:Libgpgme.GpgmeCbsData.CanRelease">CanRelease</a>
+                </b>
+					[read-only]
+					<div>abstract </div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                </i>. Indicates if GPGME will callback if a user-implemented data object should be destroyed. (<i>Inherited from <a href="../Libgpgme/GpgmeCbsData.html">GpgmeCbsData</a>.</i>)</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#P:Libgpgme.GpgmeData.Encoding">Encoding</a>
+                </b>
+                <div>
+                </div>
+              </td>
+              <td>
+                <i>
+                  <a href="../Libgpgme/DataEncoding.html">DataEncoding</a>
+                </i>. Specifies the encoding of this object. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#P:Libgpgme.GpgmeData.FileName">FileName</a>
+                </b>
+                <div>
+                </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                </i>. The file name associated with the data object. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#P:Libgpgme.GpgmeData.IsValid">IsValid</a>
+                </b>
+					[read-only]
+					<div>abstract </div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                </i>. Indicates if the data buffer is still valid. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.GpgmeStreamData.OriginStream">OriginStream</a>
+                </b>
+                <div>
+                </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.Stream">System.IO.Stream</a>
+                </i>. The origin stream object.</td>
+            </tr>
+          </table>
+        </div>
+        <h3>Methods</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#M:Libgpgme.GpgmeData.Read(System.Byte[])">Read</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[])<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><div>Reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#M:Libgpgme.GpgmeData.Read(System.Byte[],System.Int32)">Read</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[], <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><div>Reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#M:Libgpgme.GpgmeData.Rewind">Rewind</a>
+                </b>()<div>Sets the position in the stream to the beginning. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeData.html#M:Libgpgme.GpgmeData.Write(System.Byte[],System.Int32)">Write</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Byte">byte</a>[], <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><div>Writes a sequence of bytes to the current stream and advances the current position within the current stream by the number of bytes written. (<i>Inherited from <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>.</i>)</div></td>
+            </tr>
+          </table>
+        </div>
+        <h3>Protected Methods</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeCbsData.html#M:Libgpgme.GpgmeCbsData.ReadCB(System.IntPtr,System.Int64)">ReadCB</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int64">long</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a></nobr><div>This is the function which GPGME calls if it wants to read data from a user-implemented data object. (<i>Inherited from <a href="../Libgpgme/GpgmeCbsData.html">GpgmeCbsData</a>.</i>)</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeCbsData.html#M:Libgpgme.GpgmeCbsData.ReleaseCB">ReleaseCB</a>
+                </b>()<div>This is the function which GPGME calls if it wants to destroy a user-implemented data object. (<i>Inherited from <a href="../Libgpgme/GpgmeCbsData.html">GpgmeCbsData</a>.</i>)</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeCbsData.html#M:Libgpgme.GpgmeCbsData.SeekCB(System.IntPtr,System.IO.SeekOrigin)">SeekCB</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.SeekOrigin">System.IO.SeekOrigin</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a></nobr><div>This is the function which GPGME calls if it wants to change the current read/write position in a user-implemented data object (stream). (<i>Inherited from <a href="../Libgpgme/GpgmeCbsData.html">GpgmeCbsData</a>.</i>)</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="../Libgpgme/GpgmeCbsData.html#M:Libgpgme.GpgmeCbsData.WriteCB(System.IntPtr,System.Int64)">WriteCB</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int64">long</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a></nobr><div>This is the function which GPGME calls if it wants to write data to a user-implemented data object. (<i>Inherited from <a href="../Libgpgme/GpgmeCbsData.html">GpgmeCbsData</a>.</i>)</div></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="Members">
+      <h2 class="Section">Member Details</h2>
+      <div class="SectionBox">
+        <h3 id="C:Libgpgme.GpgmeStreamData" class="MemberName">GpgmeStreamData Constructor</h3>
+        <div class="MemberSignature">protected  <b>GpgmeStreamData</b> ()</div>
+        <div class="MemberBox">
+          <p>Creates a new GpgmeStreamData instance.</p>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+            <p>
+              <i>Note: </i>
+              <p>
+Make sure that you set a proper <a href="../Libgpgme/GpgmeStreamData.html#P:Libgpgme.GpgmeStreamData.iostream">GpgmeStreamData.iostream</a> property.
+Your inherited class must override the following properies:
+
+<table border="1" cellpadding="3"><tr valign="top"><th>Name</th><th>Method</th></tr><tr valign="top"><td>CanRead</td><td><a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.Stream.CanRead">System.IO.Stream.CanRead</a></td></tr><tr valign="top"><td>CanWrite</td><td><a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.Stream.CanWrite">System.IO.Stream.CanWrite</a></td></tr><tr valign="top"><td>CanSeek</td><td><a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.Stream.CanSeek">System.IO.Stream.CanSeek</a></td></tr><tr valign="top"><td>CanRelease</td><td><a href="../Libgpgme/GpgmeCbsData.html#P:Libgpgme.GpgmeCbsData.CanRelease">GpgmeCbsData.CanRelease</a></td></tr></table></p>
+              <p>
+The GPGME backend will do callbacks only for methods for which their Can* properties returned <tt>true</tt> at initialisation time.
+</p>
+            </p>
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="C:Libgpgme.GpgmeStreamData(System.IO.Stream)" class="MemberName">GpgmeStreamData Constructor</h3>
+        <div class="MemberSignature">public  <b>GpgmeStreamData</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.Stream">System.IO.Stream</a> streamobj)</div>
+        <div class="MemberBox">
+          <p>Creates a new GpgmeStreamData instance based on a user-supplied <a href="http://www.go-mono.com/docs/monodoc.ashx?link=C:System.IO.Stream">System.IO.Stream</a>.</p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>streamobj</i>
+              </dt>
+              <dd>A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=C:System.IO.Stream">System.IO.Stream</a> object.</dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+            <p>
+              <i>Note: </i>
+              <p>
+The stream should support the <a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.Stream.Position">System.IO.Stream.Position</a> property, otherwise GPGME cannot write any data to it.
+  </p>
+            </p>
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="C:Libgpgme.GpgmeStreamData(System.Boolean,System.Boolean,System.Boolean,System.Boolean)" class="MemberName">GpgmeStreamData Constructor</h3>
+        <div class="MemberSignature">protected  <b>GpgmeStreamData</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> canRead, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> canWrite, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> canSeek, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> canRelease)</div>
+        <div class="MemberBox">
+          <p>Creates a new GpgmeStreamData instance.</p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>canRead</i>
+              </dt>
+              <dd>If <tt>true</tt>, read() callbacks from the GPGME backend will be enabled.</dd>
+              <dt>
+                <i>canWrite</i>
+              </dt>
+              <dd>If <tt>true</tt>, write() callbacks from the GPGME backend will be enabled.</dd>
+              <dt>
+                <i>canSeek</i>
+              </dt>
+              <dd>If <tt>true</tt>, seek() callbacks from the GPGME backend will be enabled.</dd>
+              <dt>
+                <i>canRelease</i>
+              </dt>
+              <dd>If <tt>true</tt>, release() callbacks from the GPGME backend will be enabled.</dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+            <p>
+              <i>Note: </i>
+              <p>
+Make sure that you set a proper <a href="../Libgpgme/GpgmeStreamData.html#P:Libgpgme.GpgmeStreamData.iostream">GpgmeStreamData.iostream</a> property.
+Your inherited class must override the following properies:
+
+<table border="1" cellpadding="3"><tr valign="top"><th>Name</th><th>Method</th></tr><tr valign="top"><td>CanRead</td><td><a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.Stream.CanRead">System.IO.Stream.CanRead</a></td></tr><tr valign="top"><td>CanWrite</td><td><a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.Stream.CanWrite">System.IO.Stream.CanWrite</a></td></tr><tr valign="top"><td>CanSeek</td><td><a href="http://www.go-mono.com/docs/monodoc.ashx?link=P:System.IO.Stream.CanSeek">System.IO.Stream.CanSeek</a></td></tr><tr valign="top"><td>CanRelease</td><td><a href="../Libgpgme/GpgmeCbsData.html#P:Libgpgme.GpgmeCbsData.CanRelease">GpgmeCbsData.CanRelease</a></td></tr></table></p>
+            </p>
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="F:Libgpgme.GpgmeStreamData.iostream" class="MemberName">iostream Field</h3>
+        <div class="MemberSignature">protected <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.Stream">System.IO.Stream</a> <b>iostream</b> </div>
+        <div class="MemberBox">
+          <p>The origin stream object.</p>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.GpgmeStreamData.OriginStream" class="MemberName">OriginStream Property</h3>
+        <div class="MemberSignature">public protected <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.Stream">System.IO.Stream</a> <b>OriginStream</b>  { protected set; get; }</div>
+        <div class="MemberBox">
+          <p>The origin stream object.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.Stream">System.IO.Stream</a>.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+      </div>
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

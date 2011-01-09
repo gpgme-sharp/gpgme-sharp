@@ -1,0 +1,124 @@
+<html>
+  <head>
+    <title>Libgpgme.IKeyGenerator</title>
+    <style>
+					a { text-decoration: none }
+				
+					.CollectionTitle { font-weight: bold }
+					.PageTitle { font-size: 150%; font-weight: bold }
+
+					.Summary { }
+					.Signature { }					
+					.Remarks { }
+					.Members { }
+					.Copyright { }
+					
+					.Section { font-size: 125%; font-weight: bold }
+					.SectionBox { margin-left: 2em }
+					.NamespaceName { font-size: 105%; font-weight: bold }
+					.NamespaceSumary { }
+					.MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+					.MemberSignature { font-family: monospace; margin-top: 1em; }
+					.MemberBox { }
+					.Subsection { font-size: 105%; font-weight: bold }
+					.SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+					.SignatureTable { background-color: #c0c0c0; }
+					.EnumerationsTable th { background-color: #f2f2f2; }
+					.CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+					
+					.MembersListing td { margin: 0px; border: 1px solid black; padding: .25em }
+					
+					.TypesListing td { margin: 0px;  padding: .25em }
+					.InnerSignatureTable tr { background-color: #f2f2f2; }
+					.TypePermissionsTable tr { background-color: #f2f2f2; }
+					
+				</style>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="../index.html">gpgme-sharp</a>
+			:
+			<a href="index.html">Libgpgme Namespace</a></div>
+    <h1 class="PageTitle">IKeyGenerator  Interface</h1>
+    <p class="Summary">An interface that contains the basic methods needed to create new keys.</p>
+    <div class="Signature">
+      <table class="SignatureTable" cellspacing="0" width="100%">
+        <tr>
+          <td>
+            <table class="InnerSignatureTable" cellpadding="10" cellspacing="0" width="100%">
+              <tr>
+                <td>public interface  <b>IKeyGenerator</b></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      </br>
+    </div>
+    <div class="Remarks">
+      <h4 class="Subsection">Remarks</h4>
+      <div class="SubsectionBox">A KeyStore that implements <a href="../Libgpgme/IKeyGenerator.html">Libgpgme.IKeyGenerator</a> can be used to generate new keys (key pairs). </div>
+      <h2 class="Section">Members</h2>
+      <div class="SectionBox">
+        <h3>Methods</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:Libgpgme.IKeyGenerator.GenerateKey(Libgpgme.Protocol,Libgpgme.KeyParameters)">GenerateKey</a>
+                </b>(<a href="../Libgpgme/Protocol.html">Protocol</a>, <a href="../Libgpgme/KeyParameters.html">KeyParameters</a>)<nobr> : <a href="../Libgpgme/GenkeyResult.html">GenkeyResult</a></nobr><div>Generates a new key.</div></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="Members">
+      <h2 class="Section">Member Details</h2>
+      <div class="SectionBox">
+        <h3 id="M:Libgpgme.IKeyGenerator.GenerateKey(Libgpgme.Protocol,Libgpgme.KeyParameters)" class="MemberName">GenerateKey Method</h3>
+        <div class="MemberSignature">public <a href="../Libgpgme/GenkeyResult.html">GenkeyResult</a> <b>GenerateKey</b> (<a href="../Libgpgme/Protocol.html">Protocol</a> protocoltype, <a href="../Libgpgme/KeyParameters.html">KeyParameters</a> keyparms)</div>
+        <div class="MemberBox">
+          <p>Generates a new key.</p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>protocoltype</i>
+              </dt>
+              <dd>A <a href="../Libgpgme/Protocol.html">Libgpgme.Protocol</a> the specifies the type of the new key pairs.</dd>
+              <dt>
+                <i>keyparms</i>
+              </dt>
+              <dd>A <a href="../Libgpgme/KeyParameters.html#C:Libgpgme.KeyParameters">KeyParameters</a> object.</dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">A <a href="../Libgpgme/GenkeyResult.html#C:Libgpgme.GenkeyResult">GenkeyResult</a> object that contains information about a new generated key pairs. </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+            <p>
+              <i>Note: </i>
+              <p>
+Currently only the OpenPGP protocol is supported.
+  </p>
+            </p>
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+      </div>
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

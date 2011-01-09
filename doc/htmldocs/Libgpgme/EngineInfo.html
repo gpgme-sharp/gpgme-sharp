@@ -1,0 +1,374 @@
+<html>
+  <head>
+    <title>Libgpgme.EngineInfo</title>
+    <style>
+					a { text-decoration: none }
+				
+					.CollectionTitle { font-weight: bold }
+					.PageTitle { font-size: 150%; font-weight: bold }
+
+					.Summary { }
+					.Signature { }					
+					.Remarks { }
+					.Members { }
+					.Copyright { }
+					
+					.Section { font-size: 125%; font-weight: bold }
+					.SectionBox { margin-left: 2em }
+					.NamespaceName { font-size: 105%; font-weight: bold }
+					.NamespaceSumary { }
+					.MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+					.MemberSignature { font-family: monospace; margin-top: 1em; }
+					.MemberBox { }
+					.Subsection { font-size: 105%; font-weight: bold }
+					.SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+					.SignatureTable { background-color: #c0c0c0; }
+					.EnumerationsTable th { background-color: #f2f2f2; }
+					.CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+					
+					.MembersListing td { margin: 0px; border: 1px solid black; padding: .25em }
+					
+					.TypesListing td { margin: 0px;  padding: .25em }
+					.InnerSignatureTable tr { background-color: #f2f2f2; }
+					.TypePermissionsTable tr { background-color: #f2f2f2; }
+					
+				</style>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="../index.html">gpgme-sharp</a>
+			:
+			<a href="index.html">Libgpgme Namespace</a></div>
+    <h1 class="PageTitle">EngineInfo  Class</h1>
+    <p class="Summary">A class that describes a crypto engine.</p>
+    <div class="Signature">
+      <table class="SignatureTable" cellspacing="0" width="100%">
+        <tr>
+          <td>
+            <table class="InnerSignatureTable" cellpadding="10" cellspacing="0" width="100%">
+              <tr>
+                <td>public class  <b>EngineInfo</b> :
+		
+								<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.IEnumerable`1">System.Collections.Generic.IEnumerable&lt;Libgpgme.EngineInfo&gt;</a></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      </br>
+    </div>
+    <div class="Remarks">
+      <h4 class="Subsection">Remarks</h4>
+      <div class="SubsectionBox">
+        <p>
+GPGME supports several cryptographic protocols, however, it does not implement them. Rather it uses backends (also called engines) which implement the protocol.  GPGME uses inter-process communication to pass data back and forth between the application and the backend, but the details of the communication protocol and invocation of the backend is completely hidden by the interface.  All complexity is handled by GPGME.  Where an exchange of information between the application and
+the backend is necessary, GPGME provides the necessary callback function hooks and further interfaces.
+</p>
+        <p>
+This class is implemented as linked list. You can enumerate all <a href="../Libgpgme/EngineInfo.html#C:Libgpgme.EngineInfo">EngineInfo</a> objects by using the <a href="../Libgpgme/EngineInfo.html#P:Libgpgme.EngineInfo.Next">EngineInfo.Next</a> property or the <a href="../Libgpgme/EngineInfo.html#M:Libgpgme.EngineInfo.GetEnumerator()">EngineInfo.GetEnumerator()</a> method.
+</p>
+      </div>
+      <h2 class="Section">Members</h2>
+      <div class="SectionBox">
+        <p>
+						See Also: Inherited members from
+						<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a>.
+					</p>
+        <h3>Properties</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.EngineInfo.CtxValid">CtxValid</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                </i>. Shows the status of the context the engine is attached to.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.EngineInfo.FileName">FileName</a>
+                </b>
+                <div>
+                </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                </i>. The file name of the executable of the crypto engine. </td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.EngineInfo.HasCtx">HasCtx</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                </i>. Shows if the engine info has been queried from a <a href="../Libgpgme/Context.html#C:Libgpgme.Context">Context</a> object.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.EngineInfo.HomeDir">HomeDir</a>
+                </b>
+                <div>
+                </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                </i>. The directory name of the crypto engine's configuration directory.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.EngineInfo.Next">Next</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="../Libgpgme/EngineInfo.html">EngineInfo</a>
+                </i>. A reference to the next EngineInfo object.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.EngineInfo.Protocol">Protocol</a>
+                </b>
+                <div>
+                </div>
+              </td>
+              <td>
+                <i>
+                  <a href="../Libgpgme/Protocol.html">Protocol</a>
+                </i>. The protocol for which the crypto engine is used.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.EngineInfo.ReqVersion">ReqVersion</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                </i>. The minimum required version number of the crypto engine for GPGME to work correctly.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.EngineInfo.Version">Version</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                </i>. The version number of the crypto engine.</td>
+            </tr>
+          </table>
+        </div>
+        <h3>Methods</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:Libgpgme.EngineInfo.GetEnumerator">GetEnumerator</a>
+                </b>()<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.IEnumerator`1">System.Collections.Generic.IEnumerator&lt;Libgpgme.EngineInfo&gt;</a></nobr><div>To be added.</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:Libgpgme.EngineInfo.System.Collections.IEnumerable.GetEnumerator">System.Collections.IEnumerable.GetEnumerator</a>
+                </b>()<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.IEnumerator">IEnumerator</a></nobr><div>To be added.</div></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="Members">
+      <h2 class="Section">Member Details</h2>
+      <div class="SectionBox">
+        <h3 id="P:Libgpgme.EngineInfo.CtxValid" class="MemberName">CtxValid Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>CtxValid</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>Shows the status of the context the engine is attached to.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">
+            <tt>true</tt> if the attached <a href="../Libgpgme/Context.html#C:Libgpgme.Context">Context</a> object is valid. <tt>false</tt> otherwise.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.EngineInfo.FileName" class="MemberName">FileName Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>FileName</b>  { set; get; }</div>
+        <div class="MemberBox">
+          <p>The file name of the executable of the crypto engine. </p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> holding the file name of the executable of the crypto engine. 
+</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">Currently, <i>filename</i> is never <tt>null</tt>, but using <tt>null</tt> is reserved for future use, so always check before you use it.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:Libgpgme.EngineInfo.GetEnumerator" class="MemberName">GetEnumerator Method</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.IEnumerator`1">System.Collections.Generic.IEnumerator&lt;Libgpgme.EngineInfo&gt;</a> <b>GetEnumerator</b> ()</div>
+        <div class="MemberBox">
+          <p>To be added.</p>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.EngineInfo.HasCtx" class="MemberName">HasCtx Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>HasCtx</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>Shows if the engine info has been queried from a <a href="../Libgpgme/Context.html#C:Libgpgme.Context">Context</a> object.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">It is possible to query engine information without a context by using the static <a href="../Libgpgme/Gpgme.html#M:Libgpgme.Gpgme.GetEngineInfo()">Gpgme.GetEngineInfo()</a> method. In this case <a href="../Libgpgme/EngineInfo.html#P:Libgpgme.EngineInfo.HasCtx">EngineInfo.HasCtx</a> is <tt>false</tt>.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.EngineInfo.HomeDir" class="MemberName">HomeDir Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>HomeDir</b>  { set; get; }</div>
+        <div class="MemberBox">
+          <p>The directory name of the crypto engine's configuration directory.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> holding the directory name of the crypto engine's configuration directory. <tt>null</tt> if the default directory is used.
+</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.EngineInfo.Next" class="MemberName">Next Property</h3>
+        <div class="MemberSignature">public <a href="../Libgpgme/EngineInfo.html">EngineInfo</a> <b>Next</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>A reference to the next EngineInfo object.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A reference to the next <a href="../Libgpgme/EngineInfo.html#C:Libgpgme.EngineInfo">EngineInfo</a> object in the linked list, or <tt>null</tt> if this is the last element.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">You can enumerate all <a href="../Libgpgme/EngineInfo.html#C:Libgpgme.EngineInfo">EngineInfo</a> objects by using the <a href="../Libgpgme/EngineInfo.html#M:Libgpgme.EngineInfo.GetEnumerator()">EngineInfo.GetEnumerator()</a> method.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.EngineInfo.Protocol" class="MemberName">Protocol Property</h3>
+        <div class="MemberSignature">public <a href="../Libgpgme/Protocol.html">Protocol</a> <b>Protocol</b>  { set; get; }</div>
+        <div class="MemberBox">
+          <p>The protocol for which the crypto engine is used.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="../Libgpgme/Protocol.html">Libgpgme.Protocol</a>.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">This is the protocol for which the crypto engine is used. You can convert this to a string with <a href="../Libgpgme/Gpgme.html#M:Libgpgme.Gpgme.GetProtocolName(Libgpgme.Protocol)">Gpgme.GetProtocolName(Protocol)</a> for printing.
+</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.EngineInfo.ReqVersion" class="MemberName">ReqVersion Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>ReqVersion</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The minimum required version number of the crypto engine for GPGME to work correctly.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> containing a version number.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">This is a string containing the minimum required version number of the crypto engine for GPGME to work correctly. This is the version number that <a href="../Libgpgme/Gpgme.html#M:Libgpgme.Gpgme.EngineCheckVersion(Libgpgme.Protocol)">Gpgme.EngineCheckVersion(Protocol)</a> verifies against.  Currently, it is never <tt>null</tt>, but using <tt>null</tt> is reserved for future use, so always check before you use it.
+</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:Libgpgme.EngineInfo.System.Collections.IEnumerable.GetEnumerator" class="MemberName">System.Collections.IEnumerable.GetEnumerator Method</h3>
+        <div class="MemberSignature">
+          <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.IEnumerator">IEnumerator</a> <b>System.Collections.IEnumerable.GetEnumerator</b> ()</div>
+        <div class="MemberBox">
+          <p>To be added.</p>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.EngineInfo.Version" class="MemberName">Version Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>Version</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The version number of the crypto engine.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> containing the version number of the crypto engine.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">This is a string containing the version number of the crypto engine. It might be <tt>null</tt> if the version number can not be determined, for example because the executable doesn't exist or is invalid.
+</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+      </div>
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

@@ -1,0 +1,888 @@
+<html>
+  <head>
+    <title>Libgpgme.Key</title>
+    <style>
+					a { text-decoration: none }
+				
+					.CollectionTitle { font-weight: bold }
+					.PageTitle { font-size: 150%; font-weight: bold }
+
+					.Summary { }
+					.Signature { }					
+					.Remarks { }
+					.Members { }
+					.Copyright { }
+					
+					.Section { font-size: 125%; font-weight: bold }
+					.SectionBox { margin-left: 2em }
+					.NamespaceName { font-size: 105%; font-weight: bold }
+					.NamespaceSumary { }
+					.MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+					.MemberSignature { font-family: monospace; margin-top: 1em; }
+					.MemberBox { }
+					.Subsection { font-size: 105%; font-weight: bold }
+					.SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+					.SignatureTable { background-color: #c0c0c0; }
+					.EnumerationsTable th { background-color: #f2f2f2; }
+					.CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+					
+					.MembersListing td { margin: 0px; border: 1px solid black; padding: .25em }
+					
+					.TypesListing td { margin: 0px;  padding: .25em }
+					.InnerSignatureTable tr { background-color: #f2f2f2; }
+					.TypePermissionsTable tr { background-color: #f2f2f2; }
+					
+				</style>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="../index.html">gpgme-sharp</a>
+			:
+			<a href="index.html">Libgpgme Namespace</a></div>
+    <h1 class="PageTitle">Key  Class</h1>
+    <p class="Summary">A class that contains information about a key.</p>
+    <div class="Signature">
+      <table class="SignatureTable" cellspacing="0" width="100%">
+        <tr>
+          <td>
+            <table class="InnerSignatureTable" cellpadding="10" cellspacing="0" width="100%">
+              <tr>
+                <td>public class  <b>Key</b> :
+		
+								<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IDisposable">IDisposable</a></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      </br>
+    </div>
+    <div class="Remarks">
+      <h4 class="Subsection">Remarks</h4>
+      <div class="SubsectionBox">Currently <a href="../Libgpgme/Key.html#C:Libgpgme.Key">Key</a> can represent either an S/Mime (X.509) or an OpenPGP key.</div>
+      <h2 class="Section">Members</h2>
+      <div class="SectionBox">
+        <p>
+						See Also: Inherited members from
+						<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a>.
+					</p>
+        <h3>Fields</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#F:Libgpgme.Key.LastCallbackException">LastCallbackException</a>
+                </b>
+                <div>
+                </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Exception">Exception</a>
+                </i>. The last exception that occurred during a key-edit operation.</td>
+            </tr>
+          </table>
+        </div>
+        <h3>Protected Fields</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#F:Libgpgme.Key.editlock">editlock</a>
+                </b>
+                <div>
+                </div>
+              </td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a>
+                </i>. A lock object used for thread safety.</td>
+            </tr>
+          </table>
+        </div>
+        <h3>Properties</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.Key.CanAuthenticate">CanAuthenticate</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                </i>. Indicates that the key can be used for authentication.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.Key.CanCertify">CanCertify</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                </i>. Indicates that the key can be used to create key certificates.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.Key.CanEncrypt">CanEncrypt</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                </i>. Indicates that the key can be used for encryption.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.Key.CanSign">CanSign</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                </i>. Indicates that the key can be used to create data signatures.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.Key.ChainId">ChainId</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                </i>. The chain ID.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.Key.Disabled">Disabled</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                </i>. Indicates that the key has been disabled.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.Key.Expired">Expired</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                </i>. Indicates that the key is expired.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.Key.Fingerprint">Fingerprint</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                </i>. The key's fingerprint.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.Key.Invalid">Invalid</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                </i>. Indicates that the key is invalid.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.Key.IsQualified">IsQualified</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                </i>. Indicates that the key can be used for qualified signatures.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.Key.IssuerName">IssuerName</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                </i>. The issuer name.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.Key.IssuerSerial">IssuerSerial</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                </i>. The the issuer serial.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.Key.KeyId">KeyId</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                </i>. The key ID.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.Key.KeylistMode">KeylistMode</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="../Libgpgme/KeylistMode.html">KeylistMode</a>
+                </i>. The keylist mode that was active when the key was retrieved.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.Key.OwnerTrust">OwnerTrust</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="../Libgpgme/Validity.html">Validity</a>
+                </i>. The owner trust.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.Key.Protocol">Protocol</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="../Libgpgme/Protocol.html">Protocol</a>
+                </i>. This is the protocol supported by this key.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.Key.Revoked">Revoked</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                </i>. Indicates that the key has been revoked.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.Key.Secret">Secret</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a>
+                </i>. Indicates that the key is a secret key. </td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.Key.Subkeys">Subkeys</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="../Libgpgme/Subkey.html">Subkey</a>
+                </i>. The subkeys of the key.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.Key.Uid">Uid</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="../Libgpgme/UserId.html">UserId</a>
+                </i>. The primary user ID of a key.</td>
+            </tr>
+            <tr valign="top">
+              <td>
+                <b>
+                  <a href="#P:Libgpgme.Key.Uids">Uids</a>
+                </b>
+					[read-only]
+					<div></div></td>
+              <td>
+                <i>
+                  <a href="../Libgpgme/UserId.html">UserId</a>
+                </i>. The user IDs of the key.</td>
+            </tr>
+          </table>
+        </div>
+        <h3>Methods</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:Libgpgme.Key.Dispose">Dispose</a>
+                </b>()<div>Disposes a Key object.</div></td>
+            </tr>
+          </table>
+        </div>
+        <h3>Protected Methods</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:Libgpgme.Key.KeyEditCallback(System.IntPtr,Libgpgme.KeyEditStatusCode,System.String,System.IO.Stream)">KeyEditCallback</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a>, <a href="../Libgpgme/KeyEditStatusCode.html">KeyEditStatusCode</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.Stream">System.IO.Stream</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><div>A callback function which GPGME calls if a key edit operation is on-going.</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:Libgpgme.Key.StartEdit(Libgpgme.Context,System.IntPtr,Libgpgme.GpgmeData)">StartEdit</a>
+                </b>(<a href="../Libgpgme/Context.html">Context</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a>, <a href="../Libgpgme/GpgmeData.html">GpgmeData</a>)<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a></nobr><div>Starts the key editing operation.</div></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="Members">
+      <h2 class="Section">Member Details</h2>
+      <div class="SectionBox">
+        <h3 id="P:Libgpgme.Key.CanAuthenticate" class="MemberName">CanAuthenticate Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>CanAuthenticate</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>Indicates that the key can be used for authentication.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">Is <tt>true</tt> if the key (ie one of its subkeys) can be used for authentication.
+</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.Key.CanCertify" class="MemberName">CanCertify Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>CanCertify</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>Indicates that the key can be used to create key certificates.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">Is <tt>true</tt> if the key (ie one of its subkeys) can be used to create key certificates.
+</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.Key.CanEncrypt" class="MemberName">CanEncrypt Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>CanEncrypt</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>Indicates that the key can be used for encryption.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">Is <tt>true</tt> if the key (ie. one of its subkeys) can be used for encryption.
+</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.Key.CanSign" class="MemberName">CanSign Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>CanSign</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>Indicates that the key can be used to create data signatures.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">Is <tt>true</tt> if the key (ie one of its subkeys) can be used to create data signatures.
+</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.Key.ChainId" class="MemberName">ChainId Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>ChainId</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The chain ID.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">If <a href="../Libgpgme/Key.html#P:Libgpgme.Key.Protocol">Key.Protocol</a> is <a href="../Libgpgme/Protocol.html#P:Libgpgme.Protocol.CMS">Protocol.CMS</a>, then this is the chain ID, which can be used to built the certificate chain.
+</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.Key.Disabled" class="MemberName">Disabled Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>Disabled</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>Indicates that the key has been disabled.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">Is <tt>true</tt> if the key is disabled.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:Libgpgme.Key.Dispose" class="MemberName">Dispose Method</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>Dispose</b> ()</div>
+        <div class="MemberBox">
+          <p>Disposes a Key object.</p>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">The internal GPGME reference count of this key will be decremented.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="F:Libgpgme.Key.editlock" class="MemberName">editlock Field</h3>
+        <div class="MemberSignature">protected <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a> <b>editlock</b> </div>
+        <div class="MemberBox">
+          <p>A lock object used for thread safety.</p>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">Use the lock keyword on this field if your inherited class does (edit-) operations on key.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.Key.Expired" class="MemberName">Expired Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>Expired</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>Indicates that the key is expired.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">Is <tt>true</tt> if the key is expired.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.Key.Fingerprint" class="MemberName">Fingerprint Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>Fingerprint</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The key's fingerprint.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> that contains the (hexdecimal) fingerprint of a key.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.Key.Invalid" class="MemberName">Invalid Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>Invalid</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>Indicates that the key is invalid.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">Is <tt>true</tt> if the key is invalid.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">This is <tt>true</tt> if the key is invalid. This might have several reasons, for a example for the S/MIME backend, it will be set in during key listsing if the key could not be validated due to a missing certificates or unmatched policies.
+</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.Key.IsQualified" class="MemberName">IsQualified Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>IsQualified</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>Indicates that the key can be used for qualified signatures.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">Is <tt>true</tt> if the key can be used for qualified signatures.
+</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">Is <tt>true</tt> if the key can be used for qualified signatures according to local government regulations.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.Key.IssuerName" class="MemberName">IssuerName Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>IssuerName</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The issuer name.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">If <a href="../Libgpgme/Key.html#P:Libgpgme.Key.Protocol">Key.Protocol</a> is <a href="../Libgpgme/Protocol.html#P:Libgpgme.Protocol.CMS">Protocol.CMS</a>, then this is the issuer name.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.Key.IssuerSerial" class="MemberName">IssuerSerial Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>IssuerSerial</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The the issuer serial.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="javascript:alert(&quot;Documentation not found.&quot;)">stem.String</a>.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">If <a href="../Libgpgme/Key.html#P:Libgpgme.Key.Protocol">Key.Protocol</a> is <a href="../Libgpgme/Protocol.html#P:Libgpgme.Protocol.CMS">Protocol.CMS</a>, then this is the issuer serial.
+</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:Libgpgme.Key.KeyEditCallback(System.IntPtr,Libgpgme.KeyEditStatusCode,System.String,System.IO.Stream)" class="MemberName">KeyEditCallback Method</h3>
+        <div class="MemberSignature">protected virtual <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>KeyEditCallback</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a> handle, <a href="../Libgpgme/KeyEditStatusCode.html">KeyEditStatusCode</a> status, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> args, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.Stream">System.IO.Stream</a> fd)</div>
+        <div class="MemberBox">
+          <p>A callback function which GPGME calls if a key edit operation is on-going.</p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>handle</i>
+              </dt>
+              <dd>A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a> handle that was provided by the user at start of operation.</dd>
+              <dt>
+                <i>status</i>
+              </dt>
+              <dd>A <a href="../Libgpgme/KeyEditStatusCode.html">Libgpgme.KeyEditStatusCode</a>.</dd>
+              <dt>
+                <i>args</i>
+              </dt>
+              <dd>A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> containing the arguments.</dd>
+              <dt>
+                <i>fd</i>
+              </dt>
+              <dd>A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IO.Stream">System.IO.Stream</a> used for communication with the engine's key editing procedure.</dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Integer">Integer</a>. If the returning value is not 0, the key editing procedure will be stopped. See "Remarks" for more information.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+            <p>
+KeyEditCallback method must be overwritten by the inherited class.
+</p>
+            <p>
+It is the functions which GPGME calls if a key edit operation is on-going. The status code <i>status</i> and the argument line <i>args</i> are passed through by GPGME from the crypto engine. The Stream <i>fd</i> is <tt>null</tt> for normal status messages.  
+</p>
+            <p>
+If <i>status</i> indicates a command rather than a status message, the response to the command should be written to <i>fd</i>. The <i>handle</i> was provided by the user at start of operation <a href="../Libgpgme/Key.html#M:Libgpgme.Key.StartEdit(Libgpgme.Context,System.IntPtr,Libgpgme.GpgmeData)">Key.StartEdit(Context, IntPtr, GpgmeData)</a>.
+</p>
+            <p>
+The function should return 0 or an error value. If the returning value is not 0, GPGME will stop the key editing procedure and an error will be thrown.
+</p>
+            <p>
+If the KeyEditCallback method of the inherited class throws an exception during the callback, it will be saved in the <a href="../Libgpgme/Key.html#P:Libgpgme.Key.LastCallbackException">Key.LastCallbackException</a> attribute.
+</p>
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.Key.KeyId" class="MemberName">KeyId Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>KeyId</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The key ID.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> that contains the (hexdecimal) key id.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.Key.KeylistMode" class="MemberName">KeylistMode Property</h3>
+        <div class="MemberSignature">public <a href="../Libgpgme/KeylistMode.html">KeylistMode</a> <b>KeylistMode</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The keylist mode that was active when the key was retrieved.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A bit-vector if the <a href="../Libgpgme/KeylistMode.html">Libgpgme.KeylistMode</a> that was active when the key was retrieved.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">You can change the <a href="../Libgpgme/KeylistMode.html">Libgpgme.KeylistMode</a> of the context by using the <a href="../Libgpgme/Context.html#P:Libgpgme.Context.KeyListMode">Context.KeyListMode</a> property.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="F:Libgpgme.Key.LastCallbackException" class="MemberName">LastCallbackException Field</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Exception">Exception</a> <b>LastCallbackException</b> </div>
+        <div class="MemberBox">
+          <p>The last exception that occurred during a key-edit operation.</p>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">Some key types allow operation on the key itself (e.g. editing). If the underlying crypto backend throws an error, this property is set.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.Key.OwnerTrust" class="MemberName">OwnerTrust Property</h3>
+        <div class="MemberSignature">public <a href="../Libgpgme/Validity.html">Validity</a> <b>OwnerTrust</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The owner trust.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">A <a href="../Libgpgme/Validity.html">Libgpgme.Validity</a> value.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">If <a href="../Libgpgme/Key.html#P:Libgpgme.Key.Protocol">Key.Protocol</a> is <a href="../Libgpgme/Protocol.html#P:Libgpgme.Protocol.OpenPGP">Protocol.OpenPGP</a>, then this is the owner trust.
+</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.Key.Protocol" class="MemberName">Protocol Property</h3>
+        <div class="MemberSignature">public <a href="../Libgpgme/Protocol.html">Protocol</a> <b>Protocol</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>This is the protocol supported by this key.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">The <a href="../Libgpgme/Protocol.html#C:Libgpgme.Protocol">Protocol</a> supported by this key.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.Key.Revoked" class="MemberName">Revoked Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>Revoked</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>Indicates that the key has been revoked.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">Is <tt>true</tt> if the key is revoked.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.Key.Secret" class="MemberName">Secret Property</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Boolean">bool</a> <b>Secret</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>Indicates that the key is a secret key. </p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">Is true if the key is a secret key.  
+</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+            <p>
+              <i>Note: </i>
+              <p>
+This will always be <tt>true</tt> even if the corresponding subkey flag may be <tt>false</tt> (offline/stub keys).
+  </p>
+            </p>
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:Libgpgme.Key.StartEdit(Libgpgme.Context,System.IntPtr,Libgpgme.GpgmeData)" class="MemberName">StartEdit Method</h3>
+        <div class="MemberSignature">protected <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>StartEdit</b> (<a href="../Libgpgme/Context.html">Context</a> ctx, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a> handle, <a href="../Libgpgme/GpgmeData.html">GpgmeData</a> data)</div>
+        <div class="MemberBox">
+          <p>Starts the key editing operation.</p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>ctx</i>
+              </dt>
+              <dd>A <a href="../Libgpgme/Context.html#C:Libgpgme.Context">Context</a> used for the editing operation.</dd>
+              <dt>
+                <i>handle</i>
+              </dt>
+              <dd>A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.IntPtr">IntPtr</a> value (handle) that can be used to identify callback calls from GPGME.</dd>
+              <dt>
+                <i>data</i>
+              </dt>
+              <dd>A <a href="../Libgpgme/GpgmeData.html#C:Libgpgme.GpgmeData">GpgmeData</a> object.</dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> containing an error value. Is 0 if the operation completed successfully.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">A class that is inherited from <a href="../Libgpgme/Key.html#C:Libgpgme.Key">Key</a> can call this method in order to start a key editing operation. In this case, the <a href="../Libgpgme/Key.html#M:Libgpgme.Key.KeyEditCallback(IntPtr,Libgpgme.KeyEditStatusCode,System.String,System.IO.Stream)">Key.KeyEditCallback(IntPtr, KeyEditStatusCode, string, System.IO.Stream)</a> method MUST be overwritten by the inherited class.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.Key.Subkeys" class="MemberName">Subkeys Property</h3>
+        <div class="MemberSignature">public <a href="../Libgpgme/Subkey.html">Subkey</a> <b>Subkeys</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The subkeys of the key.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">The first <a href="../Libgpgme/Subkey.html#C:Libgpgme.Subkey">Subkey</a> in the list. <tt>null</tt> if no subkeys are available.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+            <p>
+This is a linked list with the subkeys of the key.  The first subkey in the list is the primary key and usually available.
+</p>
+            <p>
+You can enumerate the linked list with the subkey's <a href="../Libgpgme/Subkey.html#P:Libgpgme.Subkey.Next">Subkey.Next</a> property or by using the <a href="../Libgpgme/Subkey.html#M:Libgpgme.Subkey.GetEnumerator()">Subkey.GetEnumerator()</a> method.
+</p>
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.Key.Uid" class="MemberName">Uid Property</h3>
+        <div class="MemberSignature">public <a href="../Libgpgme/UserId.html">UserId</a> <b>Uid</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The primary user ID of a key.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">The first <a href="../Libgpgme/UserId.html#C:Libgpgme.UserId">UserId</a> in the list. <tt>null</tt> if no user ID information available.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">This property is a reference to <a href="../Libgpgme/Key.html#P:Libgpgme.Key.Uids">Key.Uids</a>.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="P:Libgpgme.Key.Uids" class="MemberName">Uids Property</h3>
+        <div class="MemberSignature">public <a href="../Libgpgme/UserId.html">UserId</a> <b>Uids</b>  { get; }</div>
+        <div class="MemberBox">
+          <p>The user IDs of the key.</p>
+          <h4 class="Subsection">Value</h4>
+          <div class="SubsectionBox">The first <a href="../Libgpgme/UserId.html#C:Libgpgme.UserId">UserId</a> in the list. <tt>null</tt> if no user IDs are available.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+            <p>
+This is a linked list with the user IDs of the key.  The first user ID in the list is the main (or primary) user ID.
+</p>
+            <p>
+You can enumerate the linked list with the user ID's <a href="../Libgpgme/UserId.html#P:Libgpgme.UserId.Next">UserId.Next</a> property or by using the <a href="../Libgpgme/UserId.html#M:Libgpgme.UserId.GetEnumerator()">UserId.GetEnumerator()</a> method.
+</p>
+          </div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+      </div>
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

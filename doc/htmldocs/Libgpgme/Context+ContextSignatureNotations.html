@@ -1,0 +1,231 @@
+<html>
+  <head>
+    <title>Libgpgme.Context.ContextSignatureNotations</title>
+    <style>
+					a { text-decoration: none }
+				
+					.CollectionTitle { font-weight: bold }
+					.PageTitle { font-size: 150%; font-weight: bold }
+
+					.Summary { }
+					.Signature { }					
+					.Remarks { }
+					.Members { }
+					.Copyright { }
+					
+					.Section { font-size: 125%; font-weight: bold }
+					.SectionBox { margin-left: 2em }
+					.NamespaceName { font-size: 105%; font-weight: bold }
+					.NamespaceSumary { }
+					.MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+					.MemberSignature { font-family: monospace; margin-top: 1em; }
+					.MemberBox { }
+					.Subsection { font-size: 105%; font-weight: bold }
+					.SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+					.SignatureTable { background-color: #c0c0c0; }
+					.EnumerationsTable th { background-color: #f2f2f2; }
+					.CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+					
+					.MembersListing td { margin: 0px; border: 1px solid black; padding: .25em }
+					
+					.TypesListing td { margin: 0px;  padding: .25em }
+					.InnerSignatureTable tr { background-color: #f2f2f2; }
+					.TypePermissionsTable tr { background-color: #f2f2f2; }
+					
+				</style>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="../index.html">gpgme-sharp</a>
+			:
+			<a href="index.html">Libgpgme Namespace</a></div>
+    <h1 class="PageTitle">Context.ContextSignatureNotations  Class</h1>
+    <p class="Summary">A class used to list and modify signature notations data of a context.</p>
+    <div class="Signature">
+      <table class="SignatureTable" cellspacing="0" width="100%">
+        <tr>
+          <td>
+            <table class="InnerSignatureTable" cellpadding="10" cellspacing="0" width="100%">
+              <tr>
+                <td>public class  <b>Context.ContextSignatureNotations</b> :
+		
+								<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.IEnumerable`1">System.Collections.Generic.IEnumerable&lt;Libgpgme.SignatureNotation&gt;</a></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      </br>
+    </div>
+    <div class="Remarks">
+      <h4 class="Subsection">Remarks</h4>
+      <div class="SubsectionBox">By using the member method <a href="../Libgpgme/Context+ContextSignatureNotations.html#M:Libgpgme.Context+ContextSignatureNotations.Add(System.String,System.String,Libgpgme.SignatureNotationFlags)">Context.ContextSignatureNotations.Add(string, string, SignatureNotationFlags)</a>, you can attach arbitrary notation data to a signature. This information is then available to the user when the signature is verified.
+</div>
+      <h2 class="Section">Members</h2>
+      <div class="SectionBox">
+        <p>
+						See Also: Inherited members from
+						<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a>.
+					</p>
+        <h3>Methods</h3>
+        <div class="SubsectionBox">
+          <table class="MembersListing">
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:Libgpgme.Context.ContextSignatureNotations.Add(System.String,System.String,Libgpgme.SignatureNotationFlags)">Add</a>
+                </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="../Libgpgme/SignatureNotationFlags.html">SignatureNotationFlags</a>)<div>Adds notation data to the context.</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:Libgpgme.Context.ContextSignatureNotations.Clear">Clear</a>
+                </b>()<div>Removes the notation data from the context.</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:Libgpgme.Context.ContextSignatureNotations.Get">Get</a>
+                </b>()<nobr> : <a href="../Libgpgme/SignatureNotation.html">SignatureNotation</a></nobr><div>Receives the notation data from the context.</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:Libgpgme.Context.ContextSignatureNotations.GetEnumerator">GetEnumerator</a>
+                </b>()<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.IEnumerator`1">System.Collections.Generic.IEnumerator&lt;Libgpgme.SignatureNotation&gt;</a></nobr><div>To be added.</div></td>
+            </tr>
+            <tr valign="top">
+              <td>
+              </td>
+              <td>
+                <b>
+                  <a href="#M:Libgpgme.Context.ContextSignatureNotations.System.Collections.IEnumerable.GetEnumerator">System.Collections.IEnumerable.GetEnumerator</a>
+                </b>()<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.IEnumerator">IEnumerator</a></nobr><div>To be added.</div></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="Members">
+      <h2 class="Section">Member Details</h2>
+      <div class="SectionBox">
+        <h3 id="M:Libgpgme.Context.ContextSignatureNotations.Add(System.String,System.String,Libgpgme.SignatureNotationFlags)" class="MemberName">Add Method</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>Add</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> name, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> value, <a href="../Libgpgme/SignatureNotationFlags.html">SignatureNotationFlags</a> flags)</div>
+        <div class="MemberBox">
+          <p>Adds notation data to the context.</p>
+          <h4 class="Subsection">Parameters</h4>
+          <div class="SubsectionBox">
+            <dl>
+              <dt>
+                <i>name</i>
+              </dt>
+              <dd>A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> that contains the Notation name.</dd>
+              <dt>
+                <i>value</i>
+              </dt>
+              <dd>A <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> that contains the Notation value.</dd>
+              <dt>
+                <i>flags</i>
+              </dt>
+              <dd>To be added.</dd>
+            </dl>
+          </div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">
+            <p>
+The function adds the notation data with the name <i>name</i> and the value <i>value</i> to the context
+</p>
+            <p>
+Subsequent signing operations will include this notation data, as well as any other notation data that was added since the creation of the context or the last <a href="../Libgpgme/Context+ContextSignatureNotations.html#M:Libgpgme.Context+ContextSignatureNotations.Clear()">Context.ContextSignatureNotations.Clear()</a> operation.
+</p>
+The arguments <i>name</i> and <i>value</i> must be strings in human-readable form.  The flag <a href="../Libgpgme/SignatureNotationFlags.html#P:Libgpgme.SignatureNotationFlags.HumanReadable">SignatureNotationFlags.HumanReadable</a> is implied (non-human-readable notation data is currently not supported). The strings must be in UTF-8 encoding (will be automatically transformed when using <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>).
+<p>
+     If <i>name</i> is <tt>null</tt>, then <i>value</i> should be a policy URL.
+</p></div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:Libgpgme.Context.ContextSignatureNotations.Clear" class="MemberName">Clear Method</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>Clear</b> ()</div>
+        <div class="MemberBox">
+          <p>Removes the notation data from the context.</p>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">The function removes the notation data from the context. Subsequent signing operations from this context will not include any notation data.
+<p><i>Note: </i><p>
+Every context starts with an empty notation data list.
+  </p></p></div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:Libgpgme.Context.ContextSignatureNotations.Get" class="MemberName">Get Method</h3>
+        <div class="MemberSignature">public <a href="../Libgpgme/SignatureNotation.html">SignatureNotation</a> <b>Get</b> ()</div>
+        <div class="MemberBox">
+          <p>Receives the notation data from the context.</p>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">If notation data is available, a <a href="../Libgpgme/SignatureNotation.html#C:Libgpgme.SignatureNotation">SignatureNotation</a> object is returned. If there is currently no notation data added for this context, <tt>null</tt> is returned.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">The function returns a linked list of notation data objects that are contained in the context. You can get the next <a href="../Libgpgme/SignatureNotation.html#C:Libgpgme.SignatureNotation">SignatureNotation</a> through the <a href="../Libgpgme/SignatureNotation.html#P:Libgpgme.SignatureNotation.Next">SignatureNotation.Next</a> property or enumerate all entries through the <a href="../Libgpgme/SignatureNotation.html#M:Libgpgme.SignatureNotation.GetEnumerator()">SignatureNotation.GetEnumerator()</a> method.
+</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:Libgpgme.Context.ContextSignatureNotations.GetEnumerator" class="MemberName">GetEnumerator Method</h3>
+        <div class="MemberSignature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.IEnumerator`1">System.Collections.Generic.IEnumerator&lt;Libgpgme.SignatureNotation&gt;</a> <b>GetEnumerator</b> ()</div>
+        <div class="MemberBox">
+          <p>To be added.</p>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+        <h3 id="M:Libgpgme.Context.ContextSignatureNotations.System.Collections.IEnumerable.GetEnumerator" class="MemberName">System.Collections.IEnumerable.GetEnumerator Method</h3>
+        <div class="MemberSignature">
+          <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.IEnumerator">IEnumerator</a> <b>System.Collections.IEnumerable.GetEnumerator</b> ()</div>
+        <div class="MemberBox">
+          <p>To be added.</p>
+          <h4 class="Subsection">Returns</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <h4 class="Subsection">Remarks</h4>
+          <div class="SubsectionBox">To be added.</div>
+          <h4 class="Subsection">Required Assembly Versions:</h4>
+          <ul>
+            <li>gpgme-sharp 1.0.0.0</li>
+          </ul>
+          <hr size="1">
+          </hr>
+        </div>
+      </div>
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

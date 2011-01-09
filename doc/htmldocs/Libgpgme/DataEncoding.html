@@ -1,0 +1,112 @@
+<html>
+  <head>
+    <title>Libgpgme.DataEncoding</title>
+    <style>
+					a { text-decoration: none }
+				
+					.CollectionTitle { font-weight: bold }
+					.PageTitle { font-size: 150%; font-weight: bold }
+
+					.Summary { }
+					.Signature { }					
+					.Remarks { }
+					.Members { }
+					.Copyright { }
+					
+					.Section { font-size: 125%; font-weight: bold }
+					.SectionBox { margin-left: 2em }
+					.NamespaceName { font-size: 105%; font-weight: bold }
+					.NamespaceSumary { }
+					.MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+					.MemberSignature { font-family: monospace; margin-top: 1em; }
+					.MemberBox { }
+					.Subsection { font-size: 105%; font-weight: bold }
+					.SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+					.SignatureTable { background-color: #c0c0c0; }
+					.EnumerationsTable th { background-color: #f2f2f2; }
+					.CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+					
+					.MembersListing td { margin: 0px; border: 1px solid black; padding: .25em }
+					
+					.TypesListing td { margin: 0px;  padding: .25em }
+					.InnerSignatureTable tr { background-color: #f2f2f2; }
+					.TypePermissionsTable tr { background-color: #f2f2f2; }
+					
+				</style>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="../index.html">gpgme-sharp</a>
+			:
+			<a href="index.html">Libgpgme Namespace</a></div>
+    <h1 class="PageTitle">DataEncoding  Enum</h1>
+    <p class="Summary">Specifies the encoding of a <a href="../Libgpgme/GpgmeData.html#C:Libgpgme.GpgmeData">GpgmeData</a> object.</p>
+    <div class="Signature">
+      <table class="SignatureTable" cellspacing="0" width="100%">
+        <tr>
+          <td>
+            <table class="InnerSignatureTable" cellpadding="10" cellspacing="0" width="100%">
+              <tr>
+                <td>public 
+
+							enum
+	
+							<b>DataEncoding</b></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      </br>
+    </div>
+    <div class="Remarks">
+      <h4 class="Subsection">Remarks</h4>
+      <div class="SubsectionBox">This type specifies the encoding of a <a href="../Libgpgme/GpgmeData.html">Libgpgme.GpgmeData</a> object.  This encoding is useful to give the backend a hint on the type of data.
+</div>
+      <div class="Subsection">Members</div>
+      <div class="SubsectionBox">
+        <table class="EnumerationsTable">
+          <tr>
+            <th>Member name</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td>
+              <b>Armor</b>
+            </td>
+            <td>This specifies that the data is encoded in an armored form as used by OpenPGP and PEM.
+</td>
+          </tr>
+          <tr>
+            <td>
+              <b>Base64</b>
+            </td>
+            <td>This specifies that the data is encoded using the Base-64 encoding scheme as used by MIME and other protocols.
+</td>
+          </tr>
+          <tr>
+            <td>
+              <b>Binary</b>
+            </td>
+            <td>This specifies that the data is encoding in binary form; i.e. there is no special encoding.
+</td>
+          </tr>
+          <tr>
+            <td>
+              <b>None</b>
+            </td>
+            <td>This specifies that the encoding is not known. This is the default for a new data object. The backend will try its best to detect the encoding automatically.
+</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="Members">
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>
