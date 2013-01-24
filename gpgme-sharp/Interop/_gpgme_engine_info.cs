@@ -18,14 +18,12 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace Libgpgme.Interop
 {
     /* The engine information structure.  */
+
     [StructLayout(LayoutKind.Sequential)]
     internal class _gpgme_engine_info //*gpgme_engine_info_t;
     {
@@ -45,16 +43,14 @@ namespace Libgpgme.Interop
 
         /* The home directory used, or NULL if default.  */
         public IntPtr home_dir;
-		
-		internal _gpgme_engine_info()
-		{
-			next 		= IntPtr.Zero;
-			protocol 	= gpgme_protocol_t.GPGME_PROTOCOL_UNKNOWN;
-			file_name 	= IntPtr.Zero;
-			version 	= IntPtr.Zero;
-			req_version = IntPtr.Zero;
-			home_dir 	= IntPtr.Zero;
-		}
+
+        internal _gpgme_engine_info() {
+            next = IntPtr.Zero;
+            protocol = gpgme_protocol_t.GPGME_PROTOCOL_UNKNOWN;
+            file_name = IntPtr.Zero;
+            version = IntPtr.Zero;
+            req_version = IntPtr.Zero;
+            home_dir = IntPtr.Zero;
+        }
     }
 }
-

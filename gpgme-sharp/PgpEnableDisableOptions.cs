@@ -17,20 +17,20 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Libgpgme
 {
     internal class PgpEnableDisableOptions
     {
+        internal Mode OperationMode;
+        internal bool cmdSend;
+        #region Nested type: Mode
+
         internal enum Mode
         {
             Enable,
             Disable
         }
-        internal Mode OperationMode;
-        internal bool cmdSend = false;
+
+        #endregion
     }
 }

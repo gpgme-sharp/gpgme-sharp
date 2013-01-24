@@ -18,9 +18,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace Libgpgme.Interop
@@ -41,13 +38,12 @@ namespace Libgpgme.Interop
            ORed.  0 means the key was already known and no new components
            have been added.  */
         public uint status;
-		
-		internal _gpgme_import_status() 
-		{
-			next 	= IntPtr.Zero;
-			fpr 	= IntPtr.Zero;
-			result 	= 0;
-			status 	= 0;
-		}
+
+        internal _gpgme_import_status() {
+            next = IntPtr.Zero;
+            fpr = IntPtr.Zero;
+            result = 0;
+            status = 0;
+        }
     }
 }

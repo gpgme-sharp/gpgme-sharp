@@ -18,8 +18,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Libgpgme
 {
@@ -29,38 +27,30 @@ namespace Libgpgme
         public const int KEY_LENGTH_2048 = 2048;
         public const int KEY_LENGTH_4096 = 4096;
 
-        static DateTime unixdate = new DateTime(1970, 1, 1);
-        internal bool cmdSend = false;
-
-        private int subkeylength = KEY_LENGTH_2048;
-        private DateTime expirationdate = unixdate;
+        private static readonly DateTime _unix_date = new DateTime(1970, 1, 1);
 
         public PgpSubkeyAlgorithm Algorithm;
         public AlgorithmCapability Capability;
+        internal bool cmdSend;
 
-        public int KeyLength
-        {
-            get { return subkeylength; }
-            set { subkeylength = value; }
+        public int KeyLength { get; set; }
+        public DateTime ExpirationDate { get; set; }
+
+        public PgpSubkeyOptions() {
+            ExpirationDate = _unix_date;
+            KeyLength = KEY_LENGTH_2048;
         }
 
-        public bool IsInfinitely
-        {
-            get { return expirationdate.Equals(unixdate); }
+        public bool IsInfinitely {
+            get { return ExpirationDate.Equals(_unix_date); }
         }
-        public void MakeInfinitely()
-        {
-            expirationdate = unixdate;
+
+        public void MakeInfinitely() {
+            ExpirationDate = _unix_date;
         }
-        public DateTime ExpirationDate
-        {
-            get { return expirationdate; }
-            set { expirationdate = value; }
-        }
-        public void SetAlgorithm(KeyAlgorithm algo)
-        {
-            switch (algo)
-            {
+
+        public void SetAlgorithm(KeyAlgorithm algo) {
+            switch (algo) {
                 case KeyAlgorithm.DSA:
                     Algorithm = PgpSubkeyAlgorithm.DSASignOnly;
                     break;
@@ -71,7 +61,7 @@ namespace Libgpgme
                     Algorithm = PgpSubkeyAlgorithm.RSAUseCapabilities;
                     break;
                 default:
-                    throw new System.NotSupportedException("Algorithm is not supported as sub key.",
+                    throw new NotSupportedException("Algorithm is not supported as sub key.",
                         new NotSupportedException("Algorithm is not supported as sub key."));
             }
         }

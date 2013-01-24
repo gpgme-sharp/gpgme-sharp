@@ -18,293 +18,227 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
-using System.Runtime.InteropServices;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading;
 using Libgpgme.Interop;
 
 namespace Libgpgme
 {
-    public abstract class GpgmeCbsData: GpgmeData, IDisposable
+    public abstract class GpgmeCbsData : GpgmeData
     {
-        private static IntPtr globalhandle = IntPtr.Zero;
-        private static object globallock = new object();
-        private object locallock = new object();
+        private static IntPtr _global_handle = IntPtr.Zero;
+        private static readonly object _global_lock = new object();
+        private readonly object _local_lock = new object();
+        private readonly ManualResetEvent _release_cbevent = new ManualResetEvent(false);
 
-        private IntPtr handle;
+        private _gpgme_data_cbs _cbs;
+        // See GPGME manual: 2.3 Largefile Support (LFS)
 
-        private _gpgme_data_cbs cbs;
-		// See GPGME manual: 2.3 Largefile Support (LFS)
-		private _gpgme_data_cbs_lfs cbs_lfs;
-		
-		private IntPtr cbsPtr;
-		private GCHandle pinnedCbs;
-		private GCHandle pinnedCbs_lfs;
+        private IntPtr _cbs_ptr;
+        private _gpgme_data_cbs_lfs _cbs_lfs;
+        private IntPtr _handle;
+        private GCHandle _pinned_cbs;
+        private GCHandle _pinned_cbs_lfs;
 
-        private bool releaseCBfuncInit = false;
-        private ManualResetEvent releaseCBevent = new ManualResetEvent(false);
+        private bool _release_cbfunc_init;
 
         public Exception LastCallbackException;
 
-        private IntPtr IncGlobalHandle()
-        {
-            lock (globallock)
-            {
-                long value = globalhandle.ToInt64();
+        protected GpgmeCbsData() {
+            // Inherited class overrides CanRead etc.
+            Init(CanRead, CanWrite, CanSeek, CanRelease);
+        }
+
+        protected GpgmeCbsData(bool canRead, bool canWrite, bool canSeek, bool canRelease) {
+            // The user specifies the implemented callback functions directly.
+            Init(canRead, canWrite, canSeek, canRelease);
+        }
+
+        public abstract override bool CanRead { get; }
+        public abstract override bool CanWrite { get; }
+        public abstract override bool CanSeek { get; }
+        public abstract bool CanRelease { get; }
+
+        private IntPtr IncGlobalHandle() {
+            lock (_global_lock) {
+                long value = _global_handle.ToInt64();
                 ++value;
-                globalhandle = (IntPtr)value;
-                return globalhandle;
+                _global_handle = (IntPtr) value;
+                return _global_handle;
             }
         }
 
-        ~GpgmeCbsData()
-        {
-            ReleaseCbsData();            
+        ~GpgmeCbsData() {
+            ReleaseCbsData();
         }
 
-        private void ReleaseCbsData()
-        {
-            if (!dataPtr.Equals(IntPtr.Zero) && !releaseCBfuncInit)
-            {
+        private void ReleaseCbsData() {
+            if (!dataPtr.Equals(IntPtr.Zero) && !_release_cbfunc_init) {
                 libgpgme.gpgme_data_release(dataPtr);
-                
-				if (libgpgme.use_lfs) {
-					if (cbs_lfs.release != null)
-                	{
-                    	releaseCBfuncInit = true;
-                    	// wait until libgpgme has called the _release callback method
-                    	releaseCBevent.WaitOne();
-                	}
-				} else {
-					if (cbs.release != null)
-                	{
-                    	releaseCBfuncInit = true;
-                    	// wait until libgpgme has called the _release callback method
-                    	releaseCBevent.WaitOne();
-                	}
-				}
+
+                if (libgpgme.use_lfs) {
+                    if (_cbs_lfs.release != null) {
+                        _release_cbfunc_init = true;
+                        // wait until libgpgme has called the _release callback method
+                        _release_cbevent.WaitOne();
+                    }
+                } else {
+                    if (_cbs.release != null) {
+                        _release_cbfunc_init = true;
+                        // wait until libgpgme has called the _release callback method
+                        _release_cbevent.WaitOne();
+                    }
+                }
 
                 dataPtr = IntPtr.Zero;
             }
-            lock (locallock)
-            {
-                if (!cbsPtr.Equals(IntPtr.Zero))
-                {
-                    Marshal.FreeCoTaskMem(cbsPtr);
-                    cbsPtr = IntPtr.Zero;
+            lock (_local_lock) {
+                if (!_cbs_ptr.Equals(IntPtr.Zero)) {
+                    Marshal.FreeCoTaskMem(_cbs_ptr);
+                    _cbs_ptr = IntPtr.Zero;
                 }
-                if (pinnedCbs.IsAllocated)
-                {
-                    pinnedCbs.Free();
+                if (_pinned_cbs.IsAllocated) {
+                    _pinned_cbs.Free();
                 }
-				if (pinnedCbs_lfs.IsAllocated)
-				{
-					pinnedCbs_lfs.Free();
-				}
+                if (_pinned_cbs_lfs.IsAllocated) {
+                    _pinned_cbs_lfs.Free();
+                }
             }
         }
 
-        protected override void Dispose(bool disposing)
-        {
+        protected override void Dispose(bool disposing) {
             GC.SuppressFinalize(this);
             ReleaseCbsData();
 
             base.Dispose(disposing);
         }
 
-        protected GpgmeCbsData()
-        {
-            // Inherited class overrides CanRead etc.
-            Init(CanRead, CanWrite, CanSeek, CanRelease);
-        }
-        protected GpgmeCbsData(bool canRead, bool canWrite, bool canSeek, bool canRelease)
-        {
-            // The user specifies the implemented callback functions directly.
-            Init(canRead, canWrite, canSeek, canRelease);
-        }
-
-        private void Init(bool canRead, bool canWrite, bool canSeek, bool canRelease)
-        {
+        private void Init(bool canRead, bool canWrite, bool canSeek, bool canRelease) {
 #if (VERBOSE_DEBUG)
 			DebugOutput("GpgmeCbsData.Init(" + canRead.ToString() + "," 
 			            + canWrite.ToString() + ","
 			            + canSeek.ToString() + ","
 			            + canRelease.ToString() + ")");
-#endif	
-            handle = IncGlobalHandle(); // increment the global handle 
-            
-            cbs = new _gpgme_data_cbs();
-			cbs_lfs = new _gpgme_data_cbs_lfs();
+#endif
+            _handle = IncGlobalHandle(); // increment the global handle 
+
+            _cbs = new _gpgme_data_cbs();
+            _cbs_lfs = new _gpgme_data_cbs_lfs();
 
             // Read function
-            if (canRead)
-			{
-                cbs.read = new gpgme_data_read_cb_t(_read_cb);
-				cbs_lfs.read = new gpgme_data_read_cb_t(_read_cb);
-			}
-            else
-			{
-                cbs.read = null;
-				cbs_lfs.read = null;
-			}
-            
+            if (canRead) {
+                _cbs.read = InternalReadCallback;
+                _cbs_lfs.read = InternalReadCallback;
+            } else {
+                _cbs.read = null;
+                _cbs_lfs.read = null;
+            }
+
             // Write function
-            if (canWrite)
-			{
-                cbs.write = new gpgme_data_write_cb_t(_write_cb);
-				cbs_lfs.write = new gpgme_data_write_cb_t(_write_cb);
-			}
-            else
-			{
-                cbs.write = null;
-				cbs_lfs.write = null;
-			}
-            
+            if (canWrite) {
+                _cbs.write = InternalWriteCallback;
+                _cbs_lfs.write = InternalWriteCallback;
+            } else {
+                _cbs.write = null;
+                _cbs_lfs.write = null;
+            }
+
             // Seek function
-            if (canSeek)
-			{
-                cbs.seek = new gpgme_data_seek_cb_t(_seek_cb);
-				cbs_lfs.seek = new gpgme_data_seek_cb_t_lfs(_seek_cb_lfs);
-			}
-            else
-			{
-                cbs.seek = null;
-				cbs_lfs.seek = null;
-			}
-            
+            if (canSeek) {
+                _cbs.seek = InternalSeekCallback;
+                _cbs_lfs.seek = InternalSeekLfsCallback;
+            } else {
+                _cbs.seek = null;
+                _cbs_lfs.seek = null;
+            }
+
             // Release
-            if (canRelease)
-			{
-                cbs.release = new gpgme_data_release_cb_t(_release_cb);
-				cbs_lfs.release = new gpgme_data_release_cb_t(_release_cb);
-			}
-            else
-			{
-                cbs.release = null;
-				cbs_lfs.release = null;
-			}
-			
-			pinnedCbs = GCHandle.Alloc(cbs);
-			pinnedCbs_lfs = GCHandle.Alloc(cbs_lfs);
-			if (libgpgme.use_lfs)
-			{
-				cbsPtr = Marshal.AllocCoTaskMem(Marshal.SizeOf(cbs_lfs));
-				Marshal.StructureToPtr(cbs_lfs, cbsPtr, false);
-			} else {
-				cbsPtr = Marshal.AllocCoTaskMem(Marshal.SizeOf(cbs));
-				Marshal.StructureToPtr(cbs, cbsPtr, false);
-			}
-			
+            if (canRelease) {
+                _cbs.release = InternalReleaseCallback;
+                _cbs_lfs.release = InternalReleaseCallback;
+            } else {
+                _cbs.release = null;
+                _cbs_lfs.release = null;
+            }
+
+            _pinned_cbs = GCHandle.Alloc(_cbs);
+            _pinned_cbs_lfs = GCHandle.Alloc(_cbs_lfs);
+            if (libgpgme.use_lfs) {
+                _cbs_ptr = Marshal.AllocCoTaskMem(Marshal.SizeOf(_cbs_lfs));
+                Marshal.StructureToPtr(_cbs_lfs, _cbs_ptr, false);
+            } else {
+                _cbs_ptr = Marshal.AllocCoTaskMem(Marshal.SizeOf(_cbs));
+                Marshal.StructureToPtr(_cbs, _cbs_ptr, false);
+            }
+
             int err = libgpgme.gpgme_data_new_from_cbs(
                 out dataPtr,
-                cbsPtr,
-                handle);
+                _cbs_ptr,
+                _handle);
 
 #if (VERBOSE_DEBUG)
 			DebugOutput("gpgme_data_new_from_cbs(..) DONE.");
-#endif	
+#endif
             gpg_err_code_t errcode = libgpgme.gpgme_err_code(err);
 
-            if (errcode == gpg_err_code_t.GPG_ERR_NO_ERROR)
+            if (errcode == gpg_err_code_t.GPG_ERR_NO_ERROR) {
                 return;
+            }
 
-            if (errcode == gpg_err_code_t.GPG_ERR_ENOMEM)
+            if (errcode == gpg_err_code_t.GPG_ERR_ENOMEM) {
                 throw new OutOfMemoryException("Not enough memory available to create user defined GPGME data object.");
+            }
 
             throw new GeneralErrorException("Unknown error " + errcode + " (" + err + ")");
         }
 
-        private IntPtr _read_cb(IntPtr handle, IntPtr buffer, UIntPtr size)
-        {
+        private IntPtr InternalReadCallback(IntPtr handle, IntPtr buffer, UIntPtr size) {
 #if (VERBOSE_DEBUG)
 			DebugOutput("_read_cb(..)");
-#endif	
-            if (this.handle.Equals(handle))
-                try
-                {
-                    return ReadCB(buffer, (long)size);
-                }
-                catch (Exception ex)
-                {
+#endif
+            if (_handle.Equals(handle)) {
+                try {
+                    return ReadCB(buffer, (long) size);
+                } catch (Exception ex) {
                     LastCallbackException = ex;
-                }
-                  
-
-            return (IntPtr)ERROR;
-        }
-        protected virtual IntPtr ReadCB(IntPtr bufPtr, long size)
-        {
-            throw new System.NotSupportedException("The read callback function 'ReadCB' is not implemented.");
-        }
-
-        private IntPtr _write_cb(IntPtr handle, IntPtr buffer, UIntPtr size)
-        {
-#if (VERBOSE_DEBUG)
-			DebugOutput("_write_cb(..)");
-#endif	
-            if (this.handle.Equals(handle))
-                try
-                {
-                    return WriteCB(buffer, (long)size);
-                }
-                catch (Exception ex) 
-                {
-                    LastCallbackException = ex;
-                }
-
-            return (IntPtr)ERROR;
-        }
-        protected virtual IntPtr WriteCB(IntPtr bufPtr, long size)
-        {
-            throw new System.NotSupportedException("The write callback function 'WriteCB' is not implemented.");
-        }
-
-        private IntPtr _seek_cb(IntPtr handle, IntPtr offset, int whence)
-        {
-#if (VERBOSE_DEBUG)
-			DebugOutput("_seek_cb(..)");
-#endif	
-            if (this.handle.Equals(handle))
-            {
-                SeekOrigin sorigin = SeekOrigin.Current;
-                switch (whence)
-                {
-                    case SEEK_SET:
-                        sorigin = SeekOrigin.Begin;
-                        break;
-                    case SEEK_CUR:
-                        sorigin = SeekOrigin.Current;
-                        break;
-                    case SEEK_END:
-                        sorigin = SeekOrigin.End;
-                        break;
-                }
-                try
-                {
-                    return (IntPtr)SeekCB((long)offset, sorigin);
-                }
-                catch (Exception ex)
-                { 
-                    LastCallbackException = ex; 
                 }
             }
-            return (IntPtr)ERROR;
+
+
+            return (IntPtr) ERROR;
         }
 
-		// LFS Hack
-        private long _seek_cb_lfs(IntPtr handle, long offset, int whence)
-        {
+        protected virtual IntPtr ReadCB(IntPtr bufPtr, long size) {
+            throw new NotSupportedException("The read callback function 'ReadCB' is not implemented.");
+        }
+
+        private IntPtr InternalWriteCallback(IntPtr handle, IntPtr buffer, UIntPtr size) {
 #if (VERBOSE_DEBUG)
-			DebugOutput("_seek_cb_lfs(..)");
-#endif	
-            if (this.handle.Equals(handle))
-            {
+			DebugOutput("_write_cb(..)");
+#endif
+            if (_handle.Equals(handle)) {
+                try {
+                    return WriteCB(buffer, (long) size);
+                } catch (Exception ex) {
+                    LastCallbackException = ex;
+                }
+            }
+
+            return (IntPtr) ERROR;
+        }
+
+        protected virtual IntPtr WriteCB(IntPtr bufPtr, long size) {
+            throw new NotSupportedException("The write callback function 'WriteCB' is not implemented.");
+        }
+
+        private IntPtr InternalSeekCallback(IntPtr handle, IntPtr offset, int whence) {
+#if (VERBOSE_DEBUG)
+			DebugOutput("_seek_cb(..)");
+#endif
+            if (_handle.Equals(handle)) {
                 SeekOrigin sorigin = SeekOrigin.Current;
-                switch (whence)
-                {
+                switch (whence) {
                     case SEEK_SET:
                         sorigin = SeekOrigin.Begin;
                         break;
@@ -315,50 +249,62 @@ namespace Libgpgme
                         sorigin = SeekOrigin.End;
                         break;
                 }
-                try
-                {
-                    return SeekCB(offset, sorigin);
+                try {
+                    return (IntPtr) SeekCB((long) offset, sorigin);
+                } catch (Exception ex) {
+                    LastCallbackException = ex;
                 }
-                catch (Exception ex)
-                { 
-                    LastCallbackException = ex; 
+            }
+            return (IntPtr) ERROR;
+        }
+
+        // LFS Hack
+        private long InternalSeekLfsCallback(IntPtr handle, long offset, int whence) {
+#if (VERBOSE_DEBUG)
+			DebugOutput("_seek_cb_lfs(..)");
+#endif
+            if (_handle.Equals(handle)) {
+                SeekOrigin sorigin = SeekOrigin.Current;
+                switch (whence) {
+                    case SEEK_SET:
+                        sorigin = SeekOrigin.Begin;
+                        break;
+                    case SEEK_CUR:
+                        sorigin = SeekOrigin.Current;
+                        break;
+                    case SEEK_END:
+                        sorigin = SeekOrigin.End;
+                        break;
+                }
+                try {
+                    return SeekCB(offset, sorigin);
+                } catch (Exception ex) {
+                    LastCallbackException = ex;
                 }
             }
             return ERROR;
         }
 
-        protected virtual long SeekCB(long offset, SeekOrigin whence)
-        {
-            throw new System.NotSupportedException("The seek callback function 'SeekCB' is not implemented.");
+        protected virtual long SeekCB(long offset, SeekOrigin whence) {
+            throw new NotSupportedException("The seek callback function 'SeekCB' is not implemented.");
         }
 
-        private void _release_cb(IntPtr handle)
-        {
-            if (this.handle.Equals(handle))
-            {
-                try
-                {
+        private void InternalReleaseCallback(IntPtr handle) {
+            if (_handle.Equals(handle)) {
+                try {
                     ReleaseCB();
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     LastCallbackException = ex;
                 }
 
                 // cbs structure can be freed in memory now
-                releaseCBfuncInit = false;
-                releaseCBevent.Set();
+                _release_cbfunc_init = false;
+                _release_cbevent.Set();
             }
         }
-        protected virtual void ReleaseCB()
-        {
-            throw new System.NotSupportedException("The release callback function 'ReleaseCB' is not implemented.");
+
+        protected virtual void ReleaseCB() {
+            throw new NotSupportedException("The release callback function 'ReleaseCB' is not implemented.");
         }
-
-        public override abstract bool CanRead { get; }
-        public override abstract bool CanWrite { get; }
-        public override abstract bool CanSeek { get; }
-        public abstract bool CanRelease { get; }
-
     }
 }

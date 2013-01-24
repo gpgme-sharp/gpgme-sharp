@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
 using Libgpgme;
 
 namespace ImportKey
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             // Create GPGME context
             Context ctx = new Context();
@@ -39,8 +36,6 @@ namespace ImportKey
                         status.Fpr);
                 }
             }
-
-            return;
         }
     }
 }

@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
@@ -28,7 +27,7 @@ namespace PgpCombinedCrypto
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Context ctx = new Context();
 
@@ -37,7 +36,7 @@ namespace PgpCombinedCrypto
 
             Console.WriteLine("Search Bob's and Alice's PGP keys in the default keyring..");
 
-            String[] searchpattern = new string[] {
+            String[] searchpattern = new[] {
                 "bob@home.internal",
                 "alice@home.internal" };
 
@@ -81,7 +80,7 @@ namespace PgpCombinedCrypto
             string origintxt = new string('+', 508)
                 + " Die Gedanken sind frei "
                 + new string('+', 508)
-                + randomtext.ToString();
+                + randomtext;
 
             // we want our string UTF8 encoded.
             UTF8Encoding utf8 = new UTF8Encoding();
@@ -102,7 +101,7 @@ namespace PgpCombinedCrypto
             /* Set the password callback - needed if the user doesn't run
              * gpg-agent or any other password / pin-entry software.
              */
-            ctx.SetPassphraseFunction(new PassphraseDelegate(MyPassphraseCallback));
+            ctx.SetPassphraseFunction(MyPassphraseCallback);
 
             // Set Alice's PGP key as signer
             ctx.Signers.Clear();
@@ -126,9 +125,7 @@ namespace PgpCombinedCrypto
             }
 
             plain.Close();
-            plain = null;
             cipher.Close();
-            cipher = null;
 
             /////// DECRYPT AND VERIFY DATA ///////
 
@@ -176,8 +173,6 @@ namespace PgpCombinedCrypto
                 	    sig.Validity);
                 }
             }
-
-            return;
         }
 
         /// <summary>
@@ -198,9 +193,13 @@ namespace PgpCombinedCrypto
              + "\nPrevious passphrase was bad: " + info.PrevWasBad
              + "\nPassword: ");
 
-            passwd = Console.ReadLine().ToCharArray();
+            var read_line = Console.ReadLine();
+            if (read_line != null) {
+                passwd = read_line.ToCharArray();
+                return PassphraseResult.Success;
+            }
 
-            return PassphraseResult.Success;
+            return PassphraseResult.Canceled;
         }
     }
 }

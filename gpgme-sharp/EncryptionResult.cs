@@ -18,9 +18,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using Libgpgme.Interop;
 
@@ -28,30 +25,28 @@ namespace Libgpgme
 {
     public class EncryptionResult
     {
+        private InvalidKey _invalid_recipients;
 
-        private InvalidKey invalid_recipients;
-		
-        public InvalidKey InvalidRecipients
-        {
-            get { return invalid_recipients; }
-        }
+        internal EncryptionResult(IntPtr rPtr) {
+            _invalid_recipients = null;
 
-        internal EncryptionResult(IntPtr rPtr)
-        {
-			invalid_recipients = null;
-			
-            if (rPtr == IntPtr.Zero)
+            if (rPtr == IntPtr.Zero) {
                 throw new InvalidPtrException("An invalid pointer for the encrypt_result structure has been supplied.");
+            }
             UpdateFromMem(rPtr);
         }
 
-        private void UpdateFromMem(IntPtr rPtr)
-        {
-            _gpgme_op_encrypt_result rst = new _gpgme_op_encrypt_result();
+        public InvalidKey InvalidRecipients {
+            get { return _invalid_recipients; }
+        }
+
+        private void UpdateFromMem(IntPtr rPtr) {
+            var rst = new _gpgme_op_encrypt_result();
             Marshal.PtrToStructure(rPtr, rst);
 
-            if (rst.invalid_recipients != IntPtr.Zero)
-                invalid_recipients = new InvalidKey(rst.invalid_recipients);
+            if (rst.invalid_recipients != IntPtr.Zero) {
+                _invalid_recipients = new InvalidKey(rst.invalid_recipients);
+            }
         }
     }
 }

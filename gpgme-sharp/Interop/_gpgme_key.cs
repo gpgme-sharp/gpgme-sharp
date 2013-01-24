@@ -18,14 +18,12 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace Libgpgme.Interop
 {
     /* A key from the keyring.  */
+
     [StructLayout(LayoutKind.Sequential)]
     internal class _gpgme_key //gpgme_key_t
     {
@@ -80,141 +78,130 @@ namespace Libgpgme.Interop
         public IntPtr subkeys; // gpgme_subkey_t
 
         /* The user IDs of the key.  */
-        public IntPtr uids;   // gpgme_user_id_t
+        public IntPtr uids; // gpgme_user_id_t
 
         /* Internal to GPGME, do not use.  */
-        public IntPtr _last_subkey;    //gpgme_subkey_t
+        public IntPtr _last_subkey; //gpgme_subkey_t
 
         /* Internal to GPGME, do not use.  */
-        public IntPtr _last_uid;  //gpgme_user_id_t
+        public IntPtr _last_uid; //gpgme_user_id_t
 
         /* The keylist mode that was active when listing the key.  */
         public gpgme_keylist_mode_t keylist_mode;
 
-		internal _gpgme_key() 
-		{
-			_refs 			= 0;
-			flags 			= 0;
-			protocol 		= gpgme_protocol_t.GPGME_PROTOCOL_UNKNOWN;
-			issuer_serial 	= IntPtr.Zero;
-			issuer_name 	= IntPtr.Zero;
-			chain_id 		= IntPtr.Zero;
-			owner_trust		= gpgme_validity_t.GPGME_VALIDITY_UNKNOWN;
-			subkeys 		= IntPtr.Zero;
-			uids 			= IntPtr.Zero;
-			_last_subkey	= IntPtr.Zero;
-			_last_uid 		= IntPtr.Zero;
-			keylist_mode 	= gpgme_keylist_mode_t.GPGME_KEYLIST_MODE_LOCAL;
-		}
-		
-        public bool revoked
-        {
+        internal _gpgme_key() {
+            _refs = 0;
+            flags = 0;
+            protocol = gpgme_protocol_t.GPGME_PROTOCOL_UNKNOWN;
+            issuer_serial = IntPtr.Zero;
+            issuer_name = IntPtr.Zero;
+            chain_id = IntPtr.Zero;
+            owner_trust = gpgme_validity_t.GPGME_VALIDITY_UNKNOWN;
+            subkeys = IntPtr.Zero;
+            uids = IntPtr.Zero;
+            _last_subkey = IntPtr.Zero;
+            _last_uid = IntPtr.Zero;
+            keylist_mode = gpgme_keylist_mode_t.GPGME_KEYLIST_MODE_LOCAL;
+        }
+
+        public bool revoked {
             get { return ((flags & 1) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 1;
-                else
-                    flags &= (~(uint)1);
+                } else {
+                    flags &= (~(uint) 1);
+                }
             }
         }
-        public bool expired
-        {
+        public bool expired {
             get { return ((flags & 2) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 2;
-                else
-                    flags &= (~(uint)2);
+                } else {
+                    flags &= (~(uint) 2);
+                }
             }
         }
-        public bool disabled
-        {
+        public bool disabled {
             get { return ((flags & 4) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 4;
-                else
-                    flags &= (~(uint)4);
+                } else {
+                    flags &= (~(uint) 4);
+                }
             }
         }
-        public bool invalid
-        {
+        public bool invalid {
             get { return ((flags & 8) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 8;
-                else
-                    flags &= (~(uint)8);
+                } else {
+                    flags &= (~(uint) 8);
+                }
             }
         }
-        public bool can_encrypt
-        {
+        public bool can_encrypt {
             get { return ((flags & 16) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 16;
-                else
-                    flags &= (~(uint)16);
+                } else {
+                    flags &= (~(uint) 16);
+                }
             }
         }
-        public bool can_sign
-        {
+        public bool can_sign {
             get { return ((flags & 32) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 32;
-                else
-                    flags &= (~(uint)32);
+                } else {
+                    flags &= (~(uint) 32);
+                }
             }
         }
-        public bool can_certify
-        {
+        public bool can_certify {
             get { return ((flags & 64) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 64;
-                else
-                    flags &= (~(uint)64);
+                } else {
+                    flags &= (~(uint) 64);
+                }
             }
         }
-        public bool secret
-        {
+        public bool secret {
             get { return ((flags & 128) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 128;
-                else
-                    flags &= (~(uint)128);
+                } else {
+                    flags &= (~(uint) 128);
+                }
             }
         }
-        public bool can_authenticate
-        {
+        public bool can_authenticate {
             get { return ((flags & 256) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 256;
-                else
-                    flags &= (~(uint)256);
+                } else {
+                    flags &= (~(uint) 256);
+                }
             }
         }
-        public bool is_qualified
-        {
+        public bool is_qualified {
             get { return ((flags & 512) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 512;
-                else
-                    flags &= (~(uint)512);
+                } else {
+                    flags &= (~(uint) 512);
+                }
             }
         }
     }

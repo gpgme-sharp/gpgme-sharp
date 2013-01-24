@@ -18,14 +18,12 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace Libgpgme.Interop
 {
     /* Encryption.  */
+
     [StructLayout(LayoutKind.Sequential)]
     internal class _gpgme_op_encrypt_result //gpgme_encrypt_result_t
     {

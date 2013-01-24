@@ -20,62 +20,58 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using Libgpgme.Interop;
 
 namespace Libgpgme
 {
-    public class InvalidKey: IEnumerable<InvalidKey>
+    public class InvalidKey : IEnumerable<InvalidKey>
     {
-        private string fpr;
-        public string Fingerprint
-        {
-            get { return fpr; }
-        }
-        private int reason;
-        public int Reason
-        {
-            get { return reason; }
-        }
-        private InvalidKey next;
-        public InvalidKey Next
-        {
-            get { return next; }
-        }
+        private string _fpr;
+        private InvalidKey _next;
+        private int _reason;
 
-        internal InvalidKey(IntPtr sPtr)
-        {
-            if (sPtr == IntPtr.Zero)
+        internal InvalidKey(IntPtr sPtr) {
+            if (sPtr == IntPtr.Zero) {
                 throw new InvalidPtrException("An invalid pointer for the invalid_key structure has been supplied.");
+            }
             UpdateFromMem(sPtr);
         }
 
-        private void UpdateFromMem(IntPtr sPtr)
-        {
-            _gpgme_invalid_key ikey = new _gpgme_invalid_key();
-            Marshal.PtrToStructure(sPtr, ikey);
-
-            fpr = Gpgme.PtrToStringAnsi(ikey.fpr);
-            reason = ikey.reason;
-
-            if (ikey.next != IntPtr.Zero)
-                next = new InvalidKey(ikey.next);
+        public string Fingerprint {
+            get { return _fpr; }
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
+        public int Reason {
+            get { return _reason; }
+        }
+        public InvalidKey Next {
+            get { return _next; }
+        }
+        #region IEnumerable<InvalidKey> Members
+
+        IEnumerator IEnumerable.GetEnumerator() {
             return GetEnumerator();
         }
 
-        public IEnumerator<InvalidKey> GetEnumerator()
-        {
+        public IEnumerator<InvalidKey> GetEnumerator() {
             InvalidKey key = this;
-            while (key != null)
-            {
+            while (key != null) {
                 yield return key;
                 key = key.Next;
+            }
+        }
+
+        #endregion
+        private void UpdateFromMem(IntPtr sPtr) {
+            var ikey = new _gpgme_invalid_key();
+            Marshal.PtrToStructure(sPtr, ikey);
+
+            _fpr = Gpgme.PtrToStringAnsi(ikey.fpr);
+            _reason = ikey.reason;
+
+            if (ikey.next != IntPtr.Zero) {
+                _next = new InvalidKey(ikey.next);
             }
         }
     }

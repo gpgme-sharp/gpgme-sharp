@@ -18,9 +18,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using Libgpgme.Interop;
 
@@ -29,76 +26,49 @@ namespace Libgpgme
     public class TrustItem
     {
         internal IntPtr itemPtr = IntPtr.Zero;
-        private string keyid;
-        public string KeyId
-        {
-            get { return keyid; }
-        }
-        private TrustItemType type;
-        public TrustItemType Type
-        {
-            get { return type; }
-        }
-        private int level;
-        public int Level
-        {
-            get { return level; }
-        }
-        private string owner_trust;
-        public string OwnerTrust
-        {
-            get { return owner_trust; }
-        }
-        private string validity;
-        public string Validity
-        {
-            get { return validity; }
-        }
-        private string name;
-        public string Name
-        {
-            get { return name; }
+
+        public string KeyId { get; private set; }
+        public TrustItemType Type { get; private set; }
+        public int Level { get; private set; }
+        public string OwnerTrust { get; private set; }
+        public string Validity { get; private set; }
+        public string Name { get; private set; }
+
+        internal TrustItem(IntPtr itemPtr) {
+            if (itemPtr.Equals(IntPtr.Zero)) {
+                throw new InvalidPtrException("An invalid trust item pointer has been supplied.");
+            }
+
+            UpdateFromMem(itemPtr);
         }
 
-        ~TrustItem()
-        {
-            if (itemPtr != IntPtr.Zero)
-            {
+        ~TrustItem() {
+            if (itemPtr != IntPtr.Zero) {
                 // remove trust item reference
                 libgpgme.gpgme_trust_item_unref(itemPtr);
                 itemPtr = IntPtr.Zero;
             }
         }
-      
-        internal TrustItem(IntPtr itemPtr)
-        {
-            if (itemPtr.Equals(IntPtr.Zero))
-                throw new InvalidPtrException("An invalid trust item pointer has been supplied.");
-            
-            UpdateFromMem(itemPtr);
-        }
 
-        private void UpdateFromMem(IntPtr itemPtr)
-        {
-            _gpgme_trust_item titem = new _gpgme_trust_item();
+        private void UpdateFromMem(IntPtr itemPtr) {
+            var titem = new _gpgme_trust_item();
             Marshal.PtrToStructure(itemPtr, titem);
 
-            keyid = Gpgme.PtrToStringAnsi(titem.keyid);
-            switch (titem.type)
-            {
+            KeyId = Gpgme.PtrToStringAnsi(titem.keyid);
+            switch (titem.type) {
                 case 1:
-                    type = TrustItemType.Key;
+                    Type = TrustItemType.Key;
                     break;
                 case 2:
-                    type = TrustItemType.UserId;
+                    Type = TrustItemType.UserId;
                     break;
                 default:
                     throw new GeneralErrorException("Unknown trust item type value of " + titem.type);
             }
-            level = titem.level;
-            owner_trust = Gpgme.PtrToStringUTF8(titem.owner_trust);
-            validity = Gpgme.PtrToStringAnsi(titem.validity);
-            name = Gpgme.PtrToStringUTF8(titem.name);
+            Level = titem.level;
+            OwnerTrust = Gpgme.PtrToStringUTF8(titem.owner_trust);
+            Validity = Gpgme.PtrToStringAnsi(titem.validity);
+            Name = Gpgme.PtrToStringUTF8(titem.name);
         }
     }
 }

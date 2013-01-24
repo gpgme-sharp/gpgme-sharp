@@ -18,9 +18,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace Libgpgme.Interop
@@ -63,9 +60,9 @@ namespace Libgpgme.Interop
         uint _unused : 28;
         */
         public uint flags;
-        
+
         public gpgme_validity_t validity;
-        
+
         public uint validity_reason; //gpgme_error_t
 
         /* The public key algorithm used to create the signature.  */
@@ -77,39 +74,29 @@ namespace Libgpgme.Interop
         /* The mailbox from the PKA information or NULL. */
         public IntPtr pka_address; // char *
 
-        public bool wrong_key_usage
-        {
+        public bool wrong_key_usage {
             get { return ((flags & 1) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 1;
-                else
-                    flags &= (~(uint)1);
+                } else {
+                    flags &= (~(uint) 1);
+                }
             }
         }
-        public PkaStatus pka_trust
-        {
-            get 
-            {
-                return (PkaStatus)((flags & 6) >> 1);
-            }
-            set
-            {
-                flags = (flags & 0xFFFFFFF9) | (((uint)value) << 1);
-            }
+        public PkaStatus pka_trust {
+            get { return (PkaStatus) ((flags & 6) >> 1); }
+            set { flags = (flags & 0xFFFFFFF9) | (((uint) value) << 1); }
         }
-        public bool chain_model
-        {
+        public bool chain_model {
             get { return ((flags & 8) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 8;
-                else
-                    flags &= (~(uint)8);
+                } else {
+                    flags &= (~(uint) 8);
+                }
             }
         }
-
     }
 }

@@ -1,5 +1,5 @@
 # gpgme-sharp - .NET binding for libgpgme (GnuPG Made Easy)
-# Copyright (C) 2009 Daniel Mueller <daniel@danm.de>
+# Copyright (C) 2009-2013 Daniel Mueller <daniel@danm.de>
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public

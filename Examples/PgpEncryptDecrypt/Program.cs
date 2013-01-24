@@ -18,7 +18,7 @@
  */
 
 using System;
-using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.IO;
 
@@ -28,7 +28,7 @@ namespace PgpEncryptDecrypt
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Context ctx = new Context();
 
@@ -37,14 +37,14 @@ namespace PgpEncryptDecrypt
 
             Console.WriteLine("Search Bob's PGP key in the default keyring..");
 
-            String searchstr = "bob@home.internal";
+            const string SEARCHSTR = "bob@home.internal";
             IKeyStore keyring = ctx.KeyStore;
 
             // retrieve all keys that have Bob's email address 
-            Key[] keys = keyring.GetKeyList(searchstr, false);
+            Key[] keys = keyring.GetKeyList(SEARCHSTR, false);
             if (keys == null || keys.Length == 0)
             {
-                Console.WriteLine("Cannot find Bob's PGP key {0} in your keyring.", searchstr);
+                Console.WriteLine("Cannot find Bob's PGP key {0} in your keyring.", SEARCHSTR);
                 Console.WriteLine("You may want to create the PGP key by using the appropriate\n"
                     + "sample in the Samples/ directory.");
                 return;
@@ -70,7 +70,7 @@ namespace PgpEncryptDecrypt
             string secrettext = new string('+', 508)
                 + " Die Gedanken sind frei "
                 + new string('+', 508)
-                + randomtext.ToString();
+                + randomtext;
 
             Console.WriteLine("Text to be encrypted:\n\n{0}", secrettext);
 
@@ -103,11 +103,11 @@ namespace PgpEncryptDecrypt
             Console.Write("Encrypt data for {0} ({1}).. ", 
                 bob.Uid.Name, bob.KeyId);
 
-            EncryptionResult encrst = ctx.Encrypt(
+            ctx.Encrypt(
                 new Key[] { bob },          // encrypt data to Bob's key only
                 EncryptFlags.AlwaysTrust,   // trust our sample PGP key
-                plain,      // source buffer
-                cipher);    // destination buffer
+                plain,                      // source buffer
+                cipher);
 
             Console.WriteLine("done.");
             Console.WriteLine("Cipher text:");
@@ -118,14 +118,13 @@ namespace PgpEncryptDecrypt
             /* Read cipher text from libgpgme's memory based buffer and print
              * it to the console screen.
              */
-            char[] buf;
             // the cipher text is UTF8 encoded
             BinaryReader binreader = new BinaryReader(cipher, utf8);
             while (true)
             {
                 try
                 {
-                    buf = binreader.ReadChars(255);
+                    char[] buf = binreader.ReadChars(255);
                     if (buf.Length == 0)
                         break;
                     Console.Write(buf);
@@ -141,17 +140,17 @@ namespace PgpEncryptDecrypt
             /* Set the password callback - needed if the user doesn't run
              * gpg-agent or any other password / pin-entry software.
              */
-            ctx.SetPassphraseFunction(new PassphraseDelegate(MyPassphraseCallback));
+            ctx.SetPassphraseFunction(MyPassphraseCallback);
 
             // go to the beginning(!)
             cipher.Seek(0, SeekOrigin.Begin);
 
             Console.Write("Decrypt data.. ");
-            GpgmeData decryptedText = new GpgmeMemoryData();
+            GpgmeData decrypted_text = new GpgmeMemoryData();
 
             DecryptionResult decrst = ctx.Decrypt(
                 cipher,         // source buffer
-                decryptedText); // destination buffer
+                decrypted_text); // destination buffer
 
             Console.WriteLine("Done. Filename: \"{0}\" Recipients:", 
                 decrst.FileName);
@@ -171,15 +170,14 @@ namespace PgpEncryptDecrypt
             byte[] orig = new byte[255], cmp = new byte[255];
 
             plain.Seek(0, SeekOrigin.Begin);
-            decryptedText.Seek(0, SeekOrigin.Begin);
+            decrypted_text.Seek(0, SeekOrigin.Begin);
 
             while (true)
             {
                 try
                 {
-                    int a,b;
-                    a = plain.Read(orig, orig.Length);
-                    b = decryptedText.Read(cmp, cmp.Length);
+                    int a = plain.Read(orig, orig.Length);
+                    int b = decrypted_text.Read(cmp, cmp.Length);
 
                     if (a != b)
                         throw new DecryptionFailedException("The two data buffers have different sizes.");
@@ -190,7 +188,7 @@ namespace PgpEncryptDecrypt
                     for (int i = 0; i < a; i++)
                         if (orig[i] != cmp[i])
                             throw new DecryptionFailedException("The two data buffers differ at position "
-                                + i.ToString() + ".");
+                                + i.ToString(CultureInfo.InvariantCulture) + ".");
                 }
                 catch (EndOfStreamException)
                 {
@@ -224,7 +222,7 @@ namespace PgpEncryptDecrypt
 
             Console.Write("Encrypt file plainfile.txt to cipherfile.asc.. ");
 
-            encrst = ctx.Encrypt(
+            ctx.Encrypt(
                 new Key[] { bob },
                 EncryptFlags.AlwaysTrust,
                 plainfile,
@@ -268,8 +266,6 @@ namespace PgpEncryptDecrypt
 
             cipherfile.Close();
             plainfile.Close();
-
-            return;
         }
 
         /// <summary>

@@ -18,15 +18,14 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 using Libgpgme.Interop;
 
 namespace Libgpgme
 {
     /* The available protocols.  */
-    public enum Protocol : int
+
+    public enum Protocol
     {
         OpenPGP = gpgme_protocol_t.GPGME_PROTOCOL_OpenPGP,
         CMS = gpgme_protocol_t.GPGME_PROTOCOL_CMS,
@@ -34,42 +33,42 @@ namespace Libgpgme
         Unknown = gpgme_protocol_t.GPGME_PROTOCOL_UNKNOWN
     }
 
-    public enum KeyAlgorithm : int
+    public enum KeyAlgorithm
     {
-        [DescriptionAttribute("RSA")]
-        [AlgorithmCapabilityAttribute(AlgorithmCapability.CanSign | AlgorithmCapability.CanEncrypt)]
-        RSA   = gpgme_pubkey_algo_t.GPGME_PK_RSA,
-        
-        [DescriptionAttribute("RSA-E")]
-        [AlgorithmCapabilityAttribute(AlgorithmCapability.CanEncrypt)]
+        [Description("RSA")]
+        [AlgorithmCapability(AlgorithmCapability.CanSign | AlgorithmCapability.CanEncrypt)]
+        RSA = gpgme_pubkey_algo_t.GPGME_PK_RSA,
+
+        [Description("RSA-E")]
+        [AlgorithmCapability(AlgorithmCapability.CanEncrypt)]
         RSA_E = gpgme_pubkey_algo_t.GPGME_PK_RSA_E,
-        
-        [DescriptionAttribute("RSA-S")]
-        [AlgorithmCapabilityAttribute(AlgorithmCapability.CanSign)]
+
+        [Description("RSA-S")]
+        [AlgorithmCapability(AlgorithmCapability.CanSign)]
         RSA_S = gpgme_pubkey_algo_t.GPGME_PK_RSA_S,
-        
-        [DescriptionAttribute("ELG-E")]
-        [AlgorithmCapabilityAttribute(AlgorithmCapability.CanEncrypt)]
+
+        [Description("ELG-E")]
+        [AlgorithmCapability(AlgorithmCapability.CanEncrypt)]
         ELG_E = gpgme_pubkey_algo_t.GPGME_PK_ELG_E,
-        
-        [DescriptionAttribute("DSA")]
-        [AlgorithmCapabilityAttribute(AlgorithmCapability.CanSign)]
-        DSA   = gpgme_pubkey_algo_t.GPGME_PK_DSA,
-        
-        [DescriptionAttribute("ELG")]
-        [AlgorithmCapabilityAttribute(AlgorithmCapability.CanEncrypt | AlgorithmCapability.CanSign)]
-        ELG   = gpgme_pubkey_algo_t.GPGME_PK_ELG
+
+        [Description("DSA")]
+        [AlgorithmCapability(AlgorithmCapability.CanSign)]
+        DSA = gpgme_pubkey_algo_t.GPGME_PK_DSA,
+
+        [Description("ELG")]
+        [AlgorithmCapability(AlgorithmCapability.CanEncrypt | AlgorithmCapability.CanSign)]
+        ELG = gpgme_pubkey_algo_t.GPGME_PK_ELG
     }
-    
-    public enum HashAlgorithm : int
+
+    public enum HashAlgorithm
     {
         None = gpgme_hash_algo_t.GPGME_MD_NONE,
         MD5 = gpgme_hash_algo_t.GPGME_MD_MD5,
         SHA1 = gpgme_hash_algo_t.GPGME_MD_SHA1,
         RMD160 = gpgme_hash_algo_t.GPGME_MD_RMD160,
         MD2 = gpgme_hash_algo_t.GPGME_MD_MD2,
-        TIGER = gpgme_hash_algo_t.GPGME_MD_TIGER,   /* TIGER/192. */
-        HAVAL = gpgme_hash_algo_t.GPGME_MD_HAVAL,   /* HAVAL, 5 pass, 160 bit. */
+        TIGER = gpgme_hash_algo_t.GPGME_MD_TIGER, /* TIGER/192. */
+        HAVAL = gpgme_hash_algo_t.GPGME_MD_HAVAL, /* HAVAL, 5 pass, 160 bit. */
         SHA256 = gpgme_hash_algo_t.GPGME_MD_SHA256,
         SHA384 = gpgme_hash_algo_t.GPGME_MD_SHA384,
         SHA512 = gpgme_hash_algo_t.GPGME_MD_SHA512,
@@ -80,7 +79,7 @@ namespace Libgpgme
         CRC24_RFC2440 = gpgme_hash_algo_t.GPGME_MD_CRC24_RFC2440
     }
 
-    public enum CipherAlgorithm : int
+    public enum CipherAlgorithm
     {
         None = gnupg_cipher_algo_t.CIPHER_ALGO_NONE,
         IDEA = gnupg_cipher_algo_t.CIPHER_ALGO_IDEA,
@@ -95,8 +94,8 @@ namespace Libgpgme
         CAMELLIA256 = gnupg_cipher_algo_t.CIPHER_ALGO_CAMELLIA256,
         DUMMY = gnupg_cipher_algo_t.CIPHER_ALGO_DUMMY
     }
-    
-    public enum CompressAlgorithm : int
+
+    public enum CompressAlgorithm
     {
         None = gnupg_compress_algo_t.COMPRESS_ALGO_NONE,
         ZIP = gnupg_compress_algo_t.COMPRESS_ALGO_ZIP,
@@ -107,24 +106,25 @@ namespace Libgpgme
     [Flags]
     public enum PgpFeatureFlags
     {
-        [DescriptionAttribute("mdc")]
-        MDC = 1,                // Modification Detection Code
-        [DescriptionAttribute("ks-modify")]
-        KeyserverModify = 2     //Keyserver no-modify
+        [Description("mdc")]
+        MDC = 1, // Modification Detection Code
+        [Description("ks-modify")]
+        KeyserverModify = 2 //Keyserver no-modify
     }
 
     /* The available keylist mode flags.  */
+
     [Flags]
-    public enum KeylistMode : int
+    public enum KeylistMode
     {
-        Local = (int)gpgme_keylist_mode_t.GPGME_KEYLIST_MODE_LOCAL,
-        Extern = (int)gpgme_keylist_mode_t.GPGME_KEYLIST_MODE_EXTERN,
-        Signatures = (int)gpgme_keylist_mode_t.GPGME_KEYLIST_MODE_SIGS,
-        SignatureNotations = (int)gpgme_keylist_mode_t.GPGME_KEYLIST_MODE_SIG_NOTATIONS ,
-        Validate = (int)gpgme_keylist_mode_t.GPGME_KEYLIST_MODE_VALIDATE
+        Local = (int) gpgme_keylist_mode_t.GPGME_KEYLIST_MODE_LOCAL,
+        Extern = (int) gpgme_keylist_mode_t.GPGME_KEYLIST_MODE_EXTERN,
+        Signatures = (int) gpgme_keylist_mode_t.GPGME_KEYLIST_MODE_SIGS,
+        SignatureNotations = (int) gpgme_keylist_mode_t.GPGME_KEYLIST_MODE_SIG_NOTATIONS,
+        Validate = (int) gpgme_keylist_mode_t.GPGME_KEYLIST_MODE_VALIDATE
     }
 
-    public enum PassphraseResult : int
+    public enum PassphraseResult
     {
         Success = 0,
         Canceled = gpg_err_code_t.GPG_ERR_CANCELED
@@ -132,15 +132,17 @@ namespace Libgpgme
 
     /* Signature notations.  */
     /* The available signature notation flags.  */
+
     [Flags]
-    public enum SignatureNotationFlags : int
+    public enum SignatureNotationFlags
     {
         HumanReadable = gpgme_sig_notation_flags_t.GPGME_SIG_NOTATION_HUMAN_READABLE,
         Critical = gpgme_sig_notation_flags_t.GPGME_SIG_NOTATION_CRITICAL
     }
-	
+
     /* The available validities for a trust item or key.  */
-    public enum Validity : int
+
+    public enum Validity
     {
         Unknown = gpgme_validity_t.GPGME_VALIDITY_UNKNOWN,
         Undefined = gpgme_validity_t.GPGME_VALIDITY_UNDEFINED,
@@ -151,15 +153,17 @@ namespace Libgpgme
     }
 
     /* The possible encoding mode of gpgme_data_t objects.  */
-    public enum DataEncoding : int
+
+    public enum DataEncoding
     {
-        None = gpgme_data_encoding_t.GPGME_DATA_ENCODING_NONE,	/* Not specified.  */
+        None = gpgme_data_encoding_t.GPGME_DATA_ENCODING_NONE, /* Not specified.  */
         Binary = gpgme_data_encoding_t.GPGME_DATA_ENCODING_BINARY,
         Base64 = gpgme_data_encoding_t.GPGME_DATA_ENCODING_BASE64,
-        Armor = gpgme_data_encoding_t.GPGME_DATA_ENCODING_ARMOR 	/* Either PEM or OpenPGP Armor.  */
+        Armor = gpgme_data_encoding_t.GPGME_DATA_ENCODING_ARMOR /* Either PEM or OpenPGP Armor.  */
     }
 
     /* Import.  */
+
     [Flags]
     public enum ImportStatusFlags
     {
@@ -181,46 +185,48 @@ namespace Libgpgme
         UserId = 2
     }
 
-    public enum EncryptFlags : int
+    public enum EncryptFlags
     {
         None = gpgme_encrypt_flags_t.NONE,
         AlwaysTrust = gpgme_encrypt_flags_t.GPGME_ENCRYPT_ALWAYS_TRUST
     }
 
     /* The available signature modes.  */
-    public enum SignatureMode : int
+
+    public enum SignatureMode
     {
         Normal = gpgme_sig_mode_t.GPGME_SIG_MODE_NORMAL,
         Detach = gpgme_sig_mode_t.GPGME_SIG_MODE_DETACH,
         Clear = gpgme_sig_mode_t.GPGME_SIG_MODE_CLEAR
     }
 
-    public enum PkaStatus : int
+    public enum PkaStatus
     {
-        NotAvailable = 0, 
-        Bad = 1, 
-        Okay = 2, 
+        NotAvailable = 0,
+        Bad = 1,
+        Okay = 2,
         RFU = 3
     }
 
     [Flags]
-    public enum SignatureSummary : int
+    public enum SignatureSummary
     {
-        Valid = gpgme_sigsum_t.GPGME_SIGSUM_VALID ,        /* The signature is fully valid.  */
-        Green = gpgme_sigsum_t.GPGME_SIGSUM_GREEN ,        /* The signature is good.  */
-        Red = gpgme_sigsum_t.GPGME_SIGSUM_RED ,          /* The signature is bad.  */
-        KeyRevoked = gpgme_sigsum_t.GPGME_SIGSUM_KEY_REVOKED ,  /* One key has been revoked.  */
-        KeyExpired = gpgme_sigsum_t.GPGME_SIGSUM_KEY_EXPIRED ,  /* One key has expired.  */
-        SignatureExpired = gpgme_sigsum_t.GPGME_SIGSUM_SIG_EXPIRED ,  /* The signature has expired.  */
-        KeyMissing = gpgme_sigsum_t.GPGME_SIGSUM_KEY_MISSING ,  /* Can't verify: key missing.  */
-        CRLMissing = gpgme_sigsum_t.GPGME_SIGSUM_CRL_MISSING ,  /* CRL not available.  */
-        CRLTooOld = gpgme_sigsum_t.GPGME_SIGSUM_CRL_TOO_OLD ,  /* Available CRL is too old.  */
-        BadPolicy = gpgme_sigsum_t.GPGME_SIGSUM_BAD_POLICY ,   /* A policy was not met.  */
-        SysError = gpgme_sigsum_t.GPGME_SIGSUM_SYS_ERROR      /* A system error occured.  */
+        Valid = gpgme_sigsum_t.GPGME_SIGSUM_VALID, /* The signature is fully valid.  */
+        Green = gpgme_sigsum_t.GPGME_SIGSUM_GREEN, /* The signature is good.  */
+        Red = gpgme_sigsum_t.GPGME_SIGSUM_RED, /* The signature is bad.  */
+        KeyRevoked = gpgme_sigsum_t.GPGME_SIGSUM_KEY_REVOKED, /* One key has been revoked.  */
+        KeyExpired = gpgme_sigsum_t.GPGME_SIGSUM_KEY_EXPIRED, /* One key has expired.  */
+        SignatureExpired = gpgme_sigsum_t.GPGME_SIGSUM_SIG_EXPIRED, /* The signature has expired.  */
+        KeyMissing = gpgme_sigsum_t.GPGME_SIGSUM_KEY_MISSING, /* Can't verify: key missing.  */
+        CRLMissing = gpgme_sigsum_t.GPGME_SIGSUM_CRL_MISSING, /* CRL not available.  */
+        CRLTooOld = gpgme_sigsum_t.GPGME_SIGSUM_CRL_TOO_OLD, /* Available CRL is too old.  */
+        BadPolicy = gpgme_sigsum_t.GPGME_SIGSUM_BAD_POLICY, /* A policy was not met.  */
+        SysError = gpgme_sigsum_t.GPGME_SIGSUM_SYS_ERROR /* A system error occured.  */
     }
 
     /* Key editing status codes */
-    public enum KeyEditStatusCode : int
+
+    public enum KeyEditStatusCode
     {
         Eof = gpgme_status_code_t.GPGME_STATUS_EOF,
         /* mkstatus processing starts here */
@@ -315,44 +321,47 @@ namespace Libgpgme
 
         PlainText = gpgme_status_code_t.GPGME_STATUS_PLAINTEXT
     }
+
     [Flags]
     public enum PgpSignatureType
     {
-        Normal = 0,    // sign
-        NonExportable = 1,    // l 
-        NonRevocable = 2,    // nr
-        Trust = 4,    // t
+        Normal = 0, // sign
+        NonExportable = 1, // l 
+        NonRevocable = 2, // nr
+        Trust = 4, // t
     }
-    public enum PgpSignatureClass : int
+
+    public enum PgpSignatureClass
     {
         Generic = 0,
         Persona = 1,
         Casual = 2,
         Positive = 3
     }
-    public enum PgpSignatureTrustLevel : int
+
+    public enum PgpSignatureTrustLevel
     {
         Marginal = 1,
         Full = 2
     }
 
-    public enum PgpRevokeSignatureReasonCode : int
+    public enum PgpRevokeSignatureReasonCode
     {
         NoReason = 0,
         UidNoLongerValid = 4
     }
 
-    public enum PgpOwnerTrust : int
+    public enum PgpOwnerTrust
     {
-        Undefined = gpgme_validity_t.GPGME_VALIDITY_UNDEFINED,  // I don't know or won't say
-        Never = gpgme_validity_t.GPGME_VALIDITY_NEVER,          // I do NOT trust
-        Marginal = gpgme_validity_t.GPGME_VALIDITY_MARGINAL,    // I trust marginally
-        Full = gpgme_validity_t.GPGME_VALIDITY_FULL,            // I trust fully
-        Ultimate = gpgme_validity_t.GPGME_VALIDITY_ULTIMATE     // I trust ultimately
+        Undefined = gpgme_validity_t.GPGME_VALIDITY_UNDEFINED, // I don't know or won't say
+        Never = gpgme_validity_t.GPGME_VALIDITY_NEVER, // I do NOT trust
+        Marginal = gpgme_validity_t.GPGME_VALIDITY_MARGINAL, // I trust marginally
+        Full = gpgme_validity_t.GPGME_VALIDITY_FULL, // I trust fully
+        Ultimate = gpgme_validity_t.GPGME_VALIDITY_ULTIMATE // I trust ultimately
     }
 
     [Flags]
-    public enum AlgorithmCapability 
+    public enum AlgorithmCapability
     {
         CanNothing = 0,
         CanSign = 1,
@@ -362,31 +371,30 @@ namespace Libgpgme
         Unknown = 128
     }
 
-    public enum PgpSubkeyAlgorithm : int
+    public enum PgpSubkeyAlgorithm
     {
-        [DescriptionAttribute("DSA")]
-        [AlgorithmCapabilityAttribute(AlgorithmCapability.CanSign)]
+        [Description("DSA")]
+        [AlgorithmCapability(AlgorithmCapability.CanSign)]
         DSASignOnly = 2,
 
-        [DescriptionAttribute("DSA")]
-        [AlgorithmCapabilityAttribute(AlgorithmCapability.Unknown)]
+        [Description("DSA")]
+        [AlgorithmCapability(AlgorithmCapability.Unknown)]
         DSAUseCapabilities = 3,
 
-        [DescriptionAttribute("Elgamal")]
-        [AlgorithmCapabilityAttribute(AlgorithmCapability.CanEncrypt)]
+        [Description("Elgamal")]
+        [AlgorithmCapability(AlgorithmCapability.CanEncrypt)]
         ELGEncryptOnly = 4,
 
-        [DescriptionAttribute("RSA")]
-        [AlgorithmCapabilityAttribute(AlgorithmCapability.CanSign)]
+        [Description("RSA")]
+        [AlgorithmCapability(AlgorithmCapability.CanSign)]
         RSASignOnly = 5,
 
-        [DescriptionAttribute("RSA")]
-        [AlgorithmCapabilityAttribute(AlgorithmCapability.CanEncrypt)]
+        [Description("RSA")]
+        [AlgorithmCapability(AlgorithmCapability.CanEncrypt)]
         RSAEncryptOnly = 6,
 
-        [DescriptionAttribute("RSA")]
-        [AlgorithmCapabilityAttribute(AlgorithmCapability.Unknown)]
+        [Description("RSA")]
+        [AlgorithmCapability(AlgorithmCapability.Unknown)]
         RSAUseCapabilities = 7
-
     }
 }

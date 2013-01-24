@@ -18,9 +18,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace Libgpgme.Interop
@@ -44,10 +41,8 @@ namespace Libgpgme.Interop
         /* The status of the recipient.  */
         public int status; //gpgme_error_t
 
-        public _gpgme_recipient()
-        {
+        public _gpgme_recipient() {
             _keyid = new byte[16 + 1];
         }
     }
 }
-

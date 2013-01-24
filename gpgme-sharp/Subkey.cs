@@ -20,177 +20,119 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 using System.Runtime.InteropServices;
-using System.Threading;
 using Libgpgme.Interop;
 
 namespace Libgpgme
 {
-    public class Subkey: IEnumerable<Subkey>
+    public class Subkey : IEnumerable<Subkey>
     {
-        private Subkey next;
-        private bool revoked, expired, disabled, invalid, can_encrypt,
-            can_sign, can_certify, can_authenticate, is_qualified,
-            secret;
-        private KeyAlgorithm pubkey_algo;
-        private long length;
-        string keyid, fpr;
-        private long timestamp, expires;
+        private long _expires;
+        private long _timestamp;
 
-        internal Subkey(IntPtr subkeyPtr)
-        {
-            if (subkeyPtr == (IntPtr)0)
+        public string KeyId { get; private set; }
+        public string Fingerprint { get; private set; }
+        public Subkey Next { get; private set; }
+        public bool Revoked { get; private set; }
+        public bool Expired { get; private set; }
+        public bool Disabled { get; private set; }
+        public bool Invalid { get; private set; }
+        public bool CanEncrypt { get; private set; }
+        public bool CanSign { get; private set; }
+        public bool CanCertify { get; private set; }
+        public bool Secret { get; private set; }
+        public bool CanAuthenticate { get; private set; }
+        public bool IsQualified { get; private set; }
+        public KeyAlgorithm PubkeyAlgorithm { get; private set; }
+        public long Length { get; private set; }
+
+        internal Subkey(IntPtr subkeyPtr) {
+            if (subkeyPtr == IntPtr.Zero) {
                 throw new InvalidPtrException("Invalid subkey pointer. Bad programmer! *spank* *spank*");
+            }
 
             UpdateFromMem(subkeyPtr);
         }
 
-        private void UpdateFromMem(IntPtr subkeyPtr)
-        {
-            _gpgme_subkey subkey = (_gpgme_subkey)
-                Marshal.PtrToStructure(subkeyPtr, 
-                    typeof(_gpgme_subkey));
-
-            revoked = subkey.revoked;
-            expired = subkey.expired;
-            disabled = subkey.disabled;
-            invalid = subkey.invalid;
-            can_encrypt = subkey.can_encrypt;
-            can_sign = subkey.can_sign;
-            can_certify = subkey.can_certify;
-            can_authenticate = subkey.can_authenticate;
-            is_qualified = subkey.is_qualified;
-            secret = subkey.secret;
-
-            pubkey_algo = (KeyAlgorithm)subkey.pubkey_algo;
-            length = (long)subkey.length;
-
-            keyid = Gpgme.PtrToStringAnsi(subkey.keyid);
-            fpr = Gpgme.PtrToStringAnsi(subkey.fpr);
-            timestamp = (long)subkey.timestamp;
-            expires = (long)subkey.expires;
-
-            if (subkey.next != (IntPtr)0)
-                next = new Subkey(subkey.next);
-        }
-
-        public KeyAlgorithm PubkeyAlgorithm
-        {
-            get { return pubkey_algo; }
-        }
-
-        public long Length
-        {
-            get { return length; }
-        }
-
-        public DateTime Timestamp
-        {
-            get 
-            {
-            	if (timestamp < 0)
-            		throw new InvalidTimestampException();
-            	if (timestamp == 0)
-            		throw new TimestampNotAvailableException();
-            	return Gpgme.ConvertFromUnix(timestamp); 
+        public DateTime Timestamp {
+            get {
+                if (_timestamp < 0) {
+                    throw new InvalidTimestampException();
+                }
+                if (_timestamp == 0) {
+                    throw new TimestampNotAvailableException();
+                }
+                return Gpgme.ConvertFromUnix(_timestamp);
             }
         }
-        public DateTime TimestampUTC
-        {
-            get 
-            {
-               	if (timestamp < 0)
-            		throw new InvalidTimestampException();
-            	if (timestamp == 0)
-            		throw new TimestampNotAvailableException();
-            	return Gpgme.ConvertFromUnixUTC(timestamp); 
+        public DateTime TimestampUTC {
+            get {
+                if (_timestamp < 0) {
+                    throw new InvalidTimestampException();
+                }
+                if (_timestamp == 0) {
+                    throw new TimestampNotAvailableException();
+                }
+                return Gpgme.ConvertFromUnixUTC(_timestamp);
             }
         }
 
-        public DateTime Expires
-        {
-            get { return Gpgme.ConvertFromUnix(expires); }
+        public DateTime Expires {
+            get { return Gpgme.ConvertFromUnix(_expires); }
         }
-        public DateTime ExpiresUTC
-        {
-            get { return Gpgme.ConvertFromUnixUTC(expires); }
+        public DateTime ExpiresUTC {
+            get { return Gpgme.ConvertFromUnixUTC(_expires); }
         }
 
-        public string KeyId
-        {
-            get { return keyid; }
+        public bool IsInfinitely {
+            get { return _expires == 0; }
+            set { throw new NotImplementedException(); }
         }
 
-        public string Fingerprint
-        {
-            get { return fpr; }
-        }
+        #region IEnumerable<Subkey> Members
 
-        public Subkey Next
-        {
-            get { return next; }
-        }
-        public bool Revoked
-        {
-            get { return revoked; }
-        }
-        public bool Expired
-        {
-            get { return expired; }
-        }
-        public bool Disabled
-        {
-            get { return disabled; }
-        }
-        public bool Invalid
-        {
-            get { return invalid; }
-        }
-        public bool CanEncrypt
-        {
-            get { return can_encrypt; }
-        }
-        public bool CanSign
-        {
-            get { return can_sign; }
-        }
-        public bool CanCertify
-        {
-            get { return can_certify; }
-        }
-        public bool Secret
-        {
-            get { return secret; }
-        }
-        public bool CanAuthenticate
-        {
-            get { return can_authenticate; }
-        }
-        public bool IsQualified
-        {
-            get { return is_qualified; }
-        }
-        public bool IsInfinitely
-        {
-            get { return expires == 0; }
-        }
-
-        public IEnumerator<Subkey> GetEnumerator()
-        {
+        public IEnumerator<Subkey> GetEnumerator() {
             //return new SubkeyEnumerator(this);
             Subkey key = this;
-            while (key != null)
-            {
+            while (key != null) {
                 yield return key;
                 key = key.Next;
             }
         }
-        IEnumerator IEnumerable.GetEnumerator()
-        {
+
+        IEnumerator IEnumerable.GetEnumerator() {
             return GetEnumerator();
         }
 
+        #endregion
 
+        private void UpdateFromMem(IntPtr subkeyPtr) {
+            var subkey = (_gpgme_subkey)
+                Marshal.PtrToStructure(subkeyPtr,
+                    typeof(_gpgme_subkey));
+
+            Revoked = subkey.revoked;
+            Expired = subkey.expired;
+            Disabled = subkey.disabled;
+            Invalid = subkey.invalid;
+            CanEncrypt = subkey.can_encrypt;
+            CanSign = subkey.can_sign;
+            CanCertify = subkey.can_certify;
+            CanAuthenticate = subkey.can_authenticate;
+            IsQualified = subkey.is_qualified;
+            Secret = subkey.secret;
+
+            PubkeyAlgorithm = (KeyAlgorithm) subkey.pubkey_algo;
+            Length = subkey.length;
+
+            KeyId = Gpgme.PtrToStringAnsi(subkey.keyid);
+            Fingerprint = Gpgme.PtrToStringAnsi(subkey.fpr);
+            _timestamp = (long) subkey.timestamp;
+            _expires = (long) subkey.expires;
+
+            if (subkey.next != IntPtr.Zero) {
+                Next = new Subkey(subkey.next);
+            }
+        }
     }
 }

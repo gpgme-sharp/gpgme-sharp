@@ -17,29 +17,23 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Libgpgme
 {
     public class PgpPassphraseOptions
     {
         internal static int MAX_PASSWD_COUNT = 4;
+        public bool EmptyOkay;
 
         // passphrase change
-        internal bool passphraseSendCmd = false;
-        internal bool needoldpw = true;
-        
-        internal bool missingpasswd = false;
-        internal bool aborthandler = false;
-
-        internal int emptypasswdcount = 0;
-
-        public char[] OldPassphrase;
         public char[] NewPassphrase;
-        public PassphraseDelegate OldPassphraseCallback;
         public PassphraseDelegate NewPassphraseCallback;
-        public bool EmptyOkay = false;
+        public char[] OldPassphrase;
+        public PassphraseDelegate OldPassphraseCallback;
+        internal bool aborthandler;
+
+        internal int emptypasswdcount;
+        internal bool missingpasswd;
+        internal bool needoldpw = true;
+        internal bool passphraseSendCmd;
     }
 }

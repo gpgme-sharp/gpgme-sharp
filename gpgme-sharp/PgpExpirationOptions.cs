@@ -18,34 +18,31 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Libgpgme
 {
     public class PgpExpirationOptions
     {
-        static DateTime unixdate = new DateTime(1970, 1, 1);
-        private DateTime expirationdate = unixdate;
-
-        internal bool forceQuit = false;
-        internal bool cmdSend = false;
-        internal int nsubkey = 0;
+        private static readonly DateTime _unix_date = new DateTime(1970, 1, 1);
+        private DateTime _expiration_date = _unix_date;
 
         public int[] SelectedSubkeys; // if not set - expire the whole key (pub SC)
         
-        public bool IsInfinitely
-        {
-            get { return expirationdate.Equals(unixdate); }
+        internal bool cmdSend;
+        internal bool forceQuit;
+        internal int nsubkey;
+
+        public bool IsInfinitely {
+            get { return _expiration_date.Equals(_unix_date); }
         }
-        public void MakeInfinitely()
-        {
-            expirationdate = unixdate;
+
+        public DateTime ExpirationDate {
+            get { return _expiration_date; }
+            set { _expiration_date = value; }
         }
-        public DateTime ExpirationDate
-        {
-            get { return expirationdate; }
-            set { expirationdate = value; }
+
+        public void MakeInfinitely() {
+            _expiration_date = _unix_date;
         }
     }
 }

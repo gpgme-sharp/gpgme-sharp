@@ -18,19 +18,16 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace Libgpgme.Interop
 {
     /* Trust items and operations.  */
+
     [StructLayout(LayoutKind.Sequential)]
     internal class _gpgme_trust_item
     {
-        public _gpgme_trust_item()
-        {
+        public _gpgme_trust_item() {
             _keyid = new byte[17];
             _owner_trust = new byte[2];
             _validity = new byte[2];

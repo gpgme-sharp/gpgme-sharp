@@ -17,30 +17,24 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace Libgpgme.Interop
 {
-	[StructLayout(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential)]
     internal class _gpgme_op_keylist_result // *gpgme_keylist_result_t
-	{
-	    public uint flags;
-		
-		public bool truncated
-        {
+    {
+        public uint flags;
+
+        public bool truncated {
             get { return ((flags & 1) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 1;
-                else
-                    flags &= (~(uint)1);
+                } else {
+                    flags &= (~(uint) 1);
+                }
             }
         }
-
-	}
+    }
 }

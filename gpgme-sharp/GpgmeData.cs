@@ -18,16 +18,14 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Text;
+using System.Globalization;
 using System.IO;
+using System.Runtime.InteropServices;
 using Libgpgme.Interop;
 
 namespace Libgpgme
 {
-    public abstract class GpgmeData: Stream
+    public abstract class GpgmeData : Stream
     {
         public const long EOF = 0;
         public const long ERROR = -1;
@@ -40,65 +38,72 @@ namespace Libgpgme
 
         public abstract bool IsValid { get; }
 
-		internal GpgmeData() { }
+        internal GpgmeData() {
+        }
 
-        public int Read(byte[] buffer)
-        {
+        public int Read(byte[] buffer) {
             return Read(buffer, buffer.Length);
         }
-        public override int Read(byte[] buffer, int offset, int count)
-        {
-            if (!IsValid)
+
+        public override int Read(byte[] buffer, int offset, int count) {
+            if (!IsValid) {
                 throw new InvalidDataBufferException("The data buffer is invalid.");
-            if (buffer == null)
-                throw new ArgumentNullException("An empty destination buffer has been given.");
-            if (buffer.Length < (offset + count))
+            }
+            if (buffer == null) {
+                throw new ArgumentNullException("buffer", "An empty destination buffer has been given.");
+            }
+            if (buffer.Length < (offset + count)) {
                 throw new ArgumentException("The sum of offset and count is bigger than the destination buffer size.");
-            if (offset < 0 || count < 0)
-                throw new ArgumentOutOfRangeException("Invalid / negative offset or count value supplied.");
+            }
+            if (offset < 0 || count < 0) {
+                throw new ArgumentOutOfRangeException("offset", "Invalid / negative offset or count value supplied.");
+            }
 
-            GCHandle pinnedBuffer = GCHandle.Alloc(buffer, GCHandleType.Pinned);
+            GCHandle pinned_buffer = GCHandle.Alloc(buffer, GCHandleType.Pinned);
 
-            long memaddr = pinnedBuffer.AddrOfPinnedObject().ToInt64() + (long)offset;
-            IntPtr memaddrPtr = (IntPtr)memaddr;
+            long memaddr = pinned_buffer.AddrOfPinnedObject().ToInt64() + offset;
+            var memaddr_ptr = (IntPtr) memaddr;
 
-            UIntPtr size = (UIntPtr)count;
-            IntPtr bytesRead = libgpgme.gpgme_data_read(
+            var size = (UIntPtr) count;
+            IntPtr bytes_read = libgpgme.gpgme_data_read(
                 dataPtr,
-                memaddrPtr,
+                memaddr_ptr,
                 size);
 
-            pinnedBuffer.Free();
-            return bytesRead.ToInt32();
+            pinned_buffer.Free();
+            return bytes_read.ToInt32();
         }
-        public int Read(byte[] buffer, int count)
-        {
-            if (!IsValid)
-                throw new InvalidDataBufferException("The data buffer is invalid.");
-            if (buffer == null)
-                throw new ArgumentNullException("An empty destination buffer has been given.");
-            if (buffer.Length < count)
-                throw new ArgumentException("Requested number of bytes to read is bigger than the destination buffer.");
-            if (count < 0)
-                throw new ArgumentOutOfRangeException("Negative read count value supplied.");
 
-            UIntPtr bufsize = (UIntPtr)count;
-            IntPtr bytesRead = libgpgme.gpgme_data_read(
+        public int Read(byte[] buffer, int count) {
+            if (!IsValid) {
+                throw new InvalidDataBufferException("The data buffer is invalid.");
+            }
+            if (buffer == null) {
+                throw new ArgumentNullException("buffer", "An empty destination buffer has been given.");
+            }
+            if (buffer.Length < count) {
+                throw new ArgumentException("Requested number of bytes to read is bigger than the destination buffer.");
+            }
+            if (count < 0) {
+                throw new ArgumentOutOfRangeException("count", "Negative read count value supplied.");
+            }
+
+            var bufsize = (UIntPtr) count;
+            IntPtr bytes_read = libgpgme.gpgme_data_read(
                 dataPtr,
                 buffer,
                 bufsize);
 
-            return bytesRead.ToInt32();
+            return bytes_read.ToInt32();
         }
 
-        public override long Seek(long offset, SeekOrigin whence)
-        {
-            if (!IsValid)
+        public override long Seek(long offset, SeekOrigin whence) {
+            if (!IsValid) {
                 throw new InvalidDataBufferException("Invalid data buffer.");
+            }
 
             int iwhence = SEEK_CUR;
-            switch (whence)
-            {
+            switch (whence) {
                 case SeekOrigin.Begin:
                     iwhence = SEEK_SET;
                     break;
@@ -109,167 +114,165 @@ namespace Libgpgme
                     iwhence = SEEK_END;
                     break;
             }
-            
-			if (libgpgme.use_lfs) 
-			{
-				return libgpgme.gpgme_data_seek(
-					dataPtr,
-				    offset,
-				    iwhence);
-				
-			} 
-			else 
-			{
-            	IntPtr poffset = (IntPtr)offset;
-            	IntPtr offs = libgpgme.gpgme_data_seek(
-                	dataPtr,
-                	poffset,
-                	iwhence);
-            
-            	return offs.ToInt64();
-			}
+
+            if (libgpgme.use_lfs) {
+                return libgpgme.gpgme_data_seek(
+                    dataPtr,
+                    offset,
+                    iwhence);
+            }
+            var poffset = (IntPtr) offset;
+            IntPtr offs = libgpgme.gpgme_data_seek(
+                dataPtr,
+                poffset,
+                iwhence);
+
+            return offs.ToInt64();
         }
 
-        public override void Write(byte[] buffer, int offset, int count)
-        {
-            if (!IsValid)
+        public override void Write(byte[] buffer, int offset, int count) {
+            if (!IsValid) {
                 throw new InvalidDataBufferException("Invalid data buffer");
-            if (buffer == null)
-                throw new ArgumentNullException("Empty source buffer given.");
-            if (buffer.Length < (offset + count))
-                throw new ArgumentException("Requested number of bytes to write is bigger than the source buffer starting at offset " + offset.ToString()+ ".");
-            if (offset < 0 || count < 0)
-                throw new ArgumentOutOfRangeException("The offset or count is negative.");
+            }
+            if (buffer == null) {
+                throw new ArgumentNullException("buffer", "Empty source buffer given.");
+            }
+            if (buffer.Length < (offset + count)) {
+                throw new ArgumentException(
+                    "Requested number of bytes to write is bigger than the source buffer starting at offset " +
+                        offset.ToString(CultureInfo.InvariantCulture) + ".");
+            }
+            if (offset < 0 || count < 0) {
+                throw new ArgumentOutOfRangeException("offset", "The offset or count is negative.");
+            }
 
-            GCHandle pinnedBuffer = GCHandle.Alloc(buffer, GCHandleType.Pinned);
+            GCHandle pinned_buffer = GCHandle.Alloc(buffer, GCHandleType.Pinned);
 
-            long memaddr = pinnedBuffer.AddrOfPinnedObject().ToInt64() + (long)offset;
-            IntPtr memaddrPtr = (IntPtr)memaddr;
+            long memaddr = pinned_buffer.AddrOfPinnedObject().ToInt64() + offset;
+            IntPtr memaddr_ptr = (IntPtr) memaddr;
 
-            UIntPtr bufsize = (UIntPtr)count;
-            IntPtr bytesWritten = libgpgme.gpgme_data_write(
+            UIntPtr bufsize = (UIntPtr) count;
+            
+            libgpgme.gpgme_data_write(
                 dataPtr,
-                memaddrPtr,
+                memaddr_ptr,
                 bufsize);
 
-            pinnedBuffer.Free();
-            return;
+            pinned_buffer.Free();
         }
 
-        public int Write(byte[] buffer, int count)
-        {
-            if (!IsValid)
+        public int Write(byte[] buffer, int count) {
+            if (!IsValid) {
                 throw new InvalidDataBufferException("Invalid data buffer");
-            if (buffer == null)
-                throw new ArgumentNullException("An empty source buffer has been given.");
-            if (buffer.Length < count)
+            }
+            if (buffer == null) {
+                throw new ArgumentNullException("buffer", "An empty source buffer has been given.");
+            }
+            if (buffer.Length < count) {
                 throw new ArgumentException("Requested number of bytes to write is bigger than the source buffer.");
-            if (count < 0)
-                throw new ArgumentOutOfRangeException("The read count is negative.");
+            }
+            if (count < 0) {
+                throw new ArgumentOutOfRangeException("count", "The read count is negative.");
+            }
 
-            UIntPtr bufsize = (UIntPtr)count;
-            IntPtr bytesWritten = libgpgme.gpgme_data_write(
+            var bufsize = (UIntPtr) count;
+            IntPtr bytes_written = libgpgme.gpgme_data_write(
                 dataPtr,
                 buffer,
                 bufsize);
 
-            return bytesWritten.ToInt32();
+            return bytes_written.ToInt32();
         }
 
-        public override void SetLength(long value)
-        {
-            if (!IsValid)
+        public override void SetLength(long value) {
+            if (!IsValid) {
                 throw new InvalidDataBufferException("Invalid data buffer");
+            }
 
             throw new NotSupportedException("SetLength(long) is not supported.");
         }
 
-        public string FileName
-        {
-            get
-            {
-                if (!IsValid)
+        public string FileName {
+            get {
+                if (!IsValid) {
                     throw new InvalidDataBufferException();
+                }
                 IntPtr ptr = libgpgme.gpgme_data_get_file_name(dataPtr);
-                if (!ptr.Equals(IntPtr.Zero))
-                    return Gpgme.PtrToStringAnsi(ptr);
-                else
-                    return null;
+                
+                return (!ptr.Equals(IntPtr.Zero))
+                    ? Gpgme.PtrToStringAnsi(ptr) 
+                    : null;
             }
-            set
-            {
-                if (!IsValid)
+            set {
+                if (!IsValid) {
                     throw new InvalidDataBufferException();
-                if (value == null)
-                    throw new ArgumentNullException("Invalid file path.");
+                }
+                if (value == null) {
+                    throw new ArgumentNullException("value", "Invalid file path.");
+                }
 
                 IntPtr ptr = Marshal.StringToCoTaskMemAnsi(value);
-                if (!ptr.Equals(IntPtr.Zero))
-                {
+                if (!ptr.Equals(IntPtr.Zero)) {
                     int err = libgpgme.gpgme_data_set_file_name(dataPtr, ptr);
                     gpg_err_code_t errcode = libgpgerror.gpg_err_code(err);
-                    if (ptr != IntPtr.Zero)
-                    {
+                    if (ptr != IntPtr.Zero) {
                         Marshal.FreeCoTaskMem(ptr);
-                        ptr = IntPtr.Zero;
                     }
-                    if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR)
-                        if (errcode == gpg_err_code_t.GPG_ERR_ENOMEM)
+                    if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR) {
+                        if (errcode == gpg_err_code_t.GPG_ERR_ENOMEM) {
                             throw new OutOfMemoryException();
-                        else
-                            throw new GeneralErrorException("Unknown error " + errcode + " (" + err + ")");
-                }
-                else
+                        }
+                        throw new GeneralErrorException("Unknown error " + errcode + " (" + err + ")");
+                    }
+                } else {
                     throw new OutOfMemoryException();
+                }
             }
         }
-        public DataEncoding Encoding
-        {
-            get
-            {
-                if (!IsValid)
+        public DataEncoding Encoding {
+            get {
+                if (!IsValid) {
                     throw new InvalidDataBufferException();
+                }
 
                 gpgme_data_encoding_t enc = libgpgme.gpgme_data_get_encoding(dataPtr);
-                
-                return (DataEncoding)enc;
-            }
-            set
-            {
-                if (!IsValid)
-                    throw new InvalidDataBufferException();
 
-                gpgme_data_encoding_t enc = (gpgme_data_encoding_t)value;
+                return (DataEncoding) enc;
+            }
+            set {
+                if (!IsValid) {
+                    throw new InvalidDataBufferException();
+                }
+
+                var enc = (gpgme_data_encoding_t) value;
 
                 int err = libgpgme.gpgme_data_set_encoding(dataPtr, enc);
                 gpg_err_code_t errcode = libgpgerror.gpg_err_code(err);
-                if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR)
+                if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR) {
                     throw new GeneralErrorException("Could not set data encoding to " + value);
+                }
             }
         }
-        public void Rewind()
-        {
+
+        public void Rewind() {
             Seek(0, SeekOrigin.Begin);
         }
 
-        public override long Position
-        {
-            get
-            {
-                if (!CanSeek)
-                    throw new System.NotSupportedException();
-                else
-                    return Seek(0, SeekOrigin.Current);
+        public override long Position {
+            get {
+                if (!CanSeek) {
+                    throw new NotSupportedException();
+                }
+                return Seek(0, SeekOrigin.Current);
             }
-            set
-            {
-                if (!CanSeek)
-                    throw new System.NotSupportedException();
-                else
-                    Seek(value, SeekOrigin.Begin);
+            set {
+                if (!CanSeek) {
+                    throw new NotSupportedException();
+                }
+                Seek(value, SeekOrigin.Begin);
             }
         }
-		
+
 #if (VERBOSE_DEBUG)
 		internal void DebugOutput(string text)
         {

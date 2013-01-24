@@ -18,186 +18,155 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.IO;
-using Libgpgme.Interop;
+using System.Runtime.InteropServices;
 
 namespace Libgpgme
 {
-    public class GpgmeStreamData : GpgmeCbsData, IDisposable
+    public class GpgmeStreamData : GpgmeCbsData
     {
-        protected Stream iostream = null;
+        protected Stream iostream;
 
-        ~GpgmeStreamData()
-        {
+        // give sub classes the possibility to set "iostream" by themself
+        protected GpgmeStreamData() {
+        }
+
+        protected GpgmeStreamData(bool canRead, bool canWrite, bool canSeek, bool canRelease)
+            : base(canRead, canWrite, canSeek, canRelease) {
+        }
+
+        public GpgmeStreamData(Stream streamobj)
+            : base(streamobj.CanRead, streamobj.CanWrite, streamobj.CanSeek, false) {
+            iostream = streamobj;
+            if (streamobj == null) {
+                throw new ArgumentNullException();
+            }
+        }
+
+        public override bool IsValid {
+            get {
+                return (iostream != null &&
+                    (!dataPtr.Equals(IntPtr.Zero)));
+            }
+        }
+
+        public override long Length {
+            get {
+                if (iostream != null) {
+                    return iostream.Length;
+                }
+                throw new ObjectDisposedException("iostream");
+            }
+        }
+
+        public override bool CanRead {
+            get {
+                if (iostream != null) {
+                    return iostream.CanRead;
+                }
+                return false;
+            }
+        }
+        public override bool CanSeek {
+            get {
+                if (iostream != null) {
+                    return iostream.CanSeek;
+                }
+                return false;
+            }
+        }
+        public override bool CanRelease {
+            get { return true; }
+        }
+        public override bool CanWrite {
+            get {
+                if (iostream != null) {
+                    return iostream.CanWrite;
+                }
+                return false;
+            }
+        }
+        public override bool CanTimeout {
+            get {
+                if (iostream != null) {
+                    return iostream.CanTimeout;
+                }
+                return false;
+            }
+        }
+        public Stream OriginStream {
+            get { return iostream; }
+            protected set { iostream = value; }
+        }
+
+        ~GpgmeStreamData() {
             CleanUp();
         }
 
-        // give sub classes the possibility to set "iostream" by themself
-        protected GpgmeStreamData() {}
-        protected GpgmeStreamData(bool canRead, bool canWrite, bool canSeek, bool canRelease) 
-            : base(canRead, canWrite, canSeek, canRelease)
-        { }
+        protected override IntPtr ReadCB(IntPtr bufPtr, long size) {
+            if (iostream != null && iostream.CanRead) {
+                var buf = new byte[(int) size];
+                int bytes_read = iostream.Read(buf, 0, (int) size);
+                if (bytes_read > 0) {
+                    Marshal.Copy(buf, 0, bufPtr, bytes_read);
+                }
 
-        public GpgmeStreamData(Stream streamobj)
-            : base(streamobj.CanRead, streamobj.CanWrite, streamobj.CanSeek, false)
-        {
-            iostream = streamobj;
-            if (streamobj == null)
-                throw new ArgumentNullException();
-        }
-
-        protected override IntPtr ReadCB(IntPtr bufPtr, long size)
-        {
-            if (iostream != null && iostream.CanRead)
-            {
-                byte[] buf = new byte[(int)size];
-                int bytesRead = iostream.Read(buf, 0, (int)size);
-                if (bytesRead > 0)
-                    Marshal.Copy(buf, 0, bufPtr, bytesRead);
-                
-                return (IntPtr)bytesRead;
+                return (IntPtr) bytes_read;
             }
-            else
-                return (IntPtr)ERROR;
+            return (IntPtr) ERROR;
         }
-        protected override IntPtr WriteCB(IntPtr bufPtr, long size)
-        {
-            if (iostream != null && iostream.CanWrite)
-            {
+
+        protected override IntPtr WriteCB(IntPtr bufPtr, long size) {
+            if (iostream != null && iostream.CanWrite) {
                 long oldpos = iostream.Position;
-                byte[] buf = new byte[(int)size];
-                if (size > 0)
-                    Marshal.Copy(bufPtr, buf, 0, (int)size);
-                
-                iostream.Write(buf, 0, (int)size);
+                var buf = new byte[(int) size];
+                if (size > 0) {
+                    Marshal.Copy(bufPtr, buf, 0, (int) size);
+                }
 
-                return (IntPtr)(iostream.Position - oldpos);
+                iostream.Write(buf, 0, (int) size);
+
+                return (IntPtr) (iostream.Position - oldpos);
             }
-            else
-                return (IntPtr)ERROR;
+            return (IntPtr) ERROR;
         }
-        protected override long SeekCB(long offset, SeekOrigin whence)
-        {
-            if (iostream != null && iostream.CanSeek)
-            {
+
+        protected override long SeekCB(long offset, SeekOrigin whence) {
+            if (iostream != null && iostream.CanSeek) {
                 return iostream.Seek(offset, whence);
             }
-            else
-                return ERROR;
-        }
-		protected override void ReleaseCB ()
-		{
-			//
-		}
-
-        private void CleanUp() 
-        {
-            if (iostream != null)
-                iostream = null;
+            return ERROR;
         }
 
-        protected override void Dispose(bool disposing)
-        {
+        protected override void ReleaseCB() {
+            //
+        }
+
+        private void CleanUp() {
+            iostream = null;
+        }
+
+        protected override void Dispose(bool disposing) {
             GC.SuppressFinalize(this);
             CleanUp();
 
             base.Dispose(disposing);
         }
 
-        public override bool IsValid
-        {
-            get
-            {
-                return (iostream != null && 
-                    (!dataPtr.Equals(IntPtr.Zero)));
-            }
-        }
-        public override void Flush()
-        {
-            if (iostream != null)
+        public override void Flush() {
+            if (iostream != null) {
                 iostream.Flush();
-            else
+            } else {
                 throw new IOException();
+            }
         }
 
-        public override void SetLength(long value)
-        {
-            if (iostream != null)
+        public override void SetLength(long value) {
+            if (iostream != null) {
                 iostream.SetLength(value);
-            else
+            } else {
                 throw new ObjectDisposedException("iostream");
-            
-            return;
-        }
-        public override long Length
-        {
-            get
-            {
-                if (iostream != null)
-                    return iostream.Length;
-                else
-                    throw new ObjectDisposedException("iostream");
             }
-        }
-
-        public override bool CanRead
-        {
-            get
-            {
-                if (iostream != null)
-                    return iostream.CanRead;
-                else
-                    return false;
-            }
-        }
-        public override bool CanSeek
-        {
-            get
-            {
-                if (iostream != null)
-                    return iostream.CanSeek;
-                else
-                    return false;
-            }
-        }
-        public override bool CanRelease
-        {
-            get { return true; }
-        }
-        public override bool CanWrite
-        {
-            get
-            {
-                if (iostream != null)
-                    return iostream.CanWrite;
-                else
-                    return false;
-            }
-        }
-        public override bool CanTimeout
-        {
-            get
-            {
-                if (iostream != null)
-                    return iostream.CanTimeout;
-                else
-                    return false;
-            }
-        }
-        public Stream OriginStream 
-        {
-        	get
-        	{
-        		return iostream;
-        	}
-        	protected set
-        	{
-        		iostream = value;
-        	}
         }
     }
 }

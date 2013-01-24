@@ -18,7 +18,6 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
@@ -28,7 +27,7 @@ namespace PgpSignVerify
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Context ctx = new Context();
 
@@ -37,14 +36,14 @@ namespace PgpSignVerify
 
             Console.WriteLine("Search Alice's PGP key in the default keyring..");
 
-            String searchstr = "alice@home.internal";
+            const string SEARCHSTR = "alice@home.internal";
             IKeyStore keyring = ctx.KeyStore;
 
             // retrieve all keys that have Alice's email address 
-            Key[] keys = keyring.GetKeyList(searchstr, false);
+            Key[] keys = keyring.GetKeyList(SEARCHSTR, false);
             if (keys == null || keys.Length == 0)
             {
-                Console.WriteLine("Cannot find Alice's PGP key {0} in your keyring.", searchstr);
+                Console.WriteLine("Cannot find Alice's PGP key {0} in your keyring.", SEARCHSTR);
                 Console.WriteLine("You may want to create the PGP key by using the appropriate\n"
                     + "sample in the Samples/ directory.");
                 return;
@@ -52,8 +51,7 @@ namespace PgpSignVerify
 
             // print a list of all returned keys
             foreach (Key key in keys)
-                if (key.Uid != null
-                    && key.Fingerprint != null)
+                if (key.Uid != null && key.Fingerprint != null)
                     Console.WriteLine("Found key {0} with fingerprint {1}",
                         key.Uid.Name,
                         key.Fingerprint);
@@ -70,7 +68,7 @@ namespace PgpSignVerify
             string origintxt = new string('+', 508)
                 + " Die Gedanken sind frei "
                 + new string('+', 508)
-                + randomtext.ToString();
+                + randomtext;
 
             Console.WriteLine("Text to be signed:\n\n{0}", origintxt);
 
@@ -102,7 +100,7 @@ namespace PgpSignVerify
             /* Set the password callback - needed if the user doesn't run
              * gpg-agent or any other password / pin-entry software.
              */
-            ctx.SetPassphraseFunction(new PassphraseDelegate(MyPassphraseCallback));
+            ctx.SetPassphraseFunction(MyPassphraseCallback);
 
             // create a detached signature
             SignatureResult sigrst = ctx.Sign(
@@ -139,10 +137,8 @@ namespace PgpSignVerify
             }
 
             origin.Close();
-            origin = null;
 
             detachsig.Close();
-            detachsig = null;
 
             /////// VERIFY DATA (detached signature) ///////
             Console.Write("Verify a detached signature from file: original.txt.sig.. ");
@@ -182,8 +178,6 @@ namespace PgpSignVerify
     	                sig.Validity);
                 }
             }
-
-            return;
         }
         /// <summary>
         /// Passphrase callback method. Invoked if a action requires the user's password.
@@ -203,9 +197,13 @@ namespace PgpSignVerify
              + "\nPrevious passphrase was bad: " + info.PrevWasBad
              + "\nPassword: ");
 
-            passwd = Console.ReadLine().ToCharArray();
+            var read_line = Console.ReadLine();
+            if (read_line != null) {
+                passwd = read_line.ToCharArray();
+                return PassphraseResult.Success;
+            }
 
-            return PassphraseResult.Success;
+            return PassphraseResult.Canceled;
         }
     }
 }

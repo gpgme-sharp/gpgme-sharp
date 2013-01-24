@@ -20,12 +20,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Security;
+using System.Diagnostics;
+using System.Globalization;
 using System.IO;
-
+using System.Runtime.InteropServices;
 using Libgpgme.Interop;
 
 namespace Libgpgme
@@ -38,663 +36,573 @@ namespace Libgpgme
         public const int CERTIFICATES_SENDER_ONLY = 1;
         public const int CERTIFICATES_DEFAULT = -256;
 
-        private IntPtr ctxPtr = IntPtr.Zero;
-        private object ctxLock = new object();
-        
-        private gpgme_passphrase_cb_t passphrase_cb = null;
-        private PassphraseDelegate passphraseFunc = null;
+        private IntPtr _ctx_ptr = IntPtr.Zero;
+        private readonly object _ctx_lock = new object();
 
-        private KeyStore keystore = null;
-        public Exception LastCallbackException;
+        private gpgme_passphrase_cb_t _passphrase_callback;
+        private PassphraseDelegate _passphrase_delegate;
 
-        static Context()
-        {
+        private readonly KeyStore _keystore;
+        public Exception _last_callback_exception;
+
+        static Context() {
             // We need to call gpgme_check_version at least once!
-            try
-            {
+            try {
                 Gpgme.CheckVersion();
+            } catch(Exception exception) {
+                // Do not throw in type constructor!
+                Debug.Print(exception.Message);
             }
-            catch { };
         }
 
-        public Context()
-        {
+        public Context() {
             IntPtr ptr;
-            int err;
 
-            err = libgpgme.gpgme_new(out ptr);
+            var err = libgpgme.gpgme_new(out ptr);
             gpg_err_code_t errcode = libgpgme.gpgme_err_code(err);
 
-            switch (errcode)
-            {
+            switch (errcode) {
                 case gpg_err_code_t.GPG_ERR_NO_ERROR:
-                    this.ctxPtr = ptr;
-                    this.signers = new ContextSigners(this);
-                    this.signots = new ContextSignatureNotations(this);
-                    this.keystore = new KeyStore(this);
+                    _ctx_ptr = ptr;
+                    _signers = new ContextSigners(this);
+                    _signots = new ContextSignatureNotations(this);
+                    _keystore = new KeyStore(this);
                     break;
                 case gpg_err_code_t.GPG_ERR_INV_VALUE:
                     throw new InvalidPtrException("CTX is not a valid pointer.\nBad programmer *spank* *spank*");
                 case gpg_err_code_t.GPG_ERR_ENOMEM:
                     throw new OutOfMemoryException();
                 default:
-                    throw new GeneralErrorException("An unexpected error occurred during context creation. " + errcode.ToString());
-            }
-
-        }
-
-        ~Context()
-        {
-            this.Dispose();
-        }
-
-        public void Dispose()
-        {
-            if (ctxPtr != IntPtr.Zero)
-            {
-                libgpgme.gpgme_release(ctxPtr);
-                ctxPtr = IntPtr.Zero;
+                    throw new GeneralErrorException("An unexpected error occurred during context creation. " +
+                        errcode.ToString());
             }
         }
-        public bool IsValid
-        {
-            get { return (ctxPtr != IntPtr.Zero); }
-        }
-        internal IntPtr CtxPtr
-        {
-            get { return ctxPtr; }
-        }
-        internal object CtxLock
-        {
-            get { return ctxLock; }
+
+        ~Context() {
+            Dispose();
         }
 
-        public Protocol Protocol
-        {
-            get
-            {
-                if (IsValid)
-                {
-                    lock (CtxLock)
-                    {
+        public void Dispose() {
+            if (_ctx_ptr != IntPtr.Zero) {
+                libgpgme.gpgme_release(_ctx_ptr);
+                _ctx_ptr = IntPtr.Zero;
+            }
+        }
+
+        public bool IsValid {
+            get { return (_ctx_ptr != IntPtr.Zero); }
+        }
+        internal IntPtr CtxPtr {
+            get { return _ctx_ptr; }
+        }
+        internal object CtxLock {
+            get { return _ctx_lock; }
+        }
+
+        public Protocol Protocol {
+            get {
+                if (IsValid) {
+                    lock (CtxLock) {
                         gpgme_protocol_t proto = libgpgme.gpgme_get_protocol(CtxPtr);
-                        return (Protocol)proto;
+                        return (Protocol) proto;
                     }
                 }
-                else
-                    throw new InvalidContextException();
+                throw new InvalidContextException();
             }
-            set
-            {
-                if (IsValid)
-                {
-                    lock (CtxLock)
-                    {
-                        gpgme_protocol_t proto = (gpgme_protocol_t)value;
+            set {
+                if (IsValid) {
+                    lock (CtxLock) {
+                        var proto = (gpgme_protocol_t) value;
                         int err = libgpgme.gpgme_set_protocol(CtxPtr, proto);
 
                         gpg_err_code_t errcode = libgpgme.gpgme_err_code(err);
-                        switch (errcode)
-                        {
+                        switch (errcode) {
                             case gpg_err_code_t.GPG_ERR_NO_ERROR:
                                 //UpdateFromMem();
                                 break;
                             case gpg_err_code_t.GPG_ERR_INV_VALUE:
                                 throw new InvalidProtocolException("The protocol "
                                     + value.ToString()
-                                    + " is not supported by any installed GnuPG engine.");
+                                        + " is not supported by any installed GnuPG engine.");
                         }
                     }
-                }
-                else
+                } else {
                     throw new InvalidContextException();
+                }
             }
         }
-        public EngineInfo EngineInfo
-        {
-            get
-            {
-                if (IsValid)
-                {
-                    lock (CtxLock)
-                    {
-                        IntPtr enginePtr = libgpgme.gpgme_ctx_get_engine_info(CtxPtr);
-                        if (enginePtr != (IntPtr)0)
-                            return new EngineInfo(this, enginePtr);
-                        else
-                            return null;
+        public EngineInfo EngineInfo {
+            get {
+                if (IsValid) {
+                    lock (CtxLock) {
+                        IntPtr engine_ptr = libgpgme.gpgme_ctx_get_engine_info(CtxPtr);
+                        if (engine_ptr != IntPtr.Zero) {
+                            return new EngineInfo(this, engine_ptr);
+                        }
+                        return null;
                     }
                 }
-                else
-                    throw new InvalidContextException();
+                throw new InvalidContextException();
             }
         }
 
-        public void SetEngineInfo(Protocol proto, string filename, string homedir)
-        {
-            if (IsValid)
-            {
-                lock (CtxLock)
-                {
-                    IntPtr filenamePtr = IntPtr.Zero, homedirPtr = IntPtr.Zero;
+        public void SetEngineInfo(Protocol proto, string filename, string homedir) {
+            if (IsValid) {
+                lock (CtxLock) {
+                    IntPtr filename_ptr = IntPtr.Zero, homedir_ptr = IntPtr.Zero;
 
-                    if (filename != null)
-                        filenamePtr = Marshal.StringToCoTaskMemAnsi(filename);
-                    if (homedir != null)
-                        homedirPtr = Marshal.StringToCoTaskMemAnsi(homedir);
+                    if (filename != null) {
+                        filename_ptr = Marshal.StringToCoTaskMemAnsi(filename);
+                    }
+                    if (homedir != null) {
+                        homedir_ptr = Marshal.StringToCoTaskMemAnsi(homedir);
+                    }
 
                     int err = libgpgme.gpgme_ctx_set_engine_info(
                         CtxPtr,
-                        (gpgme_protocol_t)proto,
-                        filenamePtr,
-                        homedirPtr);
+                        (gpgme_protocol_t) proto,
+                        filename_ptr,
+                        homedir_ptr);
 
-                    if (filenamePtr != IntPtr.Zero)
-                    {
-                        Marshal.FreeCoTaskMem(filenamePtr);
-                        filenamePtr = IntPtr.Zero;
+                    if (filename_ptr != IntPtr.Zero) {
+                        Marshal.FreeCoTaskMem(filename_ptr);
                     }
-                    if (homedirPtr != IntPtr.Zero)
-                    {
-                        Marshal.FreeCoTaskMem(homedirPtr);
-                        homedirPtr = IntPtr.Zero;
+                    if (homedir_ptr != IntPtr.Zero) {
+                        Marshal.FreeCoTaskMem(homedir_ptr);
                     }
 
                     gpg_err_code_t errcode = libgpgme.gpgme_err_code(err);
-                    if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR)
-                    {
-                        string errmsg = null;
-                        try
-                        {
+                    if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR) {
+                        string errmsg;
+                        try {
                             Gpgme.GetStrError(err, out errmsg);
-                        }
-                        catch
-                        {
+                        } catch {
                             errmsg = "No error message available.";
                         }
-                        throw new ArgumentException(errmsg + " Error: " + err.ToString());
+                        throw new ArgumentException(errmsg + " Error: " + err.ToString(CultureInfo.InvariantCulture));
                     }
                 }
-            }
-            else
+            } else {
                 throw new InvalidContextException();
+            }
         }
 
-        public bool Armor
-        {
-            get
-            {
-                if (IsValid)
-                {
-                    lock (CtxLock)
-                    {
+        public bool Armor {
+            get {
+                if (IsValid) {
+                    lock (CtxLock) {
                         int yes = libgpgme.gpgme_get_armor(CtxPtr);
-                        if (yes > 0)
+                        if (yes > 0) {
                             return true;
-                        else
-                            return false;
+                        }
+                        return false;
                     }
                 }
-                else
-                    throw new InvalidContextException();
+                throw new InvalidContextException();
             }
-            set
-            {
-                if (IsValid)
-                {
-                    lock (CtxLock)
-                    {
+            set {
+                if (IsValid) {
+                    lock (CtxLock) {
                         int yes = 0;
-                        if (value)
+                        if (value) {
                             yes = 1;
+                        }
                         libgpgme.gpgme_set_armor(CtxPtr, yes);
                     }
-                }
-                else
+                } else {
                     throw new InvalidContextException();
+                }
             }
         }
 
-        public bool TextMode
-        {
-            get
-            {
-                if (IsValid)
-                {
-                    lock (CtxLock)
-                    {
+        public bool TextMode {
+            get {
+                if (IsValid) {
+                    lock (CtxLock) {
                         int yes = libgpgme.gpgme_get_textmode(CtxPtr);
-                        if (yes > 0)
+                        if (yes > 0) {
                             return true;
-                        else
-                            return false;
+                        }
+                        return false;
                     }
                 }
-                else
-                    throw new InvalidContextException();
+                throw new InvalidContextException();
             }
-            set
-            {
-                if (IsValid)
-                {
-                    lock (CtxLock)
-                    {
+            set {
+                if (IsValid) {
+                    lock (CtxLock) {
                         int yes = 0;
-                        if (value)
+                        if (value) {
                             yes = 1;
+                        }
                         libgpgme.gpgme_set_textmode(CtxPtr, yes);
                     }
-                }
-                else
+                } else {
                     throw new InvalidContextException();
-
+                }
             }
         }
 
-        public int IncludedCerts
-        {
-            get
-            {
-                if (IsValid)
-                {
-                    lock (CtxLock)
-                    {
+        public int IncludedCerts {
+            get {
+                if (IsValid) {
+                    lock (CtxLock) {
                         return libgpgme.gpgme_get_include_certs(CtxPtr);
                     }
-
                 }
-                else
-                    throw new InvalidContextException();
+                throw new InvalidContextException();
             }
-            set
-            {
-                if (IsValid)
-                {
-                    lock (CtxLock)
-                    {
+            set {
+                if (IsValid) {
+                    lock (CtxLock) {
                         libgpgme.gpgme_set_include_certs(CtxPtr, value);
                     }
-                }
-                else
+                } else {
                     throw new InvalidContextException();
+                }
             }
         }
 
-        public void AddKeylistMode(KeylistMode mode)
-        {
+        public void AddKeylistMode(KeylistMode mode) {
             KeylistMode |= mode;
         }
 
-        public void RemoveKeylistMode(KeylistMode mode)
-        {
+        public void RemoveKeylistMode(KeylistMode mode) {
             KeylistMode tmp = mode;
 
             // Notations can only be retrieved with attached signatures
-            if ((tmp & KeylistMode.Signatures) == KeylistMode.Signatures)
+            if ((tmp & KeylistMode.Signatures) == KeylistMode.Signatures) {
                 tmp |= KeylistMode.SignatureNotations;
-            
+            }
+
             KeylistMode &= ~(tmp);
         }
 
-        public KeylistMode KeylistMode
-        {
-            get
-            {
-                if (IsValid)
-                {
-                    lock (CtxLock)
-                    {
-                        return (KeylistMode)libgpgme.gpgme_get_keylist_mode(CtxPtr);
+        public KeylistMode KeylistMode {
+            get {
+                if (IsValid) {
+                    lock (CtxLock) {
+                        return (KeylistMode) libgpgme.gpgme_get_keylist_mode(CtxPtr);
                     }
                 }
-                else
-                    throw new InvalidContextException();
+                throw new InvalidContextException();
             }
-            set
-            {
-                if (IsValid)
-                {
-                    lock (CtxLock)
-                    {
+            set {
+                if (IsValid) {
+                    lock (CtxLock) {
                         if ((value & KeylistMode.SignatureNotations)
-                            == KeylistMode.SignatureNotations)
+                            == KeylistMode.SignatureNotations) {
                             value |= KeylistMode.Signatures;
+                        }
 
-                        gpgme_keylist_mode_t mode = (gpgme_keylist_mode_t)value;
+                        var mode = (gpgme_keylist_mode_t) value;
 
                         int err = libgpgme.gpgme_set_keylist_mode(CtxPtr, mode);
                         gpg_err_code_t errcode = libgpgme.gpgme_err_code(err);
 
-                        if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR)
-                        {
+                        if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR) {
                             string errmsg;
-                            try
-                            {
+                            try {
                                 Gpgme.GetStrError(err, out errmsg);
-                            }
-                            catch
-                            {
+                            } catch {
                                 errmsg = "Unknown error.";
                             }
-                            throw new ArgumentException(errmsg + " Error: " + err.ToString());
+                            throw new ArgumentException(errmsg + " Error: " + err.ToString(CultureInfo.InvariantCulture));
                         }
                     }
-                }
-                else
+                } else {
                     throw new InvalidContextException();
+                }
             }
         }
 
-        private int _passphrase_cb(IntPtr Hook, IntPtr uid_hint, IntPtr passphrase_info,
-            int prev_was_bad, int fd)
-        {
-
-            bool prevbad;
-            string hint, info;
+        private int PassphraseCb(IntPtr hook, IntPtr uid_hint, IntPtr passphrase_info,
+            int prev_was_bad, int fd) {
             char[] passwd = null;
 
-            hint = Gpgme.PtrToStringUTF8(uid_hint);
-            info = Gpgme.PtrToStringUTF8(passphrase_info);
-            if (prev_was_bad > 0)
-                prevbad = true;
-            else
-                prevbad = false;
+            string hint = Gpgme.PtrToStringUTF8(uid_hint);
+            string info = Gpgme.PtrToStringUTF8(passphrase_info);
+            
+            bool prevbad = prev_was_bad > 0;
 
             PassphraseResult result;
 
-            try
-            {
-                PassphraseInfo pinfo = new PassphraseInfo(Hook, hint, info, prevbad);
-                result = passphraseFunc(this, pinfo, ref passwd);
-            }
-            catch (Exception ex)
-            {
-                LastCallbackException = ex;
+            try {
+                var pinfo = new PassphraseInfo(hook, hint, info, prevbad);
+                result = _passphrase_delegate(this, pinfo, ref passwd);
+            } catch (Exception ex) {
+                _last_callback_exception = ex;
                 passwd = "".ToCharArray();
                 result = PassphraseResult.Canceled;
             }
 
-            if (fd > 0)
-            {
-                byte[] utf8passwd = Gpgme.ConvertCharArrayToUTF8(passwd, 0);
+            if (fd > 0) {
+                byte[] utf8_passwd = Gpgme.ConvertCharArrayToUTF8(passwd, 0);
 
-                Stream fdstream = Gpgme.ConvertToStream(fd, FileAccess.Write);
-                fdstream.Write(utf8passwd, 0, utf8passwd.Length);
-                fdstream.Flush();
-                fdstream.WriteByte((byte)'\n');
-                fdstream.Flush();
+                libgpgme.gpgme_io_write(fd, utf8_passwd, (UIntPtr)utf8_passwd.Length);
+                libgpgme.gpgme_io_write(fd, new[] { (byte)0 }, (UIntPtr)1);
 
                 // try to wipe the passwords
                 int i;
-                for (i = 0; i < utf8passwd.Length; i++)
-                    utf8passwd[i] = 0;
+                for (i = 0; i < utf8_passwd.Length; i++) {
+                    utf8_passwd[i] = 0;
+                }
             }
 
-            return (int)result;
+            return (int) result;
         }
 
-        public void SetPassphraseFunction(PassphraseDelegate func)
-        {
+        public void SetPassphraseFunction(PassphraseDelegate func) {
             SetPassphraseFunction(func, IntPtr.Zero);
         }
-        public void SetPassphraseFunction(PassphraseDelegate func, IntPtr Hook)
-        {
-            if (IsValid)
-            {
-                lock (CtxLock)
-                {
-                    if (passphraseFunc == null)
-                    {
-                        passphrase_cb = new gpgme_passphrase_cb_t(_passphrase_cb);
-                        libgpgme.gpgme_set_passphrase_cb(CtxPtr, passphrase_cb, Hook);
 
-                        passphraseFunc = func;
-                    }
-                    else
+        public void SetPassphraseFunction(PassphraseDelegate func, IntPtr hook) {
+            if (IsValid) {
+                lock (CtxLock) {
+                    if (_passphrase_delegate == null) {
+                        _passphrase_callback = PassphraseCb;
+                        libgpgme.gpgme_set_passphrase_cb(CtxPtr, _passphrase_callback, hook);
+
+                        _passphrase_delegate = func;
+                    } else {
                         throw new GpgmeException("Passphrase function is already set.");
-                }
-            }
-            else
-                throw new InvalidContextException();
-        }
-
-        public bool HasPassphraseFunction
-        {
-            get { return (passphraseFunc != null); }
-        }
-
-        public void ClearPassphraseFunction()
-        {
-            if (IsValid)
-            {
-                lock (CtxLock)
-                {
-                    if (passphraseFunc != null)
-                    {
-                        libgpgme.gpgme_set_passphrase_cb(CtxPtr, null, (IntPtr)0);
-                        passphraseFunc = null;
-                        passphrase_cb = null;
                     }
                 }
-            }
-            else
+            } else {
                 throw new InvalidContextException();
+            }
         }
 
-        public KeyStore KeyStore
-        {
-            get { return keystore; }
+        public bool HasPassphraseFunction {
+            get { return (_passphrase_delegate != null); }
         }
 
-        public EncryptionResult Encrypt(Key[] recipients, EncryptFlags flags, GpgmeData plain, GpgmeData cipher)
-        {
-            if (IsValid)
-            {
-                if (plain == null)
-                    throw new ArgumentNullException("Source data buffer must be supplied.");
-                if (!(plain.IsValid))
-                    throw new InvalidDataBufferException("The specified source data buffer is invalid.");
+        public void ClearPassphraseFunction() {
+            if (IsValid) {
+                lock (CtxLock) {
+                    if (_passphrase_delegate != null) {
+                        libgpgme.gpgme_set_passphrase_cb(CtxPtr, null, IntPtr.Zero);
+                        _passphrase_delegate = null;
+                        _passphrase_callback = null;
+                    }
+                }
+            } else {
+                throw new InvalidContextException();
+            }
+        }
 
-                if (cipher == null)
-                    throw new ArgumentNullException("Destination data buffer must be supplied.");
-                if (!(cipher.IsValid))
-                    throw new InvalidDataBufferException("The specified destination data buffer is invalid.");
+        public KeyStore KeyStore {
+            get { return _keystore; }
+        }
 
-                IntPtr[] recp = Gpgme.KeyArrayToIntPtrArray(recipients);
+        public EncryptionResult Encrypt(Key[] recipients, EncryptFlags flags, GpgmeData plain, GpgmeData cipher) {
+            if (plain == null) {
+                throw new ArgumentNullException("plain", "Source data buffer must be supplied.");
+            }
+            if (!(plain.IsValid)) {
+                throw new InvalidDataBufferException("The specified source data buffer is invalid.");
+            }
+            if (cipher == null) {
+                throw new ArgumentNullException("cipher", "Destination data buffer must be supplied.");
+            }
+            if (!(cipher.IsValid)) {
+                throw new InvalidDataBufferException("The specified destination data buffer is invalid.");
+            }
+            if (!IsValid) {
+                throw new InvalidContextException();
+            }
 
-                lock (CtxLock)
-                {
+            IntPtr[] recp = Gpgme.KeyArrayToIntPtrArray(recipients);
+
+            lock (CtxLock) {
+
 #if (VERBOSE_DEBUG)
 					DebugOutput("gpgme_op_encrypt(..) START");
-#endif			
-                    int err = libgpgme.gpgme_op_encrypt(
-                        CtxPtr,
-                        recp,
-                        (gpgme_encrypt_flags_t)flags,
-                        plain.dataPtr,
-                        cipher.dataPtr);
+#endif
+                int err = libgpgme.gpgme_op_encrypt(
+                    CtxPtr,
+                    recp,
+                    (gpgme_encrypt_flags_t) flags,
+                    plain.dataPtr,
+                    cipher.dataPtr);
 
 #if (VERBOSE_DEBUG)
 					DebugOutput("gpgme_op_encrypt(..) DONE");
 #endif
 
-                    gpg_err_code_t errcode = libgpgerror.gpg_err_code(err);
-                    switch (errcode)
-                    {
-                        case gpg_err_code_t.GPG_ERR_NO_ERROR:
-                            break;
-                        case gpg_err_code_t.GPG_ERR_UNUSABLE_PUBKEY:
-                            break;
-                        case gpg_err_code_t.GPG_ERR_GENERAL:    // Bug? should be GPG_ERR_UNUSABLE_PUBKEY
-                            break;
-                        case gpg_err_code_t.GPG_ERR_INV_VALUE:
-                            throw new InvalidPtrException("Either the context, recipient key array, plain text or cipher text pointer is invalid.");
-                        case gpg_err_code_t.GPG_ERR_BAD_PASSPHRASE:
-                            throw new BadPassphraseException();
-                        case gpg_err_code_t.GPG_ERR_EBADF:
-                            throw new InvalidDataBufferException("The source (plain) or destination (cipher) data buffer is invalid for encryption.");
-                        default:
-                            throw new GeneralErrorException("An unexpected error " 
-                                + errcode.ToString() 
-                                + " (" + err.ToString()
-                                + ") occurred.");
-                    }
-                    IntPtr rstPtr = libgpgme.gpgme_op_encrypt_result(CtxPtr);
+                gpg_err_code_t errcode = libgpgerror.gpg_err_code(err);
+                switch (errcode) {
+                    case gpg_err_code_t.GPG_ERR_NO_ERROR:
+                        break;
+                    case gpg_err_code_t.GPG_ERR_UNUSABLE_PUBKEY:
+                        break;
+                    case gpg_err_code_t.GPG_ERR_GENERAL: // Bug? should be GPG_ERR_UNUSABLE_PUBKEY
+                        break;
+                    case gpg_err_code_t.GPG_ERR_INV_VALUE:
+                        throw new InvalidPtrException(
+                            "Either the context, recipient key array, plain text or cipher text pointer is invalid.");
+                    case gpg_err_code_t.GPG_ERR_BAD_PASSPHRASE:
+                        throw new BadPassphraseException();
+                    case gpg_err_code_t.GPG_ERR_EBADF:
+                        throw new InvalidDataBufferException(
+                            "The source (plain) or destination (cipher) data buffer is invalid for encryption.");
+                    default:
+                        throw new GeneralErrorException("An unexpected error "
+                            + errcode.ToString()
+                                + " (" + err.ToString(CultureInfo.InvariantCulture)
+                                    + ") occurred.");
+                }
+                IntPtr rst_ptr = libgpgme.gpgme_op_encrypt_result(CtxPtr);
 #if (VERBOSE_DEBUG)
 					DebugOutput("gpgme_op_encrypt_result(..) DONE");
-#endif			
-					GC.KeepAlive(recp);
-					GC.KeepAlive(recipients);
-                    GC.KeepAlive(plain);
-                    GC.KeepAlive(cipher);
+#endif
+                GC.KeepAlive(recp);
+                GC.KeepAlive(recipients);
+                GC.KeepAlive(plain);
+                GC.KeepAlive(cipher);
 
-					if (rstPtr != IntPtr.Zero)
-                    {
-                        EncryptionResult encRst = new EncryptionResult(rstPtr);
-                        return encRst;
-                    }
-                    else
-                        throw new GeneralErrorException("An unexpected error occurred. " + errcode.ToString());
+                if (rst_ptr != IntPtr.Zero) {
+                    var enc_rst = new EncryptionResult(rst_ptr);
+                    return enc_rst;
                 }
+                throw new GeneralErrorException("An unexpected error occurred. " + errcode.ToString());
             }
-            else
-                throw new InvalidContextException();
         }
 
-        public EncryptionResult EncryptAndSign(Key[] recipients, EncryptFlags flags, GpgmeData plain, GpgmeData cipher)
-        {
-            if (IsValid)
-            {
-                if (plain == null)
-                    throw new ArgumentNullException("Source data buffer must be supplied.");
-                if (!(plain.IsValid))
+        public EncryptionResult EncryptAndSign(Key[] recipients, EncryptFlags flags, GpgmeData plain, GpgmeData cipher) {
+            if (IsValid) {
+                if (plain == null) {
+                    throw new ArgumentNullException("plain", "Source data buffer must be supplied.");
+                }
+                if (!(plain.IsValid)) {
                     throw new InvalidDataBufferException("The specified source data buffer is invalid.");
+                }
 
-                if (cipher == null)
-                    throw new ArgumentNullException("Destination data buffer must be supplied.");
-                if (!(cipher.IsValid))
+                if (cipher == null) {
+                    throw new ArgumentNullException("cipher", "Destination data buffer must be supplied.");
+                }
+                if (!(cipher.IsValid)) {
                     throw new InvalidDataBufferException("The specified destination data buffer is invalid.");
+                }
 
                 IntPtr[] recp = Gpgme.KeyArrayToIntPtrArray(recipients);
 
-                lock (CtxLock)
-                {
+                lock (CtxLock) {
                     int err = libgpgme.gpgme_op_encrypt_sign(
                         CtxPtr,
                         recp,
-                        (gpgme_encrypt_flags_t)flags,
+                        (gpgme_encrypt_flags_t) flags,
                         plain.dataPtr,
                         cipher.dataPtr);
 
                     gpg_err_code_t errcode = libgpgerror.gpg_err_code(err);
-                    switch (errcode)
-                    {
+                    switch (errcode) {
                         case gpg_err_code_t.GPG_ERR_NO_ERROR:
                             break;
                         case gpg_err_code_t.GPG_ERR_UNUSABLE_PUBKEY:
                             break;
-                        case gpg_err_code_t.GPG_ERR_GENERAL:    // Bug? should be GPG_ERR_UNUSABLE_PUBKEY
+                        case gpg_err_code_t.GPG_ERR_GENERAL: // Bug? should be GPG_ERR_UNUSABLE_PUBKEY
                             break;
                         case gpg_err_code_t.GPG_ERR_UNUSABLE_SECKEY:
-                            throw new InvalidKeyException("There is one or more invalid signing key(s) in the current context.");
+                            throw new InvalidKeyException(
+                                "There is one or more invalid signing key(s) in the current context.");
                         case gpg_err_code_t.GPG_ERR_INV_VALUE:
-                            throw new InvalidPtrException("Either the context, recipient key array, plain text or cipher text pointer is invalid.");
+                            throw new InvalidPtrException(
+                                "Either the context, recipient key array, plain text or cipher text pointer is invalid.");
                         case gpg_err_code_t.GPG_ERR_BAD_PASSPHRASE:
                             throw new BadPassphraseException();
                         default:
                             throw new GeneralErrorException("An unexpected error "
                                 + errcode.ToString()
-                                + " (" + err.ToString()
-                                + ") occurred.");
+                                    + " (" + err.ToString(CultureInfo.InvariantCulture)
+                                        + ") occurred.");
                     }
-                    IntPtr rstPtr = libgpgme.gpgme_op_encrypt_result(CtxPtr);
+                    IntPtr rst_ptr = libgpgme.gpgme_op_encrypt_result(CtxPtr);
 
-					GC.KeepAlive(recp);
+                    GC.KeepAlive(recp);
                     GC.KeepAlive(recipients);
                     GC.KeepAlive(plain);
                     GC.KeepAlive(cipher);
-					
-                    if (rstPtr != IntPtr.Zero)
-                    {
-                        EncryptionResult encRst = new EncryptionResult(rstPtr);
-                        return encRst;
+
+                    if (rst_ptr != IntPtr.Zero) {
+                        var enc_rst = new EncryptionResult(rst_ptr);
+                        return enc_rst;
                     }
-                    else
-                        throw new GeneralErrorException("An unexpected error occurred. " + errcode.ToString());
+                    throw new GeneralErrorException("An unexpected error occurred. " + errcode.ToString());
                 }
             }
-            else
-                throw new InvalidContextException();
+            throw new InvalidContextException();
         }
 
-        public SignatureResult Sign(GpgmeData plain, GpgmeData sig, SignatureMode mode)
-        {
-            if (IsValid)
-            {
-                if (plain == null) 
-                    throw new ArgumentNullException("Source data buffer must be supplied.");
-                if (!(plain.IsValid))
+        public SignatureResult Sign(GpgmeData plain, GpgmeData sig, SignatureMode mode) {
+            if (IsValid) {
+                if (plain == null) {
+                    throw new ArgumentNullException("plain", "Source data buffer must be supplied.");
+                }
+                if (!(plain.IsValid)) {
                     throw new InvalidDataBufferException("The specified source data buffer is invalid.");
+                }
 
-                if (sig == null)
-                    throw new ArgumentNullException("Destination data buffer must be supplied.");
-                if (!(sig.IsValid))
+                if (sig == null) {
+                    throw new ArgumentNullException("sig", "Destination data buffer must be supplied.");
+                }
+                if (!(sig.IsValid)) {
                     throw new InvalidDataBufferException("The specified destination data buffer is invalid.");
+                }
 
-                lock (CtxLock)
-                {
+                lock (CtxLock) {
                     int err = libgpgme.gpgme_op_sign(
                         CtxPtr,
                         plain.dataPtr,
                         sig.dataPtr,
-                        (gpgme_sig_mode_t)mode);
+                        (gpgme_sig_mode_t) mode);
 
                     gpg_err_code_t errcode = libgpgerror.gpg_err_code(err);
-                    switch (errcode)
-                    {
+                    switch (errcode) {
                         case gpg_err_code_t.GPG_ERR_NO_ERROR:
                             break;
                         case gpg_err_code_t.GPG_ERR_UNUSABLE_SECKEY:
-                            throw new InvalidKeyException("There is one or more invalid signing key(s) in the current context.");
+                            throw new InvalidKeyException(
+                                "There is one or more invalid signing key(s) in the current context.");
                         case gpg_err_code_t.GPG_ERR_INV_VALUE:
-                            throw new InvalidPtrException("Either the context, plain text or cipher text pointer is invalid.");
+                            throw new InvalidPtrException(
+                                "Either the context, plain text or cipher text pointer is invalid.");
                         case gpg_err_code_t.GPG_ERR_BAD_PASSPHRASE:
                             throw new BadPassphraseException();
                         default:
                             throw new GeneralErrorException("An unexpected error "
                                 + errcode.ToString()
-                                + " (" + err.ToString()
-                                + ") occurred.");
+                                    + " (" + err.ToString(CultureInfo.InvariantCulture)
+                                        + ") occurred.");
                     }
-                    IntPtr rstPtr = libgpgme.gpgme_op_sign_result(CtxPtr);
-                    if (rstPtr != IntPtr.Zero)
-                    {
-                        SignatureResult sigRst = new SignatureResult(rstPtr);
-                        return sigRst;
+                    IntPtr rst_ptr = libgpgme.gpgme_op_sign_result(CtxPtr);
+                    if (rst_ptr != IntPtr.Zero) {
+                        var sig_rst = new SignatureResult(rst_ptr);
+                        return sig_rst;
                     }
-                    else
-                        throw new GeneralErrorException("An unexpected error occurred. " + errcode.ToString());
+                    throw new GeneralErrorException("An unexpected error occurred. " + errcode.ToString());
                 }
             }
-            else
-                throw new InvalidContextException();
+            throw new InvalidContextException();
         }
-        public DecryptionResult Decrypt(GpgmeData cipher, GpgmeData plain)
-        {
-            if (IsValid)
-            {
-                if (cipher == null) 
-                    throw new ArgumentNullException("Source data buffer must be supplied.");
-                if (!(cipher.IsValid))
+
+        public DecryptionResult Decrypt(GpgmeData cipher, GpgmeData plain) {
+            if (IsValid) {
+                if (cipher == null) {
+                    throw new ArgumentNullException("cipher", "Source data buffer must be supplied.");
+                }
+                if (!(cipher.IsValid)) {
                     throw new InvalidDataBufferException("The specified source data buffer is invalid.");
+                }
 
-                if (plain == null) 
-                    throw new ArgumentNullException("Destination data buffer must be supplied.");
-                if (!(plain.IsValid))
+                if (plain == null) {
+                    throw new ArgumentNullException("plain", "Destination data buffer must be supplied.");
+                }
+                if (!(plain.IsValid)) {
                     throw new InvalidDataBufferException("The specified destination data buffer is invalid.");
+                }
 
-                lock (CtxLock)
-                {
+                lock (CtxLock) {
 #if (VERBOSE_DEBUG)
                     DebugOutput("gpgme_op_decrypt(..) START");
 #endif
@@ -707,33 +615,33 @@ namespace Libgpgme
 #endif
                     gpg_err_code_t errcode = libgpgerror.gpg_err_code(err);
 
-                    switch (errcode)
-                    {
+                    switch (errcode) {
                         case gpg_err_code_t.GPG_ERR_NO_ERROR:
                             break;
                         case gpg_err_code_t.GPG_ERR_NO_DATA:
                             throw new NoDataException("The cipher does not contain any data to decrypt or is corrupt.");
                         case gpg_err_code_t.GPG_ERR_INV_VALUE:
-                            throw new InvalidPtrException("Either the context, cipher text or plain text pointer is invalid.");
+                            throw new InvalidPtrException(
+                                "Either the context, cipher text or plain text pointer is invalid.");
                     }
 
-                    DecryptionResult decRst = null;
+                    DecryptionResult dec_rst = null;
 
-                    IntPtr rstPtr = libgpgme.gpgme_op_decrypt_result(CtxPtr);
-                    if (rstPtr != IntPtr.Zero)
-                        decRst = new DecryptionResult(rstPtr);
+                    IntPtr rst_ptr = libgpgme.gpgme_op_decrypt_result(CtxPtr);
+                    if (rst_ptr != IntPtr.Zero) {
+                        dec_rst = new DecryptionResult(rst_ptr);
+                    }
 
-                    switch (errcode)
-                    {
+                    switch (errcode) {
                         case gpg_err_code_t.GPG_ERR_NO_ERROR:
                             break;
                         case gpg_err_code_t.GPG_ERR_DECRYPT_FAILED:
-                            if (decRst == null)
+                            if (dec_rst == null) {
                                 throw new DecryptionFailedException("An invalid cipher text has been supplied.");
-                            else
-                                throw new DecryptionFailedException(decRst);
+                            }
+                            throw new DecryptionFailedException(dec_rst);
                         case gpg_err_code_t.GPG_ERR_BAD_PASSPHRASE:
-                            throw new BadPassphraseException(decRst);
+                            throw new BadPassphraseException(dec_rst);
                         default:
                             throw new GeneralErrorException("An unexpected error occurred. " + errcode.ToString());
                     }
@@ -741,29 +649,29 @@ namespace Libgpgme
                     GC.KeepAlive(cipher);
                     GC.KeepAlive(plain);
 
-                    return decRst;;
+                    return dec_rst;
                 }
             }
-            else
-                throw new InvalidContextException();
+            throw new InvalidContextException();
         }
 
-        public CombinedResult DecryptAndVerify(GpgmeData cipher, GpgmeData plain)
-        {
-            if (IsValid)
-            {
-                if (cipher == null) 
-                    throw new ArgumentNullException("Source data buffer must be supplied.");
-                if (!(cipher.IsValid))
+        public CombinedResult DecryptAndVerify(GpgmeData cipher, GpgmeData plain) {
+            if (IsValid) {
+                if (cipher == null) {
+                    throw new ArgumentNullException("cipher", "Source data buffer must be supplied.");
+                }
+                if (!(cipher.IsValid)) {
                     throw new InvalidDataBufferException("The specified source data buffer is invalid.");
-                
-                if (plain == null) 
-                    throw new ArgumentNullException("Destination data buffer must be supplied.");
-                if (!(plain.IsValid))
-                    throw new InvalidDataBufferException("The specified destination data buffer is invalid.");
+                }
 
-                lock (CtxLock)
-                {
+                if (plain == null) {
+                    throw new ArgumentNullException("plain", "Destination data buffer must be supplied.");
+                }
+                if (!(plain.IsValid)) {
+                    throw new InvalidDataBufferException("The specified destination data buffer is invalid.");
+                }
+
+                lock (CtxLock) {
 #if (VERBOSE_DEBUG)
                     DebugOutput("gpgme_op_decrypt_verify(..) START");
 #endif
@@ -776,160 +684,151 @@ namespace Libgpgme
 #endif
                     gpg_err_code_t errcode = libgpgerror.gpg_err_code(err);
 
-                    switch (errcode)
-                    {
+                    switch (errcode) {
                         case gpg_err_code_t.GPG_ERR_NO_ERROR:
                             break;
                         case gpg_err_code_t.GPG_ERR_NO_DATA:
                             // no encrypted data found - maybe it is only signed.
                             break;
                         case gpg_err_code_t.GPG_ERR_INV_VALUE:
-                            throw new InvalidPtrException("Either the context, cipher text or plain text pointer is invalid.");
+                            throw new InvalidPtrException(
+                                "Either the context, cipher text or plain text pointer is invalid.");
                     }
 
-                    DecryptionResult decRst = null;
+                    DecryptionResult dec_rst = null;
 
-                    IntPtr rstPtr = libgpgme.gpgme_op_decrypt_result(CtxPtr);
-                    if (rstPtr != IntPtr.Zero)
-                        decRst = new DecryptionResult(rstPtr);
+                    IntPtr rst_ptr = libgpgme.gpgme_op_decrypt_result(CtxPtr);
+                    if (rst_ptr != IntPtr.Zero) {
+                        dec_rst = new DecryptionResult(rst_ptr);
+                    }
 
-                    switch (errcode)
-                    {
+                    switch (errcode) {
                         case gpg_err_code_t.GPG_ERR_NO_ERROR:
                             break;
-             
+
                         case gpg_err_code_t.GPG_ERR_DECRYPT_FAILED:
-                            if (decRst == null)
+                            if (dec_rst == null) {
                                 throw new DecryptionFailedException("An invalid cipher text has been supplied.");
-                            else
-                                throw new DecryptionFailedException(decRst);
+                            }
+                            throw new DecryptionFailedException(dec_rst);
 
                         case gpg_err_code_t.GPG_ERR_BAD_PASSPHRASE:
-                            throw new BadPassphraseException(decRst);
+                            throw new BadPassphraseException(dec_rst);
 
                         default:
-                            throw new GeneralErrorException("An unexpected error occurred. " 
+                            throw new GeneralErrorException("An unexpected error occurred. "
                                 + errcode.ToString());
                     }
 
                     /* If decryption failed, verification cannot be proceeded */
-                    VerificationResult verRst = null;
+                    VerificationResult ver_rst = null;
 
-                    rstPtr = IntPtr.Zero;
-                    rstPtr = libgpgme.gpgme_op_verify_result(CtxPtr);
-                    if (rstPtr != IntPtr.Zero)
-                        verRst = new VerificationResult(rstPtr);
+                    rst_ptr = libgpgme.gpgme_op_verify_result(CtxPtr);
+                    if (rst_ptr != IntPtr.Zero) {
+                        ver_rst = new VerificationResult(rst_ptr);
+                    }
 
                     GC.KeepAlive(cipher);
                     GC.KeepAlive(plain);
 
-                    return new CombinedResult(decRst, verRst);
+                    return new CombinedResult(dec_rst, ver_rst);
                 }
             }
-            else
-                throw new InvalidContextException();
+            throw new InvalidContextException();
         }
 
         /// <summary>
         /// Sets the GNUPG directory where the libgpgme-11.dll can be found.
         /// </summary>
         /// <param name="path">Path to libgpgme-11.dll.</param>
-        public void SetDllDirectory(string path)
-        {
+        public void SetDllDirectory(string path) {
             if (Environment.OSVersion.Platform.ToString().Contains("Win32") ||
-                Environment.OSVersion.Platform.ToString().Contains("Win64"))
-            {
-                if (path != null && path != String.Empty)
-                {
+                Environment.OSVersion.Platform.ToString().Contains("Win64")) {
+                if (!string.IsNullOrEmpty(path)) {
                     string tmp;
-                    if (path[path.Length - 1] != '\\')
+                    if (path[path.Length - 1] != '\\') {
                         tmp = path + "\\";
-                    else
+                    } else {
                         tmp = path;
+                    }
 
-                    if (!File.Exists(tmp + libgpgme.GNUPG_LIBNAME))
+                    if (!File.Exists(tmp + libgpgme.GNUPG_LIBNAME)) {
                         throw new FileNotFoundException("Could not find GPGME DLL file.", tmp + libgpgme.GNUPG_LIBNAME);
+                    }
 
-                    if (!libgpgme.SetDllDirectory(path))
+                    if (!libgpgme.SetDllDirectory(path)) {
                         throw new GpgmeException("Could not set DLL path " + path);
-                    else
-                    {
-                        libgpgme.InitLibgpgme();
                     }
+
+                    libgpgme.InitLibgpgme();
                 }
             }
         }
 
-        public VerificationResult Verify(GpgmeData signature, GpgmeData signedtext, GpgmeData plain)
-        {
-            if (IsValid)
-            {
-                if (signature == null)
-                    throw new ArgumentNullException("A signature data buffer must be supplied.");
-                if (!(signature.IsValid))
-                    throw new InvalidDataBufferException("The specified signature data buffer is invalid.");
-
-                if (
-                    (signedtext == null || !(signedtext.IsValid)) 
-                    && (plain == null || !(plain.IsValid))
-                    )
-                {
-                    throw new InvalidDataBufferException("Either the signed text must be provided in order to prove the detached signature, or an empty data buffer to store the plain text result.");
-                }
-                lock (CtxLock)
-                {
-                    IntPtr sigPtr = IntPtr.Zero, sigtxtPtr = IntPtr.Zero, plainPtr = IntPtr.Zero;
-                    
-                    sigPtr = signature.dataPtr;
-                    if (signedtext != null && signedtext.IsValid)
-                        sigtxtPtr = signedtext.dataPtr;
-                    if (plain != null && plain.IsValid)
-                        plainPtr = plain.dataPtr;
-
-                    int err = libgpgme.gpgme_op_verify(
-                        CtxPtr,
-                        sigPtr,
-                        sigtxtPtr,
-                        plainPtr);
-
-                    gpg_err_code_t errcode = libgpgerror.gpg_err_code(err);
-                    switch (errcode)
-                    {
-                        case gpg_err_code_t.GPG_ERR_NO_ERROR:
-                            break;
-                        case gpg_err_code_t.GPG_ERR_NO_DATA:
-                            break;
-                        case gpg_err_code_t.GPG_ERR_INV_VALUE:
-                            throw new InvalidDataBufferException("Either the signature, signed text or plain text data buffer is invalid.");
-                        default:
-                            throw new GeneralErrorException("Unexpected error occurred. Error: " + errcode.ToString());
-                    }
-
-                    VerificationResult verRst = null;
-
-                    IntPtr rstPtr = IntPtr.Zero;
-                    rstPtr = libgpgme.gpgme_op_verify_result(CtxPtr);
-                    if (rstPtr != IntPtr.Zero)
-                    {
-                        verRst = new VerificationResult(rstPtr);
-                        if (errcode == gpg_err_code_t.GPG_ERR_NO_DATA)
-                            throw new NoDataException("The signature does not contain any data to verify.");
-                        else
-                            return verRst;
-                    }
-                    else
-                        throw new GeneralErrorException("Could not retrieve verification result.");
-                }
-            }
-            else
+        public VerificationResult Verify(GpgmeData signature, GpgmeData signedtext, GpgmeData plain) {
+            if (!IsValid) {
                 throw new InvalidContextException();
+            }
+            if (signature == null) {
+                throw new ArgumentNullException("signature", "A signature data buffer must be supplied.");
+            }
+            if (!(signature.IsValid)) {
+                throw new InvalidDataBufferException("The specified signature data buffer is invalid.");
+            }
+
+            if (
+                (signedtext == null || !(signedtext.IsValid))
+                    && (plain == null || !(plain.IsValid))
+                ) {
+                throw new InvalidDataBufferException(
+                    "Either the signed text must be provided in order to prove the detached signature, or an empty data buffer to store the plain text result.");
+            }
+            lock (CtxLock) {
+                IntPtr sigtxt_ptr = IntPtr.Zero, plain_ptr = IntPtr.Zero;
+
+                IntPtr sig_ptr = signature.dataPtr;
+                if (signedtext != null && signedtext.IsValid) {
+                    sigtxt_ptr = signedtext.dataPtr;
+                }
+                if (plain != null && plain.IsValid) {
+                    plain_ptr = plain.dataPtr;
+                }
+
+                int err = libgpgme.gpgme_op_verify(
+                    CtxPtr,
+                    sig_ptr,
+                    sigtxt_ptr,
+                    plain_ptr);
+
+                gpg_err_code_t errcode = libgpgerror.gpg_err_code(err);
+                switch (errcode) {
+                    case gpg_err_code_t.GPG_ERR_NO_ERROR:
+                        break;
+                    case gpg_err_code_t.GPG_ERR_NO_DATA:
+                        break;
+                    case gpg_err_code_t.GPG_ERR_INV_VALUE:
+                        throw new InvalidDataBufferException(
+                            "Either the signature, signed text or plain text data buffer is invalid.");
+                    default:
+                        throw new GeneralErrorException("Unexpected error occurred. Error: " + errcode.ToString());
+                }
+
+                IntPtr rst_ptr = libgpgme.gpgme_op_verify_result(CtxPtr);
+                if (rst_ptr != IntPtr.Zero) {
+                    VerificationResult ver_rst = new VerificationResult(rst_ptr);
+                    if (errcode == gpg_err_code_t.GPG_ERR_NO_DATA) {
+                        throw new NoDataException("The signature does not contain any data to verify.");
+                    }
+                    return ver_rst;
+                }
+                throw new GeneralErrorException("Could not retrieve verification result.");
+            }
         }
 
 
-        private ContextSigners signers;
-        public ContextSigners Signers
-        {
-            get { return signers; }
+        private readonly ContextSigners _signers;
+        public ContextSigners Signers {
+            get { return _signers; }
         }
 
 #if (VERBOSE_DEBUG)
@@ -940,179 +839,175 @@ namespace Libgpgme
         }
 #endif
 
-        public class ContextSigners: IEnumerable<Key>
+        public class ContextSigners : IEnumerable<Key>
         {
-            private Context ctx;
-            internal ContextSigners(Context ctx)
-            {
-                this.ctx = ctx;
+            private readonly Context _ctx;
+
+            internal ContextSigners(Context ctx) {
+                _ctx = ctx;
             }
-            public void Add(Key signer)
-            {
-                if (ctx.IsValid)
-                {
-                    if (signer == null)
-                        throw new ArgumentNullException("A signer key must be supplied.");
-                    if (signer.KeyPtr.Equals(IntPtr.Zero))
-                        throw new InvalidKeyException("An invalid signer key has been supplied.");
+            #region IEnumerable<Key> Members
 
-                    lock (ctx.CtxLock)
-                    {
-                        int err = libgpgme.gpgme_signers_add(ctx.CtxPtr, signer.KeyPtr);
-                        gpg_err_code_t errcode = libgpgerror.gpg_err_code(err);
-                        if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR)
-                            throw new GeneralErrorException("An unexpected error occurred. Error: " + errcode.ToString());
-                    }
-                }
-                else
-                    throw new InvalidContextException();
-            }
-            public void Clear()
-            {
-                if (ctx.IsValid)
-                {
-                    lock (ctx.CtxLock)
-                    {
-                        libgpgme.gpgme_signers_clear(ctx.CtxPtr);
-                    }
-                }
-                else
-                    throw new InvalidContextException();
-
-            }
-
-            public Key Enum(int seq)
-            {
-                if (ctx.IsValid)
-                {
-                    lock (ctx.CtxLock) // could be locked twice by Get()
-                    {
-                        IntPtr rstPtr = libgpgme.gpgme_signers_enum(ctx.CtxPtr, seq);
-
-                        if (rstPtr.Equals(IntPtr.Zero))
-                            return null;
-
-                        return new Key(rstPtr);
-                    }
-                }
-                else
-                    throw new InvalidContextException();
-            }
-            public Key[] Get()
-            {
-                if (ctx.IsValid)
-                {
-                    lock (ctx.CtxLock)
-                    {
-                        List<Key> lst = new List<Key>();
-                        int i = 0;
-                        Key key;
-                        while ((key = Enum(i++)) != null)
-                            lst.Add(key);
-
-                        if (lst.Count == 0)
-                            return new Key[0];
-                        else
-                            return lst.ToArray();
-                    }
-                }
-                else
-                    throw new InvalidContextException();
-            }
-            public IEnumerator<Key> GetEnumerator()
-            {
+            public IEnumerator<Key> GetEnumerator() {
                 int i = 0;
                 Key key;
 
-                while ((key = Enum(i++)) != null)
+                while ((key = Enum(i++)) != null) {
                     yield return key;
+                }
             }
-            IEnumerator IEnumerable.GetEnumerator()
-            {
+
+            IEnumerator IEnumerable.GetEnumerator() {
                 return GetEnumerator();
             }
-        }
-        private ContextSignatureNotations signots;
-        public ContextSignatureNotations SignatureNotations
-        {
-            get { return signots; }
-        }
-        public class ContextSignatureNotations: IEnumerable<SignatureNotation>
-        {
-            Context ctx;
-            internal ContextSignatureNotations(Context ctx)
-            {
-                this.ctx = ctx;
-            }
-            public void Add(string name, string value, SignatureNotationFlags flags)
-            {
-                if (ctx.IsValid)
-                {
-                    IntPtr namePtr = IntPtr.Zero;
-                    IntPtr valuePtr = IntPtr.Zero;
-                    if (name != null)
-                        namePtr = Gpgme.StringToCoTaskMemUTF8(name);
-                    if (value != null)
-                        valuePtr = Gpgme.StringToCoTaskMemUTF8(value);
 
-                    int err = libgpgme.gpgme_sig_notation_add(
-                        ctx.CtxPtr,
-                        namePtr,
-                        valuePtr,
-                        (gpgme_sig_notation_flags_t)flags);
+            #endregion
+            public void Add(Key signer) {
+                if (signer == null) {
+                    throw new ArgumentNullException("signer", "A signer key must be supplied.");
+                }
+                if (signer.KeyPtr.Equals(IntPtr.Zero)) {
+                    throw new InvalidKeyException("An invalid signer key has been supplied.");
+                }
+                if (!_ctx.IsValid) {
+                    throw new InvalidContextException();
+                }
 
-                    if (namePtr != IntPtr.Zero)
-                    {
-                        Marshal.FreeCoTaskMem(namePtr);
-                        namePtr = IntPtr.Zero;
-                    }
-                    if (valuePtr != IntPtr.Zero)
-                    {
-                        Marshal.FreeCoTaskMem(valuePtr);
-                        valuePtr = IntPtr.Zero;
-                    }
-
+                lock (_ctx.CtxLock) {
+                    int err = libgpgme.gpgme_signers_add(_ctx.CtxPtr, signer.KeyPtr);
                     gpg_err_code_t errcode = libgpgerror.gpg_err_code(err);
-                    if (errcode == gpg_err_code_t.GPG_ERR_NO_ERROR)
-                        return;
-                    if (errcode == gpg_err_code_t.GPG_ERR_INV_VALUE)
-                        throw new ArgumentException("NAME and VALUE are in an invalid combination.");
+                    if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR) {
+                        throw new GeneralErrorException("An unexpected error occurred. Error: " + errcode.ToString());
+                    }
+                }
+            }
 
-                    throw new GeneralErrorException("An unexpected error occurred. Error: " 
-                        + errcode.ToString());
-                }
-                else
+            public void Clear() {
+                if (!_ctx.IsValid) {
                     throw new InvalidContextException();
-            }
-            public void Clear()
-            {
-                if (ctx.IsValid)
-                {
-                    libgpgme.gpgme_sig_notation_clear(ctx.CtxPtr);
                 }
-                else
-                    throw new InvalidContextException();
+
+                lock (_ctx.CtxLock) {
+                    libgpgme.gpgme_signers_clear(_ctx.CtxPtr);
+                }
             }
-            public SignatureNotation Get()
-            {
-                if (ctx.IsValid)
+
+            public Key Enum(int seq) {
+                if (!_ctx.IsValid) {
+                    throw new InvalidContextException();
+                }
+
+                lock (_ctx.CtxLock) // could be locked twice by Get()
                 {
-                    IntPtr rstPtr = libgpgme.gpgme_sig_notation_get(ctx.CtxPtr);
-                    if (rstPtr.Equals(IntPtr.Zero))
+                    IntPtr rst_ptr = libgpgme.gpgme_signers_enum(_ctx.CtxPtr, seq);
+
+                    if (rst_ptr.Equals(IntPtr.Zero)) {
                         return null;
-                    else
-                        return new SignatureNotation(rstPtr);
+                    }
+
+                    return new Key(rst_ptr);
                 }
-                else
-                    throw new InvalidContextException();
             }
-            public IEnumerator<SignatureNotation> GetEnumerator()
-            {
+
+            public Key[] Get() {
+                if (!_ctx.IsValid) {
+                    throw new InvalidContextException();
+                }
+
+                lock (_ctx.CtxLock) {
+                    var lst = new List<Key>();
+                    int i = 0;
+                    Key key;
+                    while ((key = Enum(i++)) != null) {
+                        lst.Add(key);
+                    }
+
+                    return (lst.Count == 0)
+                        ? new Key[0]
+                        : lst.ToArray();
+                }
+            }
+        }
+
+        private readonly ContextSignatureNotations _signots;
+        public ContextSignatureNotations SignatureNotations {
+            get { return _signots; }
+        }
+
+        public class ContextSignatureNotations : IEnumerable<SignatureNotation>
+        {
+            private readonly Context _ctx;
+
+            internal ContextSignatureNotations(Context ctx) {
+                _ctx = ctx;
+            }
+            #region IEnumerable<SignatureNotation> Members
+
+            public IEnumerator<SignatureNotation> GetEnumerator() {
                 return Get().GetEnumerator();
             }
-            IEnumerator IEnumerable.GetEnumerator()
-            {
+
+            IEnumerator IEnumerable.GetEnumerator() {
                 return GetEnumerator();
+            }
+
+            #endregion
+            public void Add(string name, string value, SignatureNotationFlags flags) {
+                if (!_ctx.IsValid) {
+                    throw new InvalidContextException();
+                }
+
+                IntPtr name_ptr = IntPtr.Zero;
+                IntPtr value_ptr = IntPtr.Zero;
+                if (name != null) {
+                    name_ptr = Gpgme.StringToCoTaskMemUTF8(name);
+                }
+                if (value != null) {
+                    value_ptr = Gpgme.StringToCoTaskMemUTF8(value);
+                }
+
+                int err = libgpgme.gpgme_sig_notation_add(
+                    _ctx.CtxPtr,
+                    name_ptr,
+                    value_ptr,
+                    (gpgme_sig_notation_flags_t) flags);
+
+                if (name_ptr != IntPtr.Zero) {
+                    Marshal.FreeCoTaskMem(name_ptr);
+                }
+                if (value_ptr != IntPtr.Zero) {
+                    Marshal.FreeCoTaskMem(value_ptr);
+                }
+
+                gpg_err_code_t errcode = libgpgerror.gpg_err_code(err);
+                if (errcode == gpg_err_code_t.GPG_ERR_NO_ERROR) {
+                    return;
+                }
+                if (errcode == gpg_err_code_t.GPG_ERR_INV_VALUE) {
+                    throw new ArgumentException("NAME and VALUE are in an invalid combination.");
+                }
+
+                throw new GeneralErrorException("An unexpected error occurred. Error: "
+                    + errcode.ToString());
+            }
+
+            public void Clear() {
+                if (_ctx.IsValid) {
+                    libgpgme.gpgme_sig_notation_clear(_ctx.CtxPtr);
+                } else {
+                    throw new InvalidContextException();
+                }
+            }
+
+            public SignatureNotation Get() {
+                if (!_ctx.IsValid) {
+                    throw new InvalidContextException();
+                }
+                IntPtr rst_ptr = libgpgme.gpgme_sig_notation_get(_ctx.CtxPtr);
+                if (rst_ptr.Equals(IntPtr.Zero)) {
+                    return null;
+                }
+                return new SignatureNotation(rst_ptr);
             }
         }
     }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
@@ -9,7 +8,7 @@ namespace ImportKey2
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             // Load PGP key from file
             String pgpkeytext = File.ReadAllText(@"daniel.pub");
@@ -54,8 +53,6 @@ namespace ImportKey2
                         status.Fpr);
                 }
             }
-
-            return;
         }
     }
 }

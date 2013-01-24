@@ -18,9 +18,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace Libgpgme.Interop
@@ -28,7 +25,6 @@ namespace Libgpgme.Interop
     [StructLayout(LayoutKind.Sequential)]
     internal class _gpgme_op_decrypt_result // gpgme_decrypt_result_t
     {
-
         public IntPtr unsupported_algorithm; // char *
 
         /* Key should not have been used for encryption.  
@@ -45,15 +41,14 @@ namespace Libgpgme.Interop
            available.  */
         public IntPtr file_name; //char *
 
-        public bool wrong_key_usage
-        {
+        public bool wrong_key_usage {
             get { return ((flags & 1) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 1;
-                else
-                    flags &= (~(uint)1);
+                } else {
+                    flags &= (~(uint) 1);
+                }
             }
         }
     }

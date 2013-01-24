@@ -20,111 +20,96 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using Libgpgme.Interop;
 
 namespace Libgpgme
 {
-    public class NewSignature: IEnumerable<NewSignature>
+    public class NewSignature : IEnumerable<NewSignature>
     {
-        private NewSignature next;
-        public NewSignature Next
-        {
-            get { return next; }
-        }
+        private long _timestamp; // long int
         /* The type of the signature.  */
-        private SignatureMode type;
-        public SignatureMode Type
-        {
-            get { return type; }
-        }
-        /* The public key algorithm used to create the signature.  */
-        private KeyAlgorithm pubkey_algo;
-        public KeyAlgorithm PubkeyAlgorithm
-        {
-            get { return pubkey_algo; }
-        }
-        /* The hash algorithm used to create the signature.  */
-        private HashAlgorithm hash_algo;
-        public HashAlgorithm HashAlgorithm
-        {
-            get { return hash_algo; }
-        }
-        private long timestamp; // long int
-        public DateTime Timestamp
-        {
-            get 
-            {
-               	if (timestamp < 0)
-            		throw new InvalidTimestampException();
-            	if (timestamp == 0)
-            		throw new TimestampNotAvailableException();
-            	return Gpgme.ConvertFromUnix(timestamp); 
-            }
-        }
-        public DateTime TimestampUTC
-        {
-            get 
-            {
-               	if (timestamp < 0)
-            		throw new InvalidTimestampException();
-            	if (timestamp == 0)
-            		throw new TimestampNotAvailableException();
-            	return Gpgme.ConvertFromUnixUTC(timestamp); 
-            }
-        }
 
-        /* The fingerprint of the signature.  */
-        private string fpr; //char *
-        public string Fingerprint
-        {
-            get { return fpr; }
-        }
-
-        /* Crypto backend specific signature class.  */
-        private long sig_class;
-        public long SignatureClass
-        {
-            get { return sig_class; }
-        }
-
-        internal NewSignature(IntPtr sigPtr)
-        {
-            if (sigPtr.Equals(IntPtr.Zero))
+        internal NewSignature(IntPtr sigPtr) {
+            if (sigPtr.Equals(IntPtr.Zero)) {
                 throw new InvalidPtrException("The pointer to the new signature structure is invalid.");
+            }
 
             UpdateFromMem(sigPtr);
         }
-        private void UpdateFromMem(IntPtr sigPtr)
-        {
-            _gpgme_new_signature newsig = new _gpgme_new_signature();
-            Marshal.PtrToStructure(sigPtr, newsig);
 
-            type = (SignatureMode)newsig.type;
-            pubkey_algo = (KeyAlgorithm)newsig.pubkey_algo;
-            hash_algo = (HashAlgorithm)newsig.hash_algo;
-            fpr = Gpgme.PtrToStringUTF8(newsig.fpr);
-            sig_class = (long)newsig.sig_class;
-            timestamp = (long)newsig.timestamp;
+        public NewSignature Next { get; private set; }
 
-            if (!newsig.next.Equals(IntPtr.Zero))
-                next = new NewSignature(newsig.next);
+        public SignatureMode Type { get; private set; }
+        /// <summary>
+        /// The public key algorithm used to create the signature. 
+        /// </summary>
+        public KeyAlgorithm PubkeyAlgorithm { get; private set; }
+        /// <summary>
+        /// The hash algorithm used to create the signature.
+        /// </summary>
+        public HashAlgorithm HashAlgorithm { get; private set; }
+        /// <summary>
+        /// Crypto backend specific signature class.
+        /// </summary>
+        public long SignatureClass { get; private set; }
+        /// <summary>
+        /// The fingerprint of the signature.
+        /// </summary>
+        public string Fingerprint { get; private set; }
+
+        public DateTime Timestamp {
+            get {
+                if (_timestamp < 0) {
+                    throw new InvalidTimestampException();
+                }
+                if (_timestamp == 0) {
+                    throw new TimestampNotAvailableException();
+                }
+                return Gpgme.ConvertFromUnix(_timestamp);
+            }
+        }
+        public DateTime TimestampUTC {
+            get {
+                if (_timestamp < 0) {
+                    throw new InvalidTimestampException();
+                }
+                if (_timestamp == 0) {
+                    throw new TimestampNotAvailableException();
+                }
+                return Gpgme.ConvertFromUnixUTC(_timestamp);
+            }
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
+        #region IEnumerable<NewSignature> Members
+
+        IEnumerator IEnumerable.GetEnumerator() {
             return GetEnumerator();
         }
 
-        public IEnumerator<NewSignature> GetEnumerator()
-        {
+        public IEnumerator<NewSignature> GetEnumerator() {
             NewSignature sig = this;
-            while (sig != null)
-            {
+            while (sig != null) {
                 yield return sig;
                 sig = sig.Next;
+            }
+        }
+
+        #endregion
+        
+        private void UpdateFromMem(IntPtr sigPtr) {
+            var newsig = new _gpgme_new_signature();
+            Marshal.PtrToStructure(sigPtr, newsig);
+
+            Type = (SignatureMode) newsig.type;
+            PubkeyAlgorithm = (KeyAlgorithm) newsig.pubkey_algo;
+            HashAlgorithm = (HashAlgorithm) newsig.hash_algo;
+            Fingerprint = Gpgme.PtrToStringUTF8(newsig.fpr);
+            SignatureClass = newsig.sig_class;
+            _timestamp = (long) newsig.timestamp;
+
+            if (!newsig.next.Equals(IntPtr.Zero)) {
+                Next = new NewSignature(newsig.next);
             }
         }
     }

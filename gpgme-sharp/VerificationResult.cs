@@ -18,9 +18,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using Libgpgme.Interop;
 
@@ -28,34 +25,25 @@ namespace Libgpgme
 {
     public class VerificationResult
     {
-        private string file_name;
-        public string FileName
-        {
-            get { return file_name; }
-        }
+        public string FileName { get; private set; }
+        public Signature Signature { get; private set; }
 
-        private Signature signature;
-        public Signature Signature
-        {
-            get { return signature; }
-        }
-
-        internal VerificationResult(IntPtr rstPtr)
-        {
-            if (rstPtr == IntPtr.Zero)
+        internal VerificationResult(IntPtr rstPtr) {
+            if (rstPtr == IntPtr.Zero) {
                 throw new InvalidPtrException("An invalid verify result pointer has been given.");
+            }
 
             UpdateFromMem(rstPtr);
         }
 
-        private void UpdateFromMem(IntPtr sigPtr)
-        {
-            _gpgme_op_verify_result ver = new _gpgme_op_verify_result();
+        private void UpdateFromMem(IntPtr sigPtr) {
+            var ver = new _gpgme_op_verify_result();
             Marshal.PtrToStructure(sigPtr, ver);
-            file_name = Gpgme.PtrToStringUTF8(ver.file_name);
+            FileName = Gpgme.PtrToStringUTF8(ver.file_name);
 
-            if (ver.signature != IntPtr.Zero)
-                signature = new Signature(ver.signature);
+            if (ver.signature != IntPtr.Zero) {
+                Signature = new Signature(ver.signature);
+            }
         }
     }
 }

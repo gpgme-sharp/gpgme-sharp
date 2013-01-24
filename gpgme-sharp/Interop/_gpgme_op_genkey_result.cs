@@ -18,9 +18,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace Libgpgme.Interop
@@ -28,29 +25,29 @@ namespace Libgpgme.Interop
     [StructLayout(LayoutKind.Sequential)]
     internal class _gpgme_op_genkey_result
     {
-        uint flags;
+        private uint flags;
         public IntPtr fpr;
 
         /* A primary key was generated.  */
         public bool primary {
             get { return ((flags & 1) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 1;
-                else
-                    flags &= (~(uint)1);
+                } else {
+                    flags &= (~(uint) 1);
+                }
             }
         }
         /* A sub key was generated.  */
         public bool sub {
             get { return ((flags & 2) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 2;
-                else
-                    flags &= (~(uint)2);
+                } else {
+                    flags &= (~(uint) 2);
+                }
             }
         }
     }

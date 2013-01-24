@@ -17,13 +17,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Libgpgme.Interop
 {
-    internal enum gpg_err_source_t : int
+    internal enum gpg_err_source_t
     {
         GPG_ERR_SOURCE_UNKNOWN = 0,
         GPG_ERR_SOURCE_GCRYPT = 1,
@@ -51,7 +47,8 @@ namespace Libgpgme.Interop
 
     /* Only use free slots, never change or reorder the existing
        entries.  */
-    internal enum gpg_err_code_t : int
+
+    internal enum gpg_err_code_t
     {
         GPG_ERR_NO_ERROR = 0,
         GPG_ERR_GENERAL = 1,
@@ -441,16 +438,13 @@ namespace Libgpgme.Interop
 
     /* We use the lowest 16 bits of gpg_error_t for error codes.  The 16th
     bit indicates system errors.  */
-    internal enum Masks : int
+
+    internal enum Masks
     {
         GPG_ERR_CODE_MASK = (gpg_err_code_t.GPG_ERR_CODE_DIM - 1),
         /* Bits 17 to 24 are reserved.  */
         /* We use the upper 8 bits of gpg_error_t for error sources.  */
         GPG_ERR_SOURCE_MASK = (gpg_err_source_t.GPG_ERR_SOURCE_DIM - 1),
         GPG_ERR_SOURCE_SHIFT = 24
-    }
-
-    internal partial class libgpgerror
-    {
     }
 }

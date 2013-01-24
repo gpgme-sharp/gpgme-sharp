@@ -6,7 +6,7 @@ namespace ListKeys
 {
 	class MainClass
 	{
-		public static void Main (string[] args)
+		public static void Main ()
 		{
 			Context ctx = new Context();
 			
@@ -19,16 +19,15 @@ namespace ListKeys
 			foreach (Key key in publickeys)
 			{
 				Console.WriteLine("Key " + key.Fingerprint);
-				Console.WriteLine("\tUser: {0}\n", key.Uid.ToString());
+				Console.WriteLine("\tUser: {0}\n", key.Uid);
 			}
 			
 			Console.WriteLine("\nSecret PGP keys currently saved in your store:");
 			foreach (Key key in secretkeys)
 			{
 				Console.WriteLine("Key " + key.Fingerprint);
-				Console.WriteLine("\tUser: {0}\n", key.Uid.ToString());
+				Console.WriteLine("\tUser: {0}\n", key.Uid);
 			}
-
 		}
 	}
 }

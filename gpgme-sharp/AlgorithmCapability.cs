@@ -19,35 +19,35 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Libgpgme
 {
     public class AlgorithmCapabilityAttribute : Attribute
     {
-        protected AlgorithmCapability type;
-        public AlgorithmCapabilityAttribute(AlgorithmCapability type)
-        {
-            this.type = type;
-        }
-        public AlgorithmCapability Type
-        {
-            get { return type; }
+        protected AlgorithmCapability _type;
+
+        public AlgorithmCapabilityAttribute(AlgorithmCapability type) {
+            _type = type;
         }
 
-        internal static string GetKeyUsageText(AlgorithmCapability type)
-        {
-            List<string> caps = new List<string>();
-            if ((type & AlgorithmCapability.CanAuth) == AlgorithmCapability.CanAuth)
+        public AlgorithmCapability Type {
+            get { return _type; }
+        }
+
+        internal static string GetKeyUsageText(AlgorithmCapability type) {
+            var caps = new List<string>();
+            if ((type & AlgorithmCapability.CanAuth) == AlgorithmCapability.CanAuth) {
                 caps.Add("auth");
-            if ((type & AlgorithmCapability.CanSign) == AlgorithmCapability.CanSign)
+            }
+            if ((type & AlgorithmCapability.CanSign) == AlgorithmCapability.CanSign) {
                 caps.Add("sign");
-            if ((type & AlgorithmCapability.CanEncrypt) == AlgorithmCapability.CanEncrypt)
+            }
+            if ((type & AlgorithmCapability.CanEncrypt) == AlgorithmCapability.CanEncrypt) {
                 caps.Add("encrypt");
-            if (caps.Count > 0)
-                return string.Join(",", caps.ToArray());
-            else
-                return null;
+            }
+            return caps.Count > 0 
+                ? string.Join(",", caps.ToArray()) 
+                : null;
         }
     }
 }

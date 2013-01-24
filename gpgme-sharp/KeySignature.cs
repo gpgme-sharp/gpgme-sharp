@@ -20,163 +20,101 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using Libgpgme.Interop;
 
 namespace Libgpgme
 {
-    public class KeySignature: IEnumerable<KeySignature>
+    public class KeySignature : IEnumerable<KeySignature>
     {
-        private KeySignature next;
-        private bool revoked, expired, invalid, exportable;
-        private KeyAlgorithm pubkey_algo;
-        private string keyid, uid, name, comment, email;
-        private long timestamp, expires;
-        private int status;
-        private long sig_class;
-        private SignatureNotation notations;
+        private long _expires;
+        private long _timestamp;
 
-        internal KeySignature(IntPtr keysigPtr)
-        {
-            if (keysigPtr == (IntPtr)0)
+        internal KeySignature(IntPtr keysigPtr) {
+            if (keysigPtr == IntPtr.Zero) {
                 throw new InvalidPtrException("Invalid key signature pointer. Bad programmer! *spank* *spank*");
+            }
 
             UpdateFromMem(keysigPtr);
         }
 
-        private void UpdateFromMem(IntPtr keysigPtr)
-        {
-            _gpgme_key_sig keysig = (_gpgme_key_sig)Marshal.PtrToStructure(keysigPtr,
-                typeof(_gpgme_key_sig));
+        public bool Revoked { get; private set; }
+        public bool Expired { get; private set; }
+        public bool Invalid { get; private set; }
+        public bool Exportable { get; private set; }
+        public KeyAlgorithm PubkeyAlgorithm { get; private set; }
+        public string KeyId { get; private set; }
+        public int Status { get; private set; }
+        public long SigClass { get; private set; }
+        public string Uid { get; private set; }
+        public string Name { get; private set; }
+        public string Comment { get; private set; }
+        public string Email { get; private set; }
+        public SignatureNotation Notations { get; private set; }
+        public KeySignature Next { get; private set; }
 
-            revoked = keysig.revoked;
-            expired = keysig.expired;
-            invalid = keysig.invalid;
-            exportable = keysig.exportable;
-
-            pubkey_algo = (KeyAlgorithm)keysig.pubkey_algo;
-
-            keyid = Gpgme.PtrToStringAnsi(keysig.keyid);
-            uid = Gpgme.PtrToStringAnsi(keysig.uid);
-            name = Gpgme.PtrToStringAnsi(keysig.name);
-            comment = Gpgme.PtrToStringAnsi(keysig.comment);
-            email = Gpgme.PtrToStringAnsi(keysig.email);
-
-            timestamp = (long)keysig.timestamp;
-            expires = (long)keysig.expires;
-
-            status = keysig.status;
-            sig_class = (long)keysig.sig_class;
-
-            if (keysig.notations != (IntPtr)0)
-                notations = new SignatureNotation(keysig.notations);
-            
-            if (keysig.next != (IntPtr)0)
-                next = new KeySignature(keysig.next);
+        public DateTime Timestamp {
+            get { return Gpgme.ConvertFromUnix(_timestamp); }
+        }
+        public DateTime TimestampUTC {
+            get { return Gpgme.ConvertFromUnixUTC(_timestamp); }
         }
 
-        public bool Revoked
-        {
-            get { return revoked; }
+        public DateTime Expires {
+            get { return Gpgme.ConvertFromUnix(_expires); }
         }
-        public bool Expired
-        {
-            get { return expired; }
-        }
-        public bool Invalid
-        {
-            get { return invalid; }
-        }
-        public bool Exportable
-        {
-            get { return exportable; }
+        public DateTime ExpiresUTC {
+            get { return Gpgme.ConvertFromUnixUTC(_expires); }
         }
 
-        public KeyAlgorithm PubkeyAlgorithm
-        {
-            get { return pubkey_algo; }
+        public bool IsInfinitely {
+            get { return _expires == 0; }
         }
+        #region IEnumerable<KeySignature> Members
 
-        public string KeyId
-        {
-            get { return keyid; }
-        }
-
-        public DateTime Timestamp
-        {
-            get { return Gpgme.ConvertFromUnix(timestamp); }
-        }
-        public DateTime TimestampUTC
-        {
-            get { return Gpgme.ConvertFromUnixUTC(timestamp); }
-        }
-
-        public DateTime Expires
-        {
-            get { return Gpgme.ConvertFromUnix(expires); }
-        }
-        public DateTime ExpiresUTC
-        {
-            get { return Gpgme.ConvertFromUnixUTC(expires); }
-        }
-
-        public int Status
-        {
-            get { return status; }
-        }
-
-        public long SigClass
-        {
-            get { return sig_class; }
-        }
-
-        public string Uid
-        {
-            get { return uid; }
-        }
-        public string Name
-        {
-            get { return name; }
-        }
-        public string Comment
-        {
-            get { return comment; }
-        }
-        public string Email
-        {
-            get { return email; }
-        }
-
-        public SignatureNotation Notations
-        {
-            get { return notations; }
-        }
-
-        public KeySignature Next
-        {
-            get { return next; }
-        }
-
-        public bool IsInfinitely
-        {
-            get { return expires == 0; }
-        }
-
-        public IEnumerator<KeySignature> GetEnumerator()
-        {
+        public IEnumerator<KeySignature> GetEnumerator() {
             KeySignature keysig = this;
-            while (keysig != null)
-            {
+            while (keysig != null) {
                 yield return keysig;
                 keysig = keysig.Next;
             }
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
+        IEnumerator IEnumerable.GetEnumerator() {
             return GetEnumerator();
+        }
+
+        #endregion
+        private void UpdateFromMem(IntPtr keysigPtr) {
+            var keysig = (_gpgme_key_sig) Marshal.PtrToStructure(keysigPtr,
+                typeof(_gpgme_key_sig));
+
+            Revoked = keysig.revoked;
+            Expired = keysig.expired;
+            Invalid = keysig.invalid;
+            Exportable = keysig.exportable;
+
+            PubkeyAlgorithm = (KeyAlgorithm) keysig.pubkey_algo;
+
+            KeyId = Gpgme.PtrToStringAnsi(keysig.keyid);
+            Uid = Gpgme.PtrToStringAnsi(keysig.uid);
+            Name = Gpgme.PtrToStringAnsi(keysig.name);
+            Comment = Gpgme.PtrToStringAnsi(keysig.comment);
+            Email = Gpgme.PtrToStringAnsi(keysig.email);
+
+            _timestamp = (long) keysig.timestamp;
+            _expires = (long) keysig.expires;
+
+            Status = keysig.status;
+            SigClass = keysig.sig_class;
+
+            if (keysig.notations != IntPtr.Zero) {
+                Notations = new SignatureNotation(keysig.notations);
+            }
+
+            if (keysig.next != IntPtr.Zero) {
+                Next = new KeySignature(keysig.next);
+            }
         }
     }
 }

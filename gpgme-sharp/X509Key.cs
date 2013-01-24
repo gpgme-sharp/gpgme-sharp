@@ -18,16 +18,13 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-using Libgpgme.Interop;
 
 namespace Libgpgme
 {
     public class X509Key : Key
     {
         internal X509Key(IntPtr keyPtr)
-            :base(keyPtr) { }
+            : base(keyPtr) {
+        }
     }
 }

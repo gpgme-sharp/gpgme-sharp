@@ -18,21 +18,17 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Security;
-using System.Text;
-using System.IO;
 
 namespace Libgpgme
 {
-	public delegate PassphraseResult PassphraseDelegate(
+    public delegate PassphraseResult PassphraseDelegate(
         Context ctx,
         PassphraseInfo info,
         ref char[] passphrase);
 
     internal delegate int KeyEditDelegate(
-       IntPtr handle,
-       KeyEditStatusCode status,
-       string args,   
-       FileStream fd);
+        IntPtr handle,
+        KeyEditStatusCode status,
+        string args,
+        int fd);
 }

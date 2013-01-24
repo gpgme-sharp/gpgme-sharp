@@ -20,112 +20,83 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 using System.Runtime.InteropServices;
-using System.Threading;
+using System.Text;
 using Libgpgme.Interop;
 
 namespace Libgpgme
 {
-	public class UserId: IEnumerable<UserId>
-	{
-		private UserId next;
-		private bool revoked, invalid;
-		private Validity validity;
-		private string uid, name, comment, email;
-		private KeySignature signatures;
-		
-		internal UserId(IntPtr uidPtr)
-		{
-			if (uidPtr == (IntPtr)0)
-				throw new InvalidPtrException("Invalid user id pointer. Bad programmer! *spank* *spank*");
-            
-            UpdateFromMem(uidPtr);
-		}
-		private void UpdateFromMem(IntPtr uidPtr) 
-		{
-			_gpgme_user_id userid = (_gpgme_user_id)
-				Marshal.PtrToStructure(uidPtr, typeof(_gpgme_user_id)); 
-			
-			revoked = userid.revoked;
-			invalid = userid.invalid;
-			validity = (Validity)userid.validity;
-			uid = Gpgme.PtrToStringUTF8(userid.uid);
-			name = Gpgme.PtrToStringUTF8(userid.name);
-			comment = Gpgme.PtrToStringUTF8(userid.comment);
-			email = Gpgme.PtrToStringUTF8(userid.email);
-			
-			if (userid.signatures != (IntPtr)0)
-				signatures = new KeySignature(userid.signatures);
-			else
-				signatures = null;
-			
-			if (userid.next != (IntPtr)0)
-				next = new UserId(userid.next);
-			else
-				next = null;
-		}
-		public bool Revoked {
-			get { return revoked; }
-		}
-		public bool Invalid {
-			get { return invalid; }
-		}
-		public Validity Validity {
-			get { return validity; }
-		}
-		public string Uid {
-			get { return uid; }
-		}
-		public string Name {
-			get { return name; }
-		}
-		public string Comment {
-			get { return comment; }
-		}
-		public string Email {
-			get { return email; }
-		}
-		public KeySignature Signatures {
-			get { return signatures; }
-		}
-		public UserId Next {
-			get { return next; }
-		}
-		
-		public override string ToString ()
-		{
-			StringBuilder sb = new StringBuilder();
-			if (name != null)
-				sb.Append(name);
-			if (comment != null)
-			{
-				sb.Append(" (");
-				sb.Append(comment);
-				sb.Append(")");
-			}
-			if (email != null)
-			{
-				sb.Append(" <");
-				sb.Append(email);
-				sb.Append(">");
-			}
-			return sb.ToString();
-		}
+    public class UserId : IEnumerable<UserId>
+    {
+        public bool Revoked { get; private set; }
+        public bool Invalid { get; private set; }
+        public Validity Validity { get; private set; }
+        public string Uid { get; private set; }
+        public string Name { get; private set; }
+        public string Comment { get; private set; }
+        public string Email { get; private set; }
+        public KeySignature Signatures { get; private set; }
+        public UserId Next { get; private set; }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
+        internal UserId(IntPtr uidPtr) {
+            if (uidPtr == IntPtr.Zero) {
+                throw new InvalidPtrException("Invalid user id pointer. Bad programmer! *spank* *spank*");
+            }
+
+            UpdateFromMem(uidPtr);
+        }
+        #region IEnumerable<UserId> Members
+
+        IEnumerator IEnumerable.GetEnumerator() {
             return GetEnumerator();
         }
 
-        public IEnumerator<UserId> GetEnumerator()
-        {
+        public IEnumerator<UserId> GetEnumerator() {
             UserId id = this;
-            while (id != null)
-            {
+            while (id != null) {
                 yield return id;
                 id = id.Next;
             }
         }
-	}
+
+        #endregion
+        private void UpdateFromMem(IntPtr uidPtr) {
+            var userid = (_gpgme_user_id)
+                Marshal.PtrToStructure(uidPtr, typeof(_gpgme_user_id));
+
+            Revoked = userid.revoked;
+            Invalid = userid.invalid;
+            Validity = (Validity) userid.validity;
+            Uid = Gpgme.PtrToStringUTF8(userid.uid);
+            Name = Gpgme.PtrToStringUTF8(userid.name);
+            Comment = Gpgme.PtrToStringUTF8(userid.comment);
+            Email = Gpgme.PtrToStringUTF8(userid.email);
+
+            Signatures = userid.signatures != IntPtr.Zero 
+                ? new KeySignature(userid.signatures) 
+                : null;
+
+            Next = userid.next != IntPtr.Zero 
+                ? new UserId(userid.next) 
+                : null;
+        }
+
+        public override string ToString() {
+            var sb = new StringBuilder();
+            if (Name != null) {
+                sb.Append(Name);
+            }
+            if (Comment != null) {
+                sb.Append(" (");
+                sb.Append(Comment);
+                sb.Append(")");
+            }
+            if (Email != null) {
+                sb.Append(" <");
+                sb.Append(Email);
+                sb.Append(">");
+            }
+            return sb.ToString();
+        }
+    }
 }

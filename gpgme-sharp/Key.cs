@@ -18,120 +18,148 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Threading;
-using System.IO;
-
 using Libgpgme.Interop;
 
 namespace Libgpgme
 {
-	public class Key: IDisposable 
-	{
+    public class Key : IDisposable
+    {
         // Key attributes
-		private KeylistMode keylistmode;
-		private bool revoked, expired, disabled, invalid, can_encrypt, can_sign, 
-		    can_certify, can_authenticate, is_qualified, secret;
-		private Protocol protocol;
-		private string issuer_serial, issuer_name, chain_id;
-		private Validity owner_trust;
-		private Subkey subkeys;
-		private UserId uids;
-        private IntPtr keyPtr = IntPtr.Zero;
-
-        // callback function for keyediting
         private gpgme_edit_cb_t _instance_key_edit_callback;
-
-        // lock they PGP key during key edit operations
+        private IntPtr _key_ptr = IntPtr.Zero;
+        
         protected object editlock = new object();
-        public Exception LastCallbackException;
 
-        ~Key()
-        {
-            CleanUp();
+        internal Key(IntPtr keyPtr) {
+            if (keyPtr == IntPtr.Zero) {
+                throw new InvalidPtrException("An invalid Key pointer has been given." +
+                    " Bad programmer! *spank* *spank*");
+            }
+            UpdateFromMem(keyPtr);
         }
 
-        private void CleanUp()
-        {
-            if (keyPtr != IntPtr.Zero)
-            {
-                libgpgme.gpgme_key_release(keyPtr);
-                keyPtr = IntPtr.Zero;
+        public Exception LastCallbackException;
+        public KeylistMode KeylistMode { get; private set; }
+        public bool Revoked { get; private set; }
+        public bool Expired { get; private set; }
+        public bool Disabled { get; private set; }
+        public bool Invalid { get; private set; }
+        public bool CanEncrypt { get; private set; }
+        public bool CanSign { get; private set; }
+        public bool CanCertify { get; private set; }
+        public bool CanAuthenticate { get; private set; }
+        public bool IsQualified { get; private set; }
+        public bool Secret { get; private set; }
+        public Protocol Protocol { get; private set; }
+        public string IssuerSerial { get; private set; }
+        public string IssuerName { get; private set; }
+        public string ChainId { get; private set; }
+        public Validity OwnerTrust { get; private set; }
+
+        public UserId Uids { get; private set; }
+        // The first one in the list is the main/primary UserID
+        public UserId Uid { get { return Uids; } }
+
+        public Subkey Subkeys { get; private set; }
+        // The first subkey in the linked list is the primary key
+        public string KeyId {
+            get {
+                if (Subkeys != null) {
+                    return Subkeys.KeyId;
+                }
+                return null;
             }
         }
+        // The first subkey in the linked list is the primary key
+        public string Fingerprint {
+            get {
+                return Subkeys != null 
+                    ? Subkeys.Fingerprint 
+                    : null;
+            }
+        }
+        internal virtual IntPtr KeyPtr {
+            get { return _key_ptr; }
+        }
 
-        public void Dispose()
-        {
+        #region IDisposable Members
+
+        public void Dispose() {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        private void Dispose(bool disposing)
-        {
-            if (disposing)
-                CleanUp();
+        #endregion
+        
+        ~Key() {
+            CleanUp();
         }
 
-		internal Key(IntPtr keyPtr) {
-			if (keyPtr == IntPtr.Zero)
-				throw new InvalidPtrException("An invalid Key pointer has been given." +
-				                              " Bad programmer! *spank* *spank*");
-			UpdateFromMem(keyPtr);
+        private void CleanUp() {
+            if (_key_ptr != IntPtr.Zero) {
+                libgpgme.gpgme_key_release(_key_ptr);
+                _key_ptr = IntPtr.Zero;
+            }
+        }
 
-		}		
-		internal void UpdateFromMem(IntPtr keyPtr) {
-            _gpgme_key key = (_gpgme_key)
-                Marshal.PtrToStructure(keyPtr,
-                    typeof(_gpgme_key));
+        private void Dispose(bool disposing) {
+            if (disposing) {
+                CleanUp();
+            }
+        }
 
-            this.keyPtr = keyPtr;
+        internal void UpdateFromMem(IntPtr keyPtr) {
+            var key = (_gpgme_key)Marshal.PtrToStructure(keyPtr, typeof(_gpgme_key));
 
-			revoked = key.revoked;
-			expired = key.expired;
-			disabled = key.disabled;
-			invalid = key.invalid;
-			can_encrypt = key.can_encrypt;
-			can_sign = key.can_sign;
-			can_certify = key.can_certify;
-			can_authenticate = key.can_authenticate;
-			is_qualified = key.is_qualified;
-			secret = key.secret;
-			
-			protocol = (Protocol)key.protocol;
-			owner_trust = (Validity)key.owner_trust;
-			keylistmode = (KeylistMode)key.keylist_mode;
-			
-            issuer_name = Gpgme.PtrToStringUTF8(key.issuer_name);
-			issuer_serial = Gpgme.PtrToStringAnsi(key.issuer_serial);
-			chain_id = Gpgme.PtrToStringAnsi(key.chain_id);
+            _key_ptr = keyPtr;
 
-            if (key.subkeys != (IntPtr)0)
-                subkeys = new Subkey(key.subkeys);
+            Revoked = key.revoked;
+            Expired = key.expired;
+            Disabled = key.disabled;
+            Invalid = key.invalid;
+            CanEncrypt = key.can_encrypt;
+            CanSign = key.can_sign;
+            CanCertify = key.can_certify;
+            CanAuthenticate = key.can_authenticate;
+            IsQualified = key.is_qualified;
+            Secret = key.secret;
 
-            if (key.uids != (IntPtr)0)
-                uids = new UserId(key.uids);
-		}
+            Protocol = (Protocol) key.protocol;
+            OwnerTrust = (Validity) key.owner_trust;
+            KeylistMode = (KeylistMode) key.keylist_mode;
 
-        protected int StartEdit(Context ctx, IntPtr handle, GpgmeData data)
-        {
-            if (KeyPtr == IntPtr.Zero)
+            IssuerName = Gpgme.PtrToStringUTF8(key.issuer_name);
+            IssuerSerial = Gpgme.PtrToStringAnsi(key.issuer_serial);
+            ChainId = Gpgme.PtrToStringAnsi(key.chain_id);
+
+            if (key.subkeys != IntPtr.Zero) {
+                Subkeys = new Subkey(key.subkeys);
+            }
+
+            if (key.uids != IntPtr.Zero) {
+                Uids = new UserId(key.uids);
+            }
+        }
+
+        protected int StartEdit(Context ctx, IntPtr handle, GpgmeData data) {
+            if (KeyPtr == IntPtr.Zero) {
                 throw new InvalidKeyException();
+            }
 
-            if (ctx == null || !(ctx.IsValid))
+            if (ctx == null || !(ctx.IsValid)) {
                 throw new InvalidContextException();
+            }
 
-            if (data == null || !(data.IsValid))
+            if (data == null || !(data.IsValid)) {
                 throw new InvalidDataBufferException();
+            }
 
-            lock (editlock)
-            {
+            lock (editlock) {
                 LastCallbackException = null;
 
                 // set the instance's _edit_cb() method as callback function for libgpgme
-                _instance_key_edit_callback = new gpgme_edit_cb_t(_edit_cb);
+                _instance_key_edit_callback = KeyEditCallback;
 
                 // start key editing
                 int err = libgpgme.gpgme_op_edit(
@@ -141,151 +169,44 @@ namespace Libgpgme
                     handle,
                     data.dataPtr);
 
-				GC.KeepAlive(_instance_key_edit_callback);
-				
-                if (LastCallbackException != null)
+                GC.KeepAlive(_instance_key_edit_callback);
+
+                if (LastCallbackException != null) {
                     throw LastCallbackException;
+                }
 
                 return err;
             }
         }
 
         // internal callback function 
-        private int _edit_cb(
-           IntPtr opaque,  
-           int status,     
-           IntPtr args,    
-           int fd)
+        private int KeyEditCallback(
+            IntPtr opaque,
+            int status,
+            IntPtr args,
+            int fd) 
         {
-            gpgme_status_code_t statuscode = (gpgme_status_code_t)status;
+            var statuscode = (gpgme_status_code_t) status;
             string cmdargs = Gpgme.PtrToStringUTF8(args);
-            Stream fdstream;
 
-            if (fd > 0)
-                fdstream = Gpgme.ConvertToStream(fd, FileAccess.Write);
-            else
-                fdstream = null;
-            
             int result = 0;
-            try
-            {
+            try {
                 // call user callback function.
                 result = KeyEditCallback(
                     opaque,
-                    (KeyEditStatusCode)statuscode,
+                    (KeyEditStatusCode) statuscode,
                     cmdargs,
-                    fdstream);
-            }
-            catch (Exception ex)
-            {
+                    fd);
+            } catch (Exception ex) {
                 LastCallbackException = ex;
             }
 
             return result;
         }
 
-        protected virtual int KeyEditCallback(IntPtr handle, KeyEditStatusCode status, string args, Stream fd) {
-            if (fd != null)
-            {
-                fd.Write(new byte[] { (byte)'q', (byte)'u', (byte)'i', (byte)'t', (byte)'\n' }, 0, 5);
-                fd.Flush();
-            }
+        protected virtual int KeyEditCallback(IntPtr handle, KeyEditStatusCode status, string args, int fd) {
+            libgpgme.gpgme_io_write(fd, new[] {(byte) 'q', (byte) 'u', (byte) 'i', (byte) 't', (byte) '\n'}, (UIntPtr)5);
             throw new NotImplementedException("The function KeyEditCallback is not implemented.");
         }
-
-		public KeylistMode KeylistMode {
-			get { return keylistmode; }
-		}
-		public bool Revoked {
-			get { return revoked; }
-		}
-		public bool Expired {
-			get { return expired; }
-		}
-		public bool Disabled {
-			get { return disabled; }
-		}
-		public bool Invalid {
-			get { return invalid; }
-		}
-		public bool CanEncrypt {
-			get { return can_encrypt; }
-		}
-		public bool CanSign {
-			get { return can_sign; }
-		}
-		public bool CanCertify {
-			get { return can_certify; }
-		}
-		public bool CanAuthenticate {
-			get { return can_authenticate; }
-		}
-		public bool IsQualified {
-			get { return is_qualified; }
-		}
-		public bool Secret {
-			get { return secret; }
-		}
-		public Protocol Protocol {
-			get { return protocol; }
-		}
-		public string IssuerSerial {
-			get { return issuer_serial; }
-		}
-		public string IssuerName {
-			get { return issuer_name; }
-		}
-		public string ChainId {
-			get { return chain_id; }
-		}
-		public Validity OwnerTrust {
-			get { return owner_trust; }
-		}
-
-        public UserId Uids
-        {
-            get { return uids; }
-        }
-        // The first one in the list is the main/primary UserID
-        public UserId Uid
-        {
-            get
-            {
-                if (uids != null)
-                    return uids;
-                else
-                    return null;
-            }
-        }
-
-        public Subkey Subkeys {
-			get { return subkeys; }
-		}
-        // The first subkey in the linked list is the primary key
-        public string KeyId
-        {
-            get
-            {
-                if (subkeys != null)
-                    return subkeys.KeyId;
-                else
-                    return null;
-            }
-        }
-        // The first subkey in the linked list is the primary key
-        public string Fingerprint
-        {
-            get
-            {
-                if (subkeys != null)
-                    return subkeys.Fingerprint;
-                else
-                    return null;
-            }
-        }
-        internal virtual IntPtr KeyPtr
-        {
-            get { return keyPtr; }
-        }
-	}
+    }
 }

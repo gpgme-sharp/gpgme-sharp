@@ -17,22 +17,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Libgpgme
 {
     public class PgpDeleteSignatureOptions
     {
-        internal bool cmdSend = false; // revsig command send to gnupg?
-        internal bool uidSend = false; // Uid selected?
-        
+        public bool DeleteSelfSignature;
+        public int[] SelectedSignatures;
         public int SelectedUid = 1;
-        
-        public int[] SelectedSignatures = null;
-        internal int ndeletenum = 0;
-
-        public bool DeleteSelfSignature = false;
+        internal bool cmdSend; // revsig command send to gnupg?
+        internal int ndeletenum;
+        internal bool uidSend; // Uid selected?
     }
 }

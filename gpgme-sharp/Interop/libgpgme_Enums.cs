@@ -18,54 +18,53 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
-using System.Runtime.InteropServices;
 
 namespace Libgpgme.Interop
 {
     /* The possible encoding mode of gpgme_data_t objects.  */
-    internal enum gpgme_data_encoding_t : int
+
+    internal enum gpgme_data_encoding_t
     {
-        GPGME_DATA_ENCODING_NONE = 0,	/* Not specified.  */
+        GPGME_DATA_ENCODING_NONE = 0, /* Not specified.  */
         GPGME_DATA_ENCODING_BINARY = 1,
         GPGME_DATA_ENCODING_BASE64 = 2,
-        GPGME_DATA_ENCODING_ARMOR = 3	/* Either PEM or OpenPGP Armor.  */
+        GPGME_DATA_ENCODING_ARMOR = 3 /* Either PEM or OpenPGP Armor.  */
     }
 
     /* Public key algorithms from libgcrypt.  */
-    internal enum gpgme_pubkey_algo_t : int
+
+    internal enum gpgme_pubkey_algo_t
     {
-        [AlgorithmCapabilityAttribute(AlgorithmCapability.CanEncrypt | AlgorithmCapability.CanSign)]
+        [AlgorithmCapability(AlgorithmCapability.CanEncrypt | AlgorithmCapability.CanSign)]
         GPGME_PK_RSA = 1,
 
-        [AlgorithmCapabilityAttribute(AlgorithmCapability.CanEncrypt)]
+        [AlgorithmCapability(AlgorithmCapability.CanEncrypt)]
         GPGME_PK_RSA_E = 2,
-        
-        [AlgorithmCapabilityAttribute(AlgorithmCapability.CanSign)]
+
+        [AlgorithmCapability(AlgorithmCapability.CanSign)]
         GPGME_PK_RSA_S = 3,
-        
-        [AlgorithmCapabilityAttribute(AlgorithmCapability.CanEncrypt)]
+
+        [AlgorithmCapability(AlgorithmCapability.CanEncrypt)]
         GPGME_PK_ELG_E = 16,
-        
-        [AlgorithmCapabilityAttribute(AlgorithmCapability.CanSign)]
+
+        [AlgorithmCapability(AlgorithmCapability.CanSign)]
         GPGME_PK_DSA = 17,
-        
-        [AlgorithmCapabilityAttribute(AlgorithmCapability.CanEncrypt | AlgorithmCapability.CanSign)]
+
+        [AlgorithmCapability(AlgorithmCapability.CanEncrypt | AlgorithmCapability.CanSign)]
         GPGME_PK_ELG = 20
     }
 
     /* Hash algorithms from libgcrypt.  */
-    internal enum gpgme_hash_algo_t : int
+
+    internal enum gpgme_hash_algo_t
     {
         GPGME_MD_NONE = 0,
         GPGME_MD_MD5 = 1,
         GPGME_MD_SHA1 = 2,
         GPGME_MD_RMD160 = 3,
         GPGME_MD_MD2 = 5,
-        GPGME_MD_TIGER = 6,   /* TIGER/192. */
-        GPGME_MD_HAVAL = 7,   /* HAVAL, 5 pass, 160 bit. */
+        GPGME_MD_TIGER = 6, /* TIGER/192. */
+        GPGME_MD_HAVAL = 7, /* HAVAL, 5 pass, 160 bit. */
         GPGME_MD_SHA256 = 8,
         GPGME_MD_SHA384 = 9,
         GPGME_MD_SHA512 = 10,
@@ -76,24 +75,24 @@ namespace Libgpgme.Interop
         GPGME_MD_CRC24_RFC2440 = 304
     }
 
-    internal enum gnupg_cipher_algo_t : int
+    internal enum gnupg_cipher_algo_t
     {
         CIPHER_ALGO_NONE = 0,
         CIPHER_ALGO_IDEA = 1,
         CIPHER_ALGO_3DES = 2,
         CIPHER_ALGO_CAST5 = 3,
-        CIPHER_ALGO_BLOWFISH = 4,  /* blowfish 128 bit key */
+        CIPHER_ALGO_BLOWFISH = 4, /* blowfish 128 bit key */
         /* 5 & 6 are reserved */
         CIPHER_ALGO_AES = 7,
         CIPHER_ALGO_AES192 = 8,
         CIPHER_ALGO_AES256 = 9,
-        CIPHER_ALGO_TWOFISH = 10,  /* twofish 256 bit */
+        CIPHER_ALGO_TWOFISH = 10, /* twofish 256 bit */
         CIPHER_ALGO_CAMELLIA128 = 11,
         CIPHER_ALGO_CAMELLIA256 = 12,
-        CIPHER_ALGO_DUMMY = 110  /* no encryption at all */
+        CIPHER_ALGO_DUMMY = 110 /* no encryption at all */
     }
 
-    internal enum gnupg_compress_algo_t : int
+    internal enum gnupg_compress_algo_t
     {
         COMPRESS_ALGO_NONE = 0,
         COMPRESS_ALGO_ZIP = 1,
@@ -103,7 +102,8 @@ namespace Libgpgme.Interop
 
     /* The possible signature stati.  Deprecated, use error value in sig
        status.  */
-    internal enum _gpgme_sig_stat_t : int
+
+    internal enum _gpgme_sig_stat_t
     {
         GPGME_SIG_STAT_NONE = 0,
         GPGME_SIG_STAT_GOOD = 1,
@@ -117,7 +117,8 @@ namespace Libgpgme.Interop
     }
 
     /* The available signature modes.  */
-    internal enum gpgme_sig_mode_t : int
+
+    internal enum gpgme_sig_mode_t
     {
         GPGME_SIG_MODE_NORMAL = 0,
         GPGME_SIG_MODE_DETACH = 1,
@@ -126,7 +127,8 @@ namespace Libgpgme.Interop
 
     /* The available key and signature attributes.  Deprecated, use the
        individual result structures instead.  */
-    internal enum _gpgme_attr_t : int
+
+    internal enum _gpgme_attr_t
     {
         GPGME_ATTR_KEYID = 1,
         GPGME_ATTR_FPR = 2,
@@ -163,7 +165,8 @@ namespace Libgpgme.Interop
     }
 
     /* The available validities for a trust item or key.  */
-    internal enum gpgme_validity_t : int
+
+    internal enum gpgme_validity_t
     {
         GPGME_VALIDITY_UNKNOWN = 0,
         GPGME_VALIDITY_UNDEFINED = 1,
@@ -174,15 +177,17 @@ namespace Libgpgme.Interop
     }
 
     /* The available protocols.  */
-    internal enum gpgme_protocol_t : int
+
+    internal enum gpgme_protocol_t
     {
-        GPGME_PROTOCOL_OpenPGP = 0,  /* The default mode.  */
+        GPGME_PROTOCOL_OpenPGP = 0, /* The default mode.  */
         GPGME_PROTOCOL_CMS = 1,
-        GPGME_PROTOCOL_GPGCONF = 2,  /* Special code for gpgconf.  */
+        GPGME_PROTOCOL_GPGCONF = 2, /* Special code for gpgconf.  */
         GPGME_PROTOCOL_UNKNOWN = 255
     }
 
     /* The available keylist mode flags.  */
+
     [Flags]
     internal enum gpgme_keylist_mode_t : uint
     {
@@ -194,8 +199,9 @@ namespace Libgpgme.Interop
     }
 
     /* Flags for the audit log functions.  */
+
     [Flags]
-    internal enum gpgme_auditlog : int
+    internal enum gpgme_auditlog
     {
         GPGME_AUDITLOG_HTML = 1,
         GPGME_AUDITLOG_WITH_HELP = 128
@@ -203,15 +209,17 @@ namespace Libgpgme.Interop
 
     /* Signature notations.  */
     /* The available signature notation flags.  */
+
     [Flags]
-    internal enum gpgme_sig_notation_flags_t : int
+    internal enum gpgme_sig_notation_flags_t
     {
         GPGME_SIG_NOTATION_HUMAN_READABLE = 1,
         GPGME_SIG_NOTATION_CRITICAL = 2
     }
 
     /* The possible stati for the edit operation.  */
-    internal enum gpgme_status_code_t : int
+
+    internal enum gpgme_status_code_t
     {
         GPGME_STATUS_EOF,
         /* mkstatus processing starts here */
@@ -306,9 +314,10 @@ namespace Libgpgme.Interop
 
         GPGME_STATUS_PLAINTEXT
     }
-         
+
     /* The valid encryption flags.  */
-    internal enum gpgme_encrypt_flags_t : int
+
+    internal enum gpgme_encrypt_flags_t
     {
         NONE = 0,
         GPGME_ENCRYPT_ALWAYS_TRUST = 1
@@ -316,22 +325,20 @@ namespace Libgpgme.Interop
 
     /* Verify.  */
     /* Flags used for the SUMMARY field in a gpgme_signature_t.  */
-    [Flags]
-    internal enum gpgme_sigsum_t : int
-    {
-        GPGME_SIGSUM_VALID = 0x0001,        /* The signature is fully valid.  */
-        GPGME_SIGSUM_GREEN = 0x0002,        /* The signature is good.  */
-        GPGME_SIGSUM_RED = 0x0004,          /* The signature is bad.  */
-        GPGME_SIGSUM_KEY_REVOKED = 0x0010,  /* One key has been revoked.  */
-        GPGME_SIGSUM_KEY_EXPIRED = 0x0020,  /* One key has expired.  */
-        GPGME_SIGSUM_SIG_EXPIRED = 0x0040,  /* The signature has expired.  */
-        GPGME_SIGSUM_KEY_MISSING = 0x0080,  /* Can't verify: key missing.  */
-        GPGME_SIGSUM_CRL_MISSING = 0x0100,  /* CRL not available.  */
-        GPGME_SIGSUM_CRL_TOO_OLD = 0x0200,  /* Available CRL is too old.  */
-        GPGME_SIGSUM_BAD_POLICY = 0x0400,   /* A policy was not met.  */
-        GPGME_SIGSUM_SYS_ERROR = 0x0800     /* A system error occured.  */
-    }
 
-    internal partial class libgpgme
-    { }
+    [Flags]
+    internal enum gpgme_sigsum_t
+    {
+        GPGME_SIGSUM_VALID = 0x0001, /* The signature is fully valid.  */
+        GPGME_SIGSUM_GREEN = 0x0002, /* The signature is good.  */
+        GPGME_SIGSUM_RED = 0x0004, /* The signature is bad.  */
+        GPGME_SIGSUM_KEY_REVOKED = 0x0010, /* One key has been revoked.  */
+        GPGME_SIGSUM_KEY_EXPIRED = 0x0020, /* One key has expired.  */
+        GPGME_SIGSUM_SIG_EXPIRED = 0x0040, /* The signature has expired.  */
+        GPGME_SIGSUM_KEY_MISSING = 0x0080, /* Can't verify: key missing.  */
+        GPGME_SIGSUM_CRL_MISSING = 0x0100, /* CRL not available.  */
+        GPGME_SIGSUM_CRL_TOO_OLD = 0x0200, /* Available CRL is too old.  */
+        GPGME_SIGSUM_BAD_POLICY = 0x0400, /* A policy was not met.  */
+        GPGME_SIGSUM_SYS_ERROR = 0x0800 /* A system error occured.  */
+    }
 }

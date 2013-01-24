@@ -17,42 +17,43 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
 
 namespace Libgpgme
 {
-    public class GpgmeFileData: GpgmeStreamData
+    public class GpgmeFileData : GpgmeStreamData
     {
         public GpgmeFileData(string filename)
-            :this(filename, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None){}
+            : this(filename, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None) {
+        }
 
         public GpgmeFileData(string filename, FileMode mode)
-            :this (filename, mode, FileAccess.ReadWrite, FileShare.None) {}
+            : this(filename, mode, FileAccess.ReadWrite, FileShare.None) {
+        }
 
         public GpgmeFileData(string filename, FileMode mode, FileAccess access)
-            : this(filename, mode, access, FileShare.None) { }
+            : this(filename, mode, access, FileShare.None) {
+        }
 
         public GpgmeFileData(string filename, FileMode mode, FileAccess access, FileShare share)
-            :base(
-            (access == FileAccess.Read || access == FileAccess.ReadWrite),  // CanRead
-            (access == FileAccess.ReadWrite || access == FileAccess.Write), // CanWrite
-            (access == FileAccess.Read || access == FileAccess.ReadWrite),  // CanSeek
-            false)   // CanRelease
+            : base(
+                (access == FileAccess.Read || access == FileAccess.ReadWrite), // CanRead
+                (access == FileAccess.ReadWrite || access == FileAccess.Write), // CanWrite
+                (access == FileAccess.Read || access == FileAccess.ReadWrite), // CanSeek
+                false) // CanRelease
         {
-            FileInfo finfo = new FileInfo(filename);
-            iostream = (Stream)finfo.Open(mode, access, share);
+            var finfo = new FileInfo(filename);
+            iostream = finfo.Open(mode, access, share);
 
             // set default filename 
             FileName = finfo.Name;
         }
-        public override void Close()
-        {
-            if (iostream != null)
-                ((FileStream)(iostream)).Close();
-                
+
+        public override void Close() {
+            if (iostream != null) {
+                ((iostream)).Close();
+            }
+
             base.Close();
         }
     }

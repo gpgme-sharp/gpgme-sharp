@@ -17,30 +17,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Libgpgme
 {
     public class CombinedResult
     {
-        private DecryptionResult decryptrst;
-        public DecryptionResult DecryptionResult
-        {
-            get { return decryptrst; }
-        }
+        public DecryptionResult DecryptionResult { get; private set; }
 
-        private VerificationResult verifyrst;
-        public VerificationResult VerificationResult
-        {
-            get { return verifyrst; }
-        }
+        public VerificationResult VerificationResult { get; private set; }
 
-        internal CombinedResult(DecryptionResult decrst, VerificationResult verrst) 
-        {
-            this.decryptrst = decrst;
-            this.verifyrst = verrst;
+        internal CombinedResult(DecryptionResult decrst, VerificationResult verrst) {
+            DecryptionResult = decrst;
+            VerificationResult = verrst;
         }
     }
 }

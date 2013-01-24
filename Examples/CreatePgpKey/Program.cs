@@ -18,16 +18,14 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-
+using System.Globalization;
 using Libgpgme;
 
 namespace CreatePgpKey
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Console.WriteLine("This example will create PGP keys in your default keyring.\n");
 
@@ -53,88 +51,92 @@ namespace CreatePgpKey
 
             IKeyGenerator keygen = ctx.KeyStore;
 
-            KeyParameters aliceparam, bobparam, malloryparam;
+            // Create 3 PGP keys..
+            CreatePgpKeyForAlice(keygen);
+            CreatePgpKeyForBob(keygen);
+            CreatePgpKeyForMallory(keygen);
+        }
 
-            aliceparam = new KeyParameters();
-            aliceparam.RealName = "Alice";
-            aliceparam.Comment = "my comment";
-            aliceparam.Email = "alice@home.internal";
-            aliceparam.ExpirationDate = DateTime.Now.AddYears(3);
- 
-            // primary key parameters
-            aliceparam.KeyLength = KeyParameters.KEY_LENGTH_2048;
-            aliceparam.PubkeyAlgorithm = KeyAlgorithm.RSA;
-            // the primary key algorithm MUST have the "Sign" capability
-            aliceparam.PubkeyUsage = 
-                AlgorithmCapability.CanSign 
-                | AlgorithmCapability.CanAuth 
-                | AlgorithmCapability.CanCert;
+        private static void CreatePgpKeyForAlice(IKeyGenerator keygen) {
+            KeyParameters aliceparam = new KeyParameters {
+                RealName = "Alice",
+                Comment = "my comment",
+                Email = "alice@home.internal",
+                ExpirationDate = DateTime.Now.AddYears(3),
+                KeyLength = KeyParameters.KEY_LENGTH_2048,
+                // primary key parameters
+                PubkeyAlgorithm = KeyAlgorithm.RSA,
+                // the primary key algorithm MUST have the "Sign" capability
+                PubkeyUsage = AlgorithmCapability.CanSign | AlgorithmCapability.CanAuth | AlgorithmCapability.CanCert,
+                // subkey parameters (optional)
+                SubkeyLength = KeyParameters.KEY_LENGTH_4096,
+                SubkeyAlgorithm = KeyAlgorithm.RSA,
+                SubkeyUsage = AlgorithmCapability.CanEncrypt,
+                Passphrase = "topsecret"
+            };
 
-            // subkey parameters (optional)
-            aliceparam.SubkeyLength = KeyParameters.KEY_LENGTH_4096;
-            aliceparam.SubkeyAlgorithm = KeyAlgorithm.RSA;
-            aliceparam.SubkeyUsage = AlgorithmCapability.CanEncrypt;
-            
-            aliceparam.Passphrase = "topsecret";
-
-            // Generate Alice key
             Console.WriteLine(
-                "Create a new PGP key for Alice.\n"
-                + "Name: {0}\n"
-                + "Comment: {1} \n"
-                + "Email: {2} \n"
-                + "Secret passphrase: {3} \n"
-                + "Expire date: {4} \n"
-                + "Primary key algorithm = {5} ({6} bit)\n"
-                + "Sub key algorithm = {7} ({8} bit)",
+                @"Create a new PGP key for Alice.
+Name: {0}
+Comment: {1}
+Email: {2}
+Secret passphrase: {3}
+Expire date: {4}
+Primary key algorithm = {5} ({6} bit)
+Sub key algorithm = {7} ({8} bit)",
                 aliceparam.RealName,
                 aliceparam.Comment,
                 aliceparam.Email,
                 aliceparam.Passphrase,
-                aliceparam.ExpirationDate.ToString(),
+                aliceparam.ExpirationDate.ToString(CultureInfo.InvariantCulture),
                 Gpgme.GetPubkeyAlgoName(aliceparam.PubkeyAlgorithm),
                 aliceparam.PubkeyLength,
                 Gpgme.GetPubkeyAlgoName(aliceparam.SubkeyAlgorithm),
-                aliceparam.SubkeyLength
-                );
+                aliceparam.SubkeyLength);
 
             Console.Write("Start key generation.. ");
+            
             GenkeyResult result = keygen.GenerateKey(
                 Protocol.OpenPGP,
                 aliceparam);
 
             Console.WriteLine("done.\nFingerprint: {0}\n",
                 result.Fingerprint);
+        }
 
-            // okay, create two more keys
-            
+        private static void CreatePgpKeyForBob(IKeyGenerator keygen) {
             Console.Write("Create PGP key for Bob.. ");
-            bobparam = new KeyParameters();
-            bobparam.RealName = "Bob";
-            bobparam.Email = "bob@home.internal";
-            bobparam.ExpirationDate = DateTime.Now.AddYears(2);
-            bobparam.Passphrase = "topsecret";
+            KeyParameters bobparam = new KeyParameters {
+                RealName = "Bob",
+                Email = "bob@home.internal",
+                ExpirationDate = DateTime.Now.AddYears(2),
+                Passphrase = "topsecret"
+            };
 
-            result = keygen.GenerateKey(
+            GenkeyResult result = keygen.GenerateKey(
                 Protocol.OpenPGP,
                 bobparam);
+
             Console.WriteLine("done.\nFingerprint: {0}\n",
                 result.Fingerprint);
+        }
 
+        private static void CreatePgpKeyForMallory(IKeyGenerator keygen) {
             Console.Write("Create PGP key for Mallory.. ");
-            malloryparam = new KeyParameters();
-            malloryparam.RealName = "Mallory";
-            malloryparam.Email = "mallory@home.internal";
+
+            KeyParameters malloryparam = new KeyParameters {
+                RealName = "Mallory",
+                Email = "mallory@home.internal"
+            };
+
             malloryparam.MakeInfinitely(); // PGP key does not expire
             malloryparam.Passphrase = "topsecret";
 
-            result = keygen.GenerateKey(
+            GenkeyResult result = keygen.GenerateKey(
                 Protocol.OpenPGP,
                 malloryparam);
             Console.WriteLine("done.\nFingerprint: {0}",
                 result.Fingerprint);
-
-            return;
         }
     }
 }

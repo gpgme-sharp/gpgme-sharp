@@ -18,9 +18,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace Libgpgme.Interop
@@ -29,7 +26,7 @@ namespace Libgpgme.Interop
     internal class _gpgme_op_sign_result
     {
         /* The list of invalid signers.  */
-        public IntPtr invalid_signers;     // gpgme_invalid_key_t
-        public IntPtr signatures;          // gpgme_new_signature_t
+        public IntPtr invalid_signers; // gpgme_invalid_key_t
+        public IntPtr signatures; // gpgme_new_signature_t
     }
 }

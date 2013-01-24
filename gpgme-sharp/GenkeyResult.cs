@@ -18,46 +18,41 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Threading;
 using Libgpgme.Interop;
 
 namespace Libgpgme
 {
     public class GenkeyResult
     {
-        private string fingerprint;
-        private bool hasPrimary;
-        private bool hasSub;
-        internal GenkeyResult(IntPtr keyresultPtr)
-        {
-            if (keyresultPtr == IntPtr.Zero)
+        private string _fingerprint;
+        private bool _has_primary;
+        private bool _has_sub;
+
+        internal GenkeyResult(IntPtr keyresultPtr) {
+            if (keyresultPtr == IntPtr.Zero) {
                 throw new InvalidPtrException("An invalid key result pointer has been given." +
-                                              " Bad programmer! *spank* *spank*");
+                    " Bad programmer! *spank* *spank*");
+            }
             UpdateFromMem(keyresultPtr);
         }
-        private void UpdateFromMem(IntPtr keyresultPtr)
-        {
-            _gpgme_op_genkey_result result = new _gpgme_op_genkey_result();
+
+        public string Fingerprint {
+            get { return _fingerprint; }
+        }
+        public bool HasPrimary {
+            get { return _has_primary; }
+        }
+        public bool HasSub {
+            get { return _has_sub; }
+        }
+
+        private void UpdateFromMem(IntPtr keyresultPtr) {
+            var result = new _gpgme_op_genkey_result();
             Marshal.PtrToStructure(keyresultPtr, result);
-            fingerprint = Gpgme.PtrToStringAnsi(result.fpr);
-            hasPrimary = result.primary;
-            hasSub = result.sub;
-        }
-        public string Fingerprint
-        {
-            get { return fingerprint; }
-        }
-        public bool HasPrimary
-        {
-            get { return hasPrimary; }
-        }
-        public bool HasSub
-        {
-            get { return hasSub; }
+            _fingerprint = Gpgme.PtrToStringAnsi(result.fpr);
+            _has_primary = result.primary;
+            _has_sub = result.sub;
         }
     }
 }

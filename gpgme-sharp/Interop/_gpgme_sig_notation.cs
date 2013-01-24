@@ -18,9 +18,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace Libgpgme.Interop
@@ -55,26 +52,24 @@ namespace Libgpgme.Interop
          */
         public uint additionalflags;
 
-        public bool human_readable
-        {
+        public bool human_readable {
             get { return ((additionalflags & 1) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     additionalflags |= 1;
-                else
-                    additionalflags &= (~(uint)1);
+                } else {
+                    additionalflags &= (~(uint) 1);
+                }
             }
         }
-        public bool critical
-        {
+        public bool critical {
             get { return ((additionalflags & 2) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     additionalflags |= 2;
-                else
-                    additionalflags &= (~(uint)2);
+                } else {
+                    additionalflags &= (~(uint) 2);
+                }
             }
         }
     }

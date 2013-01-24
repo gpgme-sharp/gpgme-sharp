@@ -20,69 +20,65 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using Libgpgme.Interop;
 
 namespace Libgpgme
 {
-    public class Recipient: IEnumerable<Recipient>
+    public class Recipient : IEnumerable<Recipient>
     {
-        private string keyid;
-        public string KeyId
-        {
-            get { return keyid; }
-        }
-        private KeyAlgorithm pubkey_algo;
-        public KeyAlgorithm KeyAlgorithm
-        {
-            get { return pubkey_algo; }
-        }
-        private int status;
-        public int Status
-        {
-            get { return status; }
-        }
-        private Recipient next;
-        public Recipient Next
-        {
-            get { return next; }
-        }
+        private string _keyid;
+        private Recipient _next;
+        private KeyAlgorithm _pubkey_algo;
+        private int _status;
 
-        internal Recipient(IntPtr recpPtr)
-        {
-            if (recpPtr == IntPtr.Zero)
+        internal Recipient(IntPtr recpPtr) {
+            if (recpPtr == IntPtr.Zero) {
                 throw new InvalidPtrException("An invalid recipient pointer has been given.");
-            
+            }
+
             UpdateFromMem(recpPtr);
         }
-        private void UpdateFromMem(IntPtr recpPtr)
-        {
-            _gpgme_recipient recp = new _gpgme_recipient();
-            Marshal.PtrToStructure(recpPtr, recp);
 
-            keyid = Gpgme.PtrToStringUTF8(recp.keyid);
-            pubkey_algo = (KeyAlgorithm)recp.pubkey_algo;
-            status = recp.status;
-
-            if (recp.next != IntPtr.Zero)
-                next = new Recipient(recp.next);
+        public string KeyId {
+            get { return _keyid; }
+        }
+        public KeyAlgorithm KeyAlgorithm {
+            get { return _pubkey_algo; }
         }
 
-        public IEnumerator<Recipient> GetEnumerator()
-        {
+        public int Status {
+            get { return _status; }
+        }
+        public Recipient Next {
+            get { return _next; }
+        }
+        #region IEnumerable<Recipient> Members
+
+        public IEnumerator<Recipient> GetEnumerator() {
             Recipient recp = this;
-            while (recp != null)
-            {
+            while (recp != null) {
                 yield return recp;
                 recp = recp.Next;
             }
         }
-        
-        IEnumerator IEnumerable.GetEnumerator()
-        {
+
+        IEnumerator IEnumerable.GetEnumerator() {
             return GetEnumerator();
+        }
+
+        #endregion
+        private void UpdateFromMem(IntPtr recpPtr) {
+            var recp = new _gpgme_recipient();
+            Marshal.PtrToStructure(recpPtr, recp);
+
+            _keyid = Gpgme.PtrToStringUTF8(recp.keyid);
+            _pubkey_algo = (KeyAlgorithm) recp.pubkey_algo;
+            _status = recp.status;
+
+            if (recp.next != IntPtr.Zero) {
+                _next = new Recipient(recp.next);
+            }
         }
     }
 }

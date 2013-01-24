@@ -18,14 +18,12 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace Libgpgme.Interop
 {
     /* A signature on a user ID.  */
+
     [StructLayout(LayoutKind.Sequential)]
     internal class _gpgme_key_sig //// *gpgme_key_sig_t;
     {
@@ -70,16 +68,16 @@ namespace Libgpgme.Interop
         public uint iclass;
 
         /* The user ID string.  */
-        public IntPtr uid;  // char*
+        public IntPtr uid; // char*
 
         /* The name part of the user ID.  */
-        public IntPtr name;  // char*
+        public IntPtr name; // char*
 
         /* The email part of the user ID.  */
-        public IntPtr email;    // char*
+        public IntPtr email; // char*
 
         /* The comment part of the user ID.  */
-        public IntPtr comment;  // char*
+        public IntPtr comment; // char*
 
         /* Crypto backend specific signature class.  */
         public uint sig_class;
@@ -92,62 +90,56 @@ namespace Libgpgme.Interop
         //gpgme_sig_notation_t _last_notation;
         public IntPtr _last_notation;
 
-        public _gpgme_key_sig()
-        {
-			// create buffer!
-            _keyid 	= new byte[17];
-			
-			next 	= IntPtr.Zero;
+        public _gpgme_key_sig() {
+            // create buffer!
+            _keyid = new byte[17];
+
+            next = IntPtr.Zero;
         }
 
-        public bool revoked
-        {
+        public bool revoked {
             get { return ((flags & 1) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 1;
-                else
-                    flags &= (~(uint)1);
+                } else {
+                    flags &= (~(uint) 1);
+                }
             }
         }
 
-        public bool expired
-        {
+        public bool expired {
             get { return ((flags & 2) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 2;
-                else
-                    flags &= (~(uint)2);
+                } else {
+                    flags &= (~(uint) 2);
+                }
             }
         }
 
 
-        public bool invalid
-        {
+        public bool invalid {
             get { return ((flags & 4) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 4;
-                else
-                    flags &= (~(uint)4);
+                } else {
+                    flags &= (~(uint) 4);
+                }
             }
         }
 
-        public bool exportable
-        {
+        public bool exportable {
             get { return ((flags & 8) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 8;
-                else
-                    flags &= (~(uint)8);
+                } else {
+                    flags &= (~(uint) 8);
+                }
             }
         }
     }
 }
-

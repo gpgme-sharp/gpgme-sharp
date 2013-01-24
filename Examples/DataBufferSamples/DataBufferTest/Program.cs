@@ -1,5 +1,4 @@
 using System;
-using System.Text;
 using System.IO;
 
 using Libgpgme;
@@ -36,8 +35,6 @@ namespace DataBufferTest
 			Console.WriteLine("Seek to begin: " + streamdata.Seek(0, SeekOrigin.Begin));
 			byte[] tmp2 = new byte[bytedata.Length];
 			Console.WriteLine("Bytes read: " + streamdata.Read(tmp2));
-			
-			return;
 		}
 	}
 }

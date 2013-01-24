@@ -19,15 +19,14 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
-
+using System.Globalization;
 using Libgpgme;
 
 namespace SignPgpKey
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Context ctx = new Context();
 
@@ -36,7 +35,7 @@ namespace SignPgpKey
 
             Console.WriteLine("Search Bob's and Alice's PGP keys in the default keyring..");
 
-            String[] searchpattern = new string[] {
+            String[] searchpattern = new[] {
                 "bob@home.internal",
                 "alice@home.internal" };
 
@@ -55,15 +54,16 @@ namespace SignPgpKey
             {
                 foreach (Key k in keys)
                 {
-                    if (k.Uid != null)
-                    {
-                        if (bob == null && k.Uid.Email.ToLower().Equals("bob@home.internal"))
-                            bob = (PgpKey)k;
-                        if (alice == null && k.Uid.Email.ToLower().Equals("alice@home.internal"))
-                            alice = (PgpKey)k;
-                    }
-                    else
+                    if (k.Uid == null) {
                         throw new InvalidKeyException();
+                    }
+
+                    if (bob == null && k.Uid.Email.ToLower().Equals("bob@home.internal")) {
+                        bob = (PgpKey) k;
+                    }
+                    if (alice == null && k.Uid.Email.ToLower().Equals("alice@home.internal")) {
+                        alice = (PgpKey) k;
+                    }
                 }
             }
 
@@ -91,17 +91,19 @@ namespace SignPgpKey
             /* Set the password callback - needed if the user doesn't run
              * gpg-agent or any other password / pin-entry software.
              */
-            ctx.SetPassphraseFunction(new PassphraseDelegate(MyPassphraseCallback));
+            ctx.SetPassphraseFunction(MyPassphraseCallback);
 
             Console.WriteLine("Sign Bob's PGP key with Alice's key.. ");
 
             /////// SIGN KEY ///////
 
-            PgpSignatureOptions signopts = new PgpSignatureOptions();
+            PgpSignatureOptions signopts = new PgpSignatureOptions {
+                SelectedUids = new[] {1},
+                TrustLevel = PgpSignatureTrustLevel.Full,
+                Type = PgpSignatureType.Trust | PgpSignatureType.NonExportable
+            };
 
-            signopts.SelectedUids = new int[] { 1 }; // sign the latest Uid only!
-            signopts.TrustLevel = PgpSignatureTrustLevel.Full;
-            signopts.Type = PgpSignatureType.Trust | PgpSignatureType.NonExportable;
+            // sign the latest Uid only!
 
             try
             {
@@ -110,10 +112,6 @@ namespace SignPgpKey
             catch (AlreadySignedException)
             {
                 Console.WriteLine("Bob's key is already signed!");
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
 
             // Refresh Bob's key 
@@ -136,11 +134,13 @@ namespace SignPgpKey
                     !keysig.Revoked) // must not be a revocation certificate
                     break; // found!
             }
-            
-            PgpRevokeSignatureOptions revopts = new PgpRevokeSignatureOptions();
-            revopts.SelectedUid = 1; // latest uid
-            revopts.SelectedSignatures = new int[] { nsignature };
-            revopts.ReasonText = "Test revocation";
+
+            PgpRevokeSignatureOptions revopts = new PgpRevokeSignatureOptions {
+                SelectedUid = 1, 
+                SelectedSignatures = new[] { nsignature }, 
+                ReasonText = "Test revocation"
+            };
+            // latest uid
 
             bob.RevokeSignature(ctx, revopts);
 
@@ -162,10 +162,11 @@ namespace SignPgpKey
                     siglst.Add(nsignature);
             }
 
-            PgpDeleteSignatureOptions delsigopts = new PgpDeleteSignatureOptions();
-            delsigopts.DeleteSelfSignature = false;
-            delsigopts.SelectedUid = 1 ;
-            delsigopts.SelectedSignatures = siglst.ToArray();
+            PgpDeleteSignatureOptions delsigopts = new PgpDeleteSignatureOptions {
+                DeleteSelfSignature = false, 
+                SelectedUid = 1, 
+                SelectedSignatures = siglst.ToArray()
+            };
 
             bob.DeleteSignature(ctx, delsigopts);
 
@@ -173,11 +174,9 @@ namespace SignPgpKey
             bob = (PgpKey)keyring.GetKey(bob.Fingerprint, false);
 
             PrintUidData(bob);
-
-            return;
         }
 
-        private static void PrintUidData(PgpKey key)
+        private static void PrintUidData(Key key)
         {
             if (key.Uid == null)
                 throw new InvalidKeyException();
@@ -196,9 +195,9 @@ namespace SignPgpKey
                     id.Name,
                     id.Email,
                     id.Comment,
-                    id.Invalid.ToString(),
-                    id.Revoked.ToString(),
-                    id.Validity.ToString());
+                    id.Invalid.ToString(CultureInfo.InvariantCulture),
+                    id.Revoked.ToString(CultureInfo.InvariantCulture),
+                    id.Validity);
 
                 Console.WriteLine("\tSignatures:");
                 if (id.Signatures != null)
@@ -212,10 +211,10 @@ namespace SignPgpKey
                             + "Invalid: {5}\n",
                             keysig.Name,
                             keysig.KeyId,
-                            keysig.Timestamp.ToString(),
-                            keysig.Revoked.ToString(),
-                            keysig.Expires.ToString(),
-                            keysig.Invalid.ToString());
+                            keysig.Timestamp.ToString(CultureInfo.InvariantCulture),
+                            keysig.Revoked.ToString(CultureInfo.InvariantCulture),
+                            keysig.Expires.ToString(CultureInfo.InvariantCulture),
+                            keysig.Invalid.ToString(CultureInfo.InvariantCulture));
                 }
                 else
                     Console.WriteLine("\t\tNone");
@@ -241,9 +240,13 @@ namespace SignPgpKey
              + "\nPrevious passphrase was bad: " + info.PrevWasBad
              + "\nPassword: ");
 
-            passwd = Console.ReadLine().ToCharArray();
+            var read_line = Console.ReadLine();
+            if (read_line != null) {
+                passwd = read_line.ToCharArray();
+                return PassphraseResult.Success;
+            }
 
-            return PassphraseResult.Success;
+            return PassphraseResult.Canceled;
         }
     }
 }

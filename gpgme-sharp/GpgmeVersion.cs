@@ -18,33 +18,41 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Libgpgme
 {
     public class GpgmeVersion
     {
-        string version;
-        int major, minor, update;
-        public GpgmeVersion(string version)
-        {
-            this.version = version;
+        private readonly int _major;
+        private readonly int _minor;
+        private readonly int _update;
+        private readonly string _version;
+
+        public GpgmeVersion(string version) {
+            if (version == null) {
+                throw new ArgumentNullException("version");
+            }
+            _version = version;
+
             string[] tup = version.Split('.');
-            if (tup != null)
-            {
-                if (tup.Length >= 3)
-                {
-                    int.TryParse(tup[0], out major);
-                    int.TryParse(tup[1], out minor);
-                    int.TryParse(tup[2], out update);
-                }
+            if (tup.Length >= 3) {
+                int.TryParse(tup[0], out _major);
+                int.TryParse(tup[1], out _minor);
+                int.TryParse(tup[2], out _update);
             }
         }
 
-        public int Major { get { return major; } }
-        public int Minor { get { return minor; } }
-        public int Update { get { return update; } }
-        public string Version { get { return version; } }
+        public int Major {
+            get { return _major; }
+        }
+        public int Minor {
+            get { return _minor; }
+        }
+        public int Update {
+            get { return _update; }
+        }
+        public string Version {
+            get { return _version; }
+        }
     }
 }

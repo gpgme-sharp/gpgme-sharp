@@ -18,14 +18,12 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace Libgpgme.Interop
 {
     /* An user ID from a key.  */
+
     [StructLayout(LayoutKind.Sequential)]
     internal class _gpgme_user_id // gpgme_user_id_t
     {
@@ -44,13 +42,13 @@ namespace Libgpgme.Interop
         public gpgme_validity_t validity;
 
         /* The user ID string.  */
-        public IntPtr uid;  // char*
+        public IntPtr uid; // char*
 
         /* The name part of the user ID.  */
         public IntPtr name; // char*
 
         /* The email part of the user ID.  */
-        public IntPtr email;  // char*
+        public IntPtr email; // char*
 
         /* The comment part of the user ID.  */
         public IntPtr comment; // char*
@@ -61,26 +59,24 @@ namespace Libgpgme.Interop
         /* Internal to GPGME, do not use.  */
         public IntPtr _last_keysig; //gpgme_key_sig_t
 
-        public bool revoked
-        {
+        public bool revoked {
             get { return ((flags & 1) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 1;
-                else
-                    flags &= (~(uint)1);
+                } else {
+                    flags &= (~(uint) 1);
+                }
             }
         }
-        public bool invalid
-        {
+        public bool invalid {
             get { return ((flags & 2) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 2;
-                else
-                    flags &= (~(uint)2);
+                } else {
+                    flags &= (~(uint) 2);
+                }
             }
         }
     }

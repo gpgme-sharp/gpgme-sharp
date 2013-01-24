@@ -18,15 +18,12 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace Libgpgme.Interop
 {
     [StructLayout(LayoutKind.Sequential)]
-    internal class _gpgme_op_import_result   //gpgme_import_result_t
+    internal class _gpgme_op_import_result //gpgme_import_result_t
     {
         /* Number of considered keys.  */
         public int considered;
@@ -71,6 +68,6 @@ namespace Libgpgme.Interop
         public int not_imported;
 
         /* List of keys for which an import was attempted.  */
-        public IntPtr imports;     //gpgme_import_status_t
+        public IntPtr imports; //gpgme_import_status_t
     }
 }

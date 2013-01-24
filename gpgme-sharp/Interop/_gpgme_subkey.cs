@@ -18,9 +18,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace Libgpgme.Interop
@@ -73,14 +70,14 @@ namespace Libgpgme.Interop
         public uint length;
 
         /* The key ID of the subkey.  */
-        public IntPtr keyid;    // char*
+        public IntPtr keyid; // char*
 
         /* Internal to GPGME, do not use.  */
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 17)]
         public byte[] _keyid;
 
         /* The fingerprint of the subkey in hex digit form.  */
-        public IntPtr fpr;  // char*
+        public IntPtr fpr; // char*
 
         /* The creation timestamp, -1 if invalid, 0 if not available.  */
         public IntPtr timestamp;
@@ -88,119 +85,108 @@ namespace Libgpgme.Interop
         /* The expiration timestamp, 0 if the subkey does not expire.  */
         public IntPtr expires;
 
-        public bool revoked
-        {
+        public bool revoked {
             get { return ((flags & 1) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 1;
-                else
-                    flags &= (~(uint)1);
+                } else {
+                    flags &= (~(uint) 1);
+                }
             }
         }
-        public bool expired
-        {
+        public bool expired {
             get { return ((flags & 2) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 2;
-                else
-                    flags &= (~(uint)2);
+                } else {
+                    flags &= (~(uint) 2);
+                }
             }
         }
-        public bool disabled
-        {
+        public bool disabled {
             get { return ((flags & 4) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 4;
-                else
-                    flags &= (~(uint)4);
+                } else {
+                    flags &= (~(uint) 4);
+                }
             }
         }
-        public bool invalid
-        {
+        public bool invalid {
             get { return ((flags & 8) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 8;
-                else
-                    flags &= (~(uint)8);
+                } else {
+                    flags &= (~(uint) 8);
+                }
             }
         }
-        public bool can_encrypt
-        {
+        public bool can_encrypt {
             get { return ((flags & 16) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 16;
-                else
-                    flags &= (~(uint)16);
+                } else {
+                    flags &= (~(uint) 16);
+                }
             }
         }
-        public bool can_sign
-        {
+        public bool can_sign {
             get { return ((flags & 32) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 32;
-                else
-                    flags &= (~(uint)32);
+                } else {
+                    flags &= (~(uint) 32);
+                }
             }
         }
-        public bool can_certify
-        {
+        public bool can_certify {
             get { return ((flags & 64) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 64;
-                else
-                    flags &= (~(uint)64);
+                } else {
+                    flags &= (~(uint) 64);
+                }
             }
         }
-        public bool secret
-        {
+        public bool secret {
             get { return ((flags & 128) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 128;
-                else
-                    flags &= (~(uint)128);
+                } else {
+                    flags &= (~(uint) 128);
+                }
             }
         }
-        public bool can_authenticate
-        {
+        public bool can_authenticate {
             get { return ((flags & 256) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 256;
-                else
-                    flags &= (~(uint)256);
+                } else {
+                    flags &= (~(uint) 256);
+                }
             }
         }
-        public bool is_qualified
-        {
+        public bool is_qualified {
             get { return ((flags & 512) > 0); }
-            set
-            {
-                if (value)
+            set {
+                if (value) {
                     flags |= 512;
-                else
-                    flags &= (~(uint)512);
+                } else {
+                    flags &= (~(uint) 512);
+                }
             }
         }
 
-        public _gpgme_subkey()
-        {
+        public _gpgme_subkey() {
             _keyid = new byte[17];
         }
     }
