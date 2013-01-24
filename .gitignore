@@ -8,3 +8,4 @@ packages/
 *.csproj.user
 *.ReSharper.user
 _Resharper*
+gpgme-sharp.userprefs
