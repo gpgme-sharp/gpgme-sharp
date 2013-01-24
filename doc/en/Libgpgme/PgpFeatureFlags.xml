@@ -1,5 +1,6 @@
 <Type Name="PgpFeatureFlags" FullName="Libgpgme.PgpFeatureFlags">
   <TypeSignature Language="C#" Value="public enum PgpFeatureFlags" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed PgpFeatureFlags extends System.Enum" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -19,6 +20,7 @@
   <Members>
     <Member MemberName="KeyserverModify">
       <MemberSignature Language="C#" Value="KeyserverModify" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.PgpFeatureFlags KeyserverModify = int32(2)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -37,6 +39,7 @@
     </Member>
     <Member MemberName="MDC">
       <MemberSignature Language="C#" Value="MDC" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.PgpFeatureFlags MDC = int32(1)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

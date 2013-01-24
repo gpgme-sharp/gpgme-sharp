@@ -1,5 +1,6 @@
 <Type Name="PgpExpirationOptions" FullName="Libgpgme.PgpExpirationOptions">
   <TypeSignature Language="C#" Value="public class PgpExpirationOptions" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit PgpExpirationOptions extends System.Object" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -15,6 +16,7 @@
   <Members>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public PgpExpirationOptions ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -26,7 +28,8 @@
       </Docs>
     </Member>
     <Member MemberName="ExpirationDate">
-      <MemberSignature Language="C#" Value="public DateTime ExpirationDate { set; get; }" />
+      <MemberSignature Language="C#" Value="public DateTime ExpirationDate { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype System.DateTime ExpirationDate" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -49,6 +52,7 @@ You can unset the expiration date with the <see cref="M:Libgpgme.PgpExpirationOp
     </Member>
     <Member MemberName="IsInfinitely">
       <MemberSignature Language="C#" Value="public bool IsInfinitely { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool IsInfinitely" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -70,6 +74,7 @@ You can unset the expiration date with the <see cref="M:Libgpgme.PgpExpirationOp
     </Member>
     <Member MemberName="MakeInfinitely">
       <MemberSignature Language="C#" Value="public void MakeInfinitely ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void MakeInfinitely() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -85,6 +90,7 @@ You can unset the expiration date with the <see cref="M:Libgpgme.PgpExpirationOp
     </Member>
     <Member MemberName="SelectedSubkeys">
       <MemberSignature Language="C#" Value="public int[] SelectedSubkeys;" />
+      <MemberSignature Language="ILAsm" Value=".field public int32[] SelectedSubkeys" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

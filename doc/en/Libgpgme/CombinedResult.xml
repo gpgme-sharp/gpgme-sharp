@@ -1,5 +1,6 @@
 <Type Name="CombinedResult" FullName="Libgpgme.CombinedResult">
   <TypeSignature Language="C#" Value="public class CombinedResult" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit CombinedResult extends System.Object" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -15,6 +16,7 @@
   <Members>
     <Member MemberName="DecryptionResult">
       <MemberSignature Language="C#" Value="public Libgpgme.DecryptionResult DecryptionResult { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Libgpgme.DecryptionResult DecryptionResult" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -31,6 +33,7 @@
     </Member>
     <Member MemberName="VerificationResult">
       <MemberSignature Language="C#" Value="public Libgpgme.VerificationResult VerificationResult { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Libgpgme.VerificationResult VerificationResult" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

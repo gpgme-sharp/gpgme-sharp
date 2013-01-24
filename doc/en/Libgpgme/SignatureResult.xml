@@ -1,5 +1,6 @@
 <Type Name="SignatureResult" FullName="Libgpgme.SignatureResult">
   <TypeSignature Language="C#" Value="public class SignatureResult" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit SignatureResult extends System.Object" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -15,6 +16,7 @@
   <Members>
     <Member MemberName="InvalidSigners">
       <MemberSignature Language="C#" Value="public Libgpgme.InvalidKey InvalidSigners { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Libgpgme.InvalidKey InvalidSigners" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -30,6 +32,7 @@
     </Member>
     <Member MemberName="Signatures">
       <MemberSignature Language="C#" Value="public Libgpgme.NewSignature Signatures { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Libgpgme.NewSignature Signatures" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

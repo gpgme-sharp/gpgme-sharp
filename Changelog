@@ -1,3 +1,11 @@
+2013-01-24	Daniel Mueller <daniel@danm.de>
+	* libgpgme.cs: 
+	* PgpKey.cs:
+	* Key.cs: corrected the key editing callback methods.
+	  Thanks to Nikola Radovanovic for providing a detailed bug report
+	  and a patch that resolved the problem!
+	* Lots of code clean ups.
+
 2010-11-23	Daniel Mueller <daniel@danm.de>
 
 	* libgpgme.cs:

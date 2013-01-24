@@ -1,5 +1,6 @@
 <Type Name="GpgmeVersion" FullName="Libgpgme.GpgmeVersion">
   <TypeSignature Language="C#" Value="public class GpgmeVersion" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit GpgmeVersion extends System.Object" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -15,6 +16,7 @@
   <Members>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public GpgmeVersion (string version);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(string version) cil managed" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -30,6 +32,7 @@
     </Member>
     <Member MemberName="Major">
       <MemberSignature Language="C#" Value="public int Major { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance int32 Major" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -45,6 +48,7 @@
     </Member>
     <Member MemberName="Minor">
       <MemberSignature Language="C#" Value="public int Minor { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance int32 Minor" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -60,6 +64,7 @@
     </Member>
     <Member MemberName="Update">
       <MemberSignature Language="C#" Value="public int Update { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance int32 Update" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -75,6 +80,7 @@
     </Member>
     <Member MemberName="Version">
       <MemberSignature Language="C#" Value="public string Version { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string Version" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

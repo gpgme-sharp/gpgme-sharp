@@ -1,5 +1,6 @@
 <Type Name="Context" FullName="Libgpgme.Context">
   <TypeSignature Language="C#" Value="public class Context : IDisposable" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi Context extends System.Object implements class System.IDisposable" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -20,6 +21,7 @@
   <Members>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public Context ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -30,8 +32,24 @@
         <remarks />
       </Docs>
     </Member>
+    <Member MemberName="_last_callback_exception">
+      <MemberSignature Language="C#" Value="public Exception _last_callback_exception;" />
+      <MemberSignature Language="ILAsm" Value=".field public class System.Exception _last_callback_exception" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Exception</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="AddKeylistMode">
       <MemberSignature Language="C#" Value="public void AddKeylistMode (Libgpgme.KeylistMode mode);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void AddKeylistMode(valuetype Libgpgme.KeylistMode mode) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -49,7 +67,8 @@
       </Docs>
     </Member>
     <Member MemberName="Armor">
-      <MemberSignature Language="C#" Value="public bool Armor { set; get; }" />
+      <MemberSignature Language="C#" Value="public bool Armor { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool Armor" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -66,6 +85,7 @@
     </Member>
     <Member MemberName="CERTIFICATES_ALL">
       <MemberSignature Language="C#" Value="public const int CERTIFICATES_ALL = -1;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal int32 CERTIFICATES_ALL = (-1)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -81,6 +101,7 @@
     </Member>
     <Member MemberName="CERTIFICATES_ALL_EXCEPT_ROOT">
       <MemberSignature Language="C#" Value="public const int CERTIFICATES_ALL_EXCEPT_ROOT = -2;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal int32 CERTIFICATES_ALL_EXCEPT_ROOT = (-2)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -96,6 +117,7 @@
     </Member>
     <Member MemberName="CERTIFICATES_DEFAULT">
       <MemberSignature Language="C#" Value="public const int CERTIFICATES_DEFAULT = -256;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal int32 CERTIFICATES_DEFAULT = (-256)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -111,6 +133,7 @@
     </Member>
     <Member MemberName="CERTIFICATES_NO">
       <MemberSignature Language="C#" Value="public const int CERTIFICATES_NO = 0;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal int32 CERTIFICATES_NO = (0)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -126,6 +149,7 @@
     </Member>
     <Member MemberName="CERTIFICATES_SENDER_ONLY">
       <MemberSignature Language="C#" Value="public const int CERTIFICATES_SENDER_ONLY = 1;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal int32 CERTIFICATES_SENDER_ONLY = (1)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -141,6 +165,7 @@
     </Member>
     <Member MemberName="ClearPassphraseFunction">
       <MemberSignature Language="C#" Value="public void ClearPassphraseFunction ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void ClearPassphraseFunction() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -156,6 +181,7 @@
     </Member>
     <Member MemberName="Decrypt">
       <MemberSignature Language="C#" Value="public Libgpgme.DecryptionResult Decrypt (Libgpgme.GpgmeData cipher, Libgpgme.GpgmeData plain);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class Libgpgme.DecryptionResult Decrypt(class Libgpgme.GpgmeData cipher, class Libgpgme.GpgmeData plain) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -178,6 +204,7 @@
     </Member>
     <Member MemberName="DecryptAndVerify">
       <MemberSignature Language="C#" Value="public Libgpgme.CombinedResult DecryptAndVerify (Libgpgme.GpgmeData cipher, Libgpgme.GpgmeData plain);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class Libgpgme.CombinedResult DecryptAndVerify(class Libgpgme.GpgmeData cipher, class Libgpgme.GpgmeData plain) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -209,6 +236,7 @@ If the <see cref="P:Libgpgme.CombinedResult.DecryptionResult" /> property is <se
     </Member>
     <Member MemberName="Dispose">
       <MemberSignature Language="C#" Value="public void Dispose ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void Dispose() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -225,6 +253,7 @@ If the <see cref="P:Libgpgme.CombinedResult.DecryptionResult" /> property is <se
     </Member>
     <Member MemberName="Encrypt">
       <MemberSignature Language="C#" Value="public Libgpgme.EncryptionResult Encrypt (Libgpgme.Key[] recipients, Libgpgme.EncryptFlags flags, Libgpgme.GpgmeData plain, Libgpgme.GpgmeData cipher);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class Libgpgme.EncryptionResult Encrypt(class Libgpgme.Key[] recipients, valuetype Libgpgme.EncryptFlags flags, class Libgpgme.GpgmeData plain, class Libgpgme.GpgmeData cipher) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -253,6 +282,7 @@ If <paramref name="recipients" /> is <see langword="null" />, symmetric rather t
     </Member>
     <Member MemberName="EncryptAndSign">
       <MemberSignature Language="C#" Value="public Libgpgme.EncryptionResult EncryptAndSign (Libgpgme.Key[] recipients, Libgpgme.EncryptFlags flags, Libgpgme.GpgmeData plain, Libgpgme.GpgmeData cipher);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class Libgpgme.EncryptionResult EncryptAndSign(class Libgpgme.Key[] recipients, valuetype Libgpgme.EncryptFlags flags, class Libgpgme.GpgmeData plain, class Libgpgme.GpgmeData cipher) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -281,6 +311,7 @@ The combined encrypt and sign operation is currently only available for the Open
     </Member>
     <Member MemberName="EngineInfo">
       <MemberSignature Language="C#" Value="public Libgpgme.EngineInfo EngineInfo { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Libgpgme.EngineInfo EngineInfo" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -297,6 +328,7 @@ The combined encrypt and sign operation is currently only available for the Open
     </Member>
     <Member MemberName="Finalize">
       <MemberSignature Language="C#" Value="~Context ();" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance void Finalize() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -312,6 +344,7 @@ The combined encrypt and sign operation is currently only available for the Open
     </Member>
     <Member MemberName="HasPassphraseFunction">
       <MemberSignature Language="C#" Value="public bool HasPassphraseFunction { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool HasPassphraseFunction" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -333,7 +366,8 @@ The user can unset the passphrase callback function by calling <see cref="M:Libg
       </Docs>
     </Member>
     <Member MemberName="IncludedCerts">
-      <MemberSignature Language="C#" Value="public int IncludedCerts { set; get; }" />
+      <MemberSignature Language="C#" Value="public int IncludedCerts { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance int32 IncludedCerts" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -350,6 +384,7 @@ The user can unset the passphrase callback function by calling <see cref="M:Libg
     </Member>
     <Member MemberName="IsValid">
       <MemberSignature Language="C#" Value="public bool IsValid { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool IsValid" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -371,7 +406,8 @@ The user can unset the passphrase callback function by calling <see cref="M:Libg
       </Docs>
     </Member>
     <Member MemberName="KeylistMode">
-      <MemberSignature Language="C#" Value="public Libgpgme.KeylistMode KeylistMode { set; get; }" />
+      <MemberSignature Language="C#" Value="public Libgpgme.KeylistMode KeylistMode { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype Libgpgme.KeylistMode KeylistMode" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -397,6 +433,7 @@ At least one of <see cref="P:Libgpgme.KeylistMode.Local" /> and <see cref="P:Lib
     </Member>
     <Member MemberName="KeyStore">
       <MemberSignature Language="C#" Value="public Libgpgme.KeyStore KeyStore { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Libgpgme.KeyStore KeyStore" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -414,7 +451,6 @@ At least one of <see cref="P:Libgpgme.KeylistMode.Local" /> and <see cref="P:Lib
       <MemberSignature Language="C#" Value="public Exception LastCallbackException;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
-        <AssemblyVersion>1.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Exception</ReturnType>
@@ -425,7 +461,8 @@ At least one of <see cref="P:Libgpgme.KeylistMode.Local" /> and <see cref="P:Lib
       </Docs>
     </Member>
     <Member MemberName="Protocol">
-      <MemberSignature Language="C#" Value="public Libgpgme.Protocol Protocol { set; get; }" />
+      <MemberSignature Language="C#" Value="public Libgpgme.Protocol Protocol { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype Libgpgme.Protocol Protocol" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -444,6 +481,7 @@ Setting the protocol does not check if the crypto engine for that protocol is av
     </Member>
     <Member MemberName="RemoveKeylistMode">
       <MemberSignature Language="C#" Value="public void RemoveKeylistMode (Libgpgme.KeylistMode mode);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void RemoveKeylistMode(valuetype Libgpgme.KeylistMode mode) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -462,6 +500,7 @@ Setting the protocol does not check if the crypto engine for that protocol is av
     </Member>
     <Member MemberName="SetDllDirectory">
       <MemberSignature Language="C#" Value="public void SetDllDirectory (string path);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void SetDllDirectory(string path) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -480,6 +519,7 @@ Setting the protocol does not check if the crypto engine for that protocol is av
     </Member>
     <Member MemberName="SetEngineInfo">
       <MemberSignature Language="C#" Value="public void SetEngineInfo (Libgpgme.Protocol proto, string filename, string homedir);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void SetEngineInfo(valuetype Libgpgme.Protocol proto, string filename, string homedir) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -511,6 +551,7 @@ Setting the protocol does not check if the crypto engine for that protocol is av
     </Member>
     <Member MemberName="SetPassphraseFunction">
       <MemberSignature Language="C#" Value="public void SetPassphraseFunction (Libgpgme.PassphraseDelegate func);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void SetPassphraseFunction(class Libgpgme.PassphraseDelegate func) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -538,7 +579,8 @@ The user can disable the use of a passphrase callback function by calling <see c
       </Docs>
     </Member>
     <Member MemberName="SetPassphraseFunction">
-      <MemberSignature Language="C#" Value="public void SetPassphraseFunction (Libgpgme.PassphraseDelegate func, IntPtr Hook);" />
+      <MemberSignature Language="C#" Value="public void SetPassphraseFunction (Libgpgme.PassphraseDelegate func, IntPtr hook);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void SetPassphraseFunction(class Libgpgme.PassphraseDelegate func, native int hook) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -548,10 +590,11 @@ The user can disable the use of a passphrase callback function by calling <see c
       </ReturnValue>
       <Parameters>
         <Parameter Name="func" Type="Libgpgme.PassphraseDelegate" />
-        <Parameter Name="Hook" Type="System.IntPtr" />
+        <Parameter Name="hook" Type="System.IntPtr" />
       </Parameters>
       <Docs>
         <param name="func">A <see cref="T:Libgpgme.PassphraseDelegate" /> (callback function) that will be called if a crypto operation needs a passphrase from the user.</param>
+        <param name="hook">To be added.</param>
         <param name="Hook">Whenever <paramref name="func" /> is called, the supplied <see cref="C:Libgpgme.PassphraseInfo" /> object has its property <see cref="P:Libgpgme.PassphraseInfo.Hook" /> set with the value of <paramref name="Hook" />. </param>
         <summary>Sets a <see cref="T:Libgpgme.PassphraseDelegate" /> (callback function) that will be called if a crypto operation needs a passphrase from the user.</summary>
         <remarks>
@@ -569,6 +612,7 @@ The user can disable the use of a passphrase callback function by calling <see c
     </Member>
     <Member MemberName="Sign">
       <MemberSignature Language="C#" Value="public Libgpgme.SignatureResult Sign (Libgpgme.GpgmeData plain, Libgpgme.GpgmeData sig, Libgpgme.SignatureMode mode);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class Libgpgme.SignatureResult Sign(class Libgpgme.GpgmeData plain, class Libgpgme.GpgmeData sig, valuetype Libgpgme.SignatureMode mode) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -602,6 +646,7 @@ After the operation completed successfully, the result can be checked through th
     </Member>
     <Member MemberName="SignatureNotations">
       <MemberSignature Language="C#" Value="public Libgpgme.Context.ContextSignatureNotations SignatureNotations { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Libgpgme.Context/ContextSignatureNotations SignatureNotations" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -619,6 +664,7 @@ to a signature. This information is then available to the user when the signatur
     </Member>
     <Member MemberName="Signers">
       <MemberSignature Language="C#" Value="public Libgpgme.Context.ContextSigners Signers { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Libgpgme.Context/ContextSigners Signers" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -640,7 +686,8 @@ With the <see cref="P:Libgpgme.Context.Signers" /> property you can list (enumer
       </Docs>
     </Member>
     <Member MemberName="TextMode">
-      <MemberSignature Language="C#" Value="public bool TextMode { set; get; }" />
+      <MemberSignature Language="C#" Value="public bool TextMode { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool TextMode" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -668,6 +715,7 @@ This option is only relevant to the OpenPGP crypto engine, and ignored by all ot
     </Member>
     <Member MemberName="Verify">
       <MemberSignature Language="C#" Value="public Libgpgme.VerificationResult Verify (Libgpgme.GpgmeData signature, Libgpgme.GpgmeData signedtext, Libgpgme.GpgmeData plain);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class Libgpgme.VerificationResult Verify(class Libgpgme.GpgmeData signature, class Libgpgme.GpgmeData signedtext, class Libgpgme.GpgmeData plain) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

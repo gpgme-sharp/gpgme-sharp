@@ -1,5 +1,6 @@
 <Type Name="AlgorithmCapability" FullName="Libgpgme.AlgorithmCapability">
   <TypeSignature Language="C#" Value="public enum AlgorithmCapability" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed AlgorithmCapability extends System.Enum" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -19,6 +20,7 @@
   <Members>
     <Member MemberName="CanAuth">
       <MemberSignature Language="C#" Value="CanAuth" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.AlgorithmCapability CanAuth = int32(8)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -32,6 +34,7 @@
     </Member>
     <Member MemberName="CanCert">
       <MemberSignature Language="C#" Value="CanCert" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.AlgorithmCapability CanCert = int32(4)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -45,6 +48,7 @@
     </Member>
     <Member MemberName="CanEncrypt">
       <MemberSignature Language="C#" Value="CanEncrypt" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.AlgorithmCapability CanEncrypt = int32(2)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -58,6 +62,7 @@
     </Member>
     <Member MemberName="CanNothing">
       <MemberSignature Language="C#" Value="CanNothing" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.AlgorithmCapability CanNothing = int32(0)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -71,6 +76,7 @@
     </Member>
     <Member MemberName="CanSign">
       <MemberSignature Language="C#" Value="CanSign" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.AlgorithmCapability CanSign = int32(1)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -84,6 +90,7 @@
     </Member>
     <Member MemberName="Unknown">
       <MemberSignature Language="C#" Value="Unknown" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.AlgorithmCapability Unknown = int32(128)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

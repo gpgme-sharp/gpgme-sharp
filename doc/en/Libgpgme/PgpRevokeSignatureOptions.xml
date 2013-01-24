@@ -1,5 +1,6 @@
 <Type Name="PgpRevokeSignatureOptions" FullName="Libgpgme.PgpRevokeSignatureOptions">
   <TypeSignature Language="C#" Value="public class PgpRevokeSignatureOptions" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit PgpRevokeSignatureOptions extends System.Object" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -15,6 +16,7 @@
   <Members>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public PgpRevokeSignatureOptions ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -27,6 +29,7 @@
     </Member>
     <Member MemberName="ReasonCode">
       <MemberSignature Language="C#" Value="public Libgpgme.PgpRevokeSignatureReasonCode ReasonCode;" />
+      <MemberSignature Language="ILAsm" Value=".field public valuetype Libgpgme.PgpRevokeSignatureReasonCode ReasonCode" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -40,7 +43,8 @@
       </Docs>
     </Member>
     <Member MemberName="ReasonText">
-      <MemberSignature Language="C#" Value="public string ReasonText { set; get; }" />
+      <MemberSignature Language="C#" Value="public string ReasonText { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string ReasonText" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -56,6 +60,7 @@
     </Member>
     <Member MemberName="SelectedSignatures">
       <MemberSignature Language="C#" Value="public int[] SelectedSignatures;" />
+      <MemberSignature Language="ILAsm" Value=".field public int32[] SelectedSignatures" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -91,6 +96,7 @@ There are four entries in this example list of (key-) signatures. The first two 
     </Member>
     <Member MemberName="SelectedUid">
       <MemberSignature Language="C#" Value="public int SelectedUid;" />
+      <MemberSignature Language="ILAsm" Value=".field public int32 SelectedUid" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

@@ -1,5 +1,6 @@
 <Type Name="CipherAlgorithm" FullName="Libgpgme.CipherAlgorithm">
   <TypeSignature Language="C#" Value="public enum CipherAlgorithm" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed CipherAlgorithm extends System.Enum" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -14,6 +15,7 @@
   <Members>
     <Member MemberName="AES">
       <MemberSignature Language="C#" Value="AES" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.CipherAlgorithm AES = int32(7)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -27,6 +29,7 @@
     </Member>
     <Member MemberName="AES192">
       <MemberSignature Language="C#" Value="AES192" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.CipherAlgorithm AES192 = int32(8)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -40,6 +43,7 @@
     </Member>
     <Member MemberName="AES256">
       <MemberSignature Language="C#" Value="AES256" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.CipherAlgorithm AES256 = int32(9)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -53,6 +57,7 @@
     </Member>
     <Member MemberName="BLOWFISH">
       <MemberSignature Language="C#" Value="BLOWFISH" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.CipherAlgorithm BLOWFISH = int32(4)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -66,6 +71,7 @@
     </Member>
     <Member MemberName="CAMELLIA128">
       <MemberSignature Language="C#" Value="CAMELLIA128" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.CipherAlgorithm CAMELLIA128 = int32(11)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -79,6 +85,7 @@
     </Member>
     <Member MemberName="CAMELLIA256">
       <MemberSignature Language="C#" Value="CAMELLIA256" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.CipherAlgorithm CAMELLIA256 = int32(12)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -92,6 +99,7 @@
     </Member>
     <Member MemberName="CAST5">
       <MemberSignature Language="C#" Value="CAST5" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.CipherAlgorithm CAST5 = int32(3)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -105,6 +113,7 @@
     </Member>
     <Member MemberName="DUMMY">
       <MemberSignature Language="C#" Value="DUMMY" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.CipherAlgorithm DUMMY = int32(110)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -118,6 +127,7 @@
     </Member>
     <Member MemberName="IDEA">
       <MemberSignature Language="C#" Value="IDEA" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.CipherAlgorithm IDEA = int32(1)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -134,6 +144,7 @@ DO NOT USE. The cipher is patented in a number of countries and will expire in 2
     </Member>
     <Member MemberName="None">
       <MemberSignature Language="C#" Value="None" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.CipherAlgorithm None = int32(0)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -147,6 +158,7 @@ DO NOT USE. The cipher is patented in a number of countries and will expire in 2
     </Member>
     <Member MemberName="TRIPLEDES">
       <MemberSignature Language="C#" Value="TRIPLEDES" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.CipherAlgorithm TRIPLEDES = int32(2)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -164,6 +176,7 @@ Due to the meet-in-the-middle attack the effective security it provides is only 
     </Member>
     <Member MemberName="TWOFISH">
       <MemberSignature Language="C#" Value="TWOFISH" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.CipherAlgorithm TWOFISH = int32(10)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

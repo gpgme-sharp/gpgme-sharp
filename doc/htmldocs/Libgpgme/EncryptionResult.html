@@ -208,39 +208,28 @@
     <h1 class="PageTitle" id="T:Libgpgme.EncryptionResult">EncryptionResult  Class</h1>
     <p class="Summary" id="T:Libgpgme.EncryptionResult:Summary">A class that contains the status result of an encryption operation.</p>
     <div id="T:Libgpgme.EncryptionResult:Signature">
+      <h2>Syntax</h2>
       <div class="Signature">public class  <b>EncryptionResult</b></div>
     </div>
     <div class="Remarks" id="T:Libgpgme.EncryptionResult:Docs">
-      <h4 class="Subsection">
-        <a href="javascript:toggle_display('T:Libgpgme.EncryptionResult:Docs:Remarks')">
-          <span id="T:Libgpgme.EncryptionResult:Docs:Remarks:toggle">⊟</span> Remarks</a>
-      </h4>
-      <blockquote class="SubsectionBox" id="T:Libgpgme.EncryptionResult:Docs:Remarks">
+      <h2 class="Section">Remarks</h2>
+      <div class="SectionBox" id="T:Libgpgme.EncryptionResult:Docs:Remarks">
         <p>
 During an encryption operation the <a href="javascript:alert(&quot;Documentation not found.&quot;)">Libgpgme.EncryptFlags</a> specify whether trusted keys are required. Invalid recipients are keys that do not have a high enough validity in the keyring.
 </p>
 
-The <a href="../Libgpgme/EncryptionResult.html">Libgpgme.EncryptionResult</a> object contains information about invalid recipients. In case of one ore more invalid recipients the plaintext might be encrypted for all valid recipients and returned (if this happens depends on the crypto engine).</blockquote>
-      <h4 class="Subsection">
-        <a href="javascript:toggle_display('T:Libgpgme.EncryptionResult:Docs:Version Information')">
-          <span id="T:Libgpgme.EncryptionResult:Docs:Version Information:toggle">⊟</span> Requirements</a>
-      </h4>
-      <blockquote class="SubsectionBox" id="T:Libgpgme.EncryptionResult:Docs:Version Information">
-        <b>Namespace: </b>Libgpgme<br /><b>Assembly: </b>gpgme-sharp (in gpgme-sharp.dll)<br /><b>Assembly Versions: </b>1.0.0.0</blockquote>
-      <h2 class="Section" id="Members">
-        <a href="javascript:toggle_display('_Members')">
-          <span id="_Members:toggle">⊟</span> Members</a>
-      </h2>
-      <blockquote class="SectionBox" id="_Members">
+The <a href="../Libgpgme/EncryptionResult.html">Libgpgme.EncryptionResult</a> object contains information about invalid recipients. In case of one ore more invalid recipients the plaintext might be encrypted for all valid recipients and returned (if this happens depends on the crypto engine).</div>
+      <h2 class="Section">Requirements</h2>
+      <div class="SectionBox" id="T:Libgpgme.EncryptionResult:Docs:Version Information">
+        <b>Namespace: </b>Libgpgme<br /><b>Assembly: </b>gpgme-sharp (in gpgme-sharp.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
+      <h2 class="Section" id="Members">Members</h2>
+      <div class="SectionBox" id="_Members">
         <p>
 								See Also: Inherited members from
 								<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a>.
 							</p>
-        <h3>
-          <a href="javascript:toggle_display('Public Properties')">
-            <span id="Public Properties:toggle">⊟</span> Public Properties</a>
-        </h3>
-        <blockquote id="Public Properties">
+        <h2 class="Section">Public Properties</h2>
+        <div class="SectionBox" id="Public Properties">
           <div class="SubsectionBox">
             <table class="TypeMembers">
               <tr valign="top">
@@ -257,42 +246,28 @@ The <a href="../Libgpgme/EncryptionResult.html">Libgpgme.EncryptionResult</a> ob
               </tr>
             </table>
           </div>
-        </blockquote>
-      </blockquote>
+        </div>
+      </div>
     </div>
     <div class="Members" id="T:Libgpgme.EncryptionResult:Members">
-      <h2 class="Section" id="MemberDetails">
-        <a href="javascript:toggle_display('_MemberDetails')">
-          <span id="_MemberDetails:toggle">⊟</span> Member Details</a>
-      </h2>
-      <blockquote class="SectionBox" id="_MemberDetails">
-        <h3 id="P:Libgpgme.EncryptionResult.InvalidRecipients">
-          <a href="javascript:toggle_display('P:Libgpgme.EncryptionResult.InvalidRecipients:member')">
-            <span id="P:Libgpgme.EncryptionResult.InvalidRecipients:member:toggle">⊟</span> InvalidRecipients Property</a>
-        </h3>
+      <h2 class="Section" id="MemberDetails">Member Details</h2>
+      <div class="SectionBox" id="_MemberDetails">
+        <h3 id="P:Libgpgme.EncryptionResult.InvalidRecipients">InvalidRecipients Property</h3>
         <blockquote id="P:Libgpgme.EncryptionResult.InvalidRecipients:member">
           <p class="Summary">Recipient keys that do not have a high enough validity in the keyring or require unsupported algorithms.</p>
+          <h2>Syntax</h2>
           <div class="Signature">public <a href="../Libgpgme/InvalidKey.html">InvalidKey</a> <b>InvalidRecipients</b>  { get; }</div>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('P:Libgpgme.EncryptionResult.InvalidRecipients:Value')">
-              <span id="P:Libgpgme.EncryptionResult.InvalidRecipients:Value:toggle">⊟</span> Value</a>
-          </h4>
+          <h4 class="Subsection">Value</h4>
           <blockquote class="SubsectionBox" id="P:Libgpgme.EncryptionResult.InvalidRecipients:Value">Invalid recipient keys. Is <tt>null</tt> if there were no invalid recipients.</blockquote>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('P:Libgpgme.EncryptionResult.InvalidRecipients:Remarks')">
-              <span id="P:Libgpgme.EncryptionResult.InvalidRecipients:Remarks:toggle">⊟</span> Remarks</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="P:Libgpgme.EncryptionResult.InvalidRecipients:Remarks">Contains a linked list with information about all invalid keys for which the data could not be encrypted.
-</blockquote>
-          <h4 class="Subsection">
-            <a href="javascript:toggle_display('P:Libgpgme.EncryptionResult.InvalidRecipients:Version Information')">
-              <span id="P:Libgpgme.EncryptionResult.InvalidRecipients:Version Information:toggle">⊟</span> Requirements</a>
-          </h4>
-          <blockquote class="SubsectionBox" id="P:Libgpgme.EncryptionResult.InvalidRecipients:Version Information">
-            <b>Namespace: </b>Libgpgme<br /><b>Assembly: </b>gpgme-sharp (in gpgme-sharp.dll)<br /><b>Assembly Versions: </b>1.0.0.0</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="P:Libgpgme.EncryptionResult.InvalidRecipients:Remarks">Contains a linked list with information about all invalid keys for which the data could not be encrypted.
+</div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="P:Libgpgme.EncryptionResult.InvalidRecipients:Version Information">
+            <b>Namespace: </b>Libgpgme<br /><b>Assembly: </b>gpgme-sharp (in gpgme-sharp.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
           <hr size="1" />
         </blockquote>
-      </blockquote>
+      </div>
     </div>
     <hr size="1" />
     <div class="Copyright">

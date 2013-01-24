@@ -1,5 +1,6 @@
 <Type Name="KeyParameters" FullName="Libgpgme.KeyParameters">
   <TypeSignature Language="C#" Value="public sealed class KeyParameters" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit KeyParameters extends System.Object" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -15,6 +16,7 @@
   <Members>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public KeyParameters ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -26,7 +28,8 @@
       </Docs>
     </Member>
     <Member MemberName="AutoKeyUsage">
-      <MemberSignature Language="C#" Value="public bool AutoKeyUsage { set; get; }" />
+      <MemberSignature Language="C#" Value="public bool AutoKeyUsage { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool AutoKeyUsage" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -41,7 +44,8 @@
       </Docs>
     </Member>
     <Member MemberName="Comment">
-      <MemberSignature Language="C#" Value="public string Comment { set; get; }" />
+      <MemberSignature Language="C#" Value="public string Comment { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string Comment" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -56,7 +60,8 @@
       </Docs>
     </Member>
     <Member MemberName="Email">
-      <MemberSignature Language="C#" Value="public string Email { set; get; }" />
+      <MemberSignature Language="C#" Value="public string Email { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string Email" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -71,7 +76,8 @@
       </Docs>
     </Member>
     <Member MemberName="ExpirationDate">
-      <MemberSignature Language="C#" Value="public DateTime ExpirationDate { set; get; }" />
+      <MemberSignature Language="C#" Value="public DateTime ExpirationDate { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype System.DateTime ExpirationDate" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -94,6 +100,7 @@ You can unset the expiration date with the <see cref="M:Libgpgme.KeyParameters.M
     </Member>
     <Member MemberName="IsInfinitely">
       <MemberSignature Language="C#" Value="public bool IsInfinitely { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool IsInfinitely" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -115,6 +122,7 @@ You can unset the expiration date with the <see cref="M:Libgpgme.KeyParameters.M
     </Member>
     <Member MemberName="KEY_LENGTH_1024">
       <MemberSignature Language="C#" Value="public const int KEY_LENGTH_1024 = 1024;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal int32 KEY_LENGTH_1024 = (1024)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -130,6 +138,7 @@ You can unset the expiration date with the <see cref="M:Libgpgme.KeyParameters.M
     </Member>
     <Member MemberName="KEY_LENGTH_2048">
       <MemberSignature Language="C#" Value="public const int KEY_LENGTH_2048 = 2048;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal int32 KEY_LENGTH_2048 = (2048)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -145,6 +154,7 @@ You can unset the expiration date with the <see cref="M:Libgpgme.KeyParameters.M
     </Member>
     <Member MemberName="KEY_LENGTH_4096">
       <MemberSignature Language="C#" Value="public const int KEY_LENGTH_4096 = 4096;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal int32 KEY_LENGTH_4096 = (4096)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -159,7 +169,8 @@ You can unset the expiration date with the <see cref="M:Libgpgme.KeyParameters.M
       </Docs>
     </Member>
     <Member MemberName="KeyLength">
-      <MemberSignature Language="C#" Value="public int KeyLength { set; get; }" />
+      <MemberSignature Language="C#" Value="public int KeyLength { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance int32 KeyLength" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -203,6 +214,7 @@ You can use the following constant values:
     </Member>
     <Member MemberName="MakeInfinitely">
       <MemberSignature Language="C#" Value="public void MakeInfinitely ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void MakeInfinitely() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -217,7 +229,8 @@ You can use the following constant values:
       </Docs>
     </Member>
     <Member MemberName="NameDN">
-      <MemberSignature Language="C#" Value="public string NameDN { set; get; }" />
+      <MemberSignature Language="C#" Value="public string NameDN { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string NameDN" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -232,7 +245,8 @@ You can use the following constant values:
       </Docs>
     </Member>
     <Member MemberName="NoSubkey">
-      <MemberSignature Language="C#" Value="public bool NoSubkey { set; get; }" />
+      <MemberSignature Language="C#" Value="public bool NoSubkey { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool NoSubkey" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -253,7 +267,8 @@ This is only valid for OpenPGP keys.
       </Docs>
     </Member>
     <Member MemberName="Passphrase">
-      <MemberSignature Language="C#" Value="public string Passphrase { set; get; }" />
+      <MemberSignature Language="C#" Value="public string Passphrase { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string Passphrase" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -268,7 +283,8 @@ This is only valid for OpenPGP keys.
       </Docs>
     </Member>
     <Member MemberName="PubkeyAlgorithm">
-      <MemberSignature Language="C#" Value="public Libgpgme.KeyAlgorithm PubkeyAlgorithm { set; get; }" />
+      <MemberSignature Language="C#" Value="public Libgpgme.KeyAlgorithm PubkeyAlgorithm { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype Libgpgme.KeyAlgorithm PubkeyAlgorithm" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -312,7 +328,8 @@ The following public key algorithms are valid for the primary key when creating 
       </Docs>
     </Member>
     <Member MemberName="PubkeyLength">
-      <MemberSignature Language="C#" Value="public int PubkeyLength { set; get; }" />
+      <MemberSignature Language="C#" Value="public int PubkeyLength { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance int32 PubkeyLength" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -355,7 +372,8 @@ You can use the following constant values:
       </Docs>
     </Member>
     <Member MemberName="PubkeyUsage">
-      <MemberSignature Language="C#" Value="public Libgpgme.AlgorithmCapability PubkeyUsage { set; get; }" />
+      <MemberSignature Language="C#" Value="public Libgpgme.AlgorithmCapability PubkeyUsage { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype Libgpgme.AlgorithmCapability PubkeyUsage" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -376,7 +394,8 @@ When using OpenPGP, the primary key MUST have the <see cref="F:Libgpgme.Algorith
       </Docs>
     </Member>
     <Member MemberName="RealName">
-      <MemberSignature Language="C#" Value="public string RealName { set; get; }" />
+      <MemberSignature Language="C#" Value="public string RealName { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string RealName" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -391,7 +410,8 @@ When using OpenPGP, the primary key MUST have the <see cref="F:Libgpgme.Algorith
       </Docs>
     </Member>
     <Member MemberName="SubkeyAlgorithm">
-      <MemberSignature Language="C#" Value="public Libgpgme.KeyAlgorithm SubkeyAlgorithm { set; get; }" />
+      <MemberSignature Language="C#" Value="public Libgpgme.KeyAlgorithm SubkeyAlgorithm { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype Libgpgme.KeyAlgorithm SubkeyAlgorithm" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -441,7 +461,8 @@ The following public key algorithms are valid for the subkey when creating OpenP
       </Docs>
     </Member>
     <Member MemberName="SubkeyLength">
-      <MemberSignature Language="C#" Value="public int SubkeyLength { set; get; }" />
+      <MemberSignature Language="C#" Value="public int SubkeyLength { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance int32 SubkeyLength" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -484,7 +505,8 @@ You can use the following constant values:
       </Docs>
     </Member>
     <Member MemberName="SubkeyUsage">
-      <MemberSignature Language="C#" Value="public Libgpgme.AlgorithmCapability SubkeyUsage { set; get; }" />
+      <MemberSignature Language="C#" Value="public Libgpgme.AlgorithmCapability SubkeyUsage { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype Libgpgme.AlgorithmCapability SubkeyUsage" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

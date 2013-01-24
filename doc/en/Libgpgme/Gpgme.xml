@@ -1,5 +1,6 @@
 <Type Name="Gpgme" FullName="Libgpgme.Gpgme">
   <TypeSignature Language="C#" Value="public sealed class Gpgme" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit Gpgme extends System.Object" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -15,6 +16,7 @@
   <Members>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public Gpgme ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -27,6 +29,7 @@
     </Member>
     <Member MemberName="CheckVersion">
       <MemberSignature Language="C#" Value="public static string CheckVersion ();" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig string CheckVersion() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -43,6 +46,7 @@
     </Member>
     <Member MemberName="CreateContext">
       <MemberSignature Language="C#" Value="public static Libgpgme.Context CreateContext ();" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Libgpgme.Context CreateContext() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -60,6 +64,7 @@
     </Member>
     <Member MemberName="EngineCheckVersion">
       <MemberSignature Language="C#" Value="public static bool EngineCheckVersion (Libgpgme.Protocol proto);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool EngineCheckVersion(valuetype Libgpgme.Protocol proto) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -101,6 +106,7 @@ GPGME.  Where an exchange of information between the application and the backend
     </Member>
     <Member MemberName="GetAlgorithmCapability&lt;T&gt;">
       <MemberSignature Language="C#" Value="public static Libgpgme.AlgorithmCapability GetAlgorithmCapability&lt;T&gt; (T attr);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig valuetype Libgpgme.AlgorithmCapability GetAlgorithmCapability&lt;T&gt;(!!T attr) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -108,6 +114,9 @@ GPGME.  Where an exchange of information between the application and the backend
       <ReturnValue>
         <ReturnType>Libgpgme.AlgorithmCapability</ReturnType>
       </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
       <Parameters>
         <Parameter Name="attr" Type="T" />
       </Parameters>
@@ -118,12 +127,10 @@ GPGME.  Where an exchange of information between the application and the backend
         <returns>Returns a <see cref="T:Libgpgme.AlgorithmCapability" />.</returns>
         <remarks />
       </Docs>
-      <TypeParameters>
-        <TypeParameter Name="T" />
-      </TypeParameters>
     </Member>
     <Member MemberName="GetAttrDesc&lt;T&gt;">
       <MemberSignature Language="C#" Value="public static string GetAttrDesc&lt;T&gt; (T attr);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig string GetAttrDesc&lt;T&gt;(!!T attr) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -131,6 +138,9 @@ GPGME.  Where an exchange of information between the application and the backend
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
       <Parameters>
         <Parameter Name="attr" Type="T" />
       </Parameters>
@@ -141,12 +151,10 @@ GPGME.  Where an exchange of information between the application and the backend
         <returns>Returns the description <see cref="C:System.String" /> from the <see cref="C:System.ComponentModel.DescriptionAttribute" /> of a field typeof(T).</returns>
         <remarks />
       </Docs>
-      <TypeParameters>
-        <TypeParameter Name="T" />
-      </TypeParameters>
     </Member>
     <Member MemberName="GetEngineInfo">
       <MemberSignature Language="C#" Value="public static Libgpgme.EngineInfo GetEngineInfo ();" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Libgpgme.EngineInfo GetEngineInfo() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -166,6 +174,7 @@ GPGME.  Where an exchange of information between the application and the backend
     </Member>
     <Member MemberName="GetHashAlgoName">
       <MemberSignature Language="C#" Value="public static string GetHashAlgoName (Libgpgme.HashAlgorithm algo);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig string GetHashAlgoName(valuetype Libgpgme.HashAlgorithm algo) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -187,6 +196,7 @@ GPGME.  Where an exchange of information between the application and the backend
     </Member>
     <Member MemberName="GetProtocolName">
       <MemberSignature Language="C#" Value="public static string GetProtocolName (Libgpgme.Protocol proto);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig string GetProtocolName(valuetype Libgpgme.Protocol proto) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -208,6 +218,7 @@ GPGME.  Where an exchange of information between the application and the backend
     </Member>
     <Member MemberName="GetPubkeyAlgoName">
       <MemberSignature Language="C#" Value="public static string GetPubkeyAlgoName (Libgpgme.KeyAlgorithm algo);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig string GetPubkeyAlgoName(valuetype Libgpgme.KeyAlgorithm algo) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -230,6 +241,7 @@ If <paramref name="algo" /> is not a valid public key algorithm, <see langword="
     </Member>
     <Member MemberName="GetStrError">
       <MemberSignature Language="C#" Value="public static string GetStrError (int err);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig string GetStrError(int32 err) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -252,6 +264,7 @@ This function is not thread safe.  Use <see cref="M:Libgpgme.Gpgme.GetStrError(S
     </Member>
     <Member MemberName="GetStrError">
       <MemberSignature Language="C#" Value="public static void GetStrError (int err, out string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void GetStrError(int32 err, string message) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -278,6 +291,7 @@ This function is not thread safe.  Use <see cref="M:Libgpgme.Gpgme.GetStrError(S
     </Member>
     <Member MemberName="GetStrSource">
       <MemberSignature Language="C#" Value="public static string GetStrSource (int err);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig string GetStrSource(int32 err) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -297,6 +311,7 @@ This function is not thread safe.  Use <see cref="M:Libgpgme.Gpgme.GetStrError(S
     </Member>
     <Member MemberName="Version">
       <MemberSignature Language="C#" Value="public static Libgpgme.GpgmeVersion Version { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property class Libgpgme.GpgmeVersion Version" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

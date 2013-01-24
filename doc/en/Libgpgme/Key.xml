@@ -1,5 +1,6 @@
 <Type Name="Key" FullName="Libgpgme.Key">
   <TypeSignature Language="C#" Value="public class Key : IDisposable" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Key extends System.Object implements class System.IDisposable" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -19,6 +20,7 @@
   <Members>
     <Member MemberName="CanAuthenticate">
       <MemberSignature Language="C#" Value="public bool CanAuthenticate { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool CanAuthenticate" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -35,6 +37,7 @@
     </Member>
     <Member MemberName="CanCertify">
       <MemberSignature Language="C#" Value="public bool CanCertify { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool CanCertify" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -51,6 +54,7 @@
     </Member>
     <Member MemberName="CanEncrypt">
       <MemberSignature Language="C#" Value="public bool CanEncrypt { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool CanEncrypt" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -67,6 +71,7 @@
     </Member>
     <Member MemberName="CanSign">
       <MemberSignature Language="C#" Value="public bool CanSign { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool CanSign" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -83,6 +88,7 @@
     </Member>
     <Member MemberName="ChainId">
       <MemberSignature Language="C#" Value="public string ChainId { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string ChainId" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -99,6 +105,7 @@
     </Member>
     <Member MemberName="Disabled">
       <MemberSignature Language="C#" Value="public bool Disabled { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool Disabled" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -114,6 +121,7 @@
     </Member>
     <Member MemberName="Dispose">
       <MemberSignature Language="C#" Value="public void Dispose ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void Dispose() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -129,6 +137,7 @@
     </Member>
     <Member MemberName="editlock">
       <MemberSignature Language="C#" Value="protected object editlock;" />
+      <MemberSignature Language="ILAsm" Value=".field family object editlock" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -143,6 +152,7 @@
     </Member>
     <Member MemberName="Expired">
       <MemberSignature Language="C#" Value="public bool Expired { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool Expired" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -158,6 +168,7 @@
     </Member>
     <Member MemberName="Finalize">
       <MemberSignature Language="C#" Value="~Key ();" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance void Finalize() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -173,6 +184,7 @@
     </Member>
     <Member MemberName="Fingerprint">
       <MemberSignature Language="C#" Value="public string Fingerprint { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string Fingerprint" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -188,6 +200,7 @@
     </Member>
     <Member MemberName="Invalid">
       <MemberSignature Language="C#" Value="public bool Invalid { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool Invalid" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -204,6 +217,7 @@
     </Member>
     <Member MemberName="IsQualified">
       <MemberSignature Language="C#" Value="public bool IsQualified { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool IsQualified" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -220,6 +234,7 @@
     </Member>
     <Member MemberName="IssuerName">
       <MemberSignature Language="C#" Value="public string IssuerName { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string IssuerName" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -235,6 +250,7 @@
     </Member>
     <Member MemberName="IssuerSerial">
       <MemberSignature Language="C#" Value="public string IssuerSerial { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string IssuerSerial" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -250,10 +266,51 @@
       </Docs>
     </Member>
     <Member MemberName="KeyEditCallback">
-      <MemberSignature Language="C#" Value="protected virtual int KeyEditCallback (IntPtr handle, Libgpgme.KeyEditStatusCode status, string args, System.IO.Stream fd);" />
+      <MemberSignature Language="C#" Value="protected virtual int KeyEditCallback (IntPtr handle, Libgpgme.KeyEditStatusCode status, string args, int fd);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance int32 KeyEditCallback(native int handle, valuetype Libgpgme.KeyEditStatusCode status, string args, int32 fd) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="handle" Type="System.IntPtr" />
+        <Parameter Name="status" Type="Libgpgme.KeyEditStatusCode" />
+        <Parameter Name="args" Type="System.String" />
+        <Parameter Name="fd" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="handle">A <see cref="T:System.IntPtr" /> handle that was provided by the user at start of operation.</param>
+        <param name="status">A <see cref="T:Libgpgme.KeyEditStatusCode" />.</param>
+        <param name="args">A <see cref="T:System.String" /> containing the arguments.</param>
+        <param name="fd">A <see cref="T:System.int" /> used for communication with the engine's key editing procedure.</param>
+        <summary>A callback function which GPGME calls if a key edit operation is on-going.</summary>
+        <returns>A <see cref="T:System.Integer" />. If the returning value is not 0, the key editing procedure will be stopped. See "Remarks" for more information.</returns>
+        <remarks>
+          <para>
+KeyEditCallback method must be overwritten by the inherited class.
+</para>
+          <para>
+It is the functions which GPGME calls if a key edit operation is on-going. The status code <paramref name="status" /> and the argument line <paramref name="args" /> are passed through by GPGME from the crypto engine. The int <paramref name="fd" /> is 0 for normal status messages.  
+</para>
+          <para>
+If <paramref name="status" /> indicates a command rather than a status message, the response to the command should be written to <paramref name="fd" />. The <paramref name="handle" /> was provided by the user at start of operation <see cref="M:Libgpgme.Key.StartEdit(Libgpgme.Context,System.IntPtr,Libgpgme.GpgmeData)" />.
+</para>
+          <para>
+The function should return 0 or an error value. If the returning value is not 0, GPGME will stop the key editing procedure and an error will be thrown.
+</para>
+          <para>
+If the KeyEditCallback method of the inherited class throws an exception during the callback, it will be saved in the <see cref="P:Libgpgme.Key.LastCallbackException" /> attribute.
+</para>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="KeyEditCallback">
+      <MemberSignature Language="C#" Value="protected virtual int KeyEditCallback (IntPtr handle, Libgpgme.KeyEditStatusCode status, string args, System.IO.Stream fd);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -292,6 +349,7 @@ If the KeyEditCallback method of the inherited class throws an exception during 
     </Member>
     <Member MemberName="KeyId">
       <MemberSignature Language="C#" Value="public string KeyId { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string KeyId" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -307,6 +365,7 @@ If the KeyEditCallback method of the inherited class throws an exception during 
     </Member>
     <Member MemberName="KeylistMode">
       <MemberSignature Language="C#" Value="public Libgpgme.KeylistMode KeylistMode { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype Libgpgme.KeylistMode KeylistMode" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -322,6 +381,7 @@ If the KeyEditCallback method of the inherited class throws an exception during 
     </Member>
     <Member MemberName="LastCallbackException">
       <MemberSignature Language="C#" Value="public Exception LastCallbackException;" />
+      <MemberSignature Language="ILAsm" Value=".field public class System.Exception LastCallbackException" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -336,6 +396,7 @@ If the KeyEditCallback method of the inherited class throws an exception during 
     </Member>
     <Member MemberName="OwnerTrust">
       <MemberSignature Language="C#" Value="public Libgpgme.Validity OwnerTrust { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype Libgpgme.Validity OwnerTrust" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -352,6 +413,7 @@ If the KeyEditCallback method of the inherited class throws an exception during 
     </Member>
     <Member MemberName="Protocol">
       <MemberSignature Language="C#" Value="public Libgpgme.Protocol Protocol { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype Libgpgme.Protocol Protocol" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -367,6 +429,7 @@ If the KeyEditCallback method of the inherited class throws an exception during 
     </Member>
     <Member MemberName="Revoked">
       <MemberSignature Language="C#" Value="public bool Revoked { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool Revoked" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -382,6 +445,7 @@ If the KeyEditCallback method of the inherited class throws an exception during 
     </Member>
     <Member MemberName="Secret">
       <MemberSignature Language="C#" Value="public bool Secret { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool Secret" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -404,6 +468,7 @@ This will always be <see langword="true" /> even if the corresponding subkey fla
     </Member>
     <Member MemberName="StartEdit">
       <MemberSignature Language="C#" Value="protected int StartEdit (Libgpgme.Context ctx, IntPtr handle, Libgpgme.GpgmeData data);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig instance int32 StartEdit(class Libgpgme.Context ctx, native int handle, class Libgpgme.GpgmeData data) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -427,6 +492,7 @@ This will always be <see langword="true" /> even if the corresponding subkey fla
     </Member>
     <Member MemberName="Subkeys">
       <MemberSignature Language="C#" Value="public Libgpgme.Subkey Subkeys { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Libgpgme.Subkey Subkeys" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -449,6 +515,7 @@ You can enumerate the linked list with the subkey's <see cref="P:Libgpgme.Subkey
     </Member>
     <Member MemberName="Uid">
       <MemberSignature Language="C#" Value="public Libgpgme.UserId Uid { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Libgpgme.UserId Uid" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -465,6 +532,7 @@ You can enumerate the linked list with the subkey's <see cref="P:Libgpgme.Subkey
     </Member>
     <Member MemberName="Uids">
       <MemberSignature Language="C#" Value="public Libgpgme.UserId Uids { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Libgpgme.UserId Uids" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

@@ -1,5 +1,6 @@
 <Type Name="PgpKey+Settings" FullName="Libgpgme.PgpKey+Settings">
   <TypeSignature Language="C#" Value="public class PgpKey.Settings" />
+  <TypeSignature Language="ILAsm" Value=".class nested public auto ansi beforefieldinit PgpKey/Settings extends System.Object" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -17,7 +18,8 @@ This DOES NOT work if GPG is configured to use an agent (or pin-entry software) 
   </Docs>
   <Members>
     <Member MemberName="Passphrase">
-      <MemberSignature Language="C#" Value="public char[] Passphrase { set; get; }" />
+      <MemberSignature Language="C#" Value="public char[] Passphrase { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance char[] Passphrase" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -38,7 +40,8 @@ Make sure that you overwrite (wipe) the user's passphrase in memory. You should 
       </Docs>
     </Member>
     <Member MemberName="PassphraseFunction">
-      <MemberSignature Language="C#" Value="public Libgpgme.PassphraseDelegate PassphraseFunction { set; get; }" />
+      <MemberSignature Language="C#" Value="public Libgpgme.PassphraseDelegate PassphraseFunction { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Libgpgme.PassphraseDelegate PassphraseFunction" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

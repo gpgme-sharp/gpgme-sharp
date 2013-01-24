@@ -1,5 +1,6 @@
 <Type Name="Signature" FullName="Libgpgme.Signature">
   <TypeSignature Language="C#" Value="public class Signature : System.Collections.Generic.IEnumerable&lt;Libgpgme.Signature&gt;" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Signature extends System.Object implements class System.Collections.Generic.IEnumerable`1&lt;class Libgpgme.Signature&gt;, class System.Collections.IEnumerable" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -25,6 +26,7 @@ The <see cref="C:Libgpgme.Signature" /> class is implemented as linked list. You
   <Members>
     <Member MemberName="ChainModel">
       <MemberSignature Language="C#" Value="public bool ChainModel { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool ChainModel" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -40,6 +42,7 @@ The <see cref="C:Libgpgme.Signature" /> class is implemented as linked list. You
     </Member>
     <Member MemberName="ExpTimestamp">
       <MemberSignature Language="C#" Value="public DateTime ExpTimestamp { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype System.DateTime ExpTimestamp" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -55,6 +58,7 @@ The <see cref="C:Libgpgme.Signature" /> class is implemented as linked list. You
     </Member>
     <Member MemberName="ExpTimestampUTC">
       <MemberSignature Language="C#" Value="public DateTime ExpTimestampUTC { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype System.DateTime ExpTimestampUTC" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -70,6 +74,7 @@ The <see cref="C:Libgpgme.Signature" /> class is implemented as linked list. You
     </Member>
     <Member MemberName="Fingerprint">
       <MemberSignature Language="C#" Value="public string Fingerprint { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string Fingerprint" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -85,6 +90,7 @@ The <see cref="C:Libgpgme.Signature" /> class is implemented as linked list. You
     </Member>
     <Member MemberName="GetEnumerator">
       <MemberSignature Language="C#" Value="public System.Collections.Generic.IEnumerator&lt;Libgpgme.Signature&gt; GetEnumerator ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Collections.Generic.IEnumerator`1&lt;class Libgpgme.Signature&gt; GetEnumerator() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -101,6 +107,7 @@ The <see cref="C:Libgpgme.Signature" /> class is implemented as linked list. You
     </Member>
     <Member MemberName="HashAlgorithm">
       <MemberSignature Language="C#" Value="public Libgpgme.HashAlgorithm HashAlgorithm { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype Libgpgme.HashAlgorithm HashAlgorithm" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -116,6 +123,7 @@ The <see cref="C:Libgpgme.Signature" /> class is implemented as linked list. You
     </Member>
     <Member MemberName="Next">
       <MemberSignature Language="C#" Value="public Libgpgme.Signature Next { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Libgpgme.Signature Next" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -132,6 +140,7 @@ The <see cref="C:Libgpgme.Signature" /> class is implemented as linked list. You
     </Member>
     <Member MemberName="Notations">
       <MemberSignature Language="C#" Value="public Libgpgme.SignatureNotation Notations { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Libgpgme.SignatureNotation Notations" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -147,6 +156,7 @@ The <see cref="C:Libgpgme.Signature" /> class is implemented as linked list. You
     </Member>
     <Member MemberName="PKAAddress">
       <MemberSignature Language="C#" Value="public string PKAAddress { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string PKAAddress" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -162,6 +172,7 @@ The <see cref="C:Libgpgme.Signature" /> class is implemented as linked list. You
     </Member>
     <Member MemberName="PKATrust">
       <MemberSignature Language="C#" Value="public Libgpgme.PkaStatus PKATrust { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype Libgpgme.PkaStatus PKATrust" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -177,6 +188,7 @@ The <see cref="C:Libgpgme.Signature" /> class is implemented as linked list. You
     </Member>
     <Member MemberName="PubkeyAlgorithm">
       <MemberSignature Language="C#" Value="public Libgpgme.KeyAlgorithm PubkeyAlgorithm { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype Libgpgme.KeyAlgorithm PubkeyAlgorithm" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -192,6 +204,7 @@ The <see cref="C:Libgpgme.Signature" /> class is implemented as linked list. You
     </Member>
     <Member MemberName="Status">
       <MemberSignature Language="C#" Value="public long Status { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance int64 Status" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -207,6 +220,7 @@ The <see cref="C:Libgpgme.Signature" /> class is implemented as linked list. You
     </Member>
     <Member MemberName="Summary">
       <MemberSignature Language="C#" Value="public Libgpgme.SignatureSummary Summary { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype Libgpgme.SignatureSummary Summary" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -223,6 +237,7 @@ The <see cref="C:Libgpgme.Signature" /> class is implemented as linked list. You
     </Member>
     <Member MemberName="System.Collections.IEnumerable.GetEnumerator">
       <MemberSignature Language="C#" Value="System.Collections.IEnumerator IEnumerable.GetEnumerator ();" />
+      <MemberSignature Language="ILAsm" Value=".method hidebysig newslot virtual instance class System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -239,6 +254,7 @@ The <see cref="C:Libgpgme.Signature" /> class is implemented as linked list. You
     </Member>
     <Member MemberName="Timestamp">
       <MemberSignature Language="C#" Value="public DateTime Timestamp { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype System.DateTime Timestamp" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -254,6 +270,7 @@ The <see cref="C:Libgpgme.Signature" /> class is implemented as linked list. You
     </Member>
     <Member MemberName="TimestampUTC">
       <MemberSignature Language="C#" Value="public DateTime TimestampUTC { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype System.DateTime TimestampUTC" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -269,6 +286,7 @@ The <see cref="C:Libgpgme.Signature" /> class is implemented as linked list. You
     </Member>
     <Member MemberName="Validity">
       <MemberSignature Language="C#" Value="public Libgpgme.Validity Validity { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype Libgpgme.Validity Validity" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -284,6 +302,7 @@ The <see cref="C:Libgpgme.Signature" /> class is implemented as linked list. You
     </Member>
     <Member MemberName="ValidityReason">
       <MemberSignature Language="C#" Value="public long ValidityReason { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance int64 ValidityReason" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -299,6 +318,7 @@ The <see cref="C:Libgpgme.Signature" /> class is implemented as linked list. You
     </Member>
     <Member MemberName="WrongKeyUsage">
       <MemberSignature Language="C#" Value="public bool WrongKeyUsage { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool WrongKeyUsage" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

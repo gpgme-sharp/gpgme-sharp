@@ -1,5 +1,6 @@
 <Type Name="KeyAlgorithm" FullName="Libgpgme.KeyAlgorithm">
   <TypeSignature Language="C#" Value="public enum KeyAlgorithm" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed KeyAlgorithm extends System.Enum" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -15,6 +16,7 @@
   <Members>
     <Member MemberName="DSA">
       <MemberSignature Language="C#" Value="DSA" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyAlgorithm DSA = int32(17)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -36,6 +38,7 @@
     </Member>
     <Member MemberName="ELG">
       <MemberSignature Language="C#" Value="ELG" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyAlgorithm ELG = int32(20)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -57,6 +60,7 @@
     </Member>
     <Member MemberName="ELG_E">
       <MemberSignature Language="C#" Value="ELG_E" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyAlgorithm ELG_E = int32(16)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -79,6 +83,7 @@
     </Member>
     <Member MemberName="RSA">
       <MemberSignature Language="C#" Value="RSA" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyAlgorithm RSA = int32(1)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -101,6 +106,7 @@
     </Member>
     <Member MemberName="RSA_E">
       <MemberSignature Language="C#" Value="RSA_E" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyAlgorithm RSA_E = int32(2)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -125,6 +131,7 @@ Deprecated. Use <see cref="F:Libgpgme.KeyAlgorithm.RSA" /> and set the appropria
     </Member>
     <Member MemberName="RSA_S">
       <MemberSignature Language="C#" Value="RSA_S" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyAlgorithm RSA_S = int32(3)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

@@ -208,13 +208,11 @@
     <h1 class="PageTitle" id="T:Libgpgme.PassphraseDelegate">PassphraseDelegate  Delegate</h1>
     <p class="Summary" id="T:Libgpgme.PassphraseDelegate:Summary">The type of method that usable as passphrase callback function.</p>
     <div id="T:Libgpgme.PassphraseDelegate:Signature">
+      <h2>Syntax</h2>
       <div class="Signature">public delegate <a href="../Libgpgme/PassphraseResult.html">PassphraseResult</a> <b>PassphraseDelegate</b> (<a href="../Libgpgme/Context.html">Context</a> ctx, <a href="../Libgpgme/PassphraseInfo.html">PassphraseInfo</a> info, <i>ref</i> <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Char">char</a>[] passphrase)</div>
     </div>
     <div class="Remarks" id="T:Libgpgme.PassphraseDelegate:Docs">
-      <h4 class="Subsection">
-        <a href="javascript:toggle_display('T:Libgpgme.PassphraseDelegate:Docs:Parameters')">
-          <span id="T:Libgpgme.PassphraseDelegate:Docs:Parameters:toggle">⊟</span> Parameters</a>
-      </h4>
+      <h4 class="Subsection">Parameters</h4>
       <blockquote class="SubsectionBox" id="T:Libgpgme.PassphraseDelegate:Docs:Parameters">
         <dl>
           <dt>
@@ -231,26 +229,17 @@
           <dd>The returning passphrase. </dd>
         </dl>
       </blockquote>
-      <h4 class="Subsection">
-        <a href="javascript:toggle_display('T:Libgpgme.PassphraseDelegate:Docs:Value')">
-          <span id="T:Libgpgme.PassphraseDelegate:Docs:Value:toggle">⊟</span> Value</a>
-      </h4>
-      <blockquote class="SubsectionBox" id="T:Libgpgme.PassphraseDelegate:Docs:Value">Returns a <a href="../Libgpgme/PassphraseResult.html">Libgpgme.PassphraseResult</a> value that indicates success or a user canceled action.</blockquote>
-      <h4 class="Subsection">
-        <a href="javascript:toggle_display('T:Libgpgme.PassphraseDelegate:Docs:Remarks')">
-          <span id="T:Libgpgme.PassphraseDelegate:Docs:Remarks:toggle">⊟</span> Remarks</a>
-      </h4>
-      <blockquote class="SubsectionBox" id="T:Libgpgme.PassphraseDelegate:Docs:Remarks">The <a href="../Libgpgme/PassphraseInfo.html#C:Libgpgme.PassphraseInfo">PassphraseInfo</a> object will be <tt>null</tt> in the case of symmetric encryption.
+      <h4 class="Subsection">Returns</h4>
+      <blockquote class="SubsectionBox" id="T:Libgpgme.PassphraseDelegate:Docs:Returns">Returns a <a href="../Libgpgme/PassphraseResult.html">Libgpgme.PassphraseResult</a> value that indicates success or a user canceled action.</blockquote>
+      <h2 class="Section">Remarks</h2>
+      <div class="SectionBox" id="T:Libgpgme.PassphraseDelegate:Docs:Remarks">The <a href="../Libgpgme/PassphraseInfo.html#C:Libgpgme.PassphraseInfo">PassphraseInfo</a> object will be <tt>null</tt> in the case of symmetric encryption.
 
 <div><i>Note: </i><p>
 Make sure that you overwrite (wipe) the user's passphrase in memory. You should not use the <a href="http://www.go-mono.com/docs/monodoc.ashx?link=M:System.String.ToArray()">string.ToArray()</a> method to convert a user supplied string if you do not hold any further reference to it. The callback will NOT wipe the char array after usage.
-  </p></div></blockquote>
-      <h4 class="Subsection">
-        <a href="javascript:toggle_display('T:Libgpgme.PassphraseDelegate:Docs:Version Information')">
-          <span id="T:Libgpgme.PassphraseDelegate:Docs:Version Information:toggle">⊟</span> Requirements</a>
-      </h4>
-      <blockquote class="SubsectionBox" id="T:Libgpgme.PassphraseDelegate:Docs:Version Information">
-        <b>Namespace: </b>Libgpgme<br /><b>Assembly: </b>gpgme-sharp (in gpgme-sharp.dll)<br /><b>Assembly Versions: </b>1.0.0.0</blockquote>
+  </p></div></div>
+      <h2 class="Section">Requirements</h2>
+      <div class="SectionBox" id="T:Libgpgme.PassphraseDelegate:Docs:Version Information">
+        <b>Namespace: </b>Libgpgme<br /><b>Assembly: </b>gpgme-sharp (in gpgme-sharp.dll)<br /><b>Assembly Versions: </b>1.0.0.0</div>
     </div>
     <div class="Members" id="T:Libgpgme.PassphraseDelegate:Members">
     </div>

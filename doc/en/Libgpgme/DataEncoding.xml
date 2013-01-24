@@ -1,5 +1,6 @@
 <Type Name="DataEncoding" FullName="Libgpgme.DataEncoding">
   <TypeSignature Language="C#" Value="public enum DataEncoding" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed DataEncoding extends System.Enum" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -15,6 +16,7 @@
   <Members>
     <Member MemberName="Armor">
       <MemberSignature Language="C#" Value="Armor" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.DataEncoding Armor = int32(3)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -29,6 +31,7 @@
     </Member>
     <Member MemberName="Base64">
       <MemberSignature Language="C#" Value="Base64" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.DataEncoding Base64 = int32(2)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -43,6 +46,7 @@
     </Member>
     <Member MemberName="Binary">
       <MemberSignature Language="C#" Value="Binary" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.DataEncoding Binary = int32(1)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -57,6 +61,7 @@
     </Member>
     <Member MemberName="None">
       <MemberSignature Language="C#" Value="None" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.DataEncoding None = int32(0)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

@@ -1,5 +1,6 @@
 <Type Name="Protocol" FullName="Libgpgme.Protocol">
   <TypeSignature Language="C#" Value="public enum Protocol" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed Protocol extends System.Enum" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -17,6 +18,7 @@ GPGME.  Where an exchange of information between the application and the backend
   <Members>
     <Member MemberName="CMS">
       <MemberSignature Language="C#" Value="CMS" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.Protocol CMS = int32(1)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -30,6 +32,7 @@ GPGME.  Where an exchange of information between the application and the backend
     </Member>
     <Member MemberName="GPGConf">
       <MemberSignature Language="C#" Value="GPGConf" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.Protocol GPGConf = int32(2)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -43,6 +46,7 @@ GPGME.  Where an exchange of information between the application and the backend
     </Member>
     <Member MemberName="OpenPGP">
       <MemberSignature Language="C#" Value="OpenPGP" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.Protocol OpenPGP = int32(0)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -56,6 +60,7 @@ GPGME.  Where an exchange of information between the application and the backend
     </Member>
     <Member MemberName="Unknown">
       <MemberSignature Language="C#" Value="Unknown" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.Protocol Unknown = int32(255)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

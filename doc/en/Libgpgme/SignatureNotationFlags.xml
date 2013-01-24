@@ -1,5 +1,6 @@
 <Type Name="SignatureNotationFlags" FullName="Libgpgme.SignatureNotationFlags">
   <TypeSignature Language="C#" Value="public enum SignatureNotationFlags" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed SignatureNotationFlags extends System.Enum" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -19,6 +20,7 @@
   <Members>
     <Member MemberName="Critical">
       <MemberSignature Language="C#" Value="Critical" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.SignatureNotationFlags Critical = int32(2)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -32,6 +34,7 @@
     </Member>
     <Member MemberName="HumanReadable">
       <MemberSignature Language="C#" Value="HumanReadable" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.SignatureNotationFlags HumanReadable = int32(1)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

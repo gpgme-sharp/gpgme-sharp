@@ -1,5 +1,6 @@
 <Type Name="ImportStatusFlags" FullName="Libgpgme.ImportStatusFlags">
   <TypeSignature Language="C#" Value="public enum ImportStatusFlags" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed ImportStatusFlags extends System.Enum" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -19,6 +20,7 @@
   <Members>
     <Member MemberName="New">
       <MemberSignature Language="C#" Value="New" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.ImportStatusFlags New = int32(1)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -32,6 +34,7 @@
     </Member>
     <Member MemberName="Secret">
       <MemberSignature Language="C#" Value="Secret" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.ImportStatusFlags Secret = int32(16)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -45,6 +48,7 @@
     </Member>
     <Member MemberName="Signature">
       <MemberSignature Language="C#" Value="Signature" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.ImportStatusFlags Signature = int32(4)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -58,6 +62,7 @@
     </Member>
     <Member MemberName="Subkey">
       <MemberSignature Language="C#" Value="Subkey" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.ImportStatusFlags Subkey = int32(8)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -71,6 +76,7 @@
     </Member>
     <Member MemberName="Uid">
       <MemberSignature Language="C#" Value="Uid" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.ImportStatusFlags Uid = int32(2)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

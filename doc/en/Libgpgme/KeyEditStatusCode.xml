@@ -1,5 +1,6 @@
 <Type Name="KeyEditStatusCode" FullName="Libgpgme.KeyEditStatusCode">
   <TypeSignature Language="C#" Value="public enum KeyEditStatusCode" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed KeyEditStatusCode extends System.Enum" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -14,6 +15,7 @@
   <Members>
     <Member MemberName="Abort">
       <MemberSignature Language="C#" Value="Abort" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode Abort = int32(3)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -27,6 +29,7 @@
     </Member>
     <Member MemberName="AlreadySigned">
       <MemberSignature Language="C#" Value="AlreadySigned" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode AlreadySigned = int32(65)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -40,6 +43,7 @@
     </Member>
     <Member MemberName="BackupKeyCreated">
       <MemberSignature Language="C#" Value="BackupKeyCreated" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode BackupKeyCreated = int32(78)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -53,6 +57,7 @@
     </Member>
     <Member MemberName="BadArmor">
       <MemberSignature Language="C#" Value="BadArmor" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode BadArmor = int32(7)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -66,6 +71,7 @@
     </Member>
     <Member MemberName="BadMDC">
       <MemberSignature Language="C#" Value="BadMDC" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode BadMDC = int32(34)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -79,6 +85,7 @@
     </Member>
     <Member MemberName="BadPassphrase">
       <MemberSignature Language="C#" Value="BadPassphrase" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode BadPassphrase = int32(25)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -92,6 +99,7 @@
     </Member>
     <Member MemberName="BadSignature">
       <MemberSignature Language="C#" Value="BadSignature" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode BadSignature = int32(5)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -105,6 +113,7 @@
     </Member>
     <Member MemberName="BeginDecryption">
       <MemberSignature Language="C#" Value="BeginDecryption" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode BeginDecryption = int32(43)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -118,6 +127,7 @@
     </Member>
     <Member MemberName="BeginEncryption">
       <MemberSignature Language="C#" Value="BeginEncryption" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode BeginEncryption = int32(45)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -131,6 +141,7 @@
     </Member>
     <Member MemberName="BeginStream">
       <MemberSignature Language="C#" Value="BeginStream" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode BeginStream = int32(58)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -144,6 +155,7 @@
     </Member>
     <Member MemberName="Cardctrl">
       <MemberSignature Language="C#" Value="Cardctrl" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode Cardctrl = int32(77)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -157,6 +169,7 @@
     </Member>
     <Member MemberName="DecryptionFailed">
       <MemberSignature Language="C#" Value="DecryptionFailed" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode DecryptionFailed = int32(29)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -170,6 +183,7 @@
     </Member>
     <Member MemberName="DecryptionOkay">
       <MemberSignature Language="C#" Value="DecryptionOkay" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode DecryptionOkay = int32(30)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -183,6 +197,7 @@
     </Member>
     <Member MemberName="DeleteProblem">
       <MemberSignature Language="C#" Value="DeleteProblem" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode DeleteProblem = int32(47)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -196,6 +211,7 @@
     </Member>
     <Member MemberName="EncryptedTo">
       <MemberSignature Language="C#" Value="EncryptedTo" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode EncryptedTo = int32(23)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -209,6 +225,7 @@
     </Member>
     <Member MemberName="EndDecryption">
       <MemberSignature Language="C#" Value="EndDecryption" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode EndDecryption = int32(44)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -222,6 +239,7 @@
     </Member>
     <Member MemberName="EndEncryption">
       <MemberSignature Language="C#" Value="EndEncryption" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode EndEncryption = int32(46)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -235,6 +253,7 @@
     </Member>
     <Member MemberName="EndStream">
       <MemberSignature Language="C#" Value="EndStream" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode EndStream = int32(59)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -248,6 +267,7 @@
     </Member>
     <Member MemberName="Enter">
       <MemberSignature Language="C#" Value="Enter" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode Enter = int32(1)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -261,6 +281,7 @@
     </Member>
     <Member MemberName="Eof">
       <MemberSignature Language="C#" Value="Eof" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode Eof = int32(0)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -274,6 +295,7 @@
     </Member>
     <Member MemberName="Error">
       <MemberSignature Language="C#" Value="Error" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode Error = int32(70)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -287,6 +309,7 @@
     </Member>
     <Member MemberName="ErrorMDC">
       <MemberSignature Language="C#" Value="ErrorMDC" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode ErrorMDC = int32(35)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -300,6 +323,7 @@
     </Member>
     <Member MemberName="ErrorSignature">
       <MemberSignature Language="C#" Value="ErrorSignature" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode ErrorSignature = int32(6)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -313,6 +337,7 @@
     </Member>
     <Member MemberName="ExpiredKeySignature">
       <MemberSignature Language="C#" Value="ExpiredKeySignature" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode ExpiredKeySignature = int32(68)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -326,6 +351,7 @@
     </Member>
     <Member MemberName="ExpiredSignature">
       <MemberSignature Language="C#" Value="ExpiredSignature" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode ExpiredSignature = int32(67)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -339,6 +365,7 @@
     </Member>
     <Member MemberName="FileDone">
       <MemberSignature Language="C#" Value="FileDone" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode FileDone = int32(41)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -352,6 +379,7 @@
     </Member>
     <Member MemberName="FileError">
       <MemberSignature Language="C#" Value="FileError" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode FileError = int32(42)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -365,6 +393,7 @@
     </Member>
     <Member MemberName="FileStart">
       <MemberSignature Language="C#" Value="FileStart" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode FileStart = int32(40)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -378,6 +407,7 @@
     </Member>
     <Member MemberName="GetBool">
       <MemberSignature Language="C#" Value="GetBool" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode GetBool = int32(48)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -391,6 +421,7 @@
     </Member>
     <Member MemberName="GetHidden">
       <MemberSignature Language="C#" Value="GetHidden" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode GetHidden = int32(50)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -404,6 +435,7 @@
     </Member>
     <Member MemberName="GetLine">
       <MemberSignature Language="C#" Value="GetLine" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode GetLine = int32(49)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -417,6 +449,7 @@
     </Member>
     <Member MemberName="GoodMDC">
       <MemberSignature Language="C#" Value="GoodMDC" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode GoodMDC = int32(33)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -430,6 +463,7 @@
     </Member>
     <Member MemberName="GoodPassphrase">
       <MemberSignature Language="C#" Value="GoodPassphrase" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode GoodPassphrase = int32(32)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -443,6 +477,7 @@
     </Member>
     <Member MemberName="GoodSignature">
       <MemberSignature Language="C#" Value="GoodSignature" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode GoodSignature = int32(4)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -456,6 +491,7 @@
     </Member>
     <Member MemberName="GotIt">
       <MemberSignature Language="C#" Value="GotIt" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode GotIt = int32(51)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -469,6 +505,7 @@
     </Member>
     <Member MemberName="Imported">
       <MemberSignature Language="C#" Value="Imported" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode Imported = int32(36)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -482,6 +519,7 @@
     </Member>
     <Member MemberName="ImportOk">
       <MemberSignature Language="C#" Value="ImportOk" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode ImportOk = int32(37)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -495,6 +533,7 @@
     </Member>
     <Member MemberName="ImportProblem">
       <MemberSignature Language="C#" Value="ImportProblem" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode ImportProblem = int32(38)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -508,6 +547,7 @@
     </Member>
     <Member MemberName="ImportRes">
       <MemberSignature Language="C#" Value="ImportRes" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode ImportRes = int32(39)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -521,6 +561,7 @@
     </Member>
     <Member MemberName="InvalidRecipient">
       <MemberSignature Language="C#" Value="InvalidRecipient" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode InvalidRecipient = int32(63)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -534,6 +575,7 @@
     </Member>
     <Member MemberName="KeyCreated">
       <MemberSignature Language="C#" Value="KeyCreated" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode KeyCreated = int32(60)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -547,6 +589,7 @@
     </Member>
     <Member MemberName="KeyExpired">
       <MemberSignature Language="C#" Value="KeyExpired" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode KeyExpired = int32(9)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -560,6 +603,7 @@
     </Member>
     <Member MemberName="KeyRevoked">
       <MemberSignature Language="C#" Value="KeyRevoked" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode KeyRevoked = int32(10)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -573,6 +617,7 @@
     </Member>
     <Member MemberName="Leave">
       <MemberSignature Language="C#" Value="Leave" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode Leave = int32(2)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -586,6 +631,7 @@
     </Member>
     <Member MemberName="MissingPassphrase">
       <MemberSignature Language="C#" Value="MissingPassphrase" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode MissingPassphrase = int32(31)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -599,6 +645,7 @@
     </Member>
     <Member MemberName="NeedPassphrase">
       <MemberSignature Language="C#" Value="NeedPassphrase" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode NeedPassphrase = int32(20)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -612,6 +659,7 @@
     </Member>
     <Member MemberName="NeedPassphrasePin">
       <MemberSignature Language="C#" Value="NeedPassphrasePin" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode NeedPassphrasePin = int32(74)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -625,6 +673,7 @@
     </Member>
     <Member MemberName="NeedPassphraseSym">
       <MemberSignature Language="C#" Value="NeedPassphraseSym" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode NeedPassphraseSym = int32(28)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -638,6 +687,7 @@
     </Member>
     <Member MemberName="NewSignature">
       <MemberSignature Language="C#" Value="NewSignature" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode NewSignature = int32(71)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -651,6 +701,7 @@
     </Member>
     <Member MemberName="NoData">
       <MemberSignature Language="C#" Value="NoData" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode NoData = int32(24)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -664,6 +715,7 @@
     </Member>
     <Member MemberName="NoPublicKey">
       <MemberSignature Language="C#" Value="NoPublicKey" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode NoPublicKey = int32(26)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -677,6 +729,7 @@
     </Member>
     <Member MemberName="NoRecipient">
       <MemberSignature Language="C#" Value="NoRecipient" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode NoRecipient = int32(64)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -690,6 +743,7 @@
     </Member>
     <Member MemberName="NoSecretKey">
       <MemberSignature Language="C#" Value="NoSecretKey" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode NoSecretKey = int32(27)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -703,6 +757,7 @@
     </Member>
     <Member MemberName="NotationData">
       <MemberSignature Language="C#" Value="NotationData" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode NotationData = int32(56)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -716,6 +771,7 @@
     </Member>
     <Member MemberName="NotationName">
       <MemberSignature Language="C#" Value="NotationName" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode NotationName = int32(55)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -729,6 +785,7 @@
     </Member>
     <Member MemberName="PKATrustBad">
       <MemberSignature Language="C#" Value="PKATrustBad" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode PKATrustBad = int32(79)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -742,6 +799,7 @@
     </Member>
     <Member MemberName="PKATrustGood">
       <MemberSignature Language="C#" Value="PKATrustGood" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode PKATrustGood = int32(80)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -755,6 +813,7 @@
     </Member>
     <Member MemberName="PlainText">
       <MemberSignature Language="C#" Value="PlainText" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode PlainText = int32(81)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -768,6 +827,7 @@
     </Member>
     <Member MemberName="PolicyURL">
       <MemberSignature Language="C#" Value="PolicyURL" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode PolicyURL = int32(57)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -781,6 +841,7 @@
     </Member>
     <Member MemberName="Progress">
       <MemberSignature Language="C#" Value="Progress" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode Progress = int32(52)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -794,6 +855,7 @@
     </Member>
     <Member MemberName="RevKeySignature">
       <MemberSignature Language="C#" Value="RevKeySignature" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode RevKeySignature = int32(72)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -807,6 +869,7 @@
     </Member>
     <Member MemberName="RSAorIDEA">
       <MemberSignature Language="C#" Value="RSAorIDEA" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode RSAorIDEA = int32(8)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -820,6 +883,7 @@
     </Member>
     <Member MemberName="SCOperationFailure">
       <MemberSignature Language="C#" Value="SCOperationFailure" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode SCOperationFailure = int32(75)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -833,6 +897,7 @@
     </Member>
     <Member MemberName="SCOperationSuccess">
       <MemberSignature Language="C#" Value="SCOperationSuccess" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode SCOperationSuccess = int32(76)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -846,6 +911,7 @@
     </Member>
     <Member MemberName="SessionKey">
       <MemberSignature Language="C#" Value="SessionKey" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode SessionKey = int32(54)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -859,6 +925,7 @@
     </Member>
     <Member MemberName="SHMGet">
       <MemberSignature Language="C#" Value="SHMGet" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode SHMGet = int32(17)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -872,6 +939,7 @@
     </Member>
     <Member MemberName="SHMGetBool">
       <MemberSignature Language="C#" Value="SHMGetBool" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode SHMGetBool = int32(18)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -885,6 +953,7 @@
     </Member>
     <Member MemberName="SHMGetHidden">
       <MemberSignature Language="C#" Value="SHMGetHidden" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode SHMGetHidden = int32(19)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -898,6 +967,7 @@
     </Member>
     <Member MemberName="SHMInfo">
       <MemberSignature Language="C#" Value="SHMInfo" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode SHMInfo = int32(16)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -911,6 +981,7 @@
     </Member>
     <Member MemberName="SignatureCreated">
       <MemberSignature Language="C#" Value="SignatureCreated" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode SignatureCreated = int32(53)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -924,6 +995,7 @@
     </Member>
     <Member MemberName="SignatureExpired">
       <MemberSignature Language="C#" Value="SignatureExpired" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode SignatureExpired = int32(66)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -937,6 +1009,7 @@
     </Member>
     <Member MemberName="SignatureId">
       <MemberSignature Language="C#" Value="SignatureId" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode SignatureId = int32(22)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -950,6 +1023,7 @@
     </Member>
     <Member MemberName="SignedSubPacket">
       <MemberSignature Language="C#" Value="SignedSubPacket" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode SignedSubPacket = int32(73)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -963,6 +1037,7 @@
     </Member>
     <Member MemberName="Truncated">
       <MemberSignature Language="C#" Value="Truncated" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode Truncated = int32(69)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -976,6 +1051,7 @@
     </Member>
     <Member MemberName="TrustFully">
       <MemberSignature Language="C#" Value="TrustFully" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode TrustFully = int32(14)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -989,6 +1065,7 @@
     </Member>
     <Member MemberName="TrustMarginal">
       <MemberSignature Language="C#" Value="TrustMarginal" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode TrustMarginal = int32(13)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -1002,6 +1079,7 @@
     </Member>
     <Member MemberName="TrustNever">
       <MemberSignature Language="C#" Value="TrustNever" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode TrustNever = int32(12)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -1015,6 +1093,7 @@
     </Member>
     <Member MemberName="TrustUltimate">
       <MemberSignature Language="C#" Value="TrustUltimate" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode TrustUltimate = int32(15)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -1028,6 +1107,7 @@
     </Member>
     <Member MemberName="TrustUndefined">
       <MemberSignature Language="C#" Value="TrustUndefined" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode TrustUndefined = int32(11)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -1041,6 +1121,7 @@
     </Member>
     <Member MemberName="Unexpected">
       <MemberSignature Language="C#" Value="Unexpected" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode Unexpected = int32(62)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -1054,6 +1135,7 @@
     </Member>
     <Member MemberName="UserIdHint">
       <MemberSignature Language="C#" Value="UserIdHint" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode UserIdHint = int32(61)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -1067,6 +1149,7 @@
     </Member>
     <Member MemberName="ValidSignature">
       <MemberSignature Language="C#" Value="ValidSignature" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.KeyEditStatusCode ValidSignature = int32(21)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

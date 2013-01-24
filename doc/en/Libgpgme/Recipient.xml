@@ -1,5 +1,6 @@
 <Type Name="Recipient" FullName="Libgpgme.Recipient">
   <TypeSignature Language="C#" Value="public class Recipient : System.Collections.Generic.IEnumerable&lt;Libgpgme.Recipient&gt;" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Recipient extends System.Object implements class System.Collections.Generic.IEnumerable`1&lt;class Libgpgme.Recipient&gt;, class System.Collections.IEnumerable" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -24,6 +25,7 @@ You can enumerate the particular recipients through the <see cref="P:Libgpgme.Re
   <Members>
     <Member MemberName="GetEnumerator">
       <MemberSignature Language="C#" Value="public System.Collections.Generic.IEnumerator&lt;Libgpgme.Recipient&gt; GetEnumerator ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Collections.Generic.IEnumerator`1&lt;class Libgpgme.Recipient&gt; GetEnumerator() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -40,6 +42,7 @@ You can enumerate the particular recipients through the <see cref="P:Libgpgme.Re
     </Member>
     <Member MemberName="KeyAlgorithm">
       <MemberSignature Language="C#" Value="public Libgpgme.KeyAlgorithm KeyAlgorithm { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype Libgpgme.KeyAlgorithm KeyAlgorithm" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -55,6 +58,7 @@ You can enumerate the particular recipients through the <see cref="P:Libgpgme.Re
     </Member>
     <Member MemberName="KeyId">
       <MemberSignature Language="C#" Value="public string KeyId { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string KeyId" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -71,6 +75,7 @@ You can enumerate the particular recipients through the <see cref="P:Libgpgme.Re
     </Member>
     <Member MemberName="Next">
       <MemberSignature Language="C#" Value="public Libgpgme.Recipient Next { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Libgpgme.Recipient Next" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -87,6 +92,7 @@ You can enumerate the particular recipients through the <see cref="P:Libgpgme.Re
     </Member>
     <Member MemberName="Status">
       <MemberSignature Language="C#" Value="public int Status { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance int32 Status" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -103,6 +109,7 @@ You can enumerate the particular recipients through the <see cref="P:Libgpgme.Re
     </Member>
     <Member MemberName="System.Collections.IEnumerable.GetEnumerator">
       <MemberSignature Language="C#" Value="System.Collections.IEnumerator IEnumerable.GetEnumerator ();" />
+      <MemberSignature Language="ILAsm" Value=".method hidebysig newslot virtual instance class System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

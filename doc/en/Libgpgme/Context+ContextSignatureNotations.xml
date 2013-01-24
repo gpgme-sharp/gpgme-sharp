@@ -1,5 +1,6 @@
 <Type Name="Context+ContextSignatureNotations" FullName="Libgpgme.Context+ContextSignatureNotations">
   <TypeSignature Language="C#" Value="public class Context.ContextSignatureNotations : System.Collections.Generic.IEnumerable&lt;Libgpgme.SignatureNotation&gt;" />
+  <TypeSignature Language="ILAsm" Value=".class nested public auto ansi beforefieldinit Context/ContextSignatureNotations extends System.Object implements class System.Collections.Generic.IEnumerable`1&lt;class Libgpgme.SignatureNotation&gt;, class System.Collections.IEnumerable" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -20,6 +21,7 @@
   <Members>
     <Member MemberName="Add">
       <MemberSignature Language="C#" Value="public void Add (string name, string value, Libgpgme.SignatureNotationFlags flags);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void Add(string name, string value, valuetype Libgpgme.SignatureNotationFlags flags) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -52,6 +54,7 @@ The arguments <paramref name="name" /> and <paramref name="value" /> must be str
     </Member>
     <Member MemberName="Clear">
       <MemberSignature Language="C#" Value="public void Clear ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void Clear() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -70,6 +73,7 @@ Every context starts with an empty notation data list.
     </Member>
     <Member MemberName="Get">
       <MemberSignature Language="C#" Value="public Libgpgme.SignatureNotation Get ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class Libgpgme.SignatureNotation Get() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -87,6 +91,7 @@ Every context starts with an empty notation data list.
     </Member>
     <Member MemberName="GetEnumerator">
       <MemberSignature Language="C#" Value="public System.Collections.Generic.IEnumerator&lt;Libgpgme.SignatureNotation&gt; GetEnumerator ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Collections.Generic.IEnumerator`1&lt;class Libgpgme.SignatureNotation&gt; GetEnumerator() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -103,6 +108,7 @@ Every context starts with an empty notation data list.
     </Member>
     <Member MemberName="System.Collections.IEnumerable.GetEnumerator">
       <MemberSignature Language="C#" Value="System.Collections.IEnumerator IEnumerable.GetEnumerator ();" />
+      <MemberSignature Language="ILAsm" Value=".method hidebysig newslot virtual instance class System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

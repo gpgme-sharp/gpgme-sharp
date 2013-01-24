@@ -1,5 +1,6 @@
 <Type Name="PgpSignatureType" FullName="Libgpgme.PgpSignatureType">
   <TypeSignature Language="C#" Value="public enum PgpSignatureType" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed PgpSignatureType extends System.Enum" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -19,6 +20,7 @@
   <Members>
     <Member MemberName="NonExportable">
       <MemberSignature Language="C#" Value="NonExportable" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.PgpSignatureType NonExportable = int32(1)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -32,6 +34,7 @@
     </Member>
     <Member MemberName="NonRevocable">
       <MemberSignature Language="C#" Value="NonRevocable" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.PgpSignatureType NonRevocable = int32(2)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -45,6 +48,7 @@
     </Member>
     <Member MemberName="Normal">
       <MemberSignature Language="C#" Value="Normal" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.PgpSignatureType Normal = int32(0)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -58,6 +62,7 @@
     </Member>
     <Member MemberName="Trust">
       <MemberSignature Language="C#" Value="Trust" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.PgpSignatureType Trust = int32(4)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

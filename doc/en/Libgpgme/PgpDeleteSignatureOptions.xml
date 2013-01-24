@@ -1,5 +1,6 @@
 <Type Name="PgpDeleteSignatureOptions" FullName="Libgpgme.PgpDeleteSignatureOptions">
   <TypeSignature Language="C#" Value="public class PgpDeleteSignatureOptions" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit PgpDeleteSignatureOptions extends System.Object" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -15,6 +16,7 @@
   <Members>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public PgpDeleteSignatureOptions ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -27,6 +29,7 @@
     </Member>
     <Member MemberName="DeleteSelfSignature">
       <MemberSignature Language="C#" Value="public bool DeleteSelfSignature;" />
+      <MemberSignature Language="ILAsm" Value=".field public bool DeleteSelfSignature" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -41,6 +44,7 @@
     </Member>
     <Member MemberName="SelectedSignatures">
       <MemberSignature Language="C#" Value="public int[] SelectedSignatures;" />
+      <MemberSignature Language="ILAsm" Value=".field public int32[] SelectedSignatures" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -55,6 +59,7 @@
     </Member>
     <Member MemberName="SelectedUid">
       <MemberSignature Language="C#" Value="public int SelectedUid;" />
+      <MemberSignature Language="ILAsm" Value=".field public int32 SelectedUid" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

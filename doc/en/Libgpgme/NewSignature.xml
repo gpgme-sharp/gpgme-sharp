@@ -1,5 +1,6 @@
 <Type Name="NewSignature" FullName="Libgpgme.NewSignature">
   <TypeSignature Language="C#" Value="public class NewSignature : System.Collections.Generic.IEnumerable&lt;Libgpgme.NewSignature&gt;" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit NewSignature extends System.Object implements class System.Collections.Generic.IEnumerable`1&lt;class Libgpgme.NewSignature&gt;, class System.Collections.IEnumerable" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -19,6 +20,7 @@
   <Members>
     <Member MemberName="Fingerprint">
       <MemberSignature Language="C#" Value="public string Fingerprint { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string Fingerprint" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -35,6 +37,7 @@
     </Member>
     <Member MemberName="GetEnumerator">
       <MemberSignature Language="C#" Value="public System.Collections.Generic.IEnumerator&lt;Libgpgme.NewSignature&gt; GetEnumerator ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Collections.Generic.IEnumerator`1&lt;class Libgpgme.NewSignature&gt; GetEnumerator() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -51,6 +54,7 @@
     </Member>
     <Member MemberName="HashAlgorithm">
       <MemberSignature Language="C#" Value="public Libgpgme.HashAlgorithm HashAlgorithm { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype Libgpgme.HashAlgorithm HashAlgorithm" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -66,6 +70,7 @@
     </Member>
     <Member MemberName="Next">
       <MemberSignature Language="C#" Value="public Libgpgme.NewSignature Next { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Libgpgme.NewSignature Next" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -81,6 +86,7 @@
     </Member>
     <Member MemberName="PubkeyAlgorithm">
       <MemberSignature Language="C#" Value="public Libgpgme.KeyAlgorithm PubkeyAlgorithm { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype Libgpgme.KeyAlgorithm PubkeyAlgorithm" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -96,6 +102,7 @@
     </Member>
     <Member MemberName="SignatureClass">
       <MemberSignature Language="C#" Value="public long SignatureClass { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance int64 SignatureClass" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -111,6 +118,7 @@
     </Member>
     <Member MemberName="System.Collections.IEnumerable.GetEnumerator">
       <MemberSignature Language="C#" Value="System.Collections.IEnumerator IEnumerable.GetEnumerator ();" />
+      <MemberSignature Language="ILAsm" Value=".method hidebysig newslot virtual instance class System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -127,6 +135,7 @@
     </Member>
     <Member MemberName="Timestamp">
       <MemberSignature Language="C#" Value="public DateTime Timestamp { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype System.DateTime Timestamp" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -142,6 +151,7 @@
     </Member>
     <Member MemberName="TimestampUTC">
       <MemberSignature Language="C#" Value="public DateTime TimestampUTC { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype System.DateTime TimestampUTC" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -157,6 +167,7 @@
     </Member>
     <Member MemberName="Type">
       <MemberSignature Language="C#" Value="public Libgpgme.SignatureMode Type { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype Libgpgme.SignatureMode Type" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

@@ -1,5 +1,6 @@
 <Type Name="PkaStatus" FullName="Libgpgme.PkaStatus">
   <TypeSignature Language="C#" Value="public enum PkaStatus" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed PkaStatus extends System.Enum" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -14,6 +15,7 @@
   <Members>
     <Member MemberName="Bad">
       <MemberSignature Language="C#" Value="Bad" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.PkaStatus Bad = int32(1)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -27,6 +29,7 @@
     </Member>
     <Member MemberName="NotAvailable">
       <MemberSignature Language="C#" Value="NotAvailable" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.PkaStatus NotAvailable = int32(0)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -40,6 +43,7 @@
     </Member>
     <Member MemberName="Okay">
       <MemberSignature Language="C#" Value="Okay" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.PkaStatus Okay = int32(2)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -53,6 +57,7 @@
     </Member>
     <Member MemberName="RFU">
       <MemberSignature Language="C#" Value="RFU" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.PkaStatus RFU = int32(3)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

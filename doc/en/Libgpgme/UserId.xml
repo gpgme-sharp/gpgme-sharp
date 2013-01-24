@@ -1,5 +1,6 @@
 <Type Name="UserId" FullName="Libgpgme.UserId">
   <TypeSignature Language="C#" Value="public class UserId : System.Collections.Generic.IEnumerable&lt;Libgpgme.UserId&gt;" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit UserId extends System.Object implements class System.Collections.Generic.IEnumerable`1&lt;class Libgpgme.UserId&gt;, class System.Collections.IEnumerable" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -26,6 +27,7 @@ The UserID object is implemented as linked list. You can enumerate all user IDs 
   <Members>
     <Member MemberName="Comment">
       <MemberSignature Language="C#" Value="public string Comment { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string Comment" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -41,6 +43,7 @@ The UserID object is implemented as linked list. You can enumerate all user IDs 
     </Member>
     <Member MemberName="Email">
       <MemberSignature Language="C#" Value="public string Email { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string Email" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -57,6 +60,7 @@ The UserID object is implemented as linked list. You can enumerate all user IDs 
     </Member>
     <Member MemberName="GetEnumerator">
       <MemberSignature Language="C#" Value="public System.Collections.Generic.IEnumerator&lt;Libgpgme.UserId&gt; GetEnumerator ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Collections.Generic.IEnumerator`1&lt;class Libgpgme.UserId&gt; GetEnumerator() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -73,6 +77,7 @@ The UserID object is implemented as linked list. You can enumerate all user IDs 
     </Member>
     <Member MemberName="Invalid">
       <MemberSignature Language="C#" Value="public bool Invalid { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool Invalid" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -90,6 +95,7 @@ The UserID object is implemented as linked list. You can enumerate all user IDs 
     </Member>
     <Member MemberName="Name">
       <MemberSignature Language="C#" Value="public string Name { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string Name" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -105,6 +111,7 @@ The UserID object is implemented as linked list. You can enumerate all user IDs 
     </Member>
     <Member MemberName="Next">
       <MemberSignature Language="C#" Value="public Libgpgme.UserId Next { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Libgpgme.UserId Next" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -124,6 +131,7 @@ The UserID object is implemented as linked list. You can enumerate all user IDs 
     </Member>
     <Member MemberName="Revoked">
       <MemberSignature Language="C#" Value="public bool Revoked { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool Revoked" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -139,6 +147,7 @@ The UserID object is implemented as linked list. You can enumerate all user IDs 
     </Member>
     <Member MemberName="Signatures">
       <MemberSignature Language="C#" Value="public Libgpgme.KeySignature Signatures { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Libgpgme.KeySignature Signatures" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -167,6 +176,7 @@ The signature notations on a key signature are only available if the key was ret
     </Member>
     <Member MemberName="System.Collections.IEnumerable.GetEnumerator">
       <MemberSignature Language="C#" Value="System.Collections.IEnumerator IEnumerable.GetEnumerator ();" />
+      <MemberSignature Language="ILAsm" Value=".method hidebysig newslot virtual instance class System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -183,6 +193,7 @@ The signature notations on a key signature are only available if the key was ret
     </Member>
     <Member MemberName="ToString">
       <MemberSignature Language="C#" Value="public override string ToString ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance string ToString() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -199,6 +210,7 @@ The signature notations on a key signature are only available if the key was ret
     </Member>
     <Member MemberName="Uid">
       <MemberSignature Language="C#" Value="public string Uid { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string Uid" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -214,6 +226,7 @@ The signature notations on a key signature are only available if the key was ret
     </Member>
     <Member MemberName="Validity">
       <MemberSignature Language="C#" Value="public Libgpgme.Validity Validity { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype Libgpgme.Validity Validity" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

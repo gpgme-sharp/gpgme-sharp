@@ -56,7 +56,7 @@ PKGCONFIGDIR	= $(PREFIX)/lib/$(PKGCONFIG)
 SOURCEFILES	= $(wildcard $(SOURCEDIR)/*.cs \
 			$(SOURCEDIR)/Properties/*.cs \
 			$(SOURCEDIR)/Interop/*.cs \
-			$(SOURCEDIR)/Unix/*.cs)
+			$(SOURCEDIR)/Exceptions/*.cs)
 
 all:	$(LIBFILE)
 

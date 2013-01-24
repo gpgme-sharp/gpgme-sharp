@@ -10,23 +10,14 @@ See: http://www.gpg4win.org/
 TESTED CONFIGURATIONS:
 ======================
 
-Linux (Debian 5.0 x86)
-- gnupg 1.4.9
-- gnupg2 2.0.9
-- libgpgme 1.1.6
+Ubuntu Linux Ubuntu 12.10 x86_64
+- libgpgme11 1.2.0-1.4ubuntu3
 
-Linux (Debian 5.0 x86_64)
-- gnupg 1.4.9
-- gnupg2 2.0.9
-- libgpgme 1.1.6
-
-Windows Vista SP1 (32bit)
-- Gpg4win 1.1.4 (2009-02-17)
-	- gnupg 1.4.9
-	- gnupg2 2.0.10
-	- libgpgme 1.1.8
+Windows 8 (64bit)
+- Gpg4win 2.1.0 (2011-03-15) 32bit(!)
+  (Your project must be compiled x86 == 32bit!)
 
 You need at least GnuPG and GPGME.
 
-Berlin 2009,
+Berlin 2013,
 Daniel Mueller <daniel@danm.de>

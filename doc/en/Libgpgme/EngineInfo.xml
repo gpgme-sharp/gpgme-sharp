@@ -1,5 +1,6 @@
 <Type Name="EngineInfo" FullName="Libgpgme.EngineInfo">
   <TypeSignature Language="C#" Value="public class EngineInfo : System.Collections.Generic.IEnumerable&lt;Libgpgme.EngineInfo&gt;" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit EngineInfo extends System.Object implements class System.Collections.Generic.IEnumerable`1&lt;class Libgpgme.EngineInfo&gt;, class System.Collections.IEnumerable" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -27,6 +28,7 @@ This class is implemented as linked list. You can enumerate all <see cref="C:Lib
   <Members>
     <Member MemberName="CtxValid">
       <MemberSignature Language="C#" Value="public bool CtxValid { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool CtxValid" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -42,7 +44,8 @@ This class is implemented as linked list. You can enumerate all <see cref="C:Lib
       </Docs>
     </Member>
     <Member MemberName="FileName">
-      <MemberSignature Language="C#" Value="public string FileName { set; get; }" />
+      <MemberSignature Language="C#" Value="public string FileName { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string FileName" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -59,6 +62,7 @@ This class is implemented as linked list. You can enumerate all <see cref="C:Lib
     </Member>
     <Member MemberName="GetEnumerator">
       <MemberSignature Language="C#" Value="public System.Collections.Generic.IEnumerator&lt;Libgpgme.EngineInfo&gt; GetEnumerator ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Collections.Generic.IEnumerator`1&lt;class Libgpgme.EngineInfo&gt; GetEnumerator() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -75,6 +79,7 @@ This class is implemented as linked list. You can enumerate all <see cref="C:Lib
     </Member>
     <Member MemberName="HasCtx">
       <MemberSignature Language="C#" Value="public bool HasCtx { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool HasCtx" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -89,7 +94,8 @@ This class is implemented as linked list. You can enumerate all <see cref="C:Lib
       </Docs>
     </Member>
     <Member MemberName="HomeDir">
-      <MemberSignature Language="C#" Value="public string HomeDir { set; get; }" />
+      <MemberSignature Language="C#" Value="public string HomeDir { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string HomeDir" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -106,6 +112,7 @@ This class is implemented as linked list. You can enumerate all <see cref="C:Lib
     </Member>
     <Member MemberName="Next">
       <MemberSignature Language="C#" Value="public Libgpgme.EngineInfo Next { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Libgpgme.EngineInfo Next" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -120,7 +127,8 @@ This class is implemented as linked list. You can enumerate all <see cref="C:Lib
       </Docs>
     </Member>
     <Member MemberName="Protocol">
-      <MemberSignature Language="C#" Value="public Libgpgme.Protocol Protocol { set; get; }" />
+      <MemberSignature Language="C#" Value="public Libgpgme.Protocol Protocol { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype Libgpgme.Protocol Protocol" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -137,6 +145,7 @@ This class is implemented as linked list. You can enumerate all <see cref="C:Lib
     </Member>
     <Member MemberName="ReqVersion">
       <MemberSignature Language="C#" Value="public string ReqVersion { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string ReqVersion" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -153,6 +162,7 @@ This class is implemented as linked list. You can enumerate all <see cref="C:Lib
     </Member>
     <Member MemberName="System.Collections.IEnumerable.GetEnumerator">
       <MemberSignature Language="C#" Value="System.Collections.IEnumerator IEnumerable.GetEnumerator ();" />
+      <MemberSignature Language="ILAsm" Value=".method hidebysig newslot virtual instance class System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -169,6 +179,7 @@ This class is implemented as linked list. You can enumerate all <see cref="C:Lib
     </Member>
     <Member MemberName="Version">
       <MemberSignature Language="C#" Value="public string Version { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string Version" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

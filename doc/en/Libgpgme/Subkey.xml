@@ -1,5 +1,6 @@
 <Type Name="Subkey" FullName="Libgpgme.Subkey">
   <TypeSignature Language="C#" Value="public class Subkey : System.Collections.Generic.IEnumerable&lt;Libgpgme.Subkey&gt;" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Subkey extends System.Object implements class System.Collections.Generic.IEnumerable`1&lt;class Libgpgme.Subkey&gt;, class System.Collections.IEnumerable" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -20,6 +21,7 @@
   <Members>
     <Member MemberName="CanAuthenticate">
       <MemberSignature Language="C#" Value="public bool CanAuthenticate { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool CanAuthenticate" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -35,6 +37,7 @@
     </Member>
     <Member MemberName="CanCertify">
       <MemberSignature Language="C#" Value="public bool CanCertify { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool CanCertify" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -52,6 +55,7 @@
     </Member>
     <Member MemberName="CanEncrypt">
       <MemberSignature Language="C#" Value="public bool CanEncrypt { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool CanEncrypt" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -68,6 +72,7 @@
     </Member>
     <Member MemberName="CanSign">
       <MemberSignature Language="C#" Value="public bool CanSign { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool CanSign" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -84,6 +89,7 @@
     </Member>
     <Member MemberName="Disabled">
       <MemberSignature Language="C#" Value="public bool Disabled { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool Disabled" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -99,6 +105,7 @@
     </Member>
     <Member MemberName="Expired">
       <MemberSignature Language="C#" Value="public bool Expired { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool Expired" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -114,6 +121,7 @@
     </Member>
     <Member MemberName="Expires">
       <MemberSignature Language="C#" Value="public DateTime Expires { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype System.DateTime Expires" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -129,6 +137,7 @@
     </Member>
     <Member MemberName="ExpiresUTC">
       <MemberSignature Language="C#" Value="public DateTime ExpiresUTC { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype System.DateTime ExpiresUTC" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -144,6 +153,7 @@
     </Member>
     <Member MemberName="Fingerprint">
       <MemberSignature Language="C#" Value="public string Fingerprint { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string Fingerprint" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -160,6 +170,7 @@
     </Member>
     <Member MemberName="GetEnumerator">
       <MemberSignature Language="C#" Value="public System.Collections.Generic.IEnumerator&lt;Libgpgme.Subkey&gt; GetEnumerator ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Collections.Generic.IEnumerator`1&lt;class Libgpgme.Subkey&gt; GetEnumerator() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -176,6 +187,7 @@
     </Member>
     <Member MemberName="Invalid">
       <MemberSignature Language="C#" Value="public bool Invalid { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool Invalid" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -190,7 +202,8 @@
       </Docs>
     </Member>
     <Member MemberName="IsInfinitely">
-      <MemberSignature Language="C#" Value="public bool IsInfinitely { get; }" />
+      <MemberSignature Language="C#" Value="public bool IsInfinitely { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool IsInfinitely" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -206,6 +219,7 @@
     </Member>
     <Member MemberName="IsQualified">
       <MemberSignature Language="C#" Value="public bool IsQualified { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool IsQualified" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -222,6 +236,7 @@
     </Member>
     <Member MemberName="KeyId">
       <MemberSignature Language="C#" Value="public string KeyId { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string KeyId" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -237,6 +252,7 @@
     </Member>
     <Member MemberName="Length">
       <MemberSignature Language="C#" Value="public long Length { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance int64 Length" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -252,6 +268,7 @@
     </Member>
     <Member MemberName="Next">
       <MemberSignature Language="C#" Value="public Libgpgme.Subkey Next { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Libgpgme.Subkey Next" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -268,6 +285,7 @@
     </Member>
     <Member MemberName="PubkeyAlgorithm">
       <MemberSignature Language="C#" Value="public Libgpgme.KeyAlgorithm PubkeyAlgorithm { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype Libgpgme.KeyAlgorithm PubkeyAlgorithm" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -283,6 +301,7 @@
     </Member>
     <Member MemberName="Revoked">
       <MemberSignature Language="C#" Value="public bool Revoked { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool Revoked" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -298,6 +317,7 @@
     </Member>
     <Member MemberName="Secret">
       <MemberSignature Language="C#" Value="public bool Secret { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool Secret" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -319,6 +339,7 @@ It will be <see langword="false" /> if the key is actually a stub key; i.e. a se
     </Member>
     <Member MemberName="System.Collections.IEnumerable.GetEnumerator">
       <MemberSignature Language="C#" Value="System.Collections.IEnumerator IEnumerable.GetEnumerator ();" />
+      <MemberSignature Language="ILAsm" Value=".method hidebysig newslot virtual instance class System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -335,6 +356,7 @@ It will be <see langword="false" /> if the key is actually a stub key; i.e. a se
     </Member>
     <Member MemberName="Timestamp">
       <MemberSignature Language="C#" Value="public DateTime Timestamp { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype System.DateTime Timestamp" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -357,6 +379,7 @@ A <see cref="C:Libgpgme.InvalidTimestampException" /> will be raised if the time
     </Member>
     <Member MemberName="TimestampUTC">
       <MemberSignature Language="C#" Value="public DateTime TimestampUTC { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype System.DateTime TimestampUTC" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

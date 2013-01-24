@@ -1,5 +1,6 @@
 <Type Name="PassphraseDelegate" FullName="Libgpgme.PassphraseDelegate">
   <TypeSignature Language="C#" Value="public delegate Libgpgme.PassphraseResult PassphraseDelegate(Context ctx, PassphraseInfo info, ref char[] passphrase);" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed PassphraseDelegate extends System.MulticastDelegate" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -20,7 +21,7 @@
     <param name="info">A <see cref="C:Libgpgme.PassphraseInfo" /> object that gives an indication for which user ID the passphrase is required.</param>
     <param name="passphrase">The returning passphrase. </param>
     <summary>The type of method that usable as passphrase callback function.</summary>
-    <value>Returns a <see cref="T:Libgpgme.PassphraseResult" /> value that indicates success or a user canceled action.</value>
+    <returns>Returns a <see cref="T:Libgpgme.PassphraseResult" /> value that indicates success or a user canceled action.</returns>
     <remarks>The <see cref="C:Libgpgme.PassphraseInfo" /> object will be <see langword="null" /> in the case of symmetric encryption.
 
 <block subset="none" type="note"><para>

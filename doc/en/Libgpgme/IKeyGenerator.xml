@@ -1,5 +1,6 @@
 <Type Name="IKeyGenerator" FullName="Libgpgme.IKeyGenerator">
   <TypeSignature Language="C#" Value="public interface IKeyGenerator" />
+  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IKeyGenerator" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -15,6 +16,7 @@ For documentation of GPGME's engine specific keystore(s) see <see cref="P:Libgpg
   <Members>
     <Member MemberName="GenerateKey">
       <MemberSignature Language="C#" Value="public Libgpgme.GenkeyResult GenerateKey (Libgpgme.Protocol protocoltype, Libgpgme.KeyParameters keyparms);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Libgpgme.GenkeyResult GenerateKey(valuetype Libgpgme.Protocol protocoltype, class Libgpgme.KeyParameters keyparms) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

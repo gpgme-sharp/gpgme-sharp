@@ -1,5 +1,6 @@
 <Type Name="Context+ContextSigners" FullName="Libgpgme.Context+ContextSigners">
   <TypeSignature Language="C#" Value="public class Context.ContextSigners : System.Collections.Generic.IEnumerable&lt;Libgpgme.Key&gt;" />
+  <TypeSignature Language="ILAsm" Value=".class nested public auto ansi beforefieldinit Context/ContextSigners extends System.Object implements class System.Collections.Generic.IEnumerable`1&lt;class Libgpgme.Key&gt;, class System.Collections.IEnumerable" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -23,6 +24,7 @@ The <see cref="C:Libgpgme.Context+ContextSigners" /> class allows you to list (e
   <Members>
     <Member MemberName="Add">
       <MemberSignature Language="C#" Value="public void Add (Libgpgme.Key signer);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void Add(class Libgpgme.Key signer) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -41,6 +43,7 @@ The <see cref="C:Libgpgme.Context+ContextSigners" /> class allows you to list (e
     </Member>
     <Member MemberName="Clear">
       <MemberSignature Language="C#" Value="public void Clear ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void Clear() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -56,6 +59,7 @@ The <see cref="C:Libgpgme.Context+ContextSigners" /> class allows you to list (e
     </Member>
     <Member MemberName="Enum">
       <MemberSignature Language="C#" Value="public Libgpgme.Key Enum (int seq);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class Libgpgme.Key Enum(int32 seq) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -75,6 +79,7 @@ The <see cref="C:Libgpgme.Context+ContextSigners" /> class allows you to list (e
     </Member>
     <Member MemberName="Get">
       <MemberSignature Language="C#" Value="public Libgpgme.Key[] Get ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class Libgpgme.Key[] Get() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -91,6 +96,7 @@ The <see cref="C:Libgpgme.Context+ContextSigners" /> class allows you to list (e
     </Member>
     <Member MemberName="GetEnumerator">
       <MemberSignature Language="C#" Value="public System.Collections.Generic.IEnumerator&lt;Libgpgme.Key&gt; GetEnumerator ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Collections.Generic.IEnumerator`1&lt;class Libgpgme.Key&gt; GetEnumerator() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -107,6 +113,7 @@ The <see cref="C:Libgpgme.Context+ContextSigners" /> class allows you to list (e
     </Member>
     <Member MemberName="System.Collections.IEnumerable.GetEnumerator">
       <MemberSignature Language="C#" Value="System.Collections.IEnumerator IEnumerable.GetEnumerator ();" />
+      <MemberSignature Language="ILAsm" Value=".method hidebysig newslot virtual instance class System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

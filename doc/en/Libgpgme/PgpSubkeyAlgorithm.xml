@@ -1,5 +1,6 @@
 <Type Name="PgpSubkeyAlgorithm" FullName="Libgpgme.PgpSubkeyAlgorithm">
   <TypeSignature Language="C#" Value="public enum PgpSubkeyAlgorithm" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed PgpSubkeyAlgorithm extends System.Enum" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -14,6 +15,7 @@
   <Members>
     <Member MemberName="DSASignOnly">
       <MemberSignature Language="C#" Value="DSASignOnly" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.PgpSubkeyAlgorithm DSASignOnly = int32(2)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -35,6 +37,7 @@
     </Member>
     <Member MemberName="DSAUseCapabilities">
       <MemberSignature Language="C#" Value="DSAUseCapabilities" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.PgpSubkeyAlgorithm DSAUseCapabilities = int32(3)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -60,6 +63,7 @@ This value is only available if GPG is configured to use the Expert-mode ("exper
     </Member>
     <Member MemberName="ELGEncryptOnly">
       <MemberSignature Language="C#" Value="ELGEncryptOnly" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.PgpSubkeyAlgorithm ELGEncryptOnly = int32(4)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -81,6 +85,7 @@ This value is only available if GPG is configured to use the Expert-mode ("exper
     </Member>
     <Member MemberName="RSAEncryptOnly">
       <MemberSignature Language="C#" Value="RSAEncryptOnly" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.PgpSubkeyAlgorithm RSAEncryptOnly = int32(6)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -102,6 +107,7 @@ This value is only available if GPG is configured to use the Expert-mode ("exper
     </Member>
     <Member MemberName="RSASignOnly">
       <MemberSignature Language="C#" Value="RSASignOnly" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.PgpSubkeyAlgorithm RSASignOnly = int32(5)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -123,6 +129,7 @@ This value is only available if GPG is configured to use the Expert-mode ("exper
     </Member>
     <Member MemberName="RSAUseCapabilities">
       <MemberSignature Language="C#" Value="RSAUseCapabilities" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.PgpSubkeyAlgorithm RSAUseCapabilities = int32(7)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

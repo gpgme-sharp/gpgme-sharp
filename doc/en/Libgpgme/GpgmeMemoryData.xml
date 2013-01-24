@@ -1,5 +1,6 @@
 <Type Name="GpgmeMemoryData" FullName="Libgpgme.GpgmeMemoryData">
   <TypeSignature Language="C#" Value="public sealed class GpgmeMemoryData : Libgpgme.GpgmeData" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit GpgmeMemoryData extends Libgpgme.GpgmeData" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -16,6 +17,7 @@
   <Members>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public GpgmeMemoryData ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -28,6 +30,7 @@
     </Member>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public GpgmeMemoryData (int size);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(int32 size) cil managed" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -43,6 +46,7 @@
     </Member>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public GpgmeMemoryData (string filename);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(string filename) cil managed" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -65,6 +69,7 @@ The whole file is read in at initialization time and the file is not used anymor
     </Member>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public GpgmeMemoryData (IntPtr memAddr, int size);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(native int memAddr, int32 size) cil managed" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -88,6 +93,7 @@ The data is taken from the specified buffer as needed, and the user has to ensur
     </Member>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public GpgmeMemoryData (string filename, int offset, int length);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(string filename, int32 offset, int32 length) cil managed" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -107,6 +113,7 @@ The data is taken from the specified buffer as needed, and the user has to ensur
     </Member>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public GpgmeMemoryData (string filename, long offset, long length);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(string filename, int64 offset, int64 length) cil managed" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -126,6 +133,7 @@ The data is taken from the specified buffer as needed, and the user has to ensur
     </Member>
     <Member MemberName="CanRead">
       <MemberSignature Language="C#" Value="public override bool CanRead { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool CanRead" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -141,6 +149,7 @@ The data is taken from the specified buffer as needed, and the user has to ensur
     </Member>
     <Member MemberName="CanSeek">
       <MemberSignature Language="C#" Value="public override bool CanSeek { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool CanSeek" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -156,6 +165,7 @@ The data is taken from the specified buffer as needed, and the user has to ensur
     </Member>
     <Member MemberName="CanWrite">
       <MemberSignature Language="C#" Value="public override bool CanWrite { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool CanWrite" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -171,6 +181,7 @@ The data is taken from the specified buffer as needed, and the user has to ensur
     </Member>
     <Member MemberName="Dispose">
       <MemberSignature Language="C#" Value="protected override void Dispose (bool disposing);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance void Dispose(bool disposing) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -189,6 +200,7 @@ The data is taken from the specified buffer as needed, and the user has to ensur
     </Member>
     <Member MemberName="Finalize">
       <MemberSignature Language="C#" Value="~GpgmeMemoryData ();" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance void Finalize() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -204,6 +216,7 @@ The data is taken from the specified buffer as needed, and the user has to ensur
     </Member>
     <Member MemberName="Flush">
       <MemberSignature Language="C#" Value="public override void Flush ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance void Flush() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -219,6 +232,7 @@ The data is taken from the specified buffer as needed, and the user has to ensur
     </Member>
     <Member MemberName="IsValid">
       <MemberSignature Language="C#" Value="public override bool IsValid { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool IsValid" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -234,6 +248,7 @@ The data is taken from the specified buffer as needed, and the user has to ensur
     </Member>
     <Member MemberName="Length">
       <MemberSignature Language="C#" Value="public override long Length { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance int64 Length" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -249,6 +264,7 @@ The data is taken from the specified buffer as needed, and the user has to ensur
     </Member>
     <Member MemberName="MemoryAddress">
       <MemberSignature Language="C#" Value="public IntPtr MemoryAddress { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance native int MemoryAddress" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -270,6 +286,7 @@ It contains only valid data if either the <see cref="C:Libgpgme.GpgmeMemoryData(
     </Member>
     <Member MemberName="MemorySize">
       <MemberSignature Language="C#" Value="public long MemorySize { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance int64 MemorySize" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

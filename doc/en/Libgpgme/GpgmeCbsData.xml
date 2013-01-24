@@ -1,5 +1,6 @@
 <Type Name="GpgmeCbsData" FullName="Libgpgme.GpgmeCbsData">
   <TypeSignature Language="C#" Value="public abstract class GpgmeCbsData : Libgpgme.GpgmeData" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit GpgmeCbsData extends Libgpgme.GpgmeData" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -16,6 +17,7 @@
   <Members>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="protected GpgmeCbsData ();" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig specialname rtspecialname instance void .ctor() cil managed" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -38,6 +40,7 @@ The GPGME backend will do callbacks only for methods for which their Can* proper
     </Member>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="protected GpgmeCbsData (bool canRead, bool canWrite, bool canSeek, bool canRelease);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig specialname rtspecialname instance void .ctor(bool canRead, bool canWrite, bool canSeek, bool canRelease) cil managed" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -66,6 +69,7 @@ Your inherited class must override the following properies:
     </Member>
     <Member MemberName="CanRead">
       <MemberSignature Language="C#" Value="public abstract bool CanRead { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool CanRead" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -81,6 +85,7 @@ Your inherited class must override the following properies:
     </Member>
     <Member MemberName="CanRelease">
       <MemberSignature Language="C#" Value="public abstract bool CanRelease { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool CanRelease" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -98,6 +103,7 @@ Your inherited class must override the following properies:
     </Member>
     <Member MemberName="CanSeek">
       <MemberSignature Language="C#" Value="public abstract bool CanSeek { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool CanSeek" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -113,6 +119,7 @@ Your inherited class must override the following properies:
     </Member>
     <Member MemberName="CanWrite">
       <MemberSignature Language="C#" Value="public abstract bool CanWrite { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool CanWrite" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -128,6 +135,7 @@ Your inherited class must override the following properies:
     </Member>
     <Member MemberName="Dispose">
       <MemberSignature Language="C#" Value="protected override void Dispose (bool disposing);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance void Dispose(bool disposing) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -146,6 +154,7 @@ Your inherited class must override the following properies:
     </Member>
     <Member MemberName="Finalize">
       <MemberSignature Language="C#" Value="~GpgmeCbsData ();" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance void Finalize() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -161,6 +170,7 @@ Your inherited class must override the following properies:
     </Member>
     <Member MemberName="LastCallbackException">
       <MemberSignature Language="C#" Value="public Exception LastCallbackException;" />
+      <MemberSignature Language="ILAsm" Value=".field public class System.Exception LastCallbackException" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -175,6 +185,7 @@ Your inherited class must override the following properies:
     </Member>
     <Member MemberName="ReadCB">
       <MemberSignature Language="C#" Value="protected virtual IntPtr ReadCB (IntPtr bufPtr, long size);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance native int ReadCB(native int bufPtr, int64 size) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -200,6 +211,7 @@ The <see cref="M:System.Runtime.InteropServices.Marshal.Copy" /> method is recom
     </Member>
     <Member MemberName="ReleaseCB">
       <MemberSignature Language="C#" Value="protected virtual void ReleaseCB ();" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void ReleaseCB() cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -215,6 +227,7 @@ The <see cref="M:System.Runtime.InteropServices.Marshal.Copy" /> method is recom
     </Member>
     <Member MemberName="SeekCB">
       <MemberSignature Language="C#" Value="protected virtual long SeekCB (long offset, System.IO.SeekOrigin whence);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance int64 SeekCB(int64 offset, valuetype System.IO.SeekOrigin whence) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -263,6 +276,7 @@ Returns the new position within the current stream OR <see cref="P:Libgpgme.Gpgm
     </Member>
     <Member MemberName="WriteCB">
       <MemberSignature Language="C#" Value="protected virtual IntPtr WriteCB (IntPtr bufPtr, long size);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance native int WriteCB(native int bufPtr, int64 size) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

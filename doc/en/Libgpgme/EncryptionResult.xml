@@ -1,5 +1,6 @@
 <Type Name="EncryptionResult" FullName="Libgpgme.EncryptionResult">
   <TypeSignature Language="C#" Value="public class EncryptionResult" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit EncryptionResult extends System.Object" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -20,6 +21,7 @@ The <see cref="T:Libgpgme.EncryptionResult" /> object contains information about
   <Members>
     <Member MemberName="InvalidRecipients">
       <MemberSignature Language="C#" Value="public Libgpgme.InvalidKey InvalidRecipients { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Libgpgme.InvalidKey InvalidRecipients" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

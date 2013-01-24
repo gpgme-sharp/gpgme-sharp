@@ -1,5 +1,6 @@
 <Type Name="PgpSignatureOptions" FullName="Libgpgme.PgpSignatureOptions">
   <TypeSignature Language="C#" Value="public class PgpSignatureOptions" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit PgpSignatureOptions extends System.Object" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -15,6 +16,7 @@
   <Members>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public PgpSignatureOptions ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -27,6 +29,7 @@
     </Member>
     <Member MemberName="Class">
       <MemberSignature Language="C#" Value="public Libgpgme.PgpSignatureClass Class;" />
+      <MemberSignature Language="ILAsm" Value=".field public valuetype Libgpgme.PgpSignatureClass Class" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -41,6 +44,7 @@
     </Member>
     <Member MemberName="ExpirationDate">
       <MemberSignature Language="C#" Value="public DateTime ExpirationDate;" />
+      <MemberSignature Language="ILAsm" Value=".field public valuetype System.DateTime ExpirationDate" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -54,7 +58,8 @@
       </Docs>
     </Member>
     <Member MemberName="IsInfinitely">
-      <MemberSignature Language="C#" Value="public bool IsInfinitely { set; get; }" />
+      <MemberSignature Language="C#" Value="public bool IsInfinitely { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool IsInfinitely" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -70,6 +75,7 @@
     </Member>
     <Member MemberName="LocalPromoteOkay">
       <MemberSignature Language="C#" Value="public bool LocalPromoteOkay;" />
+      <MemberSignature Language="ILAsm" Value=".field public bool LocalPromoteOkay" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -84,6 +90,7 @@
     </Member>
     <Member MemberName="SelectedUids">
       <MemberSignature Language="C#" Value="public int[] SelectedUids;" />
+      <MemberSignature Language="ILAsm" Value=".field public int32[] SelectedUids" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -97,7 +104,8 @@
       </Docs>
     </Member>
     <Member MemberName="TrustDepth">
-      <MemberSignature Language="C#" Value="public int TrustDepth { set; get; }" />
+      <MemberSignature Language="C#" Value="public int TrustDepth { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance int32 TrustDepth" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -113,6 +121,7 @@
     </Member>
     <Member MemberName="TrustLevel">
       <MemberSignature Language="C#" Value="public Libgpgme.PgpSignatureTrustLevel TrustLevel;" />
+      <MemberSignature Language="ILAsm" Value=".field public valuetype Libgpgme.PgpSignatureTrustLevel TrustLevel" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -127,6 +136,7 @@
     </Member>
     <Member MemberName="TrustRegexp">
       <MemberSignature Language="C#" Value="public string TrustRegexp;" />
+      <MemberSignature Language="ILAsm" Value=".field public string TrustRegexp" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -141,6 +151,7 @@
     </Member>
     <Member MemberName="Type">
       <MemberSignature Language="C#" Value="public Libgpgme.PgpSignatureType Type;" />
+      <MemberSignature Language="ILAsm" Value=".field public valuetype Libgpgme.PgpSignatureType Type" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>

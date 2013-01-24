@@ -1,5 +1,6 @@
 <Type Name="HashAlgorithm" FullName="Libgpgme.HashAlgorithm">
   <TypeSignature Language="C#" Value="public enum HashAlgorithm" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed HashAlgorithm extends System.Enum" />
   <AssemblyInfo>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -14,6 +15,7 @@
   <Members>
     <Member MemberName="CRC24_RFC2440">
       <MemberSignature Language="C#" Value="CRC24_RFC2440" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.HashAlgorithm CRC24_RFC2440 = int32(304)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -27,6 +29,7 @@
     </Member>
     <Member MemberName="CRC32">
       <MemberSignature Language="C#" Value="CRC32" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.HashAlgorithm CRC32 = int32(302)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -40,6 +43,7 @@
     </Member>
     <Member MemberName="CRC32_RFC1510">
       <MemberSignature Language="C#" Value="CRC32_RFC1510" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.HashAlgorithm CRC32_RFC1510 = int32(303)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -53,6 +57,7 @@
     </Member>
     <Member MemberName="HAVAL">
       <MemberSignature Language="C#" Value="HAVAL" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.HashAlgorithm HAVAL = int32(7)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -66,6 +71,7 @@
     </Member>
     <Member MemberName="MD2">
       <MemberSignature Language="C#" Value="MD2" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.HashAlgorithm MD2 = int32(5)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -79,6 +85,7 @@
     </Member>
     <Member MemberName="MD4">
       <MemberSignature Language="C#" Value="MD4" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.HashAlgorithm MD4 = int32(301)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -92,6 +99,7 @@
     </Member>
     <Member MemberName="MD5">
       <MemberSignature Language="C#" Value="MD5" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.HashAlgorithm MD5 = int32(1)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -105,6 +113,7 @@
     </Member>
     <Member MemberName="None">
       <MemberSignature Language="C#" Value="None" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.HashAlgorithm None = int32(0)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -118,6 +127,7 @@
     </Member>
     <Member MemberName="RMD160">
       <MemberSignature Language="C#" Value="RMD160" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.HashAlgorithm RMD160 = int32(3)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -131,6 +141,7 @@
     </Member>
     <Member MemberName="SHA1">
       <MemberSignature Language="C#" Value="SHA1" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.HashAlgorithm SHA1 = int32(2)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -144,6 +155,7 @@
     </Member>
     <Member MemberName="SHA224">
       <MemberSignature Language="C#" Value="SHA224" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.HashAlgorithm SHA224 = int32(11)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -157,6 +169,7 @@
     </Member>
     <Member MemberName="SHA256">
       <MemberSignature Language="C#" Value="SHA256" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.HashAlgorithm SHA256 = int32(8)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -170,6 +183,7 @@
     </Member>
     <Member MemberName="SHA384">
       <MemberSignature Language="C#" Value="SHA384" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.HashAlgorithm SHA384 = int32(9)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -183,6 +197,7 @@
     </Member>
     <Member MemberName="SHA512">
       <MemberSignature Language="C#" Value="SHA512" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.HashAlgorithm SHA512 = int32(10)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -196,6 +211,7 @@
     </Member>
     <Member MemberName="TIGER">
       <MemberSignature Language="C#" Value="TIGER" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype Libgpgme.HashAlgorithm TIGER = int32(6)" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
