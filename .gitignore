@@ -1,0 +1,10 @@
+# IGNORE
+bin/
+obj/
+packages/
+!packages/repositories.config
+*.suo
+*.DotSettings.user
+*.csproj.user
+*.ReSharper.user
+_Resharper*
