@@ -19,5 +19,9 @@ Windows 8 (64bit)
 
 You need at least GnuPG and GPGME.
 
+Documentation
+=============
+http://danm.de/docs/gpgme-sharp/Libgpgme/index.html
+
 Berlin 2013,
-Daniel Mueller <daniel@danm.de>
+Daniel Mueller 
