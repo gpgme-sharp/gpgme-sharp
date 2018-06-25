@@ -1,3 +1,6 @@
+2018-06-05	Daniel Mueller<daniel@danm.de>
+	* Changed license from LPGL to MIT
+
 2013-01-24	Daniel Mueller <daniel@danm.de>
 	* libgpgme.cs: 
 	* PgpKey.cs:
