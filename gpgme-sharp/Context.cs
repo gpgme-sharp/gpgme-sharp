@@ -36,18 +36,48 @@ namespace Libgpgme
             }
         }
 
-        public Context() {
+        /// <summary>
+        /// Creates a new Context and sets the DllDirectory to the provided 
+        /// location
+        /// This directory will be used to find to libgpgme-11.dll in case all previous 
+        /// tries to find the dll have failed
+        /// (Windows has some kind of steps it does per default to discover the dll, for example search at
+        /// the default installation directory of gnupg you can find the order here
+        /// https://docs.microsoft.com/en-us/windows/desktop/Dlls/dynamic-link-library-search-order) 
+        /// </summary>
+        /// <param name="dllPath">Path to the Folder containg the libgpgme-11.dll</param>
+        public Context(string dllDirectory)
+        {
+            if (String.IsNullOrEmpty(dllDirectory)) throw new ArgumentException("The provided Path to dll Directory is empty or null!");
+
+            //Sets the Dll Directory (Method will take care about other issues like non existing path etc.) 
+            SetDllDirectory(dllDirectory);
+
+            Initialize(ref _signers, ref _signots, ref _keystore);
+        }
+
+        public Context()
+        {
+            Initialize(ref _signers, ref _signots, ref _keystore); 
+        }
+
+        /// <summary>
+        /// Initializes the Context 
+        /// </summary>
+        private void Initialize(ref ContextSigners signers, ref ContextSignatureNotations signots, ref KeyStore keystore )
+        {
             IntPtr ptr;
 
             var err = libgpgme.gpgme_new(out ptr);
             gpg_err_code_t errcode = libgpgme.gpgme_err_code(err);
 
-            switch (errcode) {
+            switch (errcode)
+            {
                 case gpg_err_code_t.GPG_ERR_NO_ERROR:
                     _ctx_ptr = ptr;
-                    _signers = new ContextSigners(this);
-                    _signots = new ContextSignatureNotations(this);
-                    _keystore = new KeyStore(this);
+                    signers = new ContextSigners(this);
+                    signots = new ContextSignatureNotations(this);
+                    keystore = new KeyStore(this);
                     break;
                 case gpg_err_code_t.GPG_ERR_INV_VALUE:
                     throw new InvalidPtrException("CTX is not a valid pointer.\nBad programmer *spank* *spank*");
