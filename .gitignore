@@ -9,3 +9,4 @@ packages/
 *.ReSharper.user
 _Resharper*
 gpgme-sharp.userprefs
+.vs/

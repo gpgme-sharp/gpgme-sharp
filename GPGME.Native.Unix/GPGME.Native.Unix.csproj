@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net40;netstandard2.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\GPGME.Native.Win32\NativeMethods.cs" Link="NativeMethods.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GPGME.Native.Shared\GPGME.Native.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

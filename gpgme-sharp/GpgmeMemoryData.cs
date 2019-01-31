@@ -14,7 +14,7 @@ namespace Libgpgme
         private UIntPtr _mem_size;
 
         public GpgmeMemoryData() {
-            int err = libgpgme.gpgme_data_new(out dataPtr);
+            int err = libgpgme.NativeMethods.gpgme_data_new(out dataPtr);
             gpg_err_code_t errcode = libgpgme.gpgme_err_code(err);
 
 
@@ -82,7 +82,7 @@ namespace Libgpgme
 
             int err;
             if (libgpgme.use_lfs) {
-                err = libgpgme.gpgme_data_new_from_filepart(
+                err = libgpgme.NativeMethods.gpgme_data_new_from_filepart_2(
                     out dataPtr,
                     pfilepath,
                     handle,
@@ -90,7 +90,7 @@ namespace Libgpgme
                     plen);
             } else {
                 var poffset = (IntPtr) offset;
-                err = libgpgme.gpgme_data_new_from_filepart(
+                err = libgpgme.NativeMethods.gpgme_data_new_from_filepart_1(
                     out dataPtr,
                     pfilepath,
                     handle,
@@ -176,7 +176,7 @@ namespace Libgpgme
                and the user has to ensure that the buffer remains valid for the
                whole life span of the data object. */
             const int COPY_FLAG = 0;
-            int err = libgpgme.gpgme_data_new_from_mem(
+            int err = libgpgme.NativeMethods.gpgme_data_new_from_mem(
                 out dataPtr,
                 _mem_ptr,
                 _mem_size,
@@ -199,7 +199,7 @@ namespace Libgpgme
         private void ReleaseMemoryData() {
             lock (_global_lock) {
                 if (!dataPtr.Equals(IntPtr.Zero)) {
-                    libgpgme.gpgme_data_release(dataPtr);
+                    libgpgme.NativeMethods.gpgme_data_release(dataPtr);
                     dataPtr = IntPtr.Zero;
                 }
                 if (!_mem_ptr.Equals(IntPtr.Zero)) {
