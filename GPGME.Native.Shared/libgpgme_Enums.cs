@@ -322,4 +322,35 @@ namespace Libgpgme.Interop
         GPGME_SIGSUM_BAD_POLICY = 0x0400, /* A policy was not met.  */
         GPGME_SIGSUM_SYS_ERROR = 0x0800 /* A system error occured.  */
     }
+
+    public enum gpgme_pinentry_mode_t
+    {
+        /// <summary>
+        /// Use the default of the agent, which is ask. 
+        /// </summary>
+        GPGME_PINENTRY_MODE_DEFAULT,
+
+        /// <summary>
+        /// Force the use of the Pinentry. 
+        /// </summary>
+        GPGME_PINENTRY_MODE_ASK,
+
+        /// <summary>
+        /// Emulate use of Pinentry's cancel button. 
+        /// </summary>
+        GPGME_PINENTRY_MODE_CANCEL,
+
+        /// <summary>
+        /// Return a Pinentry error "No Pinentry". 
+        /// </summary>
+        GPGME_PINENTRY_MODE_ERROR,
+
+        /// <summary>
+        /// Redirect Pinentry queries to the caller. This enables the use of
+        /// gpgme_set_passphrase_cb because pinentry queries are redirected to gpgme
+        /// Note: For 2.1.0 - 2.1.12 this mode requires allow-loopback-pinentry
+        /// to be enabled in the gpg-agent.conf or an agent started with that option. 
+        /// </summary>
+        GPGME_PINENTRY_MODE_LOOPBACK
+    }
 }
