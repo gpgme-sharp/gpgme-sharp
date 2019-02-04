@@ -68,7 +68,7 @@ namespace Libgpgme
         {
             IntPtr ptr;
 
-            var err = libgpgme.gpgme_new(out ptr);
+            var err = libgpgme.NativeMethods.gpgme_new(out ptr);
             gpg_err_code_t errcode = libgpgme.gpgme_err_code(err);
 
             switch (errcode)
@@ -95,7 +95,7 @@ namespace Libgpgme
 
         public void Dispose() {
             if (_ctx_ptr != IntPtr.Zero) {
-                libgpgme.gpgme_release(_ctx_ptr);
+                libgpgme.NativeMethods.gpgme_release(_ctx_ptr);
                 _ctx_ptr = IntPtr.Zero;
             }
         }
@@ -114,7 +114,7 @@ namespace Libgpgme
             get {
                 if (IsValid) {
                     lock (CtxLock) {
-                        gpgme_protocol_t proto = libgpgme.gpgme_get_protocol(CtxPtr);
+                        gpgme_protocol_t proto = libgpgme.NativeMethods.gpgme_get_protocol(CtxPtr);
                         return (Protocol) proto;
                     }
                 }
@@ -124,7 +124,7 @@ namespace Libgpgme
                 if (IsValid) {
                     lock (CtxLock) {
                         var proto = (gpgme_protocol_t) value;
-                        int err = libgpgme.gpgme_set_protocol(CtxPtr, proto);
+                        int err = libgpgme.NativeMethods.gpgme_set_protocol(CtxPtr, proto);
 
                         gpg_err_code_t errcode = libgpgme.gpgme_err_code(err);
                         switch (errcode) {
@@ -146,7 +146,7 @@ namespace Libgpgme
             get {
                 if (IsValid) {
                     lock (CtxLock) {
-                        IntPtr engine_ptr = libgpgme.gpgme_ctx_get_engine_info(CtxPtr);
+                        IntPtr engine_ptr = libgpgme.NativeMethods.gpgme_ctx_get_engine_info(CtxPtr);
                         if (engine_ptr != IntPtr.Zero) {
                             return new EngineInfo(this, engine_ptr);
                         }
@@ -169,7 +169,7 @@ namespace Libgpgme
                         homedir_ptr = Marshal.StringToCoTaskMemAnsi(homedir);
                     }
 
-                    int err = libgpgme.gpgme_ctx_set_engine_info(
+                    int err = libgpgme.NativeMethods.gpgme_ctx_set_engine_info(
                         CtxPtr,
                         (gpgme_protocol_t) proto,
                         filename_ptr,
@@ -202,7 +202,7 @@ namespace Libgpgme
             get {
                 if (IsValid) {
                     lock (CtxLock) {
-                        int yes = libgpgme.gpgme_get_armor(CtxPtr);
+                        int yes = libgpgme.NativeMethods.gpgme_get_armor(CtxPtr);
                         if (yes > 0) {
                             return true;
                         }
@@ -218,7 +218,7 @@ namespace Libgpgme
                         if (value) {
                             yes = 1;
                         }
-                        libgpgme.gpgme_set_armor(CtxPtr, yes);
+                        libgpgme.NativeMethods.gpgme_set_armor(CtxPtr, yes);
                     }
                 } else {
                     throw new InvalidContextException();
@@ -230,7 +230,7 @@ namespace Libgpgme
             get {
                 if (IsValid) {
                     lock (CtxLock) {
-                        int yes = libgpgme.gpgme_get_textmode(CtxPtr);
+                        int yes = libgpgme.NativeMethods.gpgme_get_textmode(CtxPtr);
                         if (yes > 0) {
                             return true;
                         }
@@ -246,7 +246,7 @@ namespace Libgpgme
                         if (value) {
                             yes = 1;
                         }
-                        libgpgme.gpgme_set_textmode(CtxPtr, yes);
+                        libgpgme.NativeMethods.gpgme_set_textmode(CtxPtr, yes);
                     }
                 } else {
                     throw new InvalidContextException();
@@ -258,7 +258,7 @@ namespace Libgpgme
             get {
                 if (IsValid) {
                     lock (CtxLock) {
-                        return libgpgme.gpgme_get_include_certs(CtxPtr);
+                        return libgpgme.NativeMethods.gpgme_get_include_certs(CtxPtr);
                     }
                 }
                 throw new InvalidContextException();
@@ -266,7 +266,7 @@ namespace Libgpgme
             set {
                 if (IsValid) {
                     lock (CtxLock) {
-                        libgpgme.gpgme_set_include_certs(CtxPtr, value);
+                        libgpgme.NativeMethods.gpgme_set_include_certs(CtxPtr, value);
                     }
                 } else {
                     throw new InvalidContextException();
@@ -293,7 +293,7 @@ namespace Libgpgme
             get {
                 if (IsValid) {
                     lock (CtxLock) {
-                        return (KeylistMode) libgpgme.gpgme_get_keylist_mode(CtxPtr);
+                        return (KeylistMode) libgpgme.NativeMethods.gpgme_get_keylist_mode(CtxPtr);
                     }
                 }
                 throw new InvalidContextException();
@@ -308,7 +308,7 @@ namespace Libgpgme
 
                         var mode = (gpgme_keylist_mode_t) value;
 
-                        int err = libgpgme.gpgme_set_keylist_mode(CtxPtr, mode);
+                        int err = libgpgme.NativeMethods.gpgme_set_keylist_mode(CtxPtr, mode);
                         gpg_err_code_t errcode = libgpgme.gpgme_err_code(err);
 
                         if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR) {
@@ -350,8 +350,8 @@ namespace Libgpgme
             if (fd > 0) {
                 byte[] utf8_passwd = Gpgme.ConvertCharArrayToUTF8(passwd, 0);
 
-                libgpgme.gpgme_io_write(fd, utf8_passwd, (UIntPtr)utf8_passwd.Length);
-                libgpgme.gpgme_io_write(fd, new[] { (byte)0 }, (UIntPtr)1);
+                libgpgme.NativeMethods.gpgme_io_write(fd, utf8_passwd, (UIntPtr)utf8_passwd.Length);
+                libgpgme.NativeMethods.gpgme_io_write(fd, new[] { (byte)0 }, (UIntPtr)1);
 
                 // try to wipe the passwords
                 int i;
@@ -372,7 +372,7 @@ namespace Libgpgme
                 lock (CtxLock) {
                     if (_passphrase_delegate == null) {
                         _passphrase_callback = PassphraseCb;
-                        libgpgme.gpgme_set_passphrase_cb(CtxPtr, _passphrase_callback, hook);
+                        libgpgme.NativeMethods.gpgme_set_passphrase_cb(CtxPtr, _passphrase_callback, hook);
 
                         _passphrase_delegate = func;
                     } else {
@@ -392,7 +392,7 @@ namespace Libgpgme
             if (IsValid) {
                 lock (CtxLock) {
                     if (_passphrase_delegate != null) {
-                        libgpgme.gpgme_set_passphrase_cb(CtxPtr, null, IntPtr.Zero);
+                        libgpgme.NativeMethods.gpgme_set_passphrase_cb(CtxPtr, null, IntPtr.Zero);
                         _passphrase_delegate = null;
                         _passphrase_callback = null;
                     }
@@ -430,7 +430,7 @@ namespace Libgpgme
 #if (VERBOSE_DEBUG)
 					DebugOutput("gpgme_op_encrypt(..) START");
 #endif
-                int err = libgpgme.gpgme_op_encrypt(
+                int err = libgpgme.NativeMethods.gpgme_op_encrypt(
                     CtxPtr,
                     recp,
                     (gpgme_encrypt_flags_t) flags,
@@ -463,7 +463,7 @@ namespace Libgpgme
                                 + " (" + err.ToString(CultureInfo.InvariantCulture)
                                     + ") occurred.");
                 }
-                IntPtr rst_ptr = libgpgme.gpgme_op_encrypt_result(CtxPtr);
+                IntPtr rst_ptr = libgpgme.NativeMethods.gpgme_op_encrypt_result(CtxPtr);
 #if (VERBOSE_DEBUG)
 					DebugOutput("gpgme_op_encrypt_result(..) DONE");
 #endif
@@ -499,7 +499,7 @@ namespace Libgpgme
                 IntPtr[] recp = Gpgme.KeyArrayToIntPtrArray(recipients);
 
                 lock (CtxLock) {
-                    int err = libgpgme.gpgme_op_encrypt_sign(
+                    int err = libgpgme.NativeMethods.gpgme_op_encrypt_sign(
                         CtxPtr,
                         recp,
                         (gpgme_encrypt_flags_t) flags,
@@ -528,7 +528,7 @@ namespace Libgpgme
                                     + " (" + err.ToString(CultureInfo.InvariantCulture)
                                         + ") occurred.");
                     }
-                    IntPtr rst_ptr = libgpgme.gpgme_op_encrypt_result(CtxPtr);
+                    IntPtr rst_ptr = libgpgme.NativeMethods.gpgme_op_encrypt_result(CtxPtr);
 
                     GC.KeepAlive(recp);
                     GC.KeepAlive(recipients);
@@ -562,7 +562,7 @@ namespace Libgpgme
                 }
 
                 lock (CtxLock) {
-                    int err = libgpgme.gpgme_op_sign(
+                    int err = libgpgme.NativeMethods.gpgme_op_sign(
                         CtxPtr,
                         plain.dataPtr,
                         sig.dataPtr,
@@ -586,7 +586,7 @@ namespace Libgpgme
                                     + " (" + err.ToString(CultureInfo.InvariantCulture)
                                         + ") occurred.");
                     }
-                    IntPtr rst_ptr = libgpgme.gpgme_op_sign_result(CtxPtr);
+                    IntPtr rst_ptr = libgpgme.NativeMethods.gpgme_op_sign_result(CtxPtr);
                     if (rst_ptr != IntPtr.Zero) {
                         var sig_rst = new SignatureResult(rst_ptr);
                         return sig_rst;
@@ -617,7 +617,7 @@ namespace Libgpgme
 #if (VERBOSE_DEBUG)
                     DebugOutput("gpgme_op_decrypt(..) START");
 #endif
-                    int err = libgpgme.gpgme_op_decrypt(
+                    int err = libgpgme.NativeMethods.gpgme_op_decrypt(
                         CtxPtr,
                         cipher.dataPtr,
                         plain.dataPtr);
@@ -638,7 +638,7 @@ namespace Libgpgme
 
                     DecryptionResult dec_rst = null;
 
-                    IntPtr rst_ptr = libgpgme.gpgme_op_decrypt_result(CtxPtr);
+                    IntPtr rst_ptr = libgpgme.NativeMethods.gpgme_op_decrypt_result(CtxPtr);
                     if (rst_ptr != IntPtr.Zero) {
                         dec_rst = new DecryptionResult(rst_ptr);
                     }
@@ -686,7 +686,7 @@ namespace Libgpgme
 #if (VERBOSE_DEBUG)
                     DebugOutput("gpgme_op_decrypt_verify(..) START");
 #endif
-                    int err = libgpgme.gpgme_op_decrypt_verify(
+                    int err = libgpgme.NativeMethods.gpgme_op_decrypt_verify(
                         CtxPtr,
                         cipher.dataPtr,
                         plain.dataPtr);
@@ -708,7 +708,7 @@ namespace Libgpgme
 
                     DecryptionResult dec_rst = null;
 
-                    IntPtr rst_ptr = libgpgme.gpgme_op_decrypt_result(CtxPtr);
+                    IntPtr rst_ptr = libgpgme.NativeMethods.gpgme_op_decrypt_result(CtxPtr);
                     if (rst_ptr != IntPtr.Zero) {
                         dec_rst = new DecryptionResult(rst_ptr);
                     }
@@ -734,7 +734,7 @@ namespace Libgpgme
                     /* If decryption failed, verification cannot be proceeded */
                     VerificationResult ver_rst = null;
 
-                    rst_ptr = libgpgme.gpgme_op_verify_result(CtxPtr);
+                    rst_ptr = libgpgme.NativeMethods.gpgme_op_verify_result(CtxPtr);
                     if (rst_ptr != IntPtr.Zero) {
                         ver_rst = new VerificationResult(rst_ptr);
                     }
@@ -805,7 +805,7 @@ namespace Libgpgme
                     plain_ptr = plain.dataPtr;
                 }
 
-                int err = libgpgme.gpgme_op_verify(
+                int err = libgpgme.NativeMethods.gpgme_op_verify(
                     CtxPtr,
                     sig_ptr,
                     sigtxt_ptr,
@@ -824,7 +824,7 @@ namespace Libgpgme
                         throw new GeneralErrorException("Unexpected error occurred. Error: " + errcode.ToString());
                 }
 
-                IntPtr rst_ptr = libgpgme.gpgme_op_verify_result(CtxPtr);
+                IntPtr rst_ptr = libgpgme.NativeMethods.gpgme_op_verify_result(CtxPtr);
                 if (rst_ptr != IntPtr.Zero) {
                     VerificationResult ver_rst = new VerificationResult(rst_ptr);
                     if (errcode == gpg_err_code_t.GPG_ERR_NO_DATA) {
@@ -885,7 +885,7 @@ namespace Libgpgme
                 }
 
                 lock (_ctx.CtxLock) {
-                    int err = libgpgme.gpgme_signers_add(_ctx.CtxPtr, signer.KeyPtr);
+                    int err = libgpgme.NativeMethods.gpgme_signers_add(_ctx.CtxPtr, signer.KeyPtr);
                     gpg_err_code_t errcode = libgpgerror.gpg_err_code(err);
                     if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR) {
                         throw new GeneralErrorException("An unexpected error occurred. Error: " + errcode.ToString());
@@ -899,7 +899,7 @@ namespace Libgpgme
                 }
 
                 lock (_ctx.CtxLock) {
-                    libgpgme.gpgme_signers_clear(_ctx.CtxPtr);
+                    libgpgme.NativeMethods.gpgme_signers_clear(_ctx.CtxPtr);
                 }
             }
 
@@ -910,7 +910,7 @@ namespace Libgpgme
 
                 lock (_ctx.CtxLock) // could be locked twice by Get()
                 {
-                    IntPtr rst_ptr = libgpgme.gpgme_signers_enum(_ctx.CtxPtr, seq);
+                    IntPtr rst_ptr = libgpgme.NativeMethods.gpgme_signers_enum(_ctx.CtxPtr, seq);
 
                     if (rst_ptr.Equals(IntPtr.Zero)) {
                         return null;
@@ -977,7 +977,7 @@ namespace Libgpgme
                     value_ptr = Gpgme.StringToCoTaskMemUTF8(value);
                 }
 
-                int err = libgpgme.gpgme_sig_notation_add(
+                int err = libgpgme.NativeMethods.gpgme_sig_notation_add(
                     _ctx.CtxPtr,
                     name_ptr,
                     value_ptr,
@@ -1004,7 +1004,7 @@ namespace Libgpgme
 
             public void Clear() {
                 if (_ctx.IsValid) {
-                    libgpgme.gpgme_sig_notation_clear(_ctx.CtxPtr);
+                    libgpgme.NativeMethods.gpgme_sig_notation_clear(_ctx.CtxPtr);
                 } else {
                     throw new InvalidContextException();
                 }
@@ -1014,7 +1014,7 @@ namespace Libgpgme
                 if (!_ctx.IsValid) {
                     throw new InvalidContextException();
                 }
-                IntPtr rst_ptr = libgpgme.gpgme_sig_notation_get(_ctx.CtxPtr);
+                IntPtr rst_ptr = libgpgme.NativeMethods.gpgme_sig_notation_get(_ctx.CtxPtr);
                 if (rst_ptr.Equals(IntPtr.Zero)) {
                     return null;
                 }

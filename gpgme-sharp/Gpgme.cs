@@ -22,7 +22,7 @@ namespace Libgpgme
 
 
         public static string GetProtocolName(Protocol proto) {
-            IntPtr ret = libgpgme.gpgme_get_protocol_name((gpgme_protocol_t) proto);
+            IntPtr ret = libgpgme.NativeMethods.gpgme_get_protocol_name((gpgme_protocol_t) proto);
 
             if (ret == IntPtr.Zero) {
                 throw new InvalidProtocolException("The specified protocol is invalid.");
@@ -32,7 +32,7 @@ namespace Libgpgme
         }
 
         public static bool EngineCheckVersion(Protocol proto) {
-            int err = libgpgme.gpgme_engine_check_version((gpgme_protocol_t) proto);
+            int err = libgpgme.NativeMethods.gpgme_engine_check_version((gpgme_protocol_t) proto);
 
             gpg_err_code_t errcode = libgpgme.gpgme_err_code(err);
 
@@ -45,7 +45,7 @@ namespace Libgpgme
         public static EngineInfo GetEngineInfo() {
             IntPtr info_ptr;
 
-            int err = libgpgme.gpgme_get_engine_info(out info_ptr);
+            int err = libgpgme.NativeMethods.gpgme_get_engine_info(out info_ptr);
             gpg_err_code_t errcode = libgpgme.gpgme_err_code(err);
 
             if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR) {
@@ -239,7 +239,7 @@ namespace Libgpgme
         }
 
         public static string GetPubkeyAlgoName(KeyAlgorithm algo) {
-            IntPtr ret = libgpgme.gpgme_pubkey_algo_name((gpgme_pubkey_algo_t) algo);
+            IntPtr ret = libgpgme.NativeMethods.gpgme_pubkey_algo_name((gpgme_pubkey_algo_t) algo);
             if (ret == IntPtr.Zero) {
                 throw new InvalidPubkeyAlgoException("The public key algorithm is unknown.");
             }
@@ -248,7 +248,7 @@ namespace Libgpgme
         }
 
         public static string GetHashAlgoName(HashAlgorithm algo) {
-            IntPtr ret = libgpgme.gpgme_hash_algo_name((gpgme_hash_algo_t) algo);
+            IntPtr ret = libgpgme.NativeMethods.gpgme_hash_algo_name((gpgme_hash_algo_t) algo);
             if (ret == IntPtr.Zero) {
                 throw new InvalidHashAlgoException("The hash algorithm is unknown.");
             }
@@ -278,7 +278,7 @@ namespace Libgpgme
 
         public static string GetStrError(int err) {
             lock ("_GnuPG.Lib.libgpgme.GetStrError") {
-                IntPtr ret = libgpgme.gpgme_strerror(err);
+                IntPtr ret = libgpgme.NativeMethods.gpgme_strerror(err);
 
                 return PtrToStringUTF8(ret);
             }
@@ -295,7 +295,7 @@ namespace Libgpgme
                     bufsize *= 2;
                 }
                 ptr = Marshal.AllocCoTaskMem(bufsize);
-                reterr = libgpgme.gpgme_strerror_r(err, ptr, (UIntPtr) bufsize);
+                reterr = libgpgme.NativeMethods.gpgme_strerror_r(err, ptr, (UIntPtr) bufsize);
             } while (reterr == ERANGE);
 
             if (ptr != IntPtr.Zero) {
@@ -307,7 +307,7 @@ namespace Libgpgme
         }
 
         public static string GetStrSource(int err) {
-            IntPtr ret = libgpgme.gpgme_strsource(err);
+            IntPtr ret = libgpgme.NativeMethods.gpgme_strsource(err);
 
             return PtrToStringAnsi(ret);
         }

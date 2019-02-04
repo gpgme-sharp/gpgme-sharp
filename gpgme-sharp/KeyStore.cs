@@ -47,10 +47,10 @@ namespace Libgpgme
                 // Protocol specific key generation
                 switch (protocoltype) {
                     case Protocol.OpenPGP:
-                        err = libgpgme.gpgme_op_genkey(_ctx.CtxPtr, parms_ptr, IntPtr.Zero, IntPtr.Zero);
+                        err = libgpgme.NativeMethods.gpgme_op_genkey(_ctx.CtxPtr, parms_ptr, IntPtr.Zero, IntPtr.Zero);
                         errcode = libgpgme.gpgme_err_code(err);
                         if (errcode == gpg_err_code_t.GPG_ERR_NO_ERROR) {
-                            IntPtr result_ptr = libgpgme.gpgme_op_genkey_result(_ctx.CtxPtr);
+                            IntPtr result_ptr = libgpgme.NativeMethods.gpgme_op_genkey_result(_ctx.CtxPtr);
                             if (!result_ptr.Equals(IntPtr.Zero)) {
                                 keyresult = new GenkeyResult(result_ptr);
                             } else {
@@ -105,14 +105,14 @@ namespace Libgpgme
             }
 
             lock (_ctx.CtxLock) {
-                int err = libgpgme.gpgme_op_import(_ctx.CtxPtr, keydata.dataPtr);
+                int err = libgpgme.NativeMethods.gpgme_op_import(_ctx.CtxPtr, keydata.dataPtr);
                 gpg_err_code_t errcode = libgpgerror.gpg_err_code(err);
 
                 if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR) {
                     throw new KeyImportException("Error " + errcode, err);
                 }
 
-                IntPtr result = libgpgme.gpgme_op_import_result(_ctx.CtxPtr);
+                IntPtr result = libgpgme.NativeMethods.gpgme_op_import_result(_ctx.CtxPtr);
                 return new ImportResult(result);
             }
         }
@@ -146,13 +146,13 @@ namespace Libgpgme
 
             lock (_ctx.CtxLock) {
                 if (parray != null) {
-                    err = libgpgme.gpgme_op_export_ext(
+                    err = libgpgme.NativeMethods.gpgme_op_export_ext(
                         _ctx.CtxPtr,
                         parray,
                         RESERVED_FLAG,
                         keydata.dataPtr);
                 } else {
-                    err = libgpgme.gpgme_op_export(
+                    err = libgpgme.NativeMethods.gpgme_op_export(
                         _ctx.CtxPtr,
                         IntPtr.Zero,
                         RESERVED_FLAG,
@@ -240,13 +240,13 @@ namespace Libgpgme
                 int err;
 
                 if (parray != null) {
-                    err = libgpgme.gpgme_op_keylist_ext_start(
+                    err = libgpgme.NativeMethods.gpgme_op_keylist_ext_start(
                         _ctx.CtxPtr,
                         parray,
                         secret_only,
                         RESERVED_FLAG);
                 } else {
-                    err = libgpgme.gpgme_op_keylist_start(
+                    err = libgpgme.NativeMethods.gpgme_op_keylist_start(
                         _ctx.CtxPtr,
                         IntPtr.Zero,
                         secret_only);
@@ -254,7 +254,7 @@ namespace Libgpgme
 
                 while (err == 0) {
                     IntPtr key_ptr;
-                    err = libgpgme.gpgme_op_keylist_next(_ctx.CtxPtr, out key_ptr);
+                    err = libgpgme.NativeMethods.gpgme_op_keylist_next(_ctx.CtxPtr, out key_ptr);
                     if (err != 0) {
                         break;
                     }
@@ -281,7 +281,7 @@ namespace Libgpgme
 
                 gpg_err_code_t errcode = libgpgme.gpgme_err_code(err);
                 if (errcode != gpg_err_code_t.GPG_ERR_EOF) {
-                    libgpgme.gpgme_op_keylist_end(_ctx.CtxPtr);
+                    libgpgme.NativeMethods.gpgme_op_keylist_end(_ctx.CtxPtr);
                     throw new GpgmeException(Gpgme.GetStrError(err), err);
                 }
             }
@@ -301,7 +301,7 @@ namespace Libgpgme
             int secret = deleteSecret ? 1 : 0;
 
             lock (_ctx.CtxLock) {
-                int err = libgpgme.gpgme_op_delete(_ctx.CtxPtr, key.KeyPtr, secret);
+                int err = libgpgme.NativeMethods.gpgme_op_delete(_ctx.CtxPtr, key.KeyPtr, secret);
 
                 gpg_err_code_t errcode = libgpgme.gpgme_err_code(err);
 
@@ -326,7 +326,7 @@ namespace Libgpgme
             // the fingerprint could be a UTF8 encoded name
             IntPtr fpr_ptr = Gpgme.StringToCoTaskMemUTF8(fpr);
 
-            int err = libgpgme.gpgme_get_key(_ctx.CtxPtr, fpr_ptr, out rkeyPtr, secret);
+            int err = libgpgme.NativeMethods.gpgme_get_key(_ctx.CtxPtr, fpr_ptr, out rkeyPtr, secret);
 
             // free memory
             if (fpr_ptr != IntPtr.Zero) {
@@ -364,7 +364,7 @@ namespace Libgpgme
             var lst = new List<TrustItem>();
 
             lock (_ctx.CtxLock) {
-                int err = libgpgme.gpgme_op_trustlist_start(_ctx.CtxPtr, pattern_ptr, maxlevel);
+                int err = libgpgme.NativeMethods.gpgme_op_trustlist_start(_ctx.CtxPtr, pattern_ptr, maxlevel);
                 gpg_err_code_t errcode = libgpgerror.gpg_err_code(err);
 
                 if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR) {
@@ -376,7 +376,7 @@ namespace Libgpgme
 
                 while (errcode == gpg_err_code_t.GPG_ERR_NO_ERROR) {
                     IntPtr item_ptr;
-                    err = libgpgme.gpgme_op_trustlist_next(_ctx.CtxPtr, out item_ptr);
+                    err = libgpgme.NativeMethods.gpgme_op_trustlist_next(_ctx.CtxPtr, out item_ptr);
                     errcode = libgpgerror.gpg_err_code(err);
 
                     if (errcode == gpg_err_code_t.GPG_ERR_NO_ERROR) {
@@ -384,7 +384,7 @@ namespace Libgpgme
                     }
                 }
                 // Release context if there are any pending trustlist items
-                libgpgme.gpgme_op_trustlist_end(_ctx.CtxPtr);
+                libgpgme.NativeMethods.gpgme_op_trustlist_end(_ctx.CtxPtr);
 
                 if (pattern_ptr != IntPtr.Zero) {
                     Marshal.FreeCoTaskMem(pattern_ptr);

@@ -46,7 +46,7 @@ namespace Libgpgme
             var memaddr_ptr = (IntPtr) memaddr;
 
             var size = (UIntPtr) count;
-            IntPtr bytes_read = libgpgme.gpgme_data_read(
+            IntPtr bytes_read = libgpgme.NativeMethods.gpgme_data_read_2(
                 dataPtr,
                 memaddr_ptr,
                 size);
@@ -70,7 +70,7 @@ namespace Libgpgme
             }
 
             var bufsize = (UIntPtr) count;
-            IntPtr bytes_read = libgpgme.gpgme_data_read(
+            IntPtr bytes_read = libgpgme.NativeMethods.gpgme_data_read_1(
                 dataPtr,
                 buffer,
                 bufsize);
@@ -97,13 +97,13 @@ namespace Libgpgme
             }
 
             if (libgpgme.use_lfs) {
-                return libgpgme.gpgme_data_seek(
+                return libgpgme.NativeMethods.gpgme_data_seek_2(
                     dataPtr,
                     offset,
                     iwhence);
             }
             var poffset = (IntPtr) offset;
-            IntPtr offs = libgpgme.gpgme_data_seek(
+            IntPtr offs = libgpgme.NativeMethods.gpgme_data_seek_1(
                 dataPtr,
                 poffset,
                 iwhence);
@@ -134,7 +134,7 @@ namespace Libgpgme
 
             UIntPtr bufsize = (UIntPtr) count;
             
-            libgpgme.gpgme_data_write(
+            libgpgme.NativeMethods.gpgme_data_write_2(
                 dataPtr,
                 memaddr_ptr,
                 bufsize);
@@ -157,7 +157,7 @@ namespace Libgpgme
             }
 
             var bufsize = (UIntPtr) count;
-            IntPtr bytes_written = libgpgme.gpgme_data_write(
+            IntPtr bytes_written = libgpgme.NativeMethods.gpgme_data_write_1(
                 dataPtr,
                 buffer,
                 bufsize);
@@ -178,7 +178,7 @@ namespace Libgpgme
                 if (!IsValid) {
                     throw new InvalidDataBufferException();
                 }
-                IntPtr ptr = libgpgme.gpgme_data_get_file_name(dataPtr);
+                IntPtr ptr = libgpgme.NativeMethods.gpgme_data_get_file_name(dataPtr);
                 
                 return (!ptr.Equals(IntPtr.Zero))
                     ? Gpgme.PtrToStringAnsi(ptr) 
@@ -194,7 +194,7 @@ namespace Libgpgme
 
                 IntPtr ptr = Marshal.StringToCoTaskMemAnsi(value);
                 if (!ptr.Equals(IntPtr.Zero)) {
-                    int err = libgpgme.gpgme_data_set_file_name(dataPtr, ptr);
+                    int err = libgpgme.NativeMethods.gpgme_data_set_file_name(dataPtr, ptr);
                     gpg_err_code_t errcode = libgpgerror.gpg_err_code(err);
                     if (ptr != IntPtr.Zero) {
                         Marshal.FreeCoTaskMem(ptr);
@@ -216,7 +216,7 @@ namespace Libgpgme
                     throw new InvalidDataBufferException();
                 }
 
-                gpgme_data_encoding_t enc = libgpgme.gpgme_data_get_encoding(dataPtr);
+                gpgme_data_encoding_t enc = libgpgme.NativeMethods.gpgme_data_get_encoding(dataPtr);
 
                 return (DataEncoding) enc;
             }
@@ -227,7 +227,7 @@ namespace Libgpgme
 
                 var enc = (gpgme_data_encoding_t) value;
 
-                int err = libgpgme.gpgme_data_set_encoding(dataPtr, enc);
+                int err = libgpgme.NativeMethods.gpgme_data_set_encoding(dataPtr, enc);
                 gpg_err_code_t errcode = libgpgerror.gpg_err_code(err);
                 if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR) {
                     throw new GeneralErrorException("Could not set data encoding to " + value);
