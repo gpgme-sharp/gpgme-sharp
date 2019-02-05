@@ -397,8 +397,8 @@ namespace Libgpgme
             if (fd > 0) {
                 byte[] utf8_passwd = Gpgme.ConvertCharArrayToUTF8(passwd, 0);
 
-                libgpgme.NativeMethods.gpgme_io_write(fd, utf8_passwd, (UIntPtr)utf8_passwd.Length);
-                libgpgme.NativeMethods.gpgme_io_write(fd, new[] { (byte)0 }, (UIntPtr)1);
+                libgpgme.NativeMethods.gpgme_io_writen(fd, utf8_passwd, (UIntPtr)utf8_passwd.Length);
+                libgpgme.NativeMethods.gpgme_io_writen(fd, new[] { (byte)'\n' }, (UIntPtr)1);
 
                 // try to wipe the passwords
                 int i;

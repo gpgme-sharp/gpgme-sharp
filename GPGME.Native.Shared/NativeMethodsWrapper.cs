@@ -39,6 +39,7 @@ namespace GPGME.Native.Shared
         public Func<IntPtr, gpgme_protocol_t> gpgme_get_protocol { get; set; }
         public Func<gpgme_hash_algo_t, IntPtr> gpgme_hash_algo_name { get; set; }
         public Func<int, byte[], UIntPtr, IntPtr> gpgme_io_write { get; set; }
+        public Func<int, byte[], UIntPtr, int> gpgme_io_writen { get; set; }
         public Action<IntPtr> gpgme_key_release { get; set; }
         public GPGNew gpgme_new { get; set; }
         public Func<IntPtr, IntPtr, IntPtr, int> gpgme_op_decrypt { get; set; }

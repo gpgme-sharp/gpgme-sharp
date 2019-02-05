@@ -889,6 +889,12 @@ namespace GPGME.Native.Unix
             [In] byte[] buffer, 
             [In] UIntPtr count);
 
+        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int gpgme_io_writen(
+            [In] int fd,
+            [In] byte[] buffer,
+            [In] UIntPtr count);
+
         public static NativeMethodsWrapper CreateWrapper()
         {
             return new NativeMethodsWrapper
@@ -924,6 +930,7 @@ namespace GPGME.Native.Unix
                 gpgme_get_protocol = gpgme_get_protocol,
                 gpgme_hash_algo_name = gpgme_hash_algo_name,
                 gpgme_io_write = gpgme_io_write,
+                gpgme_io_writen = gpgme_io_writen,
                 gpgme_key_release = gpgme_key_release,
                 gpgme_new = gpgme_new,
                 gpgme_op_decrypt = gpgme_op_decrypt,

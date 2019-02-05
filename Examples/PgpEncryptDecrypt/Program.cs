@@ -12,6 +12,7 @@ namespace PgpEncryptDecrypt
         static void Main()
         {
             Context ctx = new Context();
+            ctx.PinentryMode = PinentryMode.Loopback;
 
             if (ctx.Protocol != Protocol.OpenPGP)
                 ctx.SetEngineInfo(Protocol.OpenPGP, null, null);
