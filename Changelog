@@ -1,3 +1,9 @@
+2019-02-10  Daniel Lo Nigro <d@d.sb> - 2.0.1
+    * Fixed passphrase callback
+	
+2019-01-31  Daniel Lo Nigro <d@d.sb> - 2.0.0
+    * Added support for .NET Core 2.0
+
 2018-06-05	Daniel Mueller<daniel@danm.de>
 	* Changed license from LPGL to MIT
 
