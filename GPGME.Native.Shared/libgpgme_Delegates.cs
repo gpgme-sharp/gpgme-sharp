@@ -1,9 +1,10 @@
 using System;
+using System.Runtime.InteropServices;
 
 namespace Libgpgme.Interop
 {
     /* Request a passphrase from the user.  */
-
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate int gpgme_passphrase_cb_t(
         IntPtr hook,
         IntPtr uid_hint,
