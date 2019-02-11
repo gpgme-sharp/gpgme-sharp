@@ -182,6 +182,25 @@ namespace GPGME.Native.Unix
         internal static extern gpgme_protocol_t gpgme_get_protocol(
             [In] IntPtr ctx);
 
+        /* Specifies the pinentry mode to be used.
+           For GnuPG >= 2.1 this option is required to be set to GPGME_PINENTRY_MODE_LOOPBACK 
+           to enable the passphrase callback mechanism in GPGME through gpgme_set_passphrase_cb.
+         
+         gpgme_error_t gpgme_set_pinentry_mode (gpgme_ctx_t ctx, gpgme_pinentry_mode_t mode) 
+         */
+
+        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int gpgme_set_pinentry_mode(
+            [In] IntPtr ctx,
+            gpgme_pinentry_mode_t mode);
+
+        /* Returns the mode set for the context. 
+        gpgme_pinentry_mode_t gpgme_get_pinentry_mode(gpgme_ctx_t ctx); */
+
+        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern gpgme_pinentry_mode_t gpgme_get_pinentry_mode(
+            [In] IntPtr ctx);
+
         /* Get the information about the configured engines.  A pointer to the
            first engine in the statically allocated linked list is returned.
            The returned data is valid until the next gpgme_ctx_set_engine_info.  
@@ -870,6 +889,12 @@ namespace GPGME.Native.Unix
             [In] byte[] buffer, 
             [In] UIntPtr count);
 
+        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int gpgme_io_writen(
+            [In] int fd,
+            [In] byte[] buffer,
+            [In] UIntPtr count);
+
         public static NativeMethodsWrapper CreateWrapper()
         {
             return new NativeMethodsWrapper
@@ -899,11 +924,13 @@ namespace GPGME.Native.Unix
                 gpgme_get_include_certs = gpgme_get_include_certs,
                 gpgme_get_key = gpgme_get_key,
                 gpgme_get_keylist_mode = gpgme_get_keylist_mode,
+                gpgme_get_pinentry_mode = gpgme_get_pinentry_mode,
                 gpgme_get_protocol_name = gpgme_get_protocol_name,
                 gpgme_get_textmode = gpgme_get_textmode,
                 gpgme_get_protocol = gpgme_get_protocol,
                 gpgme_hash_algo_name = gpgme_hash_algo_name,
                 gpgme_io_write = gpgme_io_write,
+                gpgme_io_writen = gpgme_io_writen,
                 gpgme_key_release = gpgme_key_release,
                 gpgme_new = gpgme_new,
                 gpgme_op_decrypt = gpgme_op_decrypt,
@@ -938,6 +965,7 @@ namespace GPGME.Native.Unix
                 gpgme_set_keylist_mode = gpgme_set_keylist_mode,
                 gpgme_set_passphrase_cb = gpgme_set_passphrase_cb,
                 gpgme_set_textmode = gpgme_set_textmode,
+                gpgme_set_pinentry_mode = gpgme_set_pinentry_mode,
                 gpgme_set_protocol = gpgme_set_protocol,
                 gpgme_sig_notation_add = gpgme_sig_notation_add,
                 gpgme_sig_notation_clear = gpgme_sig_notation_clear,

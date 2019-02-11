@@ -142,6 +142,53 @@ namespace Libgpgme
                 }
             }
         }
+
+        public PinentryMode PinentryMode
+        {
+            get
+            {
+                if (IsValid)
+                {
+                    lock (CtxLock)
+                    {
+                        var mode = libgpgme.NativeMethods.gpgme_get_pinentry_mode(CtxPtr);
+                        return (PinentryMode)mode;
+                    }
+                }
+                throw new InvalidContextException();
+            }
+            set
+            {
+                if (IsValid)
+                {
+                    lock (CtxLock)
+                    {
+                        var mode = (gpgme_pinentry_mode_t)value;
+                        int err = libgpgme.NativeMethods.gpgme_set_pinentry_mode(CtxPtr, mode);
+
+                        gpg_err_code_t errcode = libgpgme.gpgme_err_code(err);
+                        if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR)
+                        {
+                            string errmsg;
+                            try
+                            {
+                                Gpgme.GetStrError(err, out errmsg);
+                            }
+                            catch
+                            {
+                                errmsg = "No error message available.";
+                            }
+                            throw new ArgumentException(errmsg + " Error: " + err.ToString(CultureInfo.InvariantCulture));
+                        }
+                    }
+                }
+                else
+                {
+                    throw new InvalidContextException();
+                }
+            }
+        }
+
         public EngineInfo EngineInfo {
             get {
                 if (IsValid) {
@@ -350,8 +397,8 @@ namespace Libgpgme
             if (fd > 0) {
                 byte[] utf8_passwd = Gpgme.ConvertCharArrayToUTF8(passwd, 0);
 
-                libgpgme.NativeMethods.gpgme_io_write(fd, utf8_passwd, (UIntPtr)utf8_passwd.Length);
-                libgpgme.NativeMethods.gpgme_io_write(fd, new[] { (byte)0 }, (UIntPtr)1);
+                libgpgme.NativeMethods.gpgme_io_writen(fd, utf8_passwd, (UIntPtr)utf8_passwd.Length);
+                libgpgme.NativeMethods.gpgme_io_writen(fd, new[] { (byte)'\n' }, (UIntPtr)1);
 
                 // try to wipe the passwords
                 int i;

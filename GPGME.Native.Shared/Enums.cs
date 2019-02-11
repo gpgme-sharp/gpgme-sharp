@@ -378,4 +378,35 @@ namespace Libgpgme
         [AlgorithmCapability(AlgorithmCapability.Unknown)]
         RSAUseCapabilities = 7
     }
+
+    public enum PinentryMode
+    {
+        /// <summary>
+        /// Use the default of the agent, which is ask. 
+        /// </summary>
+        Default = gpgme_pinentry_mode_t.GPGME_PINENTRY_MODE_DEFAULT,
+
+        /// <summary>
+        /// Force the use of the Pinentry. 
+        /// </summary>
+        Ask = gpgme_pinentry_mode_t.GPGME_PINENTRY_MODE_ASK,
+
+        /// <summary>
+        /// Emulate use of Pinentry's cancel button. 
+        /// </summary>
+        Cancel = gpgme_pinentry_mode_t.GPGME_PINENTRY_MODE_CANCEL,
+
+        /// <summary>
+        /// Return a Pinentry error "No Pinentry". 
+        /// </summary>
+        Error = gpgme_pinentry_mode_t.GPGME_PINENTRY_MODE_ERROR,
+
+        /// <summary>
+        /// Redirect Pinentry queries to the caller. This enables the use of
+        /// gpgme_set_passphrase_cb because pinentry queries are redirected to gpgme
+        /// Note: For 2.1.0 - 2.1.12 this mode requires allow-loopback-pinentry
+        /// to be enabled in the gpg-agent.conf or an agent started with that option. 
+        /// </summary>
+        Loopback = gpgme_pinentry_mode_t.GPGME_PINENTRY_MODE_LOOPBACK,
+    }
 }

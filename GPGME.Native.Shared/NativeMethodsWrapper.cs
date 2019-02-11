@@ -33,11 +33,13 @@ namespace GPGME.Native.Shared
         public Func<IntPtr, int> gpgme_get_include_certs { get; set; }
         public GPGGetKey gpgme_get_key { get; set; }
         public Func<IntPtr, gpgme_keylist_mode_t> gpgme_get_keylist_mode { get; set; }
+        public Func<IntPtr, gpgme_pinentry_mode_t> gpgme_get_pinentry_mode { get; set; }
         public Func<gpgme_protocol_t, IntPtr> gpgme_get_protocol_name { get; set; }
         public Func<IntPtr, int> gpgme_get_textmode { get; set; }
         public Func<IntPtr, gpgme_protocol_t> gpgme_get_protocol { get; set; }
         public Func<gpgme_hash_algo_t, IntPtr> gpgme_hash_algo_name { get; set; }
         public Func<int, byte[], UIntPtr, IntPtr> gpgme_io_write { get; set; }
+        public Func<int, byte[], UIntPtr, int> gpgme_io_writen { get; set; }
         public Action<IntPtr> gpgme_key_release { get; set; }
         public GPGNew gpgme_new { get; set; }
         public Func<IntPtr, IntPtr, IntPtr, int> gpgme_op_decrypt { get; set; }
@@ -71,6 +73,7 @@ namespace GPGME.Native.Shared
         public Action<IntPtr, int> gpgme_set_include_certs { get; set; }
         public Func<IntPtr, gpgme_keylist_mode_t, int> gpgme_set_keylist_mode { get; set; }
         public Action<IntPtr, gpgme_passphrase_cb_t, IntPtr> gpgme_set_passphrase_cb { get; set; }
+        public Func<IntPtr, gpgme_pinentry_mode_t, int> gpgme_set_pinentry_mode { get; set; }
         public Action<IntPtr, int> gpgme_set_textmode { get; set; }
         public Func<IntPtr, gpgme_protocol_t, int> gpgme_set_protocol { get; set; }
         public Func<IntPtr, IntPtr, IntPtr, gpgme_sig_notation_flags_t, int> gpgme_sig_notation_add { get; set; }
