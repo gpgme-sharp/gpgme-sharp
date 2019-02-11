@@ -5,7 +5,7 @@ namespace Libgpgme
         public DecryptionResult DecryptionResult;
         public PassphraseInfo PassphraseInfo;
 
-        public BadPassphraseException() {
+        public BadPassphraseException(string message = null): base(message) {
         }
 
         public BadPassphraseException(DecryptionResult rst) {

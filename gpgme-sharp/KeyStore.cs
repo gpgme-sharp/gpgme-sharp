@@ -105,13 +105,7 @@ namespace Libgpgme
             }
 
             lock (_ctx.CtxLock) {
-                int err = libgpgme.NativeMethods.gpgme_op_import(_ctx.CtxPtr, keydata.dataPtr);
-                gpg_err_code_t errcode = libgpgerror.gpg_err_code(err);
-
-                if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR) {
-                    throw new KeyImportException("Error " + errcode, err);
-                }
-
+                GpgmeError.Check(libgpgme.NativeMethods.gpgme_op_import(_ctx.CtxPtr, keydata.dataPtr));
                 IntPtr result = libgpgme.NativeMethods.gpgme_op_import_result(_ctx.CtxPtr);
                 return new ImportResult(result);
             }
@@ -165,11 +159,7 @@ namespace Libgpgme
             // Free memory 
             Gpgme.FreeStringArray(parray);
 
-            gpg_err_code_t errcode = libgpgerror.gpg_err_code(err);
-
-            if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR) {
-                throw new KeyExportException("Error " + errcode, err);
-            }
+            GpgmeError.Check(err);
         }
 
         public Key GetKey(string fpr, bool secretOnly) {
@@ -371,7 +361,7 @@ namespace Libgpgme
                     if (pattern_ptr != IntPtr.Zero) {
                         Marshal.FreeCoTaskMem(pattern_ptr);
                     }
-                    throw new GeneralErrorException("An unexpected error occurred. Error: " + err.ToString(CultureInfo.InvariantCulture));
+                    throw GpgmeError.CreateException(errcode);
                 }
 
                 while (errcode == gpg_err_code_t.GPG_ERR_NO_ERROR) {
@@ -391,7 +381,7 @@ namespace Libgpgme
                 }
 
                 if (errcode != gpg_err_code_t.GPG_ERR_EOF) {
-                    throw new GeneralErrorException("An unexpected error occurred. " + errcode.ToString());
+                    throw GpgmeError.CreateException(errcode);
                 }
             }
 

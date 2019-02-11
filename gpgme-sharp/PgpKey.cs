@@ -289,8 +289,7 @@ namespace Libgpgme
                             throw new BadPassphraseException(_settings.passSettings.GetPassphraseInfo());
 
                         default:
-                            throw new GpgmeException("An unknown error occurred. Error: "
-                                + err.ToString(CultureInfo.InvariantCulture), err);
+                            throw GpgmeError.CreateException(errcode);
                     }
                 }
             }
@@ -408,8 +407,7 @@ namespace Libgpgme
                             throw new BadPassphraseException(_settings.passSettings.GetPassphraseInfo());
 
                         default:
-                            throw new GpgmeException("An unknown error occurred. Error: "
-                                + err.ToString(CultureInfo.InvariantCulture), err);
+                            throw GpgmeError.CreateException(errcode);
                     }
                 }
             }
@@ -473,7 +471,7 @@ namespace Libgpgme
                         throw new BadPassphraseException(_settings.passSettings.GetPassphraseInfo());
 
                     default:
-                        throw new GpgmeException("An unknown error occurred.", err);
+                        throw GpgmeError.CreateException(errcode);
                 }
             }
         }
@@ -534,7 +532,7 @@ namespace Libgpgme
                         throw new BadPassphraseException(_settings.passSettings.GetPassphraseInfo());
 
                     default:
-                        throw new GpgmeException("An unknown error occurred.", err);
+                        throw GpgmeError.CreateException(errcode);
                 }
             }
         }
@@ -568,7 +566,7 @@ namespace Libgpgme
                         throw new BadPassphraseException(_settings.passSettings.GetPassphraseInfo());
 
                     default:
-                        throw new GpgmeException("An unknown error occurred.", err);
+                        throw GpgmeError.CreateException(errcode);
                 }
             }
         }
@@ -735,8 +733,7 @@ namespace Libgpgme
                             throw new BadPassphraseException(_settings.passSettings.GetPassphraseInfo());
 
                         default:
-                            throw new GpgmeException("An unknown error occurred. Error: "
-                                + err.ToString(CultureInfo.InvariantCulture), err);
+                            throw GpgmeError.CreateException(errcode);
                     }
                 }
             }
@@ -830,8 +827,7 @@ namespace Libgpgme
                         case gpg_err_code_t.GPG_ERR_BAD_PASSPHRASE:
                             throw new BadPassphraseException(_settings.passSettings.GetPassphraseInfo());
                         default:
-                            throw new GpgmeException("An unknown error occurred. Error: "
-                                + err.ToString(CultureInfo.InvariantCulture), err);
+                            throw GpgmeError.CreateException(errcode);
                     }
                 }
             }
@@ -989,8 +985,7 @@ namespace Libgpgme
                         case gpg_err_code_t.GPG_ERR_BAD_PASSPHRASE:
                             throw new BadPassphraseException(_settings.passSettings.GetPassphraseInfo());
                         default:
-                            throw new GpgmeException("An unknown error occurred. Error: "
-                                + err.ToString(CultureInfo.InvariantCulture), err);
+                            throw GpgmeError.CreateException(errcode);
                     }
                 }
             }
@@ -1179,8 +1174,7 @@ namespace Libgpgme
                             if (options.missingpasswd && options.aborthandler) {
                                 throw new EmptyPassphraseException(_settings.passSettings.GetPassphraseInfo());
                             }
-                            throw new GpgmeException("An unknown error occurred. Error:"
-                                + err.ToString(CultureInfo.InvariantCulture), err);
+                            throw GpgmeError.CreateException(errcode);
                     }
                 }
             }

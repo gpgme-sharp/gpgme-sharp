@@ -115,18 +115,7 @@ namespace Libgpgme
                 EnsureValid();
                 lock (CtxLock) {
                     var proto = (gpgme_protocol_t) value;
-                    int err = libgpgme.NativeMethods.gpgme_set_protocol(CtxPtr, proto);
-
-                    gpg_err_code_t errcode = libgpgme.gpgme_err_code(err);
-                    switch (errcode) {
-                        case gpg_err_code_t.GPG_ERR_NO_ERROR:
-                            //UpdateFromMem();
-                            break;
-                        case gpg_err_code_t.GPG_ERR_INV_VALUE:
-                            throw new InvalidProtocolException("The protocol "
-                                + value.ToString()
-                                    + " is not supported by any installed GnuPG engine.");
-                    }
+                    GpgmeError.Check(libgpgme.NativeMethods.gpgme_set_protocol(CtxPtr, proto));
                 }
             }
         }
@@ -148,22 +137,7 @@ namespace Libgpgme
                 lock (CtxLock)
                 {
                     var mode = (gpgme_pinentry_mode_t)value;
-                    int err = libgpgme.NativeMethods.gpgme_set_pinentry_mode(CtxPtr, mode);
-
-                    gpg_err_code_t errcode = libgpgme.gpgme_err_code(err);
-                    if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR)
-                    {
-                        string errmsg;
-                        try
-                        {
-                            Gpgme.GetStrError(err, out errmsg);
-                        }
-                        catch
-                        {
-                            errmsg = "No error message available.";
-                        }
-                        throw new ArgumentException(errmsg + " Error: " + err.ToString(CultureInfo.InvariantCulture));
-                    }
+                    GpgmeError.Check(libgpgme.NativeMethods.gpgme_set_pinentry_mode(CtxPtr, mode));
                 }
             }
         }
@@ -206,16 +180,7 @@ namespace Libgpgme
                     Marshal.FreeCoTaskMem(homedir_ptr);
                 }
 
-                gpg_err_code_t errcode = libgpgme.gpgme_err_code(err);
-                if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR) {
-                    string errmsg;
-                    try {
-                        Gpgme.GetStrError(err, out errmsg);
-                    } catch {
-                        errmsg = "No error message available.";
-                    }
-                    throw new ArgumentException(errmsg + " Error: " + err.ToString(CultureInfo.InvariantCulture));
-                }
+                GpgmeError.Check(err);
             }
         }
 
@@ -223,21 +188,13 @@ namespace Libgpgme
             get {
                 EnsureValid();
                 lock (CtxLock) {
-                    int yes = libgpgme.NativeMethods.gpgme_get_armor(CtxPtr);
-                    if (yes > 0) {
-                        return true;
-                    }
-                    return false;
+                    return libgpgme.NativeMethods.gpgme_get_armor(CtxPtr) > 0;
                 }
             }
             set {
                 EnsureValid();
                 lock (CtxLock) {
-                    int yes = 0;
-                    if (value) {
-                        yes = 1;
-                    }
-                    libgpgme.NativeMethods.gpgme_set_armor(CtxPtr, yes);
+                    libgpgme.NativeMethods.gpgme_set_armor(CtxPtr, value ? 1 : 0);
                 }
             }
         }
@@ -246,21 +203,13 @@ namespace Libgpgme
             get {
                 EnsureValid();
                 lock (CtxLock) {
-                    int yes = libgpgme.NativeMethods.gpgme_get_textmode(CtxPtr);
-                    if (yes > 0) {
-                        return true;
-                    }
-                    return false;
+                    return libgpgme.NativeMethods.gpgme_get_textmode(CtxPtr) > 0;
                 }
             }
             set {
                 EnsureValid();
                 lock (CtxLock) {
-                    int yes = 0;
-                    if (value) {
-                        yes = 1;
-                    }
-                    libgpgme.NativeMethods.gpgme_set_textmode(CtxPtr, yes);
+                    libgpgme.NativeMethods.gpgme_set_textmode(CtxPtr, value ? 1 : 0);
                 }
             }
         }
@@ -312,18 +261,7 @@ namespace Libgpgme
 
                     var mode = (gpgme_keylist_mode_t) value;
 
-                    int err = libgpgme.NativeMethods.gpgme_set_keylist_mode(CtxPtr, mode);
-                    gpg_err_code_t errcode = libgpgme.gpgme_err_code(err);
-
-                    if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR) {
-                        string errmsg;
-                        try {
-                            Gpgme.GetStrError(err, out errmsg);
-                        } catch {
-                            errmsg = "Unknown error.";
-                        }
-                        throw new ArgumentException(errmsg + " Error: " + err.ToString(CultureInfo.InvariantCulture));
-                    }
+                    GpgmeError.Check(libgpgme.NativeMethods.gpgme_set_keylist_mode(CtxPtr, mode));
                 }
             }
         }
@@ -441,16 +379,11 @@ namespace Libgpgme
                     case gpg_err_code_t.GPG_ERR_INV_VALUE:
                         throw new InvalidPtrException(
                             "Either the context, recipient key array, plain text or cipher text pointer is invalid.");
-                    case gpg_err_code_t.GPG_ERR_BAD_PASSPHRASE:
-                        throw new BadPassphraseException();
                     case gpg_err_code_t.GPG_ERR_EBADF:
                         throw new InvalidDataBufferException(
                             "The source (plain) or destination (cipher) data buffer is invalid for encryption.");
                     default:
-                        throw new GeneralErrorException("An unexpected error "
-                            + errcode.ToString()
-                                + " (" + err.ToString(CultureInfo.InvariantCulture)
-                                    + ") occurred.");
+                        throw GpgmeError.CreateException(errcode);
                 }
                 IntPtr rst_ptr = libgpgme.NativeMethods.gpgme_op_encrypt_result(CtxPtr);
 #if (VERBOSE_DEBUG)
@@ -509,13 +442,8 @@ namespace Libgpgme
                     case gpg_err_code_t.GPG_ERR_INV_VALUE:
                         throw new InvalidPtrException(
                             "Either the context, recipient key array, plain text or cipher text pointer is invalid.");
-                    case gpg_err_code_t.GPG_ERR_BAD_PASSPHRASE:
-                        throw new BadPassphraseException();
                     default:
-                        throw new GeneralErrorException("An unexpected error "
-                            + errcode.ToString()
-                                + " (" + err.ToString(CultureInfo.InvariantCulture)
-                                    + ") occurred.");
+                        throw GpgmeError.CreateException(errcode);
                 }
                 IntPtr rst_ptr = libgpgme.NativeMethods.gpgme_op_encrypt_result(CtxPtr);
 
@@ -565,13 +493,8 @@ namespace Libgpgme
                     case gpg_err_code_t.GPG_ERR_INV_VALUE:
                         throw new InvalidPtrException(
                             "Either the context, plain text or cipher text pointer is invalid.");
-                    case gpg_err_code_t.GPG_ERR_BAD_PASSPHRASE:
-                        throw new BadPassphraseException();
                     default:
-                        throw new GeneralErrorException("An unexpected error "
-                            + errcode.ToString()
-                                + " (" + err.ToString(CultureInfo.InvariantCulture)
-                                    + ") occurred.");
+                        throw GpgmeError.CreateException(errcode);
                 }
                 IntPtr rst_ptr = libgpgme.NativeMethods.gpgme_op_sign_result(CtxPtr);
                 if (rst_ptr != IntPtr.Zero) {
@@ -619,6 +542,8 @@ namespace Libgpgme
                     case gpg_err_code_t.GPG_ERR_INV_VALUE:
                         throw new InvalidPtrException(
                             "Either the context, cipher text or plain text pointer is invalid.");
+                    default:
+                        throw GpgmeError.CreateException(errcode);
                 }
 
                 DecryptionResult dec_rst = null;
@@ -639,7 +564,7 @@ namespace Libgpgme
                     case gpg_err_code_t.GPG_ERR_BAD_PASSPHRASE:
                         throw new BadPassphraseException(dec_rst);
                     default:
-                        throw new GeneralErrorException("An unexpected error occurred. " + errcode.ToString());
+                        throw GpgmeError.CreateException(errcode);
                 }
 
                 GC.KeepAlive(cipher);
@@ -687,6 +612,8 @@ namespace Libgpgme
                     case gpg_err_code_t.GPG_ERR_INV_VALUE:
                         throw new InvalidPtrException(
                             "Either the context, cipher text or plain text pointer is invalid.");
+                    default:
+                        throw GpgmeError.CreateException(errcode);
                 }
 
                 DecryptionResult dec_rst = null;
@@ -710,8 +637,7 @@ namespace Libgpgme
                         throw new BadPassphraseException(dec_rst);
 
                     default:
-                        throw new GeneralErrorException("An unexpected error occurred. "
-                            + errcode.ToString());
+                        throw GpgmeError.CreateException(errcode);
                 }
 
                 /* If decryption failed, verification cannot be proceeded */
@@ -800,7 +726,7 @@ namespace Libgpgme
                         throw new InvalidDataBufferException(
                             "Either the signature, signed text or plain text data buffer is invalid.");
                     default:
-                        throw new GeneralErrorException("Unexpected error occurred. Error: " + errcode.ToString());
+                        throw GpgmeError.CreateException(errcode);
                 }
 
                 IntPtr rst_ptr = libgpgme.NativeMethods.gpgme_op_verify_result(CtxPtr);
