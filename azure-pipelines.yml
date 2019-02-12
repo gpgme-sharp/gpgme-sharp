@@ -1,0 +1,24 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'VS2017-Win2016'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+- script: dotnet build --configuration $(buildConfiguration) --version-suffix=dev-$(Build.BuildNumber)
+  displayName: 'dotnet build'
+
+steps:
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet pack'
+  inputs:
+    command: pack
+    configuration: $(buildConfiguration)
+    nobuild: true
+    packagesToPack: 'gpgme-sharp/gpgme-sharp.csproj'
+    versioningScheme: byBuildNumber
+
+- task: PublishBuildArtifacts@1
