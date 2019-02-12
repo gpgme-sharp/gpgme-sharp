@@ -25,13 +25,7 @@ steps:
     solution: 'gpgme-sharp.sln'
     configuration: '$(BuildConfiguration)'
 
-- task: DotNetCoreCLI@2
+- script: dotnet pack --no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)  --version-suffix=dev-$(Build.BuildNumber)
   displayName: 'dotnet pack'
-  inputs:
-    command: pack
-    arguments: --version-suffix=dev-$(Build.BuildNumber)
-    configuration: $(buildConfiguration)
-    nobuild: true
-    packagesToPack: 'gpgme-sharp/gpgme-sharp.csproj'
 
 - task: PublishBuildArtifacts@1
