@@ -1,0 +1,31 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'VS2017-Win2016'
+
+variables:
+  buildConfiguration: 'Release'
+  dotNetCoreVersion: '2.2.103'
+
+steps:
+- task: DotNetCoreInstaller@0
+  displayName: 'Use .NET Core SDK $(dotNetCoreVersion)'
+  inputs:
+    version: $(dotNetCoreVersion)
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet restore'
+  inputs:
+    command: restore
+    
+- task: VSBuild@1
+  displayName: 'Build'
+  inputs:
+    solution: 'gpgme-sharp.sln'
+    configuration: '$(BuildConfiguration)'
+
+- script: dotnet pack gpgme-sharp\gpgme-sharp.csproj --no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)  --version-suffix=dev-$(Build.BuildNumber)
+  displayName: 'dotnet pack'
+
+- task: PublishBuildArtifacts@1
