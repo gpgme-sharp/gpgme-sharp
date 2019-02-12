@@ -13,8 +13,7 @@ steps:
   displayName: 'Use .NET Core SDK $(dotNetCoreVersion)'
   inputs:
     version: $(dotNetCoreVersion)
-    
-steps:
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet restore'
   inputs:
