@@ -9,7 +9,6 @@ variables:
   dotNetCoreVersion: '2.2'
 
 steps:
-steps:
 - task: DotNetCoreInstaller@0
   displayName: 'Use .NET Core SDK $(dotNetCoreVersion)'
   inputs:
