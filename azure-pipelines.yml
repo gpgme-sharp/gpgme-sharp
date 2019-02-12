@@ -29,9 +29,9 @@ steps:
   displayName: 'dotnet pack'
   inputs:
     command: pack
+    arguments: --version-suffix=dev-$(Build.BuildNumber)
     configuration: $(buildConfiguration)
     nobuild: true
     packagesToPack: 'gpgme-sharp/gpgme-sharp.csproj'
-    versioningScheme: byBuildNumber
 
 - task: PublishBuildArtifacts@1
