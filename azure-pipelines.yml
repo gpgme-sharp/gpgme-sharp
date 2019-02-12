@@ -11,7 +11,6 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration) --version-suffix=dev-$(Build.BuildNumber)
   displayName: 'dotnet build'
 
-steps:
 - task: DotNetCoreCLI@2
   displayName: 'dotnet pack'
   inputs:
