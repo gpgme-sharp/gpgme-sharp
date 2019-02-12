@@ -6,9 +6,16 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  dotNetCoreVersion: '2.2'
 
 steps:
-- script: dotnet build --configuration $(buildConfiguration) --version-suffix=dev-$(Build.BuildNumber)
+steps:
+- task: DotNetCoreInstaller@0
+  displayName: 'Use .NET Core SDK $(dotNetCoreVersion)'
+  inputs:
+    version: $(dotNetCoreVersion)
+
+- script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build'
 
 - task: DotNetCoreCLI@2
