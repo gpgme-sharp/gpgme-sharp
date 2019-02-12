@@ -13,9 +13,12 @@ steps:
   displayName: 'Use .NET Core SDK $(dotNetCoreVersion)'
   inputs:
     version: $(dotNetCoreVersion)
-
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build'
+    
+- task: VSBuild@1
+  displayName: 'Build'
+  inputs:
+    solution: 'gpgme-sharp.sln'
+    configuration: '$(BuildConfiguration)'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet pack'
