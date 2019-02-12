@@ -6,7 +6,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  dotNetCoreVersion: '2.2'
+  dotNetCoreVersion: '2.2.103'
 
 steps:
 - task: DotNetCoreInstaller@0
