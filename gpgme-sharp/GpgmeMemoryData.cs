@@ -9,8 +9,6 @@ namespace Libgpgme
     {
         private static readonly object _global_lock = new object();
         private readonly bool _free_mem;
-
-        private IntPtr _mem_ptr;
         private UIntPtr _mem_size;
 
         public GpgmeMemoryData() {
@@ -121,7 +119,7 @@ namespace Libgpgme
 
         public override long Length {
             get {
-                if (!_mem_ptr.Equals(IntPtr.Zero)) {
+                if (!MemoryAddress.Equals(IntPtr.Zero)) {
                     return (long) _mem_size;
                 }
 
@@ -138,33 +136,25 @@ namespace Libgpgme
             }
         }
 
-        public override bool IsValid {
-            get { return (!dataPtr.Equals(IntPtr.Zero)); }
-        }
+        public override bool IsValid => (!dataPtr.Equals(IntPtr.Zero));
 
-        public override bool CanRead {
-            get { return true; }
-        }
-        public override bool CanWrite {
-            get { return true; }
-        }
-        public override bool CanSeek {
-            get { return true; }
-        }
-        public IntPtr MemoryAddress {
-            get { return _mem_ptr; }
-        }
-        public long MemorySize {
-            get { return (long) _mem_size; }
-        }
+        public override bool CanRead => true;
+
+        public override bool CanWrite => true;
+
+        public override bool CanSeek => true;
+
+        public IntPtr MemoryAddress { get; private set; }
+
+        public long MemorySize => (long) _mem_size;
 
         ~GpgmeMemoryData() {
             ReleaseMemoryData();
         }
 
         private void InitGpgmeMemoryData(IntPtr memAddr, int size) {
-            _mem_ptr = memAddr;
-            if (_mem_ptr.Equals(IntPtr.Zero)) {
+            MemoryAddress = memAddr;
+            if (MemoryAddress.Equals(IntPtr.Zero)) {
                 _mem_size = UIntPtr.Zero;
                 throw new ArgumentException("The supplied memory address was 0.");
             }
@@ -178,7 +168,7 @@ namespace Libgpgme
             const int COPY_FLAG = 0;
             int err = libgpgme.NativeMethods.gpgme_data_new_from_mem(
                 out dataPtr,
-                _mem_ptr,
+                MemoryAddress,
                 _mem_size,
                 COPY_FLAG);
 
@@ -202,11 +192,11 @@ namespace Libgpgme
                     libgpgme.NativeMethods.gpgme_data_release(dataPtr);
                     dataPtr = IntPtr.Zero;
                 }
-                if (!_mem_ptr.Equals(IntPtr.Zero)) {
+                if (!MemoryAddress.Equals(IntPtr.Zero)) {
                     if (_free_mem) {
-                        Marshal.FreeCoTaskMem(_mem_ptr);
+                        Marshal.FreeCoTaskMem(MemoryAddress);
                     }
-                    _mem_ptr = IntPtr.Zero;
+                    MemoryAddress = IntPtr.Zero;
                     _mem_size = UIntPtr.Zero;
                 }
             }

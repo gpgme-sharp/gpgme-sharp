@@ -34,7 +34,7 @@ namespace Libgpgme.Interop
         public uint additionalflags;
 
         public bool human_readable {
-            get { return ((additionalflags & 1) > 0); }
+            get => ((additionalflags & 1) > 0);
             set {
                 if (value) {
                     additionalflags |= 1;
@@ -44,7 +44,7 @@ namespace Libgpgme.Interop
             }
         }
         public bool critical {
-            get { return ((additionalflags & 2) > 0); }
+            get => ((additionalflags & 2) > 0);
             set {
                 if (value) {
                     additionalflags |= 2;

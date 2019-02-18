@@ -56,7 +56,7 @@ namespace Libgpgme.Interop
         public IntPtr pka_address; // char *
 
         public bool wrong_key_usage {
-            get { return ((flags & 1) > 0); }
+            get => ((flags & 1) > 0);
             set {
                 if (value) {
                     flags |= 1;
@@ -66,11 +66,11 @@ namespace Libgpgme.Interop
             }
         }
         public PkaStatus pka_trust {
-            get { return (PkaStatus) ((flags & 6) >> 1); }
-            set { flags = (flags & 0xFFFFFFF9) | (((uint) value) << 1); }
+            get => (PkaStatus) ((flags & 6) >> 1);
+            set => flags = (flags & 0xFFFFFFF9) | (((uint) value) << 1);
         }
         public bool chain_model {
-            get { return ((flags & 8) > 0); }
+            get => ((flags & 8) > 0);
             set {
                 if (value) {
                     flags |= 8;

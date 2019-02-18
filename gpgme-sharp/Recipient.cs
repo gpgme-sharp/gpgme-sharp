@@ -8,9 +8,6 @@ namespace Libgpgme
 {
     public class Recipient : IEnumerable<Recipient>
     {
-        private string _keyid;
-        private Recipient _next;
-        private KeyAlgorithm _pubkey_algo;
         private int _status;
 
         internal Recipient(IntPtr recpPtr) {
@@ -21,19 +18,14 @@ namespace Libgpgme
             UpdateFromMem(recpPtr);
         }
 
-        public string KeyId {
-            get { return _keyid; }
-        }
-        public KeyAlgorithm KeyAlgorithm {
-            get { return _pubkey_algo; }
-        }
+        public string KeyId { get; private set; }
 
-        public int Status {
-            get { return _status; }
-        }
-        public Recipient Next {
-            get { return _next; }
-        }
+        public KeyAlgorithm KeyAlgorithm { get; private set; }
+
+        public int Status => _status;
+
+        public Recipient Next { get; private set; }
+
         #region IEnumerable<Recipient> Members
 
         public IEnumerator<Recipient> GetEnumerator() {
@@ -53,12 +45,12 @@ namespace Libgpgme
             var recp = new _gpgme_recipient();
             Marshal.PtrToStructure(recpPtr, recp);
 
-            _keyid = Gpgme.PtrToStringUTF8(recp.keyid);
-            _pubkey_algo = (KeyAlgorithm) recp.pubkey_algo;
+            KeyId = Gpgme.PtrToStringUTF8(recp.keyid);
+            KeyAlgorithm = (KeyAlgorithm) recp.pubkey_algo;
             _status = recp.status;
 
             if (recp.next != IntPtr.Zero) {
-                _next = new Recipient(recp.next);
+                Next = new Recipient(recp.next);
             }
         }
     }

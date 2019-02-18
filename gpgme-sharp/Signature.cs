@@ -8,23 +8,10 @@ namespace Libgpgme
 {
     public class Signature : IEnumerable<Signature>
     {
-        private bool _chain_model;
         private UIntPtr _exp_timestamp;
-        private string _fpr;
-        private HashAlgorithm _hash_algo;
-        private Signature _next;
-        private SignatureNotation _notations; // gpgme_sig_notation_t
-        private string _pka_address; // char *
-        private PkaStatus _pka_trust;
-        private KeyAlgorithm _pubkey_algo;
         private uint _status; //gpgme_error_t
-
-        /* A summary of the signature status.  */
-        private SignatureSummary _summary;
         private UIntPtr _timestamp;
-        private Validity _validity;
         private uint _validity_reason; //gpgme_error_t
-        private bool _wrong_key_usage;
 
         internal Signature(IntPtr sigPtr) {
             if (sigPtr == IntPtr.Zero) {
@@ -34,77 +21,47 @@ namespace Libgpgme
             UpdateFromMem(sigPtr);
         }
 
-        public Signature Next {
-            get { return _next; }
-        }
+        public Signature Next { get; private set; }
 
-        public SignatureSummary Summary {
-            get { return _summary; }
-        }
+        public SignatureSummary Summary { get; private set; }
 
         /* The fingerprint or key ID of the signature.  */
-        public string Fingerprint {
-            get { return _fpr; }
-        }
+        public string Fingerprint { get; private set; }
 
         /* The status of the signature.  */
-        public long Status {
-            get { return _status; }
-        }
+        public long Status => _status;
 
         /* Notation data and policy URLs.  */
-        public SignatureNotation Notations {
-            get { return _notations; }
-        }
+        public SignatureNotation Notations { get; private set; }
 
         /* Signature creation time.  */
-        public Validity Validity {
-            get { return _validity; }
-        }
+        public Validity Validity { get; private set; }
 
-        public long ValidityReason {
-            get { return _validity_reason; }
-        }
+        public long ValidityReason => _validity_reason;
 
         /* The public key algorithm used to create the signature.  */
-        public KeyAlgorithm PubkeyAlgorithm {
-            get { return _pubkey_algo; }
-        }
+        public KeyAlgorithm PubkeyAlgorithm { get; private set; }
 
         /* The hash algorithm used to create the signature.  */
-        public HashAlgorithm HashAlgorithm {
-            get { return _hash_algo; }
-        }
+        public HashAlgorithm HashAlgorithm { get; private set; }
 
         /* The mailbox from the PKA information or NULL. */
-        public string PKAAddress {
-            get { return _pka_address; }
-        }
+        public string PKAAddress { get; private set; }
 
-        public bool WrongKeyUsage {
-            get { return _wrong_key_usage; }
-        }
+        public bool WrongKeyUsage { get; private set; }
 
-        public PkaStatus PKATrust {
-            get { return _pka_trust; }
-        }
+        public PkaStatus PKATrust { get; private set; }
 
-        public bool ChainModel {
-            get { return _chain_model; }
-        }
+        public bool ChainModel { get; private set; }
 
-        public DateTime Timestamp {
-            get { return Gpgme.ConvertFromUnix((long) _timestamp); }
-        }
-        public DateTime TimestampUTC {
-            get { return Gpgme.ConvertFromUnixUTC((long) _timestamp); }
-        }
-        public DateTime ExpTimestamp {
-            get { return Gpgme.ConvertFromUnix((long) _exp_timestamp); }
-        }
-        public DateTime ExpTimestampUTC {
-            get { return Gpgme.ConvertFromUnixUTC((long) _exp_timestamp); }
-        }
+        public DateTime Timestamp => Gpgme.ConvertFromUnix((long) _timestamp);
+
+        public DateTime TimestampUTC => Gpgme.ConvertFromUnixUTC((long) _timestamp);
+
+        public DateTime ExpTimestamp => Gpgme.ConvertFromUnix((long) _exp_timestamp);
+
+        public DateTime ExpTimestampUTC => Gpgme.ConvertFromUnixUTC((long) _exp_timestamp);
+
         #region IEnumerable<Signature> Members
 
         IEnumerator IEnumerable.GetEnumerator() {
@@ -133,51 +90,51 @@ namespace Libgpgme
                 var unixsig = new _gpgme_signature();
                 Marshal.PtrToStructure(sigPtr, unixsig);
 
-                _summary = (SignatureSummary) unixsig.summary;
-                _fpr = Gpgme.PtrToStringUTF8(unixsig.fpr);
+                Summary = (SignatureSummary) unixsig.summary;
+                Fingerprint = Gpgme.PtrToStringUTF8(unixsig.fpr);
                 _status = unixsig.status;
                 _timestamp = unixsig.timestamp;
                 _exp_timestamp = unixsig.exp_timestamp;
-                _validity = (Validity) unixsig.validity;
+                Validity = (Validity) unixsig.validity;
                 _validity_reason = unixsig.validity_reason;
-                _pubkey_algo = (KeyAlgorithm) unixsig.pubkey_algo;
-                _hash_algo = (HashAlgorithm) unixsig.hash_algo;
-                _pka_address = Gpgme.PtrToStringUTF8(unixsig.pka_address);
-                _wrong_key_usage = unixsig.wrong_key_usage;
-                _pka_trust = unixsig.pka_trust;
-                _chain_model = unixsig.chain_model;
+                PubkeyAlgorithm = (KeyAlgorithm) unixsig.pubkey_algo;
+                HashAlgorithm = (HashAlgorithm) unixsig.hash_algo;
+                PKAAddress = Gpgme.PtrToStringUTF8(unixsig.pka_address);
+                WrongKeyUsage = unixsig.wrong_key_usage;
+                PKATrust = unixsig.pka_trust;
+                ChainModel = unixsig.chain_model;
 
                 if (unixsig.notations != IntPtr.Zero) {
-                    _notations = new SignatureNotation(unixsig.notations);
+                    Notations = new SignatureNotation(unixsig.notations);
                 }
 
                 if (unixsig.next != IntPtr.Zero) {
-                    _next = new Signature(unixsig.next);
+                    Next = new Signature(unixsig.next);
                 }
             } else {
                 var winsig = new _gpgme_signature_windows();
                 Marshal.PtrToStructure(sigPtr, winsig);
 
-                _summary = (SignatureSummary) winsig.summary;
-                _fpr = Gpgme.PtrToStringUTF8(winsig.fpr);
+                Summary = (SignatureSummary) winsig.summary;
+                Fingerprint = Gpgme.PtrToStringUTF8(winsig.fpr);
                 _status = winsig.status;
                 _timestamp = winsig.timestamp;
                 _exp_timestamp = winsig.exp_timestamp;
-                _validity = (Validity) winsig.validity;
+                Validity = (Validity) winsig.validity;
                 _validity_reason = winsig.validity_reason;
-                _pubkey_algo = (KeyAlgorithm) winsig.pubkey_algo;
-                _hash_algo = (HashAlgorithm) winsig.hash_algo;
-                _pka_address = Gpgme.PtrToStringUTF8(winsig.pka_address);
-                _wrong_key_usage = winsig.wrong_key_usage;
-                _pka_trust = winsig.pka_trust;
-                _chain_model = winsig.chain_model;
+                PubkeyAlgorithm = (KeyAlgorithm) winsig.pubkey_algo;
+                HashAlgorithm = (HashAlgorithm) winsig.hash_algo;
+                PKAAddress = Gpgme.PtrToStringUTF8(winsig.pka_address);
+                WrongKeyUsage = winsig.wrong_key_usage;
+                PKATrust = winsig.pka_trust;
+                ChainModel = winsig.chain_model;
 
                 if (winsig.notations != IntPtr.Zero) {
-                    _notations = new SignatureNotation(winsig.notations);
+                    Notations = new SignatureNotation(winsig.notations);
                 }
 
                 if (winsig.next != IntPtr.Zero) {
-                    _next = new Signature(winsig.next);
+                    Next = new Signature(winsig.next);
                 }
             }
         }

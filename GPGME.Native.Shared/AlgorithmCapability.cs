@@ -11,9 +11,7 @@ namespace Libgpgme
             _type = type;
         }
 
-        public AlgorithmCapability Type {
-            get { return _type; }
-        }
+        public AlgorithmCapability Type => _type;
 
         public static string GetKeyUsageText(AlgorithmCapability type) {
             var caps = new List<string>();

@@ -11,7 +11,7 @@ namespace Libgpgme.Interop
 
         /* A primary key was generated.  */
         public bool primary {
-            get { return ((flags & 1) > 0); }
+            get => ((flags & 1) > 0);
             set {
                 if (value) {
                     flags |= 1;
@@ -22,7 +22,7 @@ namespace Libgpgme.Interop
         }
         /* A sub key was generated.  */
         public bool sub {
-            get { return ((flags & 2) > 0); }
+            get => ((flags & 2) > 0);
             set {
                 if (value) {
                     flags |= 2;

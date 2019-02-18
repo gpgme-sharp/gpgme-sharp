@@ -8,7 +8,7 @@ namespace Libgpgme.Interop
         public uint flags;
 
         public bool truncated {
-            get { return ((flags & 1) > 0); }
+            get => ((flags & 1) > 0);
             set {
                 if (value) {
                     flags |= 1;

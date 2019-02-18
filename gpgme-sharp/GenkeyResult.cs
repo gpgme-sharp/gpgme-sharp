@@ -6,8 +6,6 @@ namespace Libgpgme
 {
     public class GenkeyResult
     {
-        private string _fingerprint;
-        private bool _has_primary;
         private bool _has_sub;
 
         internal GenkeyResult(IntPtr keyresultPtr) {
@@ -18,21 +16,17 @@ namespace Libgpgme
             UpdateFromMem(keyresultPtr);
         }
 
-        public string Fingerprint {
-            get { return _fingerprint; }
-        }
-        public bool HasPrimary {
-            get { return _has_primary; }
-        }
-        public bool HasSub {
-            get { return _has_sub; }
-        }
+        public string Fingerprint { get; private set; }
+
+        public bool HasPrimary { get; private set; }
+
+        public bool HasSub => _has_sub;
 
         private void UpdateFromMem(IntPtr keyresultPtr) {
             var result = new _gpgme_op_genkey_result();
             Marshal.PtrToStructure(keyresultPtr, result);
-            _fingerprint = Gpgme.PtrToStringAnsi(result.fpr);
-            _has_primary = result.primary;
+            Fingerprint = Gpgme.PtrToStringAnsi(result.fpr);
+            HasPrimary = result.primary;
             _has_sub = result.sub;
         }
     }

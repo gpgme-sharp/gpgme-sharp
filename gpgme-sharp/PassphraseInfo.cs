@@ -26,15 +26,11 @@ namespace Libgpgme
             ParseInfo();
         }
 
-        public IntPtr Hook {
-            get { return hook; }
-        }
-        public string HintText {
-            get { return hintText; }
-        }
-        public string Info {
-            get { return info; }
-        }
+        public IntPtr Hook => hook;
+
+        public string HintText => hintText;
+
+        public string Info => info;
 
         private void ParseHintText() {
             if (hintText != null) {

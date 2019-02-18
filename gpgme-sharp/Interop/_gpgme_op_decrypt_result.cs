@@ -23,7 +23,7 @@ namespace Libgpgme.Interop
         public IntPtr file_name; //char *
 
         public bool wrong_key_usage {
-            get { return ((flags & 1) > 0); }
+            get => ((flags & 1) > 0);
             set {
                 if (value) {
                     flags |= 1;

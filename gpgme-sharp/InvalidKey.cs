@@ -8,8 +8,6 @@ namespace Libgpgme
 {
     public class InvalidKey : IEnumerable<InvalidKey>
     {
-        private string _fpr;
-        private InvalidKey _next;
         private int _reason;
 
         internal InvalidKey(IntPtr sPtr) {
@@ -19,16 +17,12 @@ namespace Libgpgme
             UpdateFromMem(sPtr);
         }
 
-        public string Fingerprint {
-            get { return _fpr; }
-        }
+        public string Fingerprint { get; private set; }
 
-        public int Reason {
-            get { return _reason; }
-        }
-        public InvalidKey Next {
-            get { return _next; }
-        }
+        public int Reason => _reason;
+
+        public InvalidKey Next { get; private set; }
+
         #region IEnumerable<InvalidKey> Members
 
         IEnumerator IEnumerable.GetEnumerator() {
@@ -48,11 +42,11 @@ namespace Libgpgme
             var ikey = new _gpgme_invalid_key();
             Marshal.PtrToStructure(sPtr, ikey);
 
-            _fpr = Gpgme.PtrToStringAnsi(ikey.fpr);
+            Fingerprint = Gpgme.PtrToStringAnsi(ikey.fpr);
             _reason = ikey.reason;
 
             if (ikey.next != IntPtr.Zero) {
-                _next = new InvalidKey(ikey.next);
+                Next = new InvalidKey(ikey.next);
             }
         }
     }
