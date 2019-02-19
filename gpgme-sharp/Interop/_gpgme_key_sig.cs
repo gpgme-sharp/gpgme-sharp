@@ -79,7 +79,7 @@ namespace Libgpgme.Interop
         }
 
         public bool revoked {
-            get { return ((flags & 1) > 0); }
+            get => ((flags & 1) > 0);
             set {
                 if (value) {
                     flags |= 1;
@@ -90,7 +90,7 @@ namespace Libgpgme.Interop
         }
 
         public bool expired {
-            get { return ((flags & 2) > 0); }
+            get => ((flags & 2) > 0);
             set {
                 if (value) {
                     flags |= 2;
@@ -102,7 +102,7 @@ namespace Libgpgme.Interop
 
 
         public bool invalid {
-            get { return ((flags & 4) > 0); }
+            get => ((flags & 4) > 0);
             set {
                 if (value) {
                     flags |= 4;
@@ -113,7 +113,7 @@ namespace Libgpgme.Interop
         }
 
         public bool exportable {
-            get { return ((flags & 8) > 0); }
+            get => ((flags & 8) > 0);
             set {
                 if (value) {
                     flags |= 8;

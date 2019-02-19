@@ -40,7 +40,7 @@ namespace Libgpgme
 
         public UserId Uids { get; private set; }
         // The first one in the list is the main/primary UserID
-        public UserId Uid { get { return Uids; } }
+        public UserId Uid => Uids;
 
         public Subkey Subkeys { get; private set; }
         // The first subkey in the linked list is the primary key
@@ -53,16 +53,12 @@ namespace Libgpgme
             }
         }
         // The first subkey in the linked list is the primary key
-        public string Fingerprint {
-            get {
-                return Subkeys != null 
-                    ? Subkeys.Fingerprint 
-                    : null;
-            }
-        }
-        internal virtual IntPtr KeyPtr {
-            get { return _key_ptr; }
-        }
+        public string Fingerprint =>
+            Subkeys != null 
+                ? Subkeys.Fingerprint 
+                : null;
+
+        internal virtual IntPtr KeyPtr => _key_ptr;
 
         #region IDisposable Members
 

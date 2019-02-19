@@ -31,13 +31,13 @@ namespace Libgpgme
                 throw new InvalidDataBufferException("The data buffer is invalid.");
             }
             if (buffer == null) {
-                throw new ArgumentNullException("buffer", "An empty destination buffer has been given.");
+                throw new ArgumentNullException(nameof(buffer), "An empty destination buffer has been given.");
             }
             if (buffer.Length < (offset + count)) {
                 throw new ArgumentException("The sum of offset and count is bigger than the destination buffer size.");
             }
             if (offset < 0 || count < 0) {
-                throw new ArgumentOutOfRangeException("offset", "Invalid / negative offset or count value supplied.");
+                throw new ArgumentOutOfRangeException(nameof(offset), "Invalid / negative offset or count value supplied.");
             }
 
             GCHandle pinned_buffer = GCHandle.Alloc(buffer, GCHandleType.Pinned);
@@ -60,13 +60,13 @@ namespace Libgpgme
                 throw new InvalidDataBufferException("The data buffer is invalid.");
             }
             if (buffer == null) {
-                throw new ArgumentNullException("buffer", "An empty destination buffer has been given.");
+                throw new ArgumentNullException(nameof(buffer), "An empty destination buffer has been given.");
             }
             if (buffer.Length < count) {
                 throw new ArgumentException("Requested number of bytes to read is bigger than the destination buffer.");
             }
             if (count < 0) {
-                throw new ArgumentOutOfRangeException("count", "Negative read count value supplied.");
+                throw new ArgumentOutOfRangeException(nameof(count), "Negative read count value supplied.");
             }
 
             var bufsize = (UIntPtr) count;
@@ -116,7 +116,7 @@ namespace Libgpgme
                 throw new InvalidDataBufferException("Invalid data buffer");
             }
             if (buffer == null) {
-                throw new ArgumentNullException("buffer", "Empty source buffer given.");
+                throw new ArgumentNullException(nameof(buffer), "Empty source buffer given.");
             }
             if (buffer.Length < (offset + count)) {
                 throw new ArgumentException(
@@ -124,7 +124,7 @@ namespace Libgpgme
                         offset.ToString(CultureInfo.InvariantCulture) + ".");
             }
             if (offset < 0 || count < 0) {
-                throw new ArgumentOutOfRangeException("offset", "The offset or count is negative.");
+                throw new ArgumentOutOfRangeException(nameof(offset), "The offset or count is negative.");
             }
 
             GCHandle pinned_buffer = GCHandle.Alloc(buffer, GCHandleType.Pinned);
@@ -147,13 +147,13 @@ namespace Libgpgme
                 throw new InvalidDataBufferException("Invalid data buffer");
             }
             if (buffer == null) {
-                throw new ArgumentNullException("buffer", "An empty source buffer has been given.");
+                throw new ArgumentNullException(nameof(buffer), "An empty source buffer has been given.");
             }
             if (buffer.Length < count) {
                 throw new ArgumentException("Requested number of bytes to write is bigger than the source buffer.");
             }
             if (count < 0) {
-                throw new ArgumentOutOfRangeException("count", "The read count is negative.");
+                throw new ArgumentOutOfRangeException(nameof(count), "The read count is negative.");
             }
 
             var bufsize = (UIntPtr) count;
@@ -189,21 +189,14 @@ namespace Libgpgme
                     throw new InvalidDataBufferException();
                 }
                 if (value == null) {
-                    throw new ArgumentNullException("value", "Invalid file path.");
+                    throw new ArgumentNullException(nameof(value), "Invalid file path.");
                 }
 
                 IntPtr ptr = Marshal.StringToCoTaskMemAnsi(value);
                 if (!ptr.Equals(IntPtr.Zero)) {
-                    int err = libgpgme.NativeMethods.gpgme_data_set_file_name(dataPtr, ptr);
-                    gpg_err_code_t errcode = libgpgerror.gpg_err_code(err);
+                    GpgmeError.Check(libgpgme.NativeMethods.gpgme_data_set_file_name(dataPtr, ptr));
                     if (ptr != IntPtr.Zero) {
                         Marshal.FreeCoTaskMem(ptr);
-                    }
-                    if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR) {
-                        if (errcode == gpg_err_code_t.GPG_ERR_ENOMEM) {
-                            throw new OutOfMemoryException();
-                        }
-                        throw new GeneralErrorException("Unknown error " + errcode + " (" + err + ")");
                     }
                 } else {
                     throw new OutOfMemoryException();
@@ -227,11 +220,7 @@ namespace Libgpgme
 
                 var enc = (gpgme_data_encoding_t) value;
 
-                int err = libgpgme.NativeMethods.gpgme_data_set_encoding(dataPtr, enc);
-                gpg_err_code_t errcode = libgpgerror.gpg_err_code(err);
-                if (errcode != gpg_err_code_t.GPG_ERR_NO_ERROR) {
-                    throw new GeneralErrorException("Could not set data encoding to " + value);
-                }
+                GpgmeError.Check(libgpgme.NativeMethods.gpgme_data_set_encoding(dataPtr, enc));
             }
         }
 

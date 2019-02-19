@@ -58,16 +58,13 @@ namespace Libgpgme
             }
         }
 
-        public DateTime Expires {
-            get { return Gpgme.ConvertFromUnix(_expires); }
-        }
-        public DateTime ExpiresUTC {
-            get { return Gpgme.ConvertFromUnixUTC(_expires); }
-        }
+        public DateTime Expires => Gpgme.ConvertFromUnix(_expires);
+
+        public DateTime ExpiresUTC => Gpgme.ConvertFromUnixUTC(_expires);
 
         public bool IsInfinitely {
-            get { return _expires == 0; }
-            set { throw new NotImplementedException(); }
+            get => _expires == 0;
+            set => throw new NotImplementedException();
         }
 
         #region IEnumerable<Subkey> Members

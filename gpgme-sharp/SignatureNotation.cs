@@ -8,10 +8,7 @@ namespace Libgpgme
 {
     public class SignatureNotation : IEnumerable<SignatureNotation>
     {
-        private string _name, _value;
-        private bool _critical;
-        private SignatureNotationFlags _flags;
-        private bool _human_readable;
+        private string _value;
         private SignatureNotation _next;
 
         internal SignatureNotation(IntPtr signotPtr) {
@@ -23,24 +20,18 @@ namespace Libgpgme
             UpdateFromMem(signotPtr);
         }
 
-        public SignatureNotation Next {
-            get { return _next; }
-        }
-        public bool Critical {
-            get { return _critical; }
-        }
-        public bool HumanReadable {
-            get { return _human_readable; }
-        }
-        public string Value {
-            get { return _value; }
-        }
-        public string Name {
-            get { return _name; }
-        }
-        public SignatureNotationFlags Flags {
-            get { return _flags; }
-        }
+        public SignatureNotation Next => _next;
+
+        public bool Critical { get; private set; }
+
+        public bool HumanReadable { get; private set; }
+
+        public string Value => _value;
+
+        public string Name { get; private set; }
+
+        public SignatureNotationFlags Flags { get; private set; }
+
         #region IEnumerable<SignatureNotation> Members
 
         IEnumerator IEnumerable.GetEnumerator() {
@@ -68,13 +59,13 @@ namespace Libgpgme
             }
             if (signot.name != IntPtr.Zero) {
                 len = signot.name_len;
-                _name = Gpgme.PtrToStringUTF8(signot.name,
+                Name = Gpgme.PtrToStringUTF8(signot.name,
                     len);
             }
 
-            _flags = (SignatureNotationFlags) signot.flags;
-            _critical = signot.critical;
-            _human_readable = signot.human_readable;
+            Flags = (SignatureNotationFlags) signot.flags;
+            Critical = signot.critical;
+            HumanReadable = signot.human_readable;
 
             if (signot.next != IntPtr.Zero) {
                 _next = new SignatureNotation(signot.next);

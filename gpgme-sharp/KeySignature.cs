@@ -34,23 +34,16 @@ namespace Libgpgme
         public SignatureNotation Notations { get; private set; }
         public KeySignature Next { get; private set; }
 
-        public DateTime Timestamp {
-            get { return Gpgme.ConvertFromUnix(_timestamp); }
-        }
-        public DateTime TimestampUTC {
-            get { return Gpgme.ConvertFromUnixUTC(_timestamp); }
-        }
+        public DateTime Timestamp => Gpgme.ConvertFromUnix(_timestamp);
 
-        public DateTime Expires {
-            get { return Gpgme.ConvertFromUnix(_expires); }
-        }
-        public DateTime ExpiresUTC {
-            get { return Gpgme.ConvertFromUnixUTC(_expires); }
-        }
+        public DateTime TimestampUTC => Gpgme.ConvertFromUnixUTC(_timestamp);
 
-        public bool IsInfinitely {
-            get { return _expires == 0; }
-        }
+        public DateTime Expires => Gpgme.ConvertFromUnix(_expires);
+
+        public DateTime ExpiresUTC => Gpgme.ConvertFromUnixUTC(_expires);
+
+        public bool IsInfinitely => _expires == 0;
+
         #region IEnumerable<KeySignature> Members
 
         public IEnumerator<KeySignature> GetEnumerator() {

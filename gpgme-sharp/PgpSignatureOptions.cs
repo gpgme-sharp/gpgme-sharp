@@ -22,7 +22,7 @@ namespace Libgpgme
         internal bool signAllUids = true;
 
         public int TrustDepth {
-            get { return _trustdepth; }
+            get => _trustdepth;
             set {
                 if (value > 0) {
                     _trustdepth = value;
@@ -33,7 +33,7 @@ namespace Libgpgme
         }
 
         public bool IsInfinitely {
-            get { return ExpirationDate.Equals(_unix_date); }
+            get => ExpirationDate.Equals(_unix_date);
             set {
                 if (value) {
                     ExpirationDate = _unix_date;

@@ -7,13 +7,12 @@ namespace Libgpgme
         private readonly int _major;
         private readonly int _minor;
         private readonly int _update;
-        private readonly string _version;
 
         public GpgmeVersion(string version) {
             if (version == null) {
                 throw new ArgumentNullException("version");
             }
-            _version = version;
+            Version = version;
 
             string[] tup = version.Split('.');
             if (tup.Length >= 3) {
@@ -23,17 +22,12 @@ namespace Libgpgme
             }
         }
 
-        public int Major {
-            get { return _major; }
-        }
-        public int Minor {
-            get { return _minor; }
-        }
-        public int Update {
-            get { return _update; }
-        }
-        public string Version {
-            get { return _version; }
-        }
+        public int Major => _major;
+
+        public int Minor => _minor;
+
+        public int Update => _update;
+
+        public string Version { get; private set; }
     }
 }

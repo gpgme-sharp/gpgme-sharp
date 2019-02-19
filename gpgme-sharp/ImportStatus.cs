@@ -8,9 +8,6 @@ namespace Libgpgme
 {
     public class ImportStatus : IEnumerable<ImportStatus>
     {
-        private string _fpr; // char *
-        private ImportStatus _next;
-        private int _result; //gpgme_error_t
         private uint _status;
 
         internal ImportStatus(IntPtr statusPtr) {
@@ -21,49 +18,34 @@ namespace Libgpgme
             UpdateFromMem(statusPtr);
         }
 
-        public ImportStatus Next {
-            get { return _next; }
-        }
+        public ImportStatus Next { get; private set; }
 
         /* Fingerprint.  */
-        public String Fpr {
-            get { return _fpr; }
-        }
+        public String Fpr { get; private set; }
 
         /* If a problem occured, the reason why the key could not be
            imported.  Otherwise GPGME_No_Error.  */
-        public int Result {
-            get { return _result; }
-        }
+        public int Result { get; private set; }
 
         /* The result of the import, the GPGME_IMPORT_* values bit-wise
            ORed.  0 means the key was already known and no new components
            have been added.  */
 
         /* The key was new.  */
-        public bool NewKey {
-            get { return ((_status & (uint) ImportStatusFlags.New) > 0); }
-        }
+        public bool NewKey => ((_status & (uint) ImportStatusFlags.New) > 0);
 
         /* The key contained new user IDs.  */
-        public bool HasNewUids {
-            get { return ((_status & (uint) ImportStatusFlags.Uid) > 0); }
-        }
+        public bool HasNewUids => ((_status & (uint) ImportStatusFlags.Uid) > 0);
 
         /* The key contained new signatures.  */
-        public bool HasNewSignatures {
-            get { return ((_status & (uint) ImportStatusFlags.Signature) > 0); }
-        }
+        public bool HasNewSignatures => ((_status & (uint) ImportStatusFlags.Signature) > 0);
 
         /* The key contained new sub keys.  */
-        public bool HasNewSubkeys {
-            get { return ((_status & (uint) ImportStatusFlags.Subkey) > 0); }
-        }
+        public bool HasNewSubkeys => ((_status & (uint) ImportStatusFlags.Subkey) > 0);
 
         /* The key contained a secret key.  */
-        public bool NewSecretKey {
-            get { return ((_status & (uint) ImportStatusFlags.Secret) > 0); }
-        }
+        public bool NewSecretKey => ((_status & (uint) ImportStatusFlags.Secret) > 0);
+
         #region IEnumerable<ImportStatus> Members
 
         public IEnumerator<ImportStatus> GetEnumerator() {
@@ -84,12 +66,12 @@ namespace Libgpgme
             Marshal.PtrToStructure(statusPtr, result);
 
             if (result.fpr != IntPtr.Zero) {
-                _fpr = Gpgme.PtrToStringAnsi(result.fpr);
+                Fpr = Gpgme.PtrToStringAnsi(result.fpr);
             }
             _status = result.status;
-            _result = result.result;
+            Result = result.result;
             if (result.next != IntPtr.Zero) {
-                _next = new ImportStatus(result.next);
+                Next = new ImportStatus(result.next);
             }
         }
     }

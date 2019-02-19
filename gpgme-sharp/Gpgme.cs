@@ -12,9 +12,7 @@ namespace Libgpgme
 {
     public sealed class Gpgme
     {
-        public static GpgmeVersion Version {
-            get { return libgpgme.gpgme_version; }
-        }
+        public static GpgmeVersion Version => libgpgme.gpgme_version;
 
         public static string CheckVersion() {
             return libgpgme.gpgme_version_str;

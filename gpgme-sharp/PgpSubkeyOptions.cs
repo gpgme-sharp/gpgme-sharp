@@ -22,9 +22,7 @@ namespace Libgpgme
             KeyLength = KEY_LENGTH_2048;
         }
 
-        public bool IsInfinitely {
-            get { return ExpirationDate.Equals(_unix_date); }
-        }
+        public bool IsInfinitely => ExpirationDate.Equals(_unix_date);
 
         public void MakeInfinitely() {
             ExpirationDate = _unix_date;

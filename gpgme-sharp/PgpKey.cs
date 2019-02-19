@@ -19,20 +19,12 @@ namespace Libgpgme
             Expire // expire
         };
 
-        // Variables for key editing
-
-        // general key edit settings
-        private readonly Settings _settings;
-
-
         internal PgpKey(IntPtr keyPtr)
             : base(keyPtr) {
-            _settings = new Settings(this);
+            EditSettings = new Settings(this);
         }
 
-        public Settings EditSettings {
-            get { return _settings; }
-        }
+        public Settings EditSettings { get; private set; }
 
         protected override int KeyEditCallback(IntPtr handle, KeyEditStatusCode status, string args, int fd) {
             var op = (KeyEditOp) handle;
@@ -49,7 +41,7 @@ namespace Libgpgme
             if (op != KeyEditOp.Passphrase) {
                 switch (status) {
                     case KeyEditStatusCode.GoodPassphrase:
-                        _settings.passSettings.PassphrasePrevWasBad = false;
+                        EditSettings.passSettings.PassphrasePrevWasBad = false;
                         output = new byte[0];
                         runhandler = false;
                         break;
@@ -57,20 +49,20 @@ namespace Libgpgme
                 if (args != null) {
                     switch (status) {
                         case KeyEditStatusCode.UserIdHint:
-                            _settings.passSettings.PassphraseUserIdHint = args;
+                            EditSettings.passSettings.PassphraseUserIdHint = args;
                             output = new byte[0];
                             runhandler = false;
                             break;
 
                         case KeyEditStatusCode.NeedPassphrase:
-                            _settings.passSettings.PassphraseInfo = args;
+                            EditSettings.passSettings.PassphraseInfo = args;
                             output = new byte[0];
                             runhandler = false;
                             break;
 
                         case KeyEditStatusCode.MissingPassphrase:
                         case KeyEditStatusCode.BadPassphrase:
-                            _settings.passSettings.PassphrasePrevWasBad = true;
+                            EditSettings.passSettings.PassphrasePrevWasBad = true;
                             output = new byte[0];
                             runhandler = false;
                             break;
@@ -82,14 +74,14 @@ namespace Libgpgme
                                 /* "passphrase.enter" appears if the context has no passphrase 
                                  * callback function specified.
                                  */
-                                if (_settings.passSettings.PassphraseFunction != null && _settings.passSettings.PassphraseLastResult != PassphraseResult.Canceled) {
-                                    _settings.passSettings.PassphraseLastResult =
-                                        _settings.passSettings.PassphraseFunction(
+                                if (EditSettings.passSettings.PassphraseFunction != null && EditSettings.passSettings.PassphraseLastResult != PassphraseResult.Canceled) {
+                                    EditSettings.passSettings.PassphraseLastResult =
+                                        EditSettings.passSettings.PassphraseFunction(
                                             null,
                                             new PassphraseInfo(IntPtr.Zero,
-                                                _settings.passSettings.PassphraseUserIdHint,
-                                                _settings.passSettings.PassphraseInfo,
-                                                _settings.passSettings.PassphrasePrevWasBad),
+                                                EditSettings.passSettings.PassphraseUserIdHint,
+                                                EditSettings.passSettings.PassphraseInfo,
+                                                EditSettings.passSettings.PassphrasePrevWasBad),
                                             ref passphrase);
                                     if (passphrase != null) {
                                         byte[] p = Gpgme.ConvertCharArrayToUTF8(passphrase, 0);
@@ -104,9 +96,9 @@ namespace Libgpgme
                                             passphrase[i] = '\0';
                                         }
                                     }
-                                } else if (_settings.passSettings.Passphrase != null) {
+                                } else if (EditSettings.passSettings.Passphrase != null) {
                                     byte[] p = Gpgme.ConvertCharArrayToUTF8(
-                                        _settings.passSettings.Passphrase,
+                                        EditSettings.passSettings.Passphrase,
                                         0);
                                     libgpgme.NativeMethods.gpgme_io_write(fd, p, (UIntPtr)p.Length);
 
@@ -140,7 +132,7 @@ namespace Libgpgme
                         break;
                     case KeyEditOp.Passphrase:
                         output = PassphraseHandler(status, args, fd);
-                        if (output == null && _settings.passOptions.aborthandler) {
+                        if (output == null && EditSettings.passOptions.aborthandler) {
                             return 1; // abort
                         }
                         break;
@@ -200,7 +192,7 @@ namespace Libgpgme
 #endif
 
         private byte[] DeleteSignatureHandler(string args) {
-            PgpDeleteSignatureOptions delsig_options = _settings.delsigOptions;
+            PgpDeleteSignatureOptions delsig_options = EditSettings.delsigOptions;
 
             if (args != null) {
                 string output;
@@ -264,9 +256,9 @@ namespace Libgpgme
                 throw new ArgumentException("No signatures selected.");
             }
 
-            lock (_settings.passLock) {
-                lock (_settings.delsigLock) {
-                    _settings.delsigOptions = options;
+            lock (EditSettings.passLock) {
+                lock (EditSettings.delsigLock) {
+                    EditSettings.delsigOptions = options;
 
                     // reset object
                     options.cmdSend = false;
@@ -286,18 +278,17 @@ namespace Libgpgme
                         case gpg_err_code_t.GPG_ERR_NO_ERROR:
                             break;
                         case gpg_err_code_t.GPG_ERR_BAD_PASSPHRASE:
-                            throw new BadPassphraseException(_settings.passSettings.GetPassphraseInfo());
+                            throw new BadPassphraseException(EditSettings.passSettings.GetPassphraseInfo());
 
                         default:
-                            throw new GpgmeException("An unknown error occurred. Error: "
-                                + err.ToString(CultureInfo.InvariantCulture), err);
+                            throw GpgmeError.CreateException(errcode);
                     }
                 }
             }
         }
 
         private byte[] RevokeSignatureHandler(string args) {
-            PgpRevokeSignatureOptions revsig_options = _settings.revsigOptions;
+            PgpRevokeSignatureOptions revsig_options = EditSettings.revsigOptions;
 
             if (args != null) {
                 // specify the uids from that the signature shall be revoked
@@ -378,9 +369,9 @@ namespace Libgpgme
                 throw new ArgumentException("No signatures selected.");
             }
 
-            lock (_settings.passLock) {
-                lock (_settings.revsigLock) {
-                    _settings.revsigOptions = options;
+            lock (EditSettings.passLock) {
+                lock (EditSettings.revsigLock) {
+                    EditSettings.revsigOptions = options;
 
                     // reset object
                     options.cmdSend = false;
@@ -405,18 +396,17 @@ namespace Libgpgme
                         case gpg_err_code_t.GPG_ERR_NO_ERROR:
                             break;
                         case gpg_err_code_t.GPG_ERR_BAD_PASSPHRASE:
-                            throw new BadPassphraseException(_settings.passSettings.GetPassphraseInfo());
+                            throw new BadPassphraseException(EditSettings.passSettings.GetPassphraseInfo());
 
                         default:
-                            throw new GpgmeException("An unknown error occurred. Error: "
-                                + err.ToString(CultureInfo.InvariantCulture), err);
+                            throw GpgmeError.CreateException(errcode);
                     }
                 }
             }
         }
 
         private byte[] TrustHandler(string args) {
-            PgpTrustOptions trust_options = _settings.trustOptions;
+            PgpTrustOptions trust_options = EditSettings.trustOptions;
 
             if (args != null) {
                 string output;
@@ -452,8 +442,8 @@ namespace Libgpgme
                 throw new InvalidContextException("An invalid context has been supplied.");
             }
 
-            lock (_settings.trustLock) {
-                _settings.trustOptions = new PgpTrustOptions {
+            lock (EditSettings.trustLock) {
+                EditSettings.trustOptions = new PgpTrustOptions {
                     trust = trust
                 };
 
@@ -470,16 +460,16 @@ namespace Libgpgme
                     case gpg_err_code_t.GPG_ERR_NO_ERROR:
                         break;
                     case gpg_err_code_t.GPG_ERR_BAD_PASSPHRASE:
-                        throw new BadPassphraseException(_settings.passSettings.GetPassphraseInfo());
+                        throw new BadPassphraseException(EditSettings.passSettings.GetPassphraseInfo());
 
                     default:
-                        throw new GpgmeException("An unknown error occurred.", err);
+                        throw GpgmeError.CreateException(errcode);
                 }
             }
         }
 
         private byte[] EnableDisableHandler(string args) {
-            PgpEnableDisableOptions endis_options = _settings.endisOptions;
+            PgpEnableDisableOptions endis_options = EditSettings.endisOptions;
             string output = "";
 
             if (args != null) {
@@ -513,8 +503,8 @@ namespace Libgpgme
                 throw new InvalidContextException("An invalid context has been supplied.");
             }
 
-            lock (_settings.endisLock) {
-                _settings.endisOptions = new PgpEnableDisableOptions {
+            lock (EditSettings.endisLock) {
+                EditSettings.endisOptions = new PgpEnableDisableOptions {
                     OperationMode = PgpEnableDisableOptions.Mode.Enable
                 };
 
@@ -531,10 +521,10 @@ namespace Libgpgme
                     case gpg_err_code_t.GPG_ERR_NO_ERROR:
                         break;
                     case gpg_err_code_t.GPG_ERR_BAD_PASSPHRASE:
-                        throw new BadPassphraseException(_settings.passSettings.GetPassphraseInfo());
+                        throw new BadPassphraseException(EditSettings.passSettings.GetPassphraseInfo());
 
                     default:
-                        throw new GpgmeException("An unknown error occurred.", err);
+                        throw GpgmeError.CreateException(errcode);
                 }
             }
         }
@@ -547,8 +537,8 @@ namespace Libgpgme
                 throw new InvalidContextException("An invalid context has been supplied.");
             }
 
-            lock (_settings.endisLock) {
-                _settings.endisOptions = new PgpEnableDisableOptions {
+            lock (EditSettings.endisLock) {
+                EditSettings.endisOptions = new PgpEnableDisableOptions {
                     OperationMode = PgpEnableDisableOptions.Mode.Disable
                 };
 
@@ -565,16 +555,16 @@ namespace Libgpgme
                     case gpg_err_code_t.GPG_ERR_NO_ERROR:
                         break;
                     case gpg_err_code_t.GPG_ERR_BAD_PASSPHRASE:
-                        throw new BadPassphraseException(_settings.passSettings.GetPassphraseInfo());
+                        throw new BadPassphraseException(EditSettings.passSettings.GetPassphraseInfo());
 
                     default:
-                        throw new GpgmeException("An unknown error occurred.", err);
+                        throw GpgmeError.CreateException(errcode);
                 }
             }
         }
 
         private byte[] SignHandler(KeyEditStatusCode status, string args) {
-            PgpSignatureOptions sig_options = _settings.sigOptions;
+            PgpSignatureOptions sig_options = EditSettings.sigOptions;
 
             if (args != null) {
                 if (status == KeyEditStatusCode.AlreadySigned) {
@@ -709,9 +699,9 @@ namespace Libgpgme
                 throw new ArgumentNullException("options", "No PgpSignatureOptions object specified.");
             }
 
-            lock (_settings.passLock) {
-                lock (_settings.sigLock) {
-                    _settings.sigOptions = options;
+            lock (EditSettings.passLock) {
+                lock (EditSettings.sigLock) {
+                    EditSettings.sigOptions = options;
 
                     // reset object
                     options.cmdSend = false;
@@ -732,11 +722,10 @@ namespace Libgpgme
                         case gpg_err_code_t.GPG_ERR_NO_ERROR:
                             break;
                         case gpg_err_code_t.GPG_ERR_BAD_PASSPHRASE:
-                            throw new BadPassphraseException(_settings.passSettings.GetPassphraseInfo());
+                            throw new BadPassphraseException(EditSettings.passSettings.GetPassphraseInfo());
 
                         default:
-                            throw new GpgmeException("An unknown error occurred. Error: "
-                                + err.ToString(CultureInfo.InvariantCulture), err);
+                            throw GpgmeError.CreateException(errcode);
                     }
                 }
             }
@@ -744,7 +733,7 @@ namespace Libgpgme
 
 
         private byte[] ExpireHandler(string args) {
-            PgpExpirationOptions expire_options = _settings.expireOptions;
+            PgpExpirationOptions expire_options = EditSettings.expireOptions;
 
             if (args != null) {
                 string output;
@@ -808,9 +797,9 @@ namespace Libgpgme
                 throw new ArgumentNullException("options", "No PgpExpireOptions object specified.");
             }
 
-            lock (_settings.passLock) {
-                lock (_settings.expireLock) {
-                    _settings.expireOptions = options;
+            lock (EditSettings.passLock) {
+                lock (EditSettings.expireLock) {
+                    EditSettings.expireOptions = options;
 
                     // reset object
                     options.cmdSend = false;
@@ -828,10 +817,9 @@ namespace Libgpgme
                         case gpg_err_code_t.GPG_ERR_NO_ERROR:
                             break;
                         case gpg_err_code_t.GPG_ERR_BAD_PASSPHRASE:
-                            throw new BadPassphraseException(_settings.passSettings.GetPassphraseInfo());
+                            throw new BadPassphraseException(EditSettings.passSettings.GetPassphraseInfo());
                         default:
-                            throw new GpgmeException("An unknown error occurred. Error: "
-                                + err.ToString(CultureInfo.InvariantCulture), err);
+                            throw GpgmeError.CreateException(errcode);
                     }
                 }
             }
@@ -842,7 +830,7 @@ namespace Libgpgme
 			DebugOutput("Inside AddSubkeyHandler(..)");
 #endif
 
-            PgpSubkeyOptions subkey_options = _settings.subkeyOptions;
+            PgpSubkeyOptions subkey_options = EditSettings.subkeyOptions;
 
             if (args != null) {
                 string output;
@@ -861,12 +849,12 @@ namespace Libgpgme
                      * in order to specify customized DSA or RSA subkeys.
                      */
 
-                    _settings.subkeyalgoquestion++;
+                    EditSettings.subkeyalgoquestion++;
 
                     output = ((int) subkey_options.Algorithm).ToString(CultureInfo.InvariantCulture);
 
                     // GPG IS NOT IN EXPERT MODE!
-                    if (_settings.subkeyalgoquestion > 1) {
+                    if (EditSettings.subkeyalgoquestion > 1) {
 #if (VERBOSE_DEBUG)
 						DebugOutput("End keygen.algo.");
 #endif
@@ -881,23 +869,23 @@ namespace Libgpgme
                 if (args.Equals("keygen.flags")) {
                     // Auth is NOT enabled by default
                     if ((subkey_options.Capability & AlgorithmCapability.CanAuth) == AlgorithmCapability.CanAuth &&
-                        ((_settings.subkeycapability & AlgorithmCapability.CanAuth) != AlgorithmCapability.CanAuth)) {
-                        _settings.subkeycapability |= AlgorithmCapability.CanAuth;
+                        ((EditSettings.subkeycapability & AlgorithmCapability.CanAuth) != AlgorithmCapability.CanAuth)) {
+                        EditSettings.subkeycapability |= AlgorithmCapability.CanAuth;
                         output = "A";
                     }
                         // Sign is enabled by default!
                     else if ((subkey_options.Capability & AlgorithmCapability.CanSign) != AlgorithmCapability.CanSign &&
-                        ((_settings.subkeycapability & AlgorithmCapability.CanSign) != AlgorithmCapability.CanSign)) {
-                        _settings.subkeycapability |= AlgorithmCapability.CanSign;
+                        ((EditSettings.subkeycapability & AlgorithmCapability.CanSign) != AlgorithmCapability.CanSign)) {
+                        EditSettings.subkeycapability |= AlgorithmCapability.CanSign;
                         // save, that we have checked "Sign" flag
                         output = "S";
                     }
                         // Encrypt is enabled by default!
                     else if ((subkey_options.Capability & AlgorithmCapability.CanEncrypt) !=
                         AlgorithmCapability.CanEncrypt &&
-                            ((_settings.subkeycapability & AlgorithmCapability.CanEncrypt) !=
+                            ((EditSettings.subkeycapability & AlgorithmCapability.CanEncrypt) !=
                                 AlgorithmCapability.CanEncrypt)) {
-                        _settings.subkeycapability |= AlgorithmCapability.CanEncrypt;
+                        EditSettings.subkeycapability |= AlgorithmCapability.CanEncrypt;
                         // save, that we have checked "Encrypt" flag
                         output = "E";
                     } else {
@@ -931,7 +919,7 @@ namespace Libgpgme
                     return ToU8(output);
                 }
                 if (args.Equals("keyedit.prompt")) {
-                    if (_settings.subkeyalgoquestion > 1) {
+                    if (EditSettings.subkeyalgoquestion > 1) {
                         /* Do not save the new created subkey because the user 
                          * requested a customized subkey but GnuPG was not in 
                          * "Expert" mode.
@@ -967,11 +955,11 @@ namespace Libgpgme
                 throw new ArgumentNullException("options", "No PgpSubkeyOptions object specified.");
             }
 
-            lock (_settings.passLock) {
-                lock (_settings.subkeyLock) {
-                    _settings.subkeyOptions = options;
-                    _settings.subkeycapability = AlgorithmCapability.CanNothing;
-                    _settings.subkeyalgoquestion = 0;
+            lock (EditSettings.passLock) {
+                lock (EditSettings.subkeyLock) {
+                    EditSettings.subkeyOptions = options;
+                    EditSettings.subkeycapability = AlgorithmCapability.CanNothing;
+                    EditSettings.subkeyalgoquestion = 0;
                     options.cmdSend = false;
 
                     const KeyEditOp OP = KeyEditOp.AddSubkey;
@@ -981,23 +969,22 @@ namespace Libgpgme
                     gpg_err_code_t errcode = libgpgerror.gpg_err_code(err);
                     switch (errcode) {
                         case gpg_err_code_t.GPG_ERR_NO_ERROR:
-                            if (_settings.subkeyalgoquestion > 1) {
+                            if (EditSettings.subkeyalgoquestion > 1) {
                                 throw new NotSupportedException(
                                     "GnuPG was not in expert mode. Customized subkeys are not supported.");
                             }
                             break;
                         case gpg_err_code_t.GPG_ERR_BAD_PASSPHRASE:
-                            throw new BadPassphraseException(_settings.passSettings.GetPassphraseInfo());
+                            throw new BadPassphraseException(EditSettings.passSettings.GetPassphraseInfo());
                         default:
-                            throw new GpgmeException("An unknown error occurred. Error: "
-                                + err.ToString(CultureInfo.InvariantCulture), err);
+                            throw GpgmeError.CreateException(errcode);
                     }
                 }
             }
         }
 
         private byte[] PassphraseHandler(KeyEditStatusCode status, string args, int fd) {
-            PgpPassphraseOptions pass_options = _settings.passOptions;
+            PgpPassphraseOptions pass_options = EditSettings.passOptions;
 
             switch (status) {
                 case KeyEditStatusCode.MissingPassphrase:
@@ -1041,16 +1028,16 @@ namespace Libgpgme
 
                 switch (status) {
                     case KeyEditStatusCode.UserIdHint:
-                        _settings.passSettings.PassphraseUserIdHint = args;
+                        EditSettings.passSettings.PassphraseUserIdHint = args;
                         return new byte[0];
 
                     case KeyEditStatusCode.NeedPassphrase:
-                        _settings.passSettings.PassphraseInfo = args;
+                        EditSettings.passSettings.PassphraseInfo = args;
                         return new byte[0];
 
                     case KeyEditStatusCode.MissingPassphrase:
                     case KeyEditStatusCode.BadPassphrase:
-                        _settings.passSettings.PassphrasePrevWasBad = true;
+                        EditSettings.passSettings.PassphrasePrevWasBad = true;
                         return new byte[0];
 
                     case KeyEditStatusCode.GetHidden:
@@ -1080,18 +1067,18 @@ namespace Libgpgme
                                 }
                             }
 
-                            if (passphrase_func != null && _settings.passSettings.PassphraseLastResult != PassphraseResult.Canceled) {
+                            if (passphrase_func != null && EditSettings.passSettings.PassphraseLastResult != PassphraseResult.Canceled) {
 #if (VERBOSE_DEBUG)
 								    DebugOutput("Calling passphrase callback function.. ");
 #endif
                                 // run callback function
-                                _settings.passSettings.PassphraseLastResult =
+                                EditSettings.passSettings.PassphraseLastResult =
                                     passphrase_func(
                                         null,
                                         new PassphraseInfo(IntPtr.Zero,
-                                            _settings.passSettings.PassphraseUserIdHint,
-                                            _settings.passSettings.PassphraseInfo,
-                                            _settings.passSettings.PassphrasePrevWasBad),
+                                            EditSettings.passSettings.PassphraseUserIdHint,
+                                            EditSettings.passSettings.PassphraseInfo,
+                                            EditSettings.passSettings.PassphrasePrevWasBad),
                                         ref passphrase);
                             }
 
@@ -1143,11 +1130,11 @@ namespace Libgpgme
                 throw new ArgumentNullException("options", "PgpPassphraseOptions object required.");
             }
 
-            lock (_settings.passLock) {
-                lock (_settings.newpassLock) {
+            lock (EditSettings.passLock) {
+                lock (EditSettings.newpassLock) {
                     // specify key edit operation;
                     const KeyEditOp OP = KeyEditOp.Passphrase;
-                    _settings.passOptions = options;
+                    EditSettings.passOptions = options;
 
                     // reset object
                     options.passphraseSendCmd = false;
@@ -1174,13 +1161,12 @@ namespace Libgpgme
                             {
                                 break;
                             }
-                            throw new BadPassphraseException(_settings.passSettings.GetPassphraseInfo());
+                            throw new BadPassphraseException(EditSettings.passSettings.GetPassphraseInfo());
                         default:
                             if (options.missingpasswd && options.aborthandler) {
-                                throw new EmptyPassphraseException(_settings.passSettings.GetPassphraseInfo());
+                                throw new EmptyPassphraseException(EditSettings.passSettings.GetPassphraseInfo());
                             }
-                            throw new GpgmeException("An unknown error occurred. Error:"
-                                + err.ToString(CultureInfo.InvariantCulture), err);
+                            throw GpgmeError.CreateException(errcode);
                     }
                 }
             }

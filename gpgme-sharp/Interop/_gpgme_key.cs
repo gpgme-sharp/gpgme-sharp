@@ -86,7 +86,7 @@ namespace Libgpgme.Interop
         }
 
         public bool revoked {
-            get { return ((flags & 1) > 0); }
+            get => ((flags & 1) > 0);
             set {
                 if (value) {
                     flags |= 1;
@@ -96,7 +96,7 @@ namespace Libgpgme.Interop
             }
         }
         public bool expired {
-            get { return ((flags & 2) > 0); }
+            get => ((flags & 2) > 0);
             set {
                 if (value) {
                     flags |= 2;
@@ -106,7 +106,7 @@ namespace Libgpgme.Interop
             }
         }
         public bool disabled {
-            get { return ((flags & 4) > 0); }
+            get => ((flags & 4) > 0);
             set {
                 if (value) {
                     flags |= 4;
@@ -116,7 +116,7 @@ namespace Libgpgme.Interop
             }
         }
         public bool invalid {
-            get { return ((flags & 8) > 0); }
+            get => ((flags & 8) > 0);
             set {
                 if (value) {
                     flags |= 8;
@@ -126,7 +126,7 @@ namespace Libgpgme.Interop
             }
         }
         public bool can_encrypt {
-            get { return ((flags & 16) > 0); }
+            get => ((flags & 16) > 0);
             set {
                 if (value) {
                     flags |= 16;
@@ -136,7 +136,7 @@ namespace Libgpgme.Interop
             }
         }
         public bool can_sign {
-            get { return ((flags & 32) > 0); }
+            get => ((flags & 32) > 0);
             set {
                 if (value) {
                     flags |= 32;
@@ -146,7 +146,7 @@ namespace Libgpgme.Interop
             }
         }
         public bool can_certify {
-            get { return ((flags & 64) > 0); }
+            get => ((flags & 64) > 0);
             set {
                 if (value) {
                     flags |= 64;
@@ -156,7 +156,7 @@ namespace Libgpgme.Interop
             }
         }
         public bool secret {
-            get { return ((flags & 128) > 0); }
+            get => ((flags & 128) > 0);
             set {
                 if (value) {
                     flags |= 128;
@@ -166,7 +166,7 @@ namespace Libgpgme.Interop
             }
         }
         public bool can_authenticate {
-            get { return ((flags & 256) > 0); }
+            get => ((flags & 256) > 0);
             set {
                 if (value) {
                     flags |= 256;
@@ -176,7 +176,7 @@ namespace Libgpgme.Interop
             }
         }
         public bool is_qualified {
-            get { return ((flags & 512) > 0); }
+            get => ((flags & 512) > 0);
             set {
                 if (value) {
                     flags |= 512;

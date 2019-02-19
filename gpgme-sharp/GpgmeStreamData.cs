@@ -24,12 +24,9 @@ namespace Libgpgme
             }
         }
 
-        public override bool IsValid {
-            get {
-                return (iostream != null &&
-                    (!dataPtr.Equals(IntPtr.Zero)));
-            }
-        }
+        public override bool IsValid =>
+            (iostream != null &&
+             (!dataPtr.Equals(IntPtr.Zero)));
 
         public override long Length {
             get {
@@ -56,9 +53,8 @@ namespace Libgpgme
                 return false;
             }
         }
-        public override bool CanRelease {
-            get { return true; }
-        }
+        public override bool CanRelease => true;
+
         public override bool CanWrite {
             get {
                 if (iostream != null) {
@@ -76,8 +72,8 @@ namespace Libgpgme
             }
         }
         public Stream OriginStream {
-            get { return iostream; }
-            protected set { iostream = value; }
+            get => iostream;
+            protected set => iostream = value;
         }
 
         ~GpgmeStreamData() {

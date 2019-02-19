@@ -99,16 +99,10 @@ namespace Libgpgme
             }
         }
 
-        public bool CtxValid {
-            // If the context invalides the engine object(s) invailde(s) as well.
-            get {
-                return HasCtx && _ctx.IsValid;
-            }
-        }
+        // If the context invalides the engine object(s) invailde(s) as well.
+        public bool CtxValid => HasCtx && _ctx.IsValid;
 
-        public bool HasCtx {
-            get { return (_ctx != null); }
-        }
+        public bool HasCtx => (_ctx != null);
 
         public EngineInfo Next {
             get {

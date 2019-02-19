@@ -41,7 +41,7 @@ namespace Libgpgme.Interop
         public IntPtr _last_keysig; //gpgme_key_sig_t
 
         public bool revoked {
-            get { return ((flags & 1) > 0); }
+            get => ((flags & 1) > 0);
             set {
                 if (value) {
                     flags |= 1;
@@ -51,7 +51,7 @@ namespace Libgpgme.Interop
             }
         }
         public bool invalid {
-            get { return ((flags & 2) > 0); }
+            get => ((flags & 2) > 0);
             set {
                 if (value) {
                     flags |= 2;
