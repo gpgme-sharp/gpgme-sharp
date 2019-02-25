@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ExportKey": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "GPGME_DEBUG": "0"
+      }
+    }
+  }
+}
