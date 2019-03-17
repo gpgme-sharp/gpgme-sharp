@@ -66,6 +66,15 @@ namespace Libgpgme.Interop
         /* The expiration timestamp, 0 if the subkey does not expire.  */
         public IntPtr expires;
 
+        /* The serial number of a smart card holding this key or NULL.  */
+        public IntPtr card_number; // char*
+
+        /* The name of the curve for ECC algorithms or NULL.  */
+        public IntPtr curve; // char*
+
+        /* The keygrip of the subkey in hex digit form or NULL if not available. */
+        public IntPtr keygrip; // char*
+
         public bool revoked {
             get => ((flags & 1) > 0);
             set {

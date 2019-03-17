@@ -12,7 +12,19 @@ namespace Libgpgme
         private long _timestamp;
 
         public string KeyId { get; private set; }
+        /// <summary>
+        /// The keygrip of the subkey in hex digit form or NULL if not availabale.
+        /// </summary>
+        public string Keygrip { get; private set; }
         public string Fingerprint { get; private set; }
+        /// <summary>
+        /// The name of the curve for ECC algorithms or NULL.
+        /// </summary>
+        public string Curve { get; private set; }
+        /// <summary>
+        /// The serial number of a smart card holding this key or NULL.
+        /// </summary>
+        public string CardNumber { get; private set; }
         public Subkey Next { get; private set; }
         public bool Revoked { get; private set; }
         public bool Expired { get; private set; }
@@ -105,6 +117,9 @@ namespace Libgpgme
 
             KeyId = Gpgme.PtrToStringAnsi(subkey.keyid);
             Fingerprint = Gpgme.PtrToStringAnsi(subkey.fpr);
+            Curve = Gpgme.PtrToStringAnsi(subkey.curve);
+            CardNumber = Gpgme.PtrToStringAnsi(subkey.card_number);
+            Keygrip = Gpgme.PtrToStringAnsi(subkey.keygrip);
             _timestamp = (long) subkey.timestamp;
             _expires = (long) subkey.expires;
 
