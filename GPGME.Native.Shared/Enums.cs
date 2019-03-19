@@ -409,4 +409,51 @@ namespace Libgpgme
         /// </summary>
         Loopback = gpgme_pinentry_mode_t.GPGME_PINENTRY_MODE_LOOPBACK,
     }
+
+    [Flags]
+    public enum ExportMode
+    {
+        /// <summary>
+        /// If this bit is set, the output is send directly to the default keyserver. This is
+        /// currently only allowed for OpenPGP keys. It is good practise to not send more than
+        /// a few dozens key to a keyserver at one time. Using this flag requires that the
+        /// keydata argument of the export function is set to NULL. 
+        /// </summary>
+        Extern = gpgme_export_mode_t.GPGME_EXPORT_MODE_EXTERN,
+
+        /// <summary>
+        /// If this bit is set, the smallest possible key is exported. For OpenPGP keys it removes
+        /// all signatures except for the latest self-signatures. For X.509 keys it has no effect.
+        /// Since: 1.3.1
+        /// </summary>
+        Minimal = gpgme_export_mode_t.GPGME_EXPORT_MODE_MINIMAL,
+
+        /// <summary>
+        /// Instead of exporting the public key, the secret key is exported. This may not be
+        /// combined with GPGME_EXPORT_MODE_EXTERN. For X.509 the export format is PKCS#8.
+        /// Since: 1.6.0
+        /// </summary>
+        Secret = gpgme_export_mode_t.GPGME_EXPORT_MODE_SECRET,
+
+        /// <summary>
+        /// If this flag is used with GPGME_EXPORT_MODE_SECRET for an X.509 key the export
+        /// format will be changed to PKCS#1. This flag may not be used with OpenPGP.
+        /// Since: 1.6.0
+        /// </summary>
+        Raw = gpgme_export_mode_t.GPGME_EXPORT_MODE_RAW,
+
+        /// <summary>
+        /// If this flag is used with GPGME_EXPORT_MODE_SECRET for an X.509 key the export
+        /// format will be changed to PKCS#12 which also includes the certificate. This flag
+        /// may not be used with OpenPGP.
+        /// Since: 1.6.0
+        /// </summary>
+        Pkcs12 = gpgme_export_mode_t.GPGME_EXPORT_MODE_PKCS12,
+
+        /// <summary>
+        /// Experimental. Do not export user ids. Works only with certain gpg version.
+        /// Since: 1.12.0
+        /// </summary>
+        NoUID = gpgme_export_mode_t.GPGME_EXPORT_MODE_NOUID,
+    }
 }

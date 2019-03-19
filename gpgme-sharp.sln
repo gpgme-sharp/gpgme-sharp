@@ -7,35 +7,37 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gpgme-sharp", "gpgme-sharp\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{F803B37B-3E35-43F8-A772-3A6D0ECB610A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreatePgpKey", "Examples\CreatePgpKey\CreatePgpKey.csproj", "{81E13A5A-2BF9-4EFB-9AC8-FB004703B648}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreatePgpKey", "Examples\CreatePgpKey\CreatePgpKey.csproj", "{81E13A5A-2BF9-4EFB-9AC8-FB004703B648}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBufferSamples", "DataBufferSamples", "{040ADE11-7491-4C7C-9A4B-E4B645F08BD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBufferTest", "Examples\DataBufferSamples\DataBufferTest\DataBufferTest.csproj", "{478F350D-4A32-4B68-BC3E-EC913CD097CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataBufferTest", "Examples\DataBufferSamples\DataBufferTest\DataBufferTest.csproj", "{478F350D-4A32-4B68-BC3E-EC913CD097CF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KeyOperations", "KeyOperations", "{34B6A704-4985-40D1-8D8D-09C4C97227EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImportKey", "Examples\KeyOperations\ImportKey\ImportKey.csproj", "{E5A0AC77-765C-4E26-ADA1-C19D0B0D2745}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImportKey", "Examples\KeyOperations\ImportKey\ImportKey.csproj", "{E5A0AC77-765C-4E26-ADA1-C19D0B0D2745}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImportKey2", "Examples\KeyOperations\ImportKey2\ImportKey2.csproj", "{4A57F975-5C75-4454-933D-5F3EA8958D90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImportKey2", "Examples\KeyOperations\ImportKey2\ImportKey2.csproj", "{4A57F975-5C75-4454-933D-5F3EA8958D90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListKeys", "Examples\KeyOperations\ListKeys\ListKeys.csproj", "{6BACB1D8-F407-4701-86D3-323C878B0C31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ListKeys", "Examples\KeyOperations\ListKeys\ListKeys.csproj", "{6BACB1D8-F407-4701-86D3-323C878B0C31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModifyPgpKey", "Examples\ModifyPgpKey\ModifyPgpKey.csproj", "{EAD627D1-7102-48BA-AA28-1F0E5B28876E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModifyPgpKey", "Examples\ModifyPgpKey\ModifyPgpKey.csproj", "{EAD627D1-7102-48BA-AA28-1F0E5B28876E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PgpCombinedCrypto", "Examples\PgpCombinedCrypto\PgpCombinedCrypto.csproj", "{B4DC5583-0F25-4451-A15E-171CE7583D3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PgpCombinedCrypto", "Examples\PgpCombinedCrypto\PgpCombinedCrypto.csproj", "{B4DC5583-0F25-4451-A15E-171CE7583D3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PgpEncryptDecrypt", "Examples\PgpEncryptDecrypt\PgpEncryptDecrypt.csproj", "{CA80E147-9549-483F-AC09-57A46891BBC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PgpEncryptDecrypt", "Examples\PgpEncryptDecrypt\PgpEncryptDecrypt.csproj", "{CA80E147-9549-483F-AC09-57A46891BBC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PgpSignVerify", "Examples\PgpSignVerify\PgpSignVerify.csproj", "{F593613E-08BF-4B4C-A863-4FFD631E369B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PgpSignVerify", "Examples\PgpSignVerify\PgpSignVerify.csproj", "{F593613E-08BF-4B4C-A863-4FFD631E369B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignPgpKey", "Examples\SignPgpKey\SignPgpKey.csproj", "{B2B6890B-54C8-4BA7-AE61-F06E582A6A3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignPgpKey", "Examples\SignPgpKey\SignPgpKey.csproj", "{B2B6890B-54C8-4BA7-AE61-F06E582A6A3C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GPGME.Native.Win32", "GPGME.Native.Win32\GPGME.Native.Win32.csproj", "{601F32CB-CF0D-486B-848F-8A07BA42658F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GPGME.Native.Unix", "GPGME.Native.Unix\GPGME.Native.Unix.csproj", "{3001DC3D-E42D-4DD1-8960-32A9580FA94D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GPGME.Native.Shared", "GPGME.Native.Shared\GPGME.Native.Shared.csproj", "{C18682B5-3246-4ED4-9527-3F51E89A7235}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExportKey", "Examples\KeyOperations\ExportKey\ExportKey.csproj", "{0016534F-36AC-4B7A-8243-3D3E90976F6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -157,6 +159,14 @@ Global
 		{C18682B5-3246-4ED4-9527-3F51E89A7235}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C18682B5-3246-4ED4-9527-3F51E89A7235}.Release|x86.ActiveCfg = Release|Any CPU
 		{C18682B5-3246-4ED4-9527-3F51E89A7235}.Release|x86.Build.0 = Release|Any CPU
+		{0016534F-36AC-4B7A-8243-3D3E90976F6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0016534F-36AC-4B7A-8243-3D3E90976F6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0016534F-36AC-4B7A-8243-3D3E90976F6B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0016534F-36AC-4B7A-8243-3D3E90976F6B}.Debug|x86.Build.0 = Debug|Any CPU
+		{0016534F-36AC-4B7A-8243-3D3E90976F6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0016534F-36AC-4B7A-8243-3D3E90976F6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0016534F-36AC-4B7A-8243-3D3E90976F6B}.Release|x86.ActiveCfg = Release|Any CPU
+		{0016534F-36AC-4B7A-8243-3D3E90976F6B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -174,6 +184,7 @@ Global
 		{CA80E147-9549-483F-AC09-57A46891BBC2} = {F803B37B-3E35-43F8-A772-3A6D0ECB610A}
 		{F593613E-08BF-4B4C-A863-4FFD631E369B} = {F803B37B-3E35-43F8-A772-3A6D0ECB610A}
 		{B2B6890B-54C8-4BA7-AE61-F06E582A6A3C} = {F803B37B-3E35-43F8-A772-3A6D0ECB610A}
+		{0016534F-36AC-4B7A-8243-3D3E90976F6B} = {34B6A704-4985-40D1-8D8D-09C4C97227EA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {76405F3E-1C3A-4FBE-9275-780388EAA45B}

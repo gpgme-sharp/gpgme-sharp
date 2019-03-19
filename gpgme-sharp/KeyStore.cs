@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Runtime.InteropServices;
 using Libgpgme.Interop;
 
@@ -108,11 +109,11 @@ namespace Libgpgme
             }
         }
 
-        public void Export(string pattern, GpgmeData keydata) {
-            Export(new[] {pattern}, keydata);
+        public void Export(string pattern, GpgmeData keydata, ExportMode? mode = null) {
+            Export(new[] {pattern}, keydata, mode);
         }
 
-        public void Export(string[] pattern, GpgmeData keydata) {
+        public void Export(string[] pattern, GpgmeData keydata, ExportMode? mode = null) {
             if (Context == null ||
                 !(Context.IsValid)) {
                 throw new InvalidContextException();
@@ -133,20 +134,20 @@ namespace Libgpgme
             }
 
             int err;
-            const uint RESERVED_FLAG = 0;
+            var apiMode = mode == null ? 0 : (uint) mode;
 
             lock (Context.CtxLock) {
                 if (parray != null) {
                     err = libgpgme.NativeMethods.gpgme_op_export_ext(
                         Context.CtxPtr,
                         parray,
-                        RESERVED_FLAG,
+                        apiMode,
                         keydata.dataPtr);
                 } else {
                     err = libgpgme.NativeMethods.gpgme_op_export(
                         Context.CtxPtr,
                         IntPtr.Zero,
-                        RESERVED_FLAG,
+                        apiMode,
                         keydata.dataPtr);
                 }
             }
@@ -157,6 +158,18 @@ namespace Libgpgme
             Gpgme.FreeStringArray(parray);
 
             GpgmeError.Check(err);
+        }
+
+        public void Export(string pattern, string filename, ExportMode? mode = null) {
+            using (var keyfile = new GpgmeFileData(filename, FileMode.Create, FileAccess.ReadWrite)) {
+                Export(pattern, keyfile, mode);
+            }
+        }
+
+        public void Export(string[] pattern, string filename, ExportMode? mode = null) {
+            using (var keyfile = new GpgmeFileData(filename, FileMode.Create, FileAccess.ReadWrite)) {
+                Export(pattern, keyfile, mode);
+            }
         }
 
         public Key GetKey(string fpr, bool secretOnly) {

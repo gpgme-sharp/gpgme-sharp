@@ -382,14 +382,14 @@ namespace GPGME.Native.Unix
         internal static extern int gpgme_op_export(
             [In] IntPtr ctx,
             [In] IntPtr pattern, // const char*
-            [In] uint reserved,
+            [In] uint mode,
             [In] IntPtr keydata);
 
         [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_export_ext(
             [In] IntPtr ctx,
             [In] IntPtr[] pattern, //const char *pattern[]
-            [In] uint reserved,
+            [In] uint mode,
             [In] IntPtr keydata);
 
         /* Create a new data buffer and return it in R_DH.  */
