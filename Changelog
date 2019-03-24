@@ -1,3 +1,8 @@
+2019-03-24  Daniel Lo Nigro <d@d.sb> - 2.0.3
+    * Added export modes, to allow exporting secret keys
+	* Added missing fields to subkey: Curve, CardNumber, and Keygrip
+	* Cleaned up error handling code
+
 2019-02-10  Daniel Lo Nigro <d@d.sb> - 2.0.1
     * Fixed passphrase callback
 	
