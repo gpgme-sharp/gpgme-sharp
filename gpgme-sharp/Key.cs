@@ -75,7 +75,7 @@ namespace Libgpgme
 
         private void CleanUp() {
             if (_key_ptr != IntPtr.Zero) {
-                libgpgme.NativeMethods.gpgme_key_release(_key_ptr);
+                NativeMethods.gpgme_key_release(_key_ptr);
                 _key_ptr = IntPtr.Zero;
             }
         }
@@ -139,7 +139,7 @@ namespace Libgpgme
                 _instance_key_edit_callback = KeyEditCallback;
 
                 // start key editing
-                int err = libgpgme.NativeMethods.gpgme_op_edit(
+                int err = NativeMethods.gpgme_op_edit(
                     ctx.CtxPtr,
                     KeyPtr,
                     _instance_key_edit_callback,
@@ -182,7 +182,7 @@ namespace Libgpgme
         }
 
         protected virtual int KeyEditCallback(IntPtr handle, KeyEditStatusCode status, string args, int fd) {
-            libgpgme.NativeMethods.gpgme_io_write(fd, new[] {(byte) 'q', (byte) 'u', (byte) 'i', (byte) 't', (byte) '\n'}, (UIntPtr)5);
+            NativeMethods.gpgme_io_write(fd, new[] {(byte) 'q', (byte) 'u', (byte) 'i', (byte) 't', (byte) '\n'}, (UIntPtr)5);
             throw new NotImplementedException("The function KeyEditCallback is not implemented.");
         }
     }

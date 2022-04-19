@@ -85,7 +85,7 @@ namespace Libgpgme
                                             ref passphrase);
                                     if (passphrase != null) {
                                         byte[] p = Gpgme.ConvertCharArrayToUTF8(passphrase, 0);
-                                        libgpgme.NativeMethods.gpgme_io_write(fd, p, (UIntPtr)p.Length);
+                                        NativeMethods.gpgme_io_write(fd, p, (UIntPtr)p.Length);
 
                                         int i;
                                         // try to clear passphrase in memory
@@ -100,7 +100,7 @@ namespace Libgpgme
                                     byte[] p = Gpgme.ConvertCharArrayToUTF8(
                                         EditSettings.passSettings.Passphrase,
                                         0);
-                                    libgpgme.NativeMethods.gpgme_io_write(fd, p, (UIntPtr)p.Length);
+                                    NativeMethods.gpgme_io_write(fd, p, (UIntPtr)p.Length);
 
                                     int i;
                                     // try to clear passphrase in memory
@@ -109,7 +109,7 @@ namespace Libgpgme
                                     }
                                 } else {
                                     // No password or password callback function specified!
-                                    libgpgme.NativeMethods.gpgme_io_write(fd, new[] { (byte)0 }, (UIntPtr)1);
+                                    NativeMethods.gpgme_io_write(fd, new[] { (byte)0 }, (UIntPtr)1);
                                 }
 
                                 output = new byte[0]; // confirm password (send \n)
@@ -165,8 +165,8 @@ namespace Libgpgme
 #if (VERBOSE_DEBUG)
                 DebugOutput(output);
 #endif
-                libgpgme.NativeMethods.gpgme_io_write(fd, output, (UIntPtr)output.Length);
-                libgpgme.NativeMethods.gpgme_io_write(fd, new[] {(byte) '\n'}, (UIntPtr)1);
+                NativeMethods.gpgme_io_write(fd, output, (UIntPtr)output.Length);
+                NativeMethods.gpgme_io_write(fd, new[] {(byte) '\n'}, (UIntPtr)1);
             }
 
             return 0;
@@ -1084,7 +1084,7 @@ namespace Libgpgme
 
                             if (passphrase != null) {
                                 byte[] p = Gpgme.ConvertCharArrayToUTF8(passphrase, 0);
-                                libgpgme.NativeMethods.gpgme_io_write(fd, p, (UIntPtr) p.Length);
+                                NativeMethods.gpgme_io_write(fd, p, (UIntPtr) p.Length);
 
                                 // try to clear passphrase in memory
                                 int i;

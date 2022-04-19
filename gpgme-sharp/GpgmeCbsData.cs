@@ -56,7 +56,7 @@ namespace Libgpgme
 
         private void ReleaseCbsData() {
             if (!dataPtr.Equals(IntPtr.Zero) && !_release_cbfunc_init) {
-                libgpgme.NativeMethods.gpgme_data_release(dataPtr);
+                NativeMethods.gpgme_data_release(dataPtr);
 
                 if (libgpgme.use_lfs) {
                     if (_cbs_lfs.release != null) {
@@ -153,7 +153,7 @@ namespace Libgpgme
                 Marshal.StructureToPtr(_cbs, _cbs_ptr, false);
             }
 
-            int err = libgpgme.NativeMethods.gpgme_data_new_from_cbs(
+            int err = NativeMethods.gpgme_data_new_from_cbs(
                 out dataPtr,
                 _cbs_ptr,
                 _handle);
