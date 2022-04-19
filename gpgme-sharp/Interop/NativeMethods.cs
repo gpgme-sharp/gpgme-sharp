@@ -1,28 +1,19 @@
-﻿using Libgpgme.Interop;
-using System;
+﻿using System;
 using System.Runtime.InteropServices;
-using GPGME.Native.Shared;
 
-#if WINDOWS
-namespace GPGME.Native.Win32
-#else
-namespace GPGME.Native.Unix
-#endif
+namespace Libgpgme.Interop
 {
 	public static class NativeMethods
 	{
-#if WINDOWS
-		private const string LIBRARY_NAME = "libgpgme-11.dll";
-#else
-		private const string LIBRARY_NAME = "libgpgme.so.11";
-#endif
+        private const string WINDOWS_LIBRARY_NAME = "libgpgme-11.dll";
+		private const string UNIX_LIBRARY_NAME = "libgpgme.so.11";
 
         /* Check that the library fulfills the version requirement.  Note:
            This is here only for the case where a user takes a pointer from
            the old version of this function.  The new version and macro for
            run-time checks are below.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr gpgme_check_version(
             [In] IntPtr req_version);
 
@@ -31,7 +22,7 @@ namespace GPGME.Native.Unix
         /* Check that the library fulfills the version requirement and check
            for struct layout mismatch involving bitfields.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr gpgme_check_version_internal(
             [In] IntPtr req_version, // const char *
             [In] IntPtr offset_sig_validity);
@@ -43,7 +34,7 @@ namespace GPGME.Native.Unix
            
            const char *gpgme_strerror (gpgme_error_t err) */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr gpgme_strerror(
             [In] int err);
 
@@ -58,7 +49,7 @@ namespace GPGME.Native.Unix
          
            int gpgme_strerror_r(gpg_error_t err, char* buf, size_t buflen); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_strerror_r(
             [In] int err,
             [In] IntPtr buf,
@@ -69,7 +60,7 @@ namespace GPGME.Native.Unix
            
            const char *gpgme_strsource (gpgme_error_t err); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr gpgme_strsource(
             [In] int err);
 
@@ -80,7 +71,7 @@ namespace GPGME.Native.Unix
            
            gpgme_err_code_t gpgme_err_code_from_errno(int err); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern gpg_err_code_t gpgme_err_code_from_errno(
             [In] int err);
 
@@ -89,7 +80,7 @@ namespace GPGME.Native.Unix
            
            int gpgme_err_code_to_errno(gpgme_err_code_t code); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_err_code_to_errno(
             [In] gpg_err_code_t code);
 
@@ -98,7 +89,7 @@ namespace GPGME.Native.Unix
            
            gpgme_error_t gpgme_err_make_from_errno(gpgme_err_source_t source, int err); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_err_make_from_errno(
             [In] gpg_err_source_t source,
             [In] int err);
@@ -107,14 +98,14 @@ namespace GPGME.Native.Unix
         
            gpgme_err_code_t gpgme_error_from_errno(int err); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern gpg_err_code_t gpgme_error_from_errno(
             [In] int err);
 
         /* Get the string describing protocol PROTO, or NULL if invalid.  
         const char *gpgme_get_protocol_name (gpgme_protocol_t proto); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr gpgme_get_protocol_name(
             [In] gpgme_protocol_t proto);
 
@@ -123,7 +114,7 @@ namespace GPGME.Native.Unix
            available.  
         gpgme_error_t gpgme_engine_check_version(gpgme_protocol_t proto); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_engine_check_version(
             [In] gpgme_protocol_t proto);
 
@@ -133,7 +124,7 @@ namespace GPGME.Native.Unix
            returned data is valid until the next gpgme_set_engine_info.  
         gpgme_error_t gpgme_get_engine_info(gpgme_engine_info_t* engine_info); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_get_engine_info(
             [Out] out IntPtr engine_info);
 
@@ -141,7 +132,7 @@ namespace GPGME.Native.Unix
            key algorithm ALGO, or NULL if that name is not known.  
         const char *gpgme_pubkey_algo_name (gpgme_pubkey_algo_t algo); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr gpgme_pubkey_algo_name(
             [In] gpgme_pubkey_algo_t algo);
 
@@ -149,28 +140,28 @@ namespace GPGME.Native.Unix
            algorithm ALGO, or NULL if that name is not known.  
          const char *gpgme_hash_algo_name (gpgme_hash_algo_t algo); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr gpgme_hash_algo_name(
             [In] gpgme_hash_algo_t algo);
 
         /* Create a new context and return it in CTX.  
         gpgme_error_t gpgme_new(gpgme_ctx_t* ctx); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_new(
             [Out] out IntPtr ctx);
 
         /* Release the context CTX.  
         void gpgme_release(gpgme_ctx_t ctx); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void gpgme_release(
             [In] IntPtr ctx);
 
         /* Set the protocol to be used by CTX to PROTO.  
         gpgme_error_t gpgme_set_protocol(gpgme_ctx_t ctx, gpgme_protocol_t proto); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_set_protocol(
             [In] IntPtr ctx,
             [In] gpgme_protocol_t proto);
@@ -178,7 +169,7 @@ namespace GPGME.Native.Unix
         /* Get the protocol used with CTX 
         gpgme_protocol_t gpgme_get_protocol(gpgme_ctx_t ctx); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern gpgme_protocol_t gpgme_get_protocol(
             [In] IntPtr ctx);
 
@@ -189,7 +180,7 @@ namespace GPGME.Native.Unix
          gpgme_error_t gpgme_set_pinentry_mode (gpgme_ctx_t ctx, gpgme_pinentry_mode_t mode) 
          */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_set_pinentry_mode(
             [In] IntPtr ctx,
             gpgme_pinentry_mode_t mode);
@@ -197,7 +188,7 @@ namespace GPGME.Native.Unix
         /* Returns the mode set for the context. 
         gpgme_pinentry_mode_t gpgme_get_pinentry_mode(gpgme_ctx_t ctx); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern gpgme_pinentry_mode_t gpgme_get_pinentry_mode(
             [In] IntPtr ctx);
 
@@ -206,7 +197,7 @@ namespace GPGME.Native.Unix
            The returned data is valid until the next gpgme_ctx_set_engine_info.  
         gpgme_engine_info_t gpgme_ctx_get_engine_info(gpgme_ctx_t ctx); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr gpgme_ctx_get_engine_info(
             [In] IntPtr ctx);
 
@@ -217,7 +208,7 @@ namespace GPGME.Native.Unix
 					 const char *file_name,
 					 const char *home_dir); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_ctx_set_engine_info(
             [In] IntPtr ctx,
             [In] gpgme_protocol_t proto,
@@ -228,7 +219,7 @@ namespace GPGME.Native.Unix
         /* If YES is non-zero, enable armor mode in CTX, disable it otherwise.  
         void gpgme_set_armor(gpgme_ctx_t ctx, int yes) */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void gpgme_set_armor(
             [In] IntPtr ctx,
             [In] int yes);
@@ -236,7 +227,7 @@ namespace GPGME.Native.Unix
         /* Return non-zero if armor mode is set in CTX.  
         int gpgme_get_armor(gpgme_ctx_t ctx); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_get_armor(
             [In] IntPtr ctx);
 
@@ -244,7 +235,7 @@ namespace GPGME.Native.Unix
         /* If YES is non-zero, enable text mode in CTX, disable it otherwise.  
         void gpgme_set_textmode(gpgme_ctx_t ctx, int yes); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void gpgme_set_textmode(
             [In] IntPtr ctx,
             [In] int yes);
@@ -252,14 +243,14 @@ namespace GPGME.Native.Unix
         /* Return non-zero if text mode is set in CTX.  
         int gpgme_get_textmode(gpgme_ctx_t ctx); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_get_textmode(
             [In] IntPtr ctx);
 
         /* Include up to NR_OF_CERTS certificates in an S/MIME message.  
         void gpgme_set_include_certs(gpgme_ctx_t ctx, int nr_of_certs); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void gpgme_set_include_certs(
             [In] IntPtr ctx,
             [In] int nr_of_certs);
@@ -267,7 +258,7 @@ namespace GPGME.Native.Unix
         /* Return the number of certs to include in an S/MIME message.  
         int gpgme_get_include_certs(gpgme_ctx_t ctx); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_get_include_certs(
             [In] IntPtr ctx);
 
@@ -275,7 +266,7 @@ namespace GPGME.Native.Unix
         gpgme_error_t gpgme_set_keylist_mode(gpgme_ctx_t ctx,
                               gpgme_keylist_mode_t mode); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_set_keylist_mode(
             [In] IntPtr ctx,
             gpgme_keylist_mode_t mode);
@@ -283,7 +274,7 @@ namespace GPGME.Native.Unix
         /* Get keylist mode in CTX.  
         gpgme_keylist_mode_t gpgme_get_keylist_mode(gpgme_ctx_t ctx); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern gpgme_keylist_mode_t gpgme_get_keylist_mode(
             [In] IntPtr ctx);
 
@@ -292,7 +283,7 @@ namespace GPGME.Native.Unix
         void gpgme_set_passphrase_cb(gpgme_ctx_t ctx,
                                      gpgme_passphrase_cb_t cb, void* hook_value); */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void gpgme_set_passphrase_cb(
             [In] IntPtr ctx,
             [In] gpgme_passphrase_cb_t cb,
@@ -302,13 +293,13 @@ namespace GPGME.Native.Unix
            match PATTERN.  If SECRET_ONLY is true, only secret keys are
            returned.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_keylist_start(
             [In] IntPtr ctx,
             [In] IntPtr pattern,
             [In] int secret_only);
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_keylist_ext_start(
             [In] IntPtr ctx,
             [In] IntPtr[] pattern,
@@ -317,32 +308,32 @@ namespace GPGME.Native.Unix
 
         /* Return the next key from the keylist in R_KEY.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_keylist_next(
             [In] IntPtr ctx,
             [Out] out IntPtr r_key);
 
         /* Terminate a pending keylist operation within CTX.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_keylist_end(
             [In] IntPtr ctx);
 
         /* Release a reference to KEY.  If this was the last one the key is
            destroyed.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void gpgme_key_unref(
             [In] IntPtr key);
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void gpgme_key_release(
             [In] IntPtr key);
 
         /* Get the key with the fingerprint FPR from the crypto backend.  If
           SECRET is true, get the secret key.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_get_key(
             [In] IntPtr ctx,
             [In] IntPtr fpr,
@@ -353,7 +344,7 @@ namespace GPGME.Native.Unix
            SECKEY should be null for now.  PARMS specifies what keys should be
            generated.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_genkey_start(
             [In] IntPtr ctx,
             [In] IntPtr parms, // const char*
@@ -361,7 +352,7 @@ namespace GPGME.Native.Unix
             [In] IntPtr seckey //gpgme_data_t
             );
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_genkey(
             [In] IntPtr ctx,
             [In] IntPtr parms, // const char*
@@ -371,21 +362,21 @@ namespace GPGME.Native.Unix
 
         /* Retrieve a pointer to the result of the genkey operation.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr gpgme_op_genkey_result(
             [In] IntPtr ctx);
 
 
         /* Export the keys found by PATTERN into KEYDATA.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_export(
             [In] IntPtr ctx,
             [In] IntPtr pattern, // const char*
             [In] uint mode,
             [In] IntPtr keydata);
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_export_ext(
             [In] IntPtr ctx,
             [In] IntPtr[] pattern, //const char *pattern[]
@@ -394,13 +385,13 @@ namespace GPGME.Native.Unix
 
         /* Create a new data buffer and return it in R_DH.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_data_new(
             [Out] out IntPtr r_dh);
 
         /* Destroy the data buffer DH.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void gpgme_data_release(
             [In] IntPtr dh);
 
@@ -408,7 +399,7 @@ namespace GPGME.Native.Unix
            BUFFER.  If COPY is zero, copying is delayed until necessary, and
            the data is taken from the original location when needed.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_data_new_from_mem(
             [Out] out IntPtr r_dh,
             [In] IntPtr buffer,
@@ -419,7 +410,7 @@ namespace GPGME.Native.Unix
            OFFSET within the file FNAME or stream FP (exactly one must be
            non-zero).  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_data_new_from_filepart(
             [Out] out IntPtr r_dh,
             [In] IntPtr fname, // const char*
@@ -432,7 +423,7 @@ namespace GPGME.Native.Unix
            OFFSET within the file FNAME or stream FP (exactly one must be
            non-zero).  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_data_new_from_filepart(
             [Out] out IntPtr r_dh,
             [In] IntPtr fname, // const char*
@@ -442,13 +433,13 @@ namespace GPGME.Native.Unix
 
         //size_t
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_data_new_from_fd(
             [Out] out IntPtr dh,
             int fd);
 
         /*
-        [DllImport(LIBRARY_NAME, CharSet=CharSet.Ansi)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet=CharSet.Ansi)]
         internal extern static int gpgme_data_new_from_cbs(
             [Out] out IntPtr dh,
             [In] _gpgme_data_cbs cbs, //gpgme_data_cbs_t
@@ -456,19 +447,19 @@ namespace GPGME.Native.Unix
 
         */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_data_new_from_cbs(
             [Out] out IntPtr dh,
             [In] [MarshalAs(UnmanagedType.FunctionPtr)] _gpgme_data_cbs cbs, //gpgme_data_cbs_t 
             [In] IntPtr handle);
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_data_new_from_cbs(
             [Out] out IntPtr dh,
             [In] [MarshalAs(UnmanagedType.FunctionPtr)] _gpgme_data_cbs_lfs cbs, //gpgme_data_cbs_t_lfs
             [In] IntPtr handle);
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_data_new_from_cbs(
             [Out] out IntPtr dh,
             [In] IntPtr cbs, //gpgme_data_cbs_t
@@ -479,7 +470,7 @@ namespace GPGME.Native.Unix
            the handle DH.  Return the number of characters read, 0 on EOF and
            -1 on error.  If an error occurs, errno is set.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr gpgme_data_read(
             [In] IntPtr dh,
             [In] byte[] buffer,
@@ -491,7 +482,7 @@ namespace GPGME.Native.Unix
            the handle DH.  Return the number of characters read, 0 on EOF and
            -1 on error.  If an error occurs, errno is set.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr gpgme_data_read(
             [In] IntPtr dh,
             [In] IntPtr buffer,
@@ -503,7 +494,7 @@ namespace GPGME.Native.Unix
            in the data object with the handle DH to OFFSET, relativ to
            WHENCE.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr gpgme_data_seek(
             [In] IntPtr dh,
             [In] IntPtr offset, // off_t
@@ -513,7 +504,7 @@ namespace GPGME.Native.Unix
            in the data object with the handle DH to OFFSET, relativ to
            WHENCE.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern long gpgme_data_seek(
             [In] IntPtr dh,
             [In] long offset, // off_t
@@ -523,7 +514,7 @@ namespace GPGME.Native.Unix
            the handle DH.  Return the number of characters written, or -1 on
            error.  If an error occurs, errno is set.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr gpgme_data_write(
             [In] IntPtr dh,
             [In] byte[] buffer,
@@ -533,7 +524,7 @@ namespace GPGME.Native.Unix
            the handle DH.  Return the number of characters written, or -1 on
            error.  If an error occurs, errno is set.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr gpgme_data_write(
             [In] IntPtr dh,
             [In] IntPtr buffer,
@@ -543,27 +534,27 @@ namespace GPGME.Native.Unix
         /* Get the file name associated with the data object with handle DH, or
            NULL if there is none.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr gpgme_data_get_file_name(
             [In] IntPtr dh);
 
         /* Set the file name associated with the data object with handle DH to
            FILE_NAME.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_data_set_file_name(
             [In] IntPtr dh,
             [In] IntPtr file_name);
 
         /* Return the encoding attribute of the data buffer DH */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern gpgme_data_encoding_t gpgme_data_get_encoding(
             [In] IntPtr dh);
 
         /* Set the encoding attribute of data buffer DH to ENC */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_data_set_encoding(
             [In] IntPtr dh,
             [In] gpgme_data_encoding_t enc);
@@ -571,7 +562,7 @@ namespace GPGME.Native.Unix
 
         /* Retrieve a pointer to the result of the import operation.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr gpgme_op_import_result(
             [In] IntPtr ctx);
 
@@ -579,12 +570,12 @@ namespace GPGME.Native.Unix
 
         /* Import the key in KEYDATA into the keyring.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_import_start(
             [In] IntPtr ctx,
             [In] IntPtr keydata);
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_import(
             [In] IntPtr ctx,
             [In] IntPtr keydata);
@@ -593,13 +584,13 @@ namespace GPGME.Native.Unix
         /* Delete KEY from the keyring.  If ALLOW_SECRET is non-zero, secret
            keys are also deleted.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_delete_start(
             [In] IntPtr ctx,
             [In] IntPtr key,
             [In] int allow_secret);
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_delete(
             [In] IntPtr ctx,
             [In] IntPtr key,
@@ -608,7 +599,7 @@ namespace GPGME.Native.Unix
         /* Start a trustlist operation within CTX, searching for trust items
            which match PATTERN.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_trustlist_start(
             [In] IntPtr ctx,
             [In] IntPtr pattern, // const char * 
@@ -616,7 +607,7 @@ namespace GPGME.Native.Unix
 
         /* Return the next trust item from the trustlist in R_ITEM.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_trustlist_next(
             [In] IntPtr ctx,
             [Out] out IntPtr r_item //gpgme_trust_item_t *
@@ -624,13 +615,13 @@ namespace GPGME.Native.Unix
 
         /* Terminate a pending trustlist operation within CTX.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_trustlist_end(
             [In] IntPtr ctx);
 
         /* Acquire a reference to ITEM.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void gpgme_trust_item_ref(
             [In] IntPtr item //gpgme_trust_item_t
             );
@@ -638,7 +629,7 @@ namespace GPGME.Native.Unix
         /* Release a reference to ITEM.  If this was the last one the trust
            item is destroyed.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void gpgme_trust_item_unref(
             [In] IntPtr item //gpgme_trust_item_t
             );
@@ -646,7 +637,7 @@ namespace GPGME.Native.Unix
         /* Encrypt plaintext PLAIN within CTX for the recipients RECP and
            store the resulting ciphertext in CIPHER.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_encrypt_start(
             [In] IntPtr ctx,
             [In] IntPtr[] recp, // gpgme_key_t []
@@ -655,7 +646,7 @@ namespace GPGME.Native.Unix
             [In] IntPtr cipher //gpgme_data_t
             );
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_encrypt(
             [In] IntPtr ctx,
             [In] IntPtr[] recp, // gpgme_key_t []
@@ -666,7 +657,7 @@ namespace GPGME.Native.Unix
 
         /* Retrieve a pointer to the result of the encrypt operation.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr gpgme_op_encrypt_result(
             [In] IntPtr ctx);
 
@@ -677,7 +668,7 @@ namespace GPGME.Native.Unix
            store the resulting ciphertext in CIPHER.  Also sign the ciphertext
            with the signers in CTX.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_encrypt_sign_start(
             [In] IntPtr ctx,
             [In] IntPtr[] recp, //gpgme_key_t[]
@@ -685,7 +676,7 @@ namespace GPGME.Native.Unix
             [In] IntPtr plain,
             [In] IntPtr cipher);
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_encrypt_sign(
             [In] IntPtr ctx,
             [In] IntPtr[] recp, //gpgme_key_t[]
@@ -695,13 +686,13 @@ namespace GPGME.Native.Unix
 
         /* Delete all signers from CTX.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void gpgme_signers_clear(
             [In] IntPtr ctx);
 
         /* Add KEY to list of signers in CTX.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_signers_add(
             [In] IntPtr ctx,
             [In] IntPtr key // const gpgme_key_t
@@ -709,7 +700,7 @@ namespace GPGME.Native.Unix
 
         /* Return the SEQth signer's key in CTX.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr gpgme_signers_enum(
             [In] IntPtr ctx,
             [In] int seq);
@@ -719,7 +710,7 @@ namespace GPGME.Native.Unix
 
         /* Retrieve a pointer to the result of the signing operation.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr gpgme_op_sign_result(
             [In] IntPtr ctx);
 
@@ -727,14 +718,14 @@ namespace GPGME.Native.Unix
 
         /* Sign the plaintext PLAIN and store the signature in SIG.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_sign_start(
             [In] IntPtr ctx,
             [In] IntPtr plain,
             [In] IntPtr sig,
             [In] gpgme_sig_mode_t mode);
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_sign(
             [In] IntPtr ctx,
             [In] IntPtr plain,
@@ -743,7 +734,7 @@ namespace GPGME.Native.Unix
 
         /* Clear all notation data from the context.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void gpgme_sig_notation_clear(
             [In] IntPtr ctx);
 
@@ -753,7 +744,7 @@ namespace GPGME.Native.Unix
            GPGME_SIG_NOTATION_HUMAN_READABLE is forced to be true for notation
            data, and false for policy URLs.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_sig_notation_add(
             [In] IntPtr ctx,
             [In] IntPtr name, // const char *
@@ -762,7 +753,7 @@ namespace GPGME.Native.Unix
 
         /* Get the sig notations for this context.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr gpgme_sig_notation_get(
             [In] IntPtr ctx);
 
@@ -771,7 +762,7 @@ namespace GPGME.Native.Unix
 
         /* Retrieve a pointer to the result of the decrypt operation.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr gpgme_op_decrypt_result(
             [In] IntPtr ctx);
 
@@ -780,13 +771,13 @@ namespace GPGME.Native.Unix
         /* Decrypt ciphertext CIPHER within CTX and store the resulting
            plaintext in PLAIN.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_decrypt_start(
             [In] IntPtr ctx,
             [In] IntPtr cipher,
             [In] IntPtr plain);
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_decrypt(
             [In] IntPtr ctx,
             [In] IntPtr cipher,
@@ -795,13 +786,13 @@ namespace GPGME.Native.Unix
         /* Decrypt ciphertext CIPHER and make a signature verification within
            CTX and store the resulting plaintext in PLAIN.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_decrypt_verify_start(
             [In] IntPtr ctx,
             [In] IntPtr cipher,
             [In] IntPtr plain);
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_decrypt_verify(
             [In] IntPtr ctx,
             [In] IntPtr cipher,
@@ -810,7 +801,7 @@ namespace GPGME.Native.Unix
 
         /* Retrieve a pointer to the result of the verify operation.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr gpgme_op_verify_result(
             [In] IntPtr ctx);
 
@@ -818,14 +809,14 @@ namespace GPGME.Native.Unix
 
         /* Verify within CTX that SIG is a valid signature for TEXT.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_verify_start(
             [In] IntPtr ctx,
             [In] IntPtr sig,
             [In] IntPtr signed_text,
             [In] IntPtr plaintext);
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_verify(
             [In] IntPtr ctx,
             [In] IntPtr sig,
@@ -835,7 +826,7 @@ namespace GPGME.Native.Unix
         /* Edit the key KEY.  Send status and command requests to FNC and
            output of edit commands to OUT.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_edit_start(
             [In] IntPtr ctx,
             [In] IntPtr key, // gpgme_key_t
@@ -844,7 +835,7 @@ namespace GPGME.Native.Unix
             [In] IntPtr outdata // gpgme_data_t
             );
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_edit(
             [In] IntPtr ctx,
             [In] IntPtr key, // gpgme_key_t
@@ -856,7 +847,7 @@ namespace GPGME.Native.Unix
         /* Edit the card for the key KEY.  Send status and command requests to
            FNC and output of edit commands to OUT.  */
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_card_edit_start(
             [In] IntPtr ctx,
             [In] IntPtr key, //gpgme_key_t
@@ -865,7 +856,7 @@ namespace GPGME.Native.Unix
             [In] IntPtr outdata //gpgme_data_t
             );
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_op_card_edit(
             [In] IntPtr ctx,
             [In] IntPtr key, //gpgme_key_t
@@ -877,107 +868,22 @@ namespace GPGME.Native.Unix
 
         /* Wrappers around the internal I/O functions for use with
    gpgme_passphrase_cb_t and gpgme_edit_cb_t.  */
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr  gpgme_io_read(
             [In] int fd, 
             [In,Out] byte[] buffer, 
             [In] UIntPtr count);
         
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr gpgme_io_write (
             [In] int fd, 
             [In] byte[] buffer, 
             [In] UIntPtr count);
 
-        [DllImport(LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(WINDOWS_LIBRARY_NAME, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         internal static extern int gpgme_io_writen(
             [In] int fd,
             [In] byte[] buffer,
             [In] UIntPtr count);
-
-        public static NativeMethodsWrapper CreateWrapper()
-        {
-            return new NativeMethodsWrapper
-            {
-                gpgme_check_version = gpgme_check_version,
-                gpgme_ctx_get_engine_info = gpgme_ctx_get_engine_info,
-                gpgme_ctx_set_engine_info = gpgme_ctx_set_engine_info,
-                gpgme_data_get_encoding = gpgme_data_get_encoding,
-                gpgme_data_get_file_name = gpgme_data_get_file_name,
-                gpgme_data_new = gpgme_data_new,
-                gpgme_data_new_from_cbs = gpgme_data_new_from_cbs,
-                gpgme_data_new_from_filepart_1 = gpgme_data_new_from_filepart,
-                gpgme_data_new_from_filepart_2 = gpgme_data_new_from_filepart,
-                gpgme_data_new_from_mem = gpgme_data_new_from_mem,
-                gpgme_data_read_1 = gpgme_data_read,
-                gpgme_data_read_2 = gpgme_data_read,
-                gpgme_data_release = gpgme_data_release,
-                gpgme_data_seek_1 = gpgme_data_seek,
-                gpgme_data_seek_2 = gpgme_data_seek,
-                gpgme_data_set_encoding = gpgme_data_set_encoding,
-                gpgme_data_set_file_name = gpgme_data_set_file_name,
-                gpgme_data_write_1 = gpgme_data_write,
-                gpgme_data_write_2 = gpgme_data_write,
-                gpgme_engine_check_version = gpgme_engine_check_version,
-                gpgme_get_armor = gpgme_get_armor,
-                gpgme_get_engine_info = gpgme_get_engine_info,
-                gpgme_get_include_certs = gpgme_get_include_certs,
-                gpgme_get_key = gpgme_get_key,
-                gpgme_get_keylist_mode = gpgme_get_keylist_mode,
-                gpgme_get_pinentry_mode = gpgme_get_pinentry_mode,
-                gpgme_get_protocol_name = gpgme_get_protocol_name,
-                gpgme_get_textmode = gpgme_get_textmode,
-                gpgme_get_protocol = gpgme_get_protocol,
-                gpgme_hash_algo_name = gpgme_hash_algo_name,
-                gpgme_io_write = gpgme_io_write,
-                gpgme_io_writen = gpgme_io_writen,
-                gpgme_key_release = gpgme_key_release,
-                gpgme_new = gpgme_new,
-                gpgme_op_decrypt = gpgme_op_decrypt,
-                gpgme_op_decrypt_result = gpgme_op_decrypt_result,
-                gpgme_op_decrypt_verify = gpgme_op_decrypt_verify,
-                gpgme_op_delete = gpgme_op_delete,
-                gpgme_op_edit = gpgme_op_edit,
-                gpgme_op_encrypt = gpgme_op_encrypt,
-                gpgme_op_encrypt_result = gpgme_op_encrypt_result,
-                gpgme_op_encrypt_sign = gpgme_op_encrypt_sign,
-                gpgme_op_export = gpgme_op_export,
-                gpgme_op_export_ext = gpgme_op_export_ext,
-                gpgme_op_genkey = gpgme_op_genkey,
-                gpgme_op_genkey_result = gpgme_op_genkey_result,
-                gpgme_op_import = gpgme_op_import,
-                gpgme_op_import_result = gpgme_op_import_result,
-                gpgme_op_keylist_end = gpgme_op_keylist_end,
-                gpgme_op_keylist_ext_start = gpgme_op_keylist_ext_start,
-                gpgme_op_keylist_next = gpgme_op_keylist_next,
-                gpgme_op_keylist_start = gpgme_op_keylist_start,
-                gpgme_op_sign = gpgme_op_sign,
-                gpgme_op_sign_result = gpgme_op_sign_result,
-                gpgme_op_trustlist_end = gpgme_op_trustlist_end,
-                gpgme_op_trustlist_next = gpgme_op_trustlist_next,
-                gpgme_op_trustlist_start = gpgme_op_trustlist_start,
-                gpgme_op_verify = gpgme_op_verify,
-                gpgme_op_verify_result = gpgme_op_verify_result,
-                gpgme_pubkey_algo_name = gpgme_pubkey_algo_name,
-                gpgme_release = gpgme_release,
-                gpgme_set_armor = gpgme_set_armor,
-                gpgme_set_include_certs = gpgme_set_include_certs,
-                gpgme_set_keylist_mode = gpgme_set_keylist_mode,
-                gpgme_set_passphrase_cb = gpgme_set_passphrase_cb,
-                gpgme_set_textmode = gpgme_set_textmode,
-                gpgme_set_pinentry_mode = gpgme_set_pinentry_mode,
-                gpgme_set_protocol = gpgme_set_protocol,
-                gpgme_sig_notation_add = gpgme_sig_notation_add,
-                gpgme_sig_notation_clear = gpgme_sig_notation_clear,
-                gpgme_sig_notation_get = gpgme_sig_notation_get,
-                gpgme_signers_add = gpgme_signers_add,
-                gpgme_signers_clear = gpgme_signers_clear,
-                gpgme_signers_enum = gpgme_signers_enum,
-                gpgme_strerror = gpgme_strerror,
-                gpgme_strerror_r = gpgme_strerror_r,
-                gpgme_strsource = gpgme_strsource,
-                gpgme_trust_item_unref = gpgme_trust_item_unref,
-            };
-        }
     }
 }

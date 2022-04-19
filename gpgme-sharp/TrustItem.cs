@@ -26,7 +26,7 @@ namespace Libgpgme
         ~TrustItem() {
             if (itemPtr != IntPtr.Zero) {
                 // remove trust item reference
-                libgpgme.NativeMethods.gpgme_trust_item_unref(itemPtr);
+                NativeMethods.gpgme_trust_item_unref(itemPtr);
                 itemPtr = IntPtr.Zero;
             }
         }

@@ -1,6 +1,5 @@
 using System;
 using System.Runtime.InteropServices;
-using GPGME.Native.Shared;
 using Microsoft.Win32;
 
 namespace Libgpgme.Interop
@@ -17,8 +16,6 @@ namespace Libgpgme.Interop
         internal static bool IsWindows;
         internal static string gpgme_version_str;
         internal static GpgmeVersion gpgme_version;
-
-        internal static NativeMethodsWrapper NativeMethods { get; private set; }
 
         static libgpgme() {
             // On Windows systems we have to add the GnuPG directory to DLL search path
@@ -76,15 +73,10 @@ namespace Libgpgme.Interop
         }
 
         internal static void InitLibgpgme() {
-            // TODO: This should try Win32.NativeMethods and Unix.NativeMethods and use the one
-            // that works, rather than inferring the right one to use based on Platform string.
-            if (Environment.OSVersion.Platform.ToString().Contains("Win32") ||
-                Environment.OSVersion.Platform.ToString().Contains("Win64")) {
+            if (Environment.OSVersion.Platform == PlatformID.Win32NT) {
                 IsWindows = true;
-                NativeMethods = GPGME.Native.Win32.NativeMethods.CreateWrapper();
             } else {
                 IsWindows = false;
-                NativeMethods = GPGME.Native.Unix.NativeMethods.CreateWrapper();
                 if (USE_LFS_ON_UNIX) {
                     // See GPGME manual: 2.3 Largefile Support (LFS)
                     use_lfs = true;

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.271
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gpgme-sharp", "gpgme-sharp\gpgme-sharp.csproj", "{5523357F-F3CA-4E25-B6EC-30EE3F5D769D}"
 EndProject
@@ -31,13 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PgpSignVerify", "Examples\P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignPgpKey", "Examples\SignPgpKey\SignPgpKey.csproj", "{B2B6890B-54C8-4BA7-AE61-F06E582A6A3C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GPGME.Native.Win32", "GPGME.Native.Win32\GPGME.Native.Win32.csproj", "{601F32CB-CF0D-486B-848F-8A07BA42658F}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GPGME.Native.Unix", "GPGME.Native.Unix\GPGME.Native.Unix.csproj", "{3001DC3D-E42D-4DD1-8960-32A9580FA94D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GPGME.Native.Shared", "GPGME.Native.Shared\GPGME.Native.Shared.csproj", "{C18682B5-3246-4ED4-9527-3F51E89A7235}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExportKey", "Examples\KeyOperations\ExportKey\ExportKey.csproj", "{0016534F-36AC-4B7A-8243-3D3E90976F6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExportKey", "Examples\KeyOperations\ExportKey\ExportKey.csproj", "{0016534F-36AC-4B7A-8243-3D3E90976F6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,30 +129,6 @@ Global
 		{B2B6890B-54C8-4BA7-AE61-F06E582A6A3C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B2B6890B-54C8-4BA7-AE61-F06E582A6A3C}.Release|x86.ActiveCfg = Release|Any CPU
 		{B2B6890B-54C8-4BA7-AE61-F06E582A6A3C}.Release|x86.Build.0 = Release|Any CPU
-		{601F32CB-CF0D-486B-848F-8A07BA42658F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{601F32CB-CF0D-486B-848F-8A07BA42658F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{601F32CB-CF0D-486B-848F-8A07BA42658F}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{601F32CB-CF0D-486B-848F-8A07BA42658F}.Debug|x86.Build.0 = Debug|Any CPU
-		{601F32CB-CF0D-486B-848F-8A07BA42658F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{601F32CB-CF0D-486B-848F-8A07BA42658F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{601F32CB-CF0D-486B-848F-8A07BA42658F}.Release|x86.ActiveCfg = Release|Any CPU
-		{601F32CB-CF0D-486B-848F-8A07BA42658F}.Release|x86.Build.0 = Release|Any CPU
-		{3001DC3D-E42D-4DD1-8960-32A9580FA94D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3001DC3D-E42D-4DD1-8960-32A9580FA94D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3001DC3D-E42D-4DD1-8960-32A9580FA94D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{3001DC3D-E42D-4DD1-8960-32A9580FA94D}.Debug|x86.Build.0 = Debug|Any CPU
-		{3001DC3D-E42D-4DD1-8960-32A9580FA94D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3001DC3D-E42D-4DD1-8960-32A9580FA94D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3001DC3D-E42D-4DD1-8960-32A9580FA94D}.Release|x86.ActiveCfg = Release|Any CPU
-		{3001DC3D-E42D-4DD1-8960-32A9580FA94D}.Release|x86.Build.0 = Release|Any CPU
-		{C18682B5-3246-4ED4-9527-3F51E89A7235}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C18682B5-3246-4ED4-9527-3F51E89A7235}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C18682B5-3246-4ED4-9527-3F51E89A7235}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{C18682B5-3246-4ED4-9527-3F51E89A7235}.Debug|x86.Build.0 = Debug|Any CPU
-		{C18682B5-3246-4ED4-9527-3F51E89A7235}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C18682B5-3246-4ED4-9527-3F51E89A7235}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C18682B5-3246-4ED4-9527-3F51E89A7235}.Release|x86.ActiveCfg = Release|Any CPU
-		{C18682B5-3246-4ED4-9527-3F51E89A7235}.Release|x86.Build.0 = Release|Any CPU
 		{0016534F-36AC-4B7A-8243-3D3E90976F6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0016534F-36AC-4B7A-8243-3D3E90976F6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0016534F-36AC-4B7A-8243-3D3E90976F6B}.Debug|x86.ActiveCfg = Debug|Any CPU
