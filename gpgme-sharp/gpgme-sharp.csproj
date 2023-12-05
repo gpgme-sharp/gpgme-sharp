@@ -4,6 +4,7 @@
     <TargetFrameworks>net40;netcoreapp3.1</TargetFrameworks>
     <AssemblyVersion>2.0.3</AssemblyVersion>
     <FileVersion>2.0.3</FileVersion>
+    <LangVersion>11.0</LangVersion>
     <AssemblyName>gpgme-sharp</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <VersionPrefix>2.0.3</VersionPrefix>

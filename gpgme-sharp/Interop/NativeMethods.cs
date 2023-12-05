@@ -1,28 +1,13 @@
 ﻿using System;
-using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace Libgpgme.Interop
 {
 	public static class NativeMethods
 	{
-        private const string WINDOWS_LIBRARY_NAME = "libgpgme-11.dll";
-		private const string UNIX_LIBRARY_NAME = "libgpgme.so.11";
-
-        static NativeMethods()
-        {
-#if NETCOREAPP
-            NativeLibrary.SetDllImportResolver(Assembly.GetExecutingAssembly(), (name, assembly, path) =>
-            {
-                if (name == WINDOWS_LIBRARY_NAME && Environment.OSVersion.Platform != PlatformID.Win32NT)
-                {
-                    return NativeLibrary.Load(UNIX_LIBRARY_NAME);
-                }
-
-                return IntPtr.Zero;
-            });
-#endif
-        }
+        internal const string WINDOWS_LIBRARY_NAME = "libgpgme-11.dll";
+        internal const string WINDOWS_LIBRARY_64_BIT_NAME = "libgpgme6-11.dll";
+        internal const string UNIX_LIBRARY_NAME = "libgpgme.so.11";
 
         /* Check that the library fulfills the version requirement.  Note:
            This is here only for the case where a user takes a pointer from

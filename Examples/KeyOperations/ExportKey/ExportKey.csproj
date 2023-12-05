@@ -5,10 +5,6 @@
     <TargetFramework>net6</TargetFramework>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\..\gpgme-sharp\gpgme-sharp.csproj" />
   </ItemGroup>

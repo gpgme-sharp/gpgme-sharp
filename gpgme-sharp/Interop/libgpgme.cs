@@ -8,8 +8,6 @@ namespace Libgpgme.Interop
     {
         internal const int GPGME_ERR_SOURCE_DEFAULT = (int) gpg_err_source_t.GPG_ERR_SOURCE_USER_1;
         internal static string REQUIRE_GPGME = "1.1.6";
-        internal static string GNUPG_DIRECTORY = @"C:\Program Files\GNU\GnuPG";
-        internal static string GNUPG_LIBNAME = @"libgpgme-11.dll";
         internal static bool USE_LFS_ON_UNIX = true;
 
         internal static bool use_lfs;
@@ -18,8 +16,7 @@ namespace Libgpgme.Interop
         internal static GpgmeVersion gpgme_version;
 
         static libgpgme() {
-            // On Windows systems we have to add the GnuPG directory to DLL search path
-            Win32SetLibdir();
+            DllImportResolver.Configure();
 
             // Version check required (could fail on Windows systems)
             try {
@@ -43,33 +40,6 @@ namespace Libgpgme.Interop
 
         internal static gpg_err_source_t gpgme_err_source(int err) {
             return libgpgerror.gpg_err_source(err);
-        }
-
-        /* Windows: add GNUPG directory as library path */
-
-        [DllImport("kernel32.dll", SetLastError = true)]
-        internal static extern bool SetDllDirectory(string lpPathName);
-
-
-        internal static bool Win32SetLibdir() {
-            if (Environment.OSVersion.Platform.ToString().Contains("Win32") ||
-                Environment.OSVersion.Platform.ToString().Contains("Win64")) {
-                IsWindows = true;
-                string gnupgpath = null;
-                try {
-                    gnupgpath = (string) Registry.GetValue(
-						"HKEY_LOCAL_MACHINE\\SOFTWARE\\GNU\\GnuPG",
-                        "Install Directory",
-                        null);
-                } catch {
-                }
-                if (gnupgpath != null && !(gnupgpath.Equals(string.Empty))) {
-                    return SetDllDirectory(gnupgpath);
-                }
-                return SetDllDirectory(GNUPG_DIRECTORY);
-            }
-
-            return true; // always "true" for UNIX
         }
 
         internal static void InitLibgpgme() {

@@ -39,10 +39,8 @@ namespace Libgpgme
         public Context(string dllDirectory)
         {
             if (String.IsNullOrEmpty(dllDirectory)) throw new ArgumentException("The provided Path to dll Directory is empty or null!");
-
-            //Sets the Dll Directory (Method will take care about other issues like non existing path etc.) 
-            SetDllDirectory(dllDirectory);
-
+        
+            Interop.DllImportResolver.ExtraPotentialPaths.Add(dllDirectory);
             Initialize(ref _signers, ref _signots, ref _keystore);
         }
 
@@ -651,34 +649,6 @@ namespace Libgpgme
                 GC.KeepAlive(plain);
 
                 return new CombinedResult(dec_rst, ver_rst);
-            }
-        }
-
-        /// <summary>
-        /// Sets the GNUPG directory where the libgpgme-11.dll can be found.
-        /// </summary>
-        /// <param name="path">Path to libgpgme-11.dll.</param>
-        public void SetDllDirectory(string path) {
-            if (Environment.OSVersion.Platform.ToString().Contains("Win32") ||
-                Environment.OSVersion.Platform.ToString().Contains("Win64")) {
-                if (!string.IsNullOrEmpty(path)) {
-                    string tmp;
-                    if (path[path.Length - 1] != '\\') {
-                        tmp = path + "\\";
-                    } else {
-                        tmp = path;
-                    }
-
-                    if (!File.Exists(tmp + libgpgme.GNUPG_LIBNAME)) {
-                        throw new FileNotFoundException("Could not find GPGME DLL file.", tmp + libgpgme.GNUPG_LIBNAME);
-                    }
-
-                    if (!libgpgme.SetDllDirectory(path)) {
-                        throw new GpgmeException("Could not set DLL path " + path);
-                    }
-
-                    libgpgme.InitLibgpgme();
-                }
             }
         }
 
