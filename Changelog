@@ -1,3 +1,11 @@
+2023-12-05  Daniel Lo Nigro <d@d.sb> - 3.0.0-beta1
+    * Bumped minimum .NET Core requirement to .NET Core 3.1
+    * Implemented 64-bit support for Windows now that Gpg4Win ships with 
+      a 64-bit build of GPGME. Non-Windows OSes already supported 64-bit.
+      Note that this has changed the mechamism that gpgme-sharp uses to
+      locate the corect GPGME DLL to use. Please file a GitHub issue if 
+      this causes issues in your environment.
+
 2019-03-24  Daniel Lo Nigro <d@d.sb> - 2.0.3
     * Added export modes, to allow exporting secret keys
 	* Added missing fields to subkey: Curve, CardNumber, and Keygrip
@@ -9,7 +17,7 @@
 2019-01-31  Daniel Lo Nigro <d@d.sb> - 2.0.0
     * Added support for .NET Core 2.0
 
-2018-06-05	Daniel Mueller<daniel@danm.de>
+2018-06-05	Daniel Mueller <daniel@danm.de>
 	* Changed license from LPGL to MIT
 
 2013-01-24	Daniel Mueller <daniel@danm.de>
