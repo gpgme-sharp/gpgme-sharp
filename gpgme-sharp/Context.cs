@@ -39,8 +39,8 @@ namespace Libgpgme
         public Context(string dllDirectory)
         {
             if (String.IsNullOrEmpty(dllDirectory)) throw new ArgumentException("The provided Path to dll Directory is empty or null!");
-        
-            Interop.DllImportResolver.ExtraPotentialPaths.Add(dllDirectory);
+
+            SetDllDirectory(dllDirectory);
             Initialize(ref _signers, ref _signots, ref _keystore);
         }
 
@@ -650,6 +650,16 @@ namespace Libgpgme
 
                 return new CombinedResult(dec_rst, ver_rst);
             }
+        }
+
+        /// <summary>
+        /// Sets the GNUPG directory where the libgpgme-11.dll (for 32-bit) or libgpgme6-11.dll (for 64-bit) can be found.
+        /// </summary>
+        /// <param name="path">Path to libgpgme-11.dll (for 32-bit) or libgpgme6-11.dll (for 64-bit).</param>
+        public void SetDllDirectory(string path)
+        {
+            Interop.DllImportResolver.ExtraPotentialPaths.Add(path);
+            libgpgme.InitLibgpgme();
         }
 
         public VerificationResult Verify(GpgmeData signature, GpgmeData signedtext, GpgmeData plain) {
